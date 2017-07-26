@@ -1,0 +1,13 @@
+{{contact-picture contact=thread.contact}}
+<div class="details">
+    <div class="name">
+        {{#if thread.contact.name}}
+            {{thread.contact.name}}
+        {{else}}
+            {{thread.address}}
+        {{/if}}
+    </div>
+    <div class="snippet">
+        {{thread.snippet}}
+    </div>
+</div>

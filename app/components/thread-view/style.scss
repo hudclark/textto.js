@@ -1,0 +1,37 @@
+thread-view {
+    min-height: $row-height;
+    border-bottom: 1px solid $borderColor;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    .details {
+        display: inline-block;
+        margin-left: 16px;
+    }
+
+    .name {
+        color: $textLight;
+        margin-bottom: 8px;
+
+        max-width: 200px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .snippet {
+        color: $textSecondary;
+        font-size: .8em;
+
+        max-width: 200px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    &.active {
+        background-color: $colorPrimary;
+    }
+}

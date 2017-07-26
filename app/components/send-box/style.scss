@@ -1,0 +1,20 @@
+send-box {
+    min-height: 48px;
+    margin: 32px;
+    padding: 16px 32px;
+    line-height: 16px;
+    color: $textLight;
+    box-sizing: border-box;
+    border-radius: 24px;
+    @include elevation(2);
+    overflow: hidden;
+    flex-shrink: 0;
+
+    background-color: $colorPrimaryDark;
+    border: none;
+    resize: none;
+
+    &:focus {
+        outline: none;
+    }
+}

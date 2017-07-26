@@ -8,6 +8,9 @@ module.exports = function(defaults) {
     // Add options here
     babel: {
         includePolyfill: true
+    },
+    sassOptions: {
+      includePaths: ['app']
     }
   });
 

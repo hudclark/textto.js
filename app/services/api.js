@@ -5,12 +5,9 @@ export default Ember.Service.extend({
 
     auth: Ember.inject.service(),
 
-    _request(url, options) {
+    request(url, options) {
         url = config.host + url;
-        console.log("Requesting " + url);
-
         options = options || {};
-
         return new Ember.RSVP.Promise((resolve, reject) => {
             Ember.$.ajax(url, options)
                 .then((result) => resolve(result))
@@ -19,45 +16,57 @@ export default Ember.Service.extend({
     },
 
     async _authenticatedRequest(url, options) {
-
         options = options || {};
         options.headers = { 'x-access-token': this.get('auth').getAuthToken() };
+        let result = null;
 
-        let result;
         try {
-            result = await this._request(url, options);
+            result = await this.request(url, options);
         } catch (err) {
+            // auth token expired
+            // if unable to refresh tokens, throw an exception and auth will transition to login route.
             if (err.status === 401) {
-                console.log("Refreshing token and trying again...");
                 await this.get('auth').refreshToken();
                 options.headers = { 'x-access-token': this.get('auth').getAuthToken() };
-                result = await this._request(url, options);
+                result = await this.request(url, options);
+            }
+            // If error is not an expired token, throw original error.
+             else {
+                throw err;
             }
         }
-        // attempt to refresk token and try request.
         return result;
     },
 
     // Endpoints ==================
     // All requests (except from auth) should go through here.
 
+    // general
     ping() {
-        return this._request('/ping')
+        return this.request('/ping')
     },
 
     // thread
-    getThreads() {
-        return this._authenticatedRequest('/threads');
+    async getThreads() {
+        let response = await this._authenticatedRequest('/threads');
+        return response.threads;
     },
 
     // messages
-    getMessages(threadId) {
-        return this._authenticatedRequest('/messages?threadId=' + threadId);
+    async getMessages(threadId) {
+        let response = await this._authenticatedRequest('/messages?threadId=' + threadId);
+        return response.messages;
+    },
+
+    async getAllMessages(threadId) {
+        let response = await this._authenticatedRequest(`/messages?threadId=${threadId}&includeScheduled=true`)
+        return response.messages;
     },
 
     // scheduled messages
-    getScheduledMessages(threadId) {
-        return this._authenticatedRequest('/scheduledMessages?threadId=' + threadId);
+    async getScheduledMessages(threadId) {
+        let response = await this._authenticatedRequest('/scheduledMessages?threadId=' + threadId);
+        return response.scheduledMessages;
     },
 
     createScheduledMessage(message) {
@@ -69,10 +78,19 @@ export default Ember.Service.extend({
     },
 
     // user
-    getUser() {
-        return this._authenticatedRequest('/user');
+    async getUser() {
+        let response = await this._authenticatedRequest('/user');
+        return response.user;
     }
 
     // refresh tokens TODO
+
+
+    // TODO
+    // can add subscribe and unsubscribe methods.
+    // have event-bus style subscribers.
+    // if (subscriber.onNewMessage) {...}
+    // if (subscriber.onFailedScheduledMessage) {...}
+    // etc.
 
 });

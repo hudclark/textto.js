@@ -1,0 +1,19 @@
+contact-picture {
+    overflow: hidden;
+    display: inline-block;
+
+    .circular {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+    }
+
+    .text {
+        color: $textDark;
+        background-color: $colorAccent;
+        line-height: 50px;
+        text-align: center;
+        font-size: 1em;
+    }
+
+}

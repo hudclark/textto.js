@@ -1,0 +1,27 @@
+{{side-bar threads=threads onThreadClick=(action 'onThreadClick')}}
+
+<top-bar>
+    {{nav-bar}}
+    <div class="right-content">
+        {{#if activeThread}}
+            {{contact-picture contact=activeThread.contact}}
+            <span class="name">
+                {{#if activeThread.contact.name}}
+                    {{activeThread.contact.name}}
+                {{else}}
+                    {{activeThread.address}}
+                {{/if}}
+            </span>
+        {{/if}}
+    </div>
+</top-bar>
+
+<div class="content-container">
+    {{ send-box on-send=(action 'onSend')}}
+    <div class="messages">
+        {{#each messages as |message|}}
+            {{message-view message=message}}
+        {{/each}}
+    </div>
+
+</div>
