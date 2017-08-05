@@ -58,9 +58,8 @@ export default Ember.Service.extend({
         return response.messages;
     },
 
-    async getAllMessages(threadId) {
-        let response = await this._authenticatedRequest(`/messages?threadId=${threadId}&includeScheduled=true`)
-        return response.messages;
+    getAllMessages(threadId) {
+        return this._authenticatedRequest(`/messages/all?threadId=${threadId}`)
     },
 
     // scheduled messages
@@ -69,9 +68,10 @@ export default Ember.Service.extend({
         return response.scheduledMessages;
     },
 
-    createScheduledMessage(message) {
+    sendScheduledMessage(message) {
         let options = {
             method: 'post',
+            contentType: 'application/json',
             data: JSON.stringify({scheduledMessage: message})
         };
         return this._authenticatedRequest('/scheduledMessages', options);

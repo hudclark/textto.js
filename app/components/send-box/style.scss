@@ -17,4 +17,10 @@ send-box {
     &:focus {
         outline: none;
     }
+
+    &:empty:before {
+        content: attr(placeholder);
+        display: block;
+        color: $textSecondary;
+    }
 }

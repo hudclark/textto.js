@@ -7,7 +7,7 @@
             {{contact-picture contact=activeThread.contact}}
             <span class="name">
                 {{#if activeThread.contact.name}}
-                    {{activeThread.contact.name}}
+                    {{{activeThreadTitle}}}
                 {{else}}
                     {{activeThread.address}}
                 {{/if}}
@@ -18,10 +18,14 @@
 
 <div class="content-container">
     {{ send-box on-send=(action 'onSend')}}
-    <div class="messages">
-        {{#each messages as |message|}}
-            {{message-view message=message}}
-        {{/each}}
-    </div>
-
+    {{#if (or messages.length scheduledMessages.length)}}
+        <div class="messages">
+            {{#each scheduledMessages as |message|}}
+                {{message-view message=message}}
+            {{/each}}
+            {{#each messages as |message|}}
+                {{message-view message=message}}
+            {{/each}}
+        </div>
+    {{/if}}
 </div>

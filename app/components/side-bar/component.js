@@ -4,6 +4,9 @@ export default Ember.Component.extend({
 
     tagName: 'side-bar',
 
+    sortedThreads: Ember.computed.sort('threads.[]', 'ordering'),
+    ordering: ['last:desc'],
+
     actions: {
 
         onThreadClick(threadId) {
