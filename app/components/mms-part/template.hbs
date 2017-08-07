@@ -1,0 +1,7 @@
+{{#if isPlainText}}
+    <message-bubble>
+        {{emoji-text content=part.data}}
+    </message-bubble>
+{{else if isImage}}
+    <img class="mms-image" src={{part.data}} {{action 'toggleImage'}}>
+{{/if}}

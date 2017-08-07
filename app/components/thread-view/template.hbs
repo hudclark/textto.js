@@ -1,13 +1,9 @@
-{{contact-picture contact=thread.contact}}
+{{contact-picture contacts=thread.contacts length=thread.addresses.length}}
 <div class="details">
     <div class="name">
-        {{#if thread.contact.name}}
-            {{{name}}}
-        {{else}}
-            {{thread.address}}
-        {{/if}}
+        {{recipient-list contacts=thread.contacts addresses=thread.addresses}}
     </div>
     <div class="snippet">
-        {{{snippet}}}
+        {{emoji-text content=thread.snippet}}
     </div>
 </div>

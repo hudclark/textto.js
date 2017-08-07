@@ -8,8 +8,9 @@ export default Ember.Component.extend({
         this._super(...arguments);
         this.set('image', null);
         this.set('text', null);
-        let contact = this.get('contact');
-        if (contact) {
+        let contacts = this.get('contacts');
+        if (contacts.length == 1) {
+            let contact = contacts[0];
             if (contact.image) {
                 this.set('image', contact.image);
                 return;
@@ -23,7 +24,11 @@ export default Ember.Component.extend({
                 return;
             }
         }
-        this.set('text', '#');
+        if (this.get('length') == 1) {
+            this.set('text', '#');
+        } else {
+            this.set('text', this.get('length'));
+        }
     },
 
 

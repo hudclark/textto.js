@@ -125,7 +125,8 @@ export default Ember.Controller.extend({
                 body: body,
                 status: 'outgoing',
                 threadId: this.get('activeThread.androidId'),
-                uuid: now.getTime()
+                uuid: now.getTime(),
+				type: "sms"
             };
             this.get('api').sendScheduledMessage(scheduledMessage);
             this.get('_scheduledMessages').pushObject(scheduledMessage);

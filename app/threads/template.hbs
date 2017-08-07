@@ -4,13 +4,9 @@
     {{nav-bar}}
     <div class="right-content">
         {{#if activeThread}}
-            {{contact-picture contact=activeThread.contact}}
+            {{contact-picture contacts=activeThread.contacts length=activeThread.addresses.length}}
             <span class="name">
-                {{#if activeThread.contact.name}}
-                    {{{activeThreadTitle}}}
-                {{else}}
-                    {{activeThread.address}}
-                {{/if}}
+                {{recipient-list contacts=activeThread.contacts addresses=activeThread.addresses}}
             </span>
         {{/if}}
     </div>

@@ -1,6 +1,6 @@
 message-view {
 
-    margin: 12px 0;
+    margin: 6px 0;
 
     &.received {
         text-align: left;
@@ -12,6 +12,7 @@ message-view {
     }
 
     message-bubble {
+        margin: 12px 0;
 
         position: relative;
         display: inline-block;
