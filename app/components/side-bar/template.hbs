@@ -1,5 +1,7 @@
-<div class="threads">
-    {{#each sortedThreads as |thread|}}
-        {{thread-view thread=thread onClick=onThreadClick}}
-    {{/each}}
-</div>
+{{#if sortedThreads.length}}
+    <div class="threads">
+        {{#each sortedThreads as |thread|}}
+            {{thread-view thread=thread onClick=onThreadClick}}
+        {{/each}}
+    </div>
+{{/if}}

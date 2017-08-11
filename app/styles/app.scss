@@ -18,6 +18,11 @@
     
 }
 
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
 // dimens
 $side-bar-width: 300px;
 $row-height: 80px;

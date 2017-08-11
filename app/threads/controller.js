@@ -62,23 +62,28 @@ export default Ember.Controller.extend({
 
     onNewMessage(payload) {
         let message = payload.message;
-        this.updateThreadSnippet(message.threadId, message.body, message.date);
+        this.updateThreadSnippet(message.threadId, message, message.date);
         if (this._isCurrentThread(message.threadId)) {
             this.set('_scheduledMessages', this.get('_scheduledMessages').filter((msg) => {
-                return !(msg.isDeleted && msg.body.includes(message.body));
+                if (msg.isDeleted) {
+                    if ((msg.body && msg.body.includes(message.body)) || !msg.body && !message.body) {
+                        return false;
+                    }
+                }
+                return true;
             }));
-            this.get('_messages').unshiftObject(message)
+            this.get('_messages').unshiftObject(message);
         }
     },
 
     onNewScheduledMessage(payload) {
         let message = payload.scheduledMessage;
-        this.updateThreadSnippet(message.threadId, message.body, message.createdAt);
+        this.updateThreadSnippet(message.threadId, message, message.createdAt);
         if (this._isCurrentThread(message.threadId)) {
             let filtered = this.get('_scheduledMessages').filter((msg) => {
-                return (message.uuid != msg.uuid);
+                return (message.uuid !== msg.uuid);
             });
-            filtered.unshiftObject(message);
+            filtered.pushObject(message);
             this.set('_scheduledMessages', filtered);
         }
     },
@@ -99,14 +104,29 @@ export default Ember.Controller.extend({
         this.get('threads').unshiftObject(thread);
     },
 
-    updateThreadSnippet(threadId, text, time) {
-        let snippet = text.substr(0, 60);
+    updateThreadSnippet(threadId, msg, time) {
+        let snippet = this._getSnippetForMessage(msg);
         this.get('threads').forEach((thread) => {
             if (thread.androidId == threadId) {
                 Ember.set(thread, 'snippet', snippet);
                 Ember.set(thread, 'last', time);
             }
         });
+    },
+
+    _getSnippetForMessage(msg) {
+        if (msg.body) return msg.body;
+        let snippet = null;
+        if (msg.parts) {
+            msg.parts.forEach((part) => {
+                if (!snippet && part.contentType.includes('image')) {
+                    snippet = ((msg.sender == 'me') ? "You send an " : "You received an ") + "image";
+                } else if (part.contentType == "text/plain") {
+                    snippet = part.data;
+                }
+            });
+        }
+        return (snippet) ? snippet : "";
     },
 
     _isCurrentThread(androidId) {
@@ -123,15 +143,15 @@ export default Ember.Controller.extend({
             let now = new Date();
             let scheduledMessage = {
                 body: body,
-                status: 'outgoing',
                 threadId: this.get('activeThread.androidId'),
                 uuid: now.getTime(),
 				type: "sms"
             };
             this.get('api').sendScheduledMessage(scheduledMessage);
             this.get('_scheduledMessages').pushObject(scheduledMessage);
-            this.updateThreadSnippet(scheduledMessage.threadId, body, now.getTime());
-        }
+            this.updateThreadSnippet(scheduledMessage.threadId, scheduledMessage, now.getTime());
+        },
+
     }
 
 });

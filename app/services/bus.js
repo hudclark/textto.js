@@ -6,6 +6,7 @@ export default Ember.Service.extend({
 
     register(subscriber) {
         this._subscribers.pushObject(subscriber);
+        console.log(this._subscribers.length + " subscribers.");
     },
 
     unRegister(subscriber) {

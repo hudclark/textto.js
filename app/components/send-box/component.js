@@ -6,7 +6,14 @@ export default Ember.Component.extend({
     attributeBindings: ['contenteditable', 'autofocus', 'placeholder'],
     contenteditable: 'true',
     autofocus: 'autofocus',
-    placeholder: 'Send a message...',
+    placeholder: Ember.computed('to', function () {
+        let to = this.get('to');
+        if (to) {
+            return 'Message ' + this.get('to') + '...';
+        } else {
+            return 'Send a message...';
+        }
+    }),
 
     keyDown (e) {
         // enter pressed

@@ -13,15 +13,19 @@
 </top-bar>
 
 <div class="content-container">
-    {{ send-box on-send=(action 'onSend')}}
+    {{ send-box on-send=(action 'onSend') to=(recipient-list contacts=activeThread.contacts addresses=activeThread.addresses)}}
+
     {{#if (or messages.length scheduledMessages.length)}}
         <div class="messages">
             {{#each scheduledMessages as |message|}}
-                {{message-view message=message}}
+                {{message-view message=message received=false}}
             {{/each}}
             {{#each messages as |message|}}
-                {{message-view message=message}}
+                {{message-view message=message open-photo='openPhoto'}}
             {{/each}}
         </div>
     {{/if}}
+
 </div>
+
+{{modal-service}}
