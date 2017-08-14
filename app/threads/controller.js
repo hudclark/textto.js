@@ -66,41 +66,52 @@ export default Ember.Controller.extend({
 
     onNewMessage(payload) {
         let message = payload.message;
-        this.updateThread(message.threadId, message, message.date);
-        if (this._isCurrentThread(message.threadId)) {
-            this.set('_scheduledMessages', this.get('_scheduledMessages').filter((msg) => {
-                if (msg.isDeleted) {
-                    if ((msg.body && msg.body.includes(message.body)) || !msg.body && !message.body) {
-                        return false;
-                    }
+        this.updateThread(message.threadId, message, message.date)
+        if (!this._isCurrentThread(message.threadId)) return
+        // TODO needs to be cleaned up
+        this.set('_scheduledMessages', this.get('_scheduledMessages').filter((msg) => {
+            if (msg.isDeleted || msg.sent) {
+                if ((msg.body && msg.body.includes(message.body)) || !msg.body && !message.body) {
+                    return false;
                 }
-                return true;
-            }));
-            this.get('_messages').unshiftObject(message);
-        }
+            }
+            return true;
+        }))
+
+        this.unshiftOrReplace('_messages', message, (msg) => {
+            return (msg._id === message._id)
+        })
     },
 
-    onNewScheduledMessage(payload) {
+    onNewScheduledMessage (payload) {
         let message = payload.scheduledMessage;
         this.updateThread(message.threadId, message, message.createdAt);
-        if (this._isCurrentThread(message.threadId)) {
-            let filtered = this.get('_scheduledMessages').filter((msg) => {
-                return (message.uuid !== msg.uuid);
-            });
-            filtered.pushObject(message);
-            this.set('_scheduledMessages', filtered);
+        if (!this._isCurrentThread(message.threadId)) return
+        this.unshiftOrReplace('_scheduledMessages', message, (msg) => {
+            return (msg.uuid === message.uuid)
+        })
+    },
+
+    onUpdateScheduledMessage (payload) {
+        let message = payload.scheduledMessage;
+        if (!this._isCurrentThread(message.threadId)) return
+        const array = this.get('_scheduledMessages')
+        for (let i = 0; i < array.length; i++) {
+            if (message.uuid === array[i].uuid) {
+                array[i] = message
+                break
+            }
         }
     },
 
-    onDeleteScheduledMessage(payload) {
+    onDeleteScheduledMessage (payload) {
         let message = payload.scheduledMessage;
-        if (this._isCurrentThread(message.threadId)) {
-            this.get('_scheduledMessages').forEach((msg) => {
-                if (msg.uuid === message.uuid) {
-                    msg.isDeleted = true
-                }
-            });
-        }
+        if (!this._isCurrentThread(message.threadId)) return
+        this.get('_scheduledMessages').forEach((msg) => {
+            if (msg.uuid === message.uuid) {
+                msg.isDeleted = true
+            }
+        });
     },
 
     onNewThread(payload) {
@@ -108,11 +119,11 @@ export default Ember.Controller.extend({
         this.get('threads').unshiftObject(thread);
     },
 
-    updateThread(threadId, msg, time) {
+    updateThread (threadId, msg, time) {
         let snippet = this._getSnippetForMessage(msg);
         this.get('threads').forEach((thread) => {
             if (thread.androidId == threadId && time > thread.last) {
-                Ember.set(thread, 'snippet', snippet);
+                if (snippet) Ember.set(thread, 'snippet', snippet);
                 Ember.set(thread, 'last', time);
             }
         });
@@ -123,6 +134,7 @@ export default Ember.Controller.extend({
         let snippet = null;
         if (msg.parts) {
             msg.parts.forEach((part) => {
+                console.log(part)
                 if (!snippet && part.contentType.includes('image')) {
                     snippet = ((msg.sender == 'me') ? "You sent an " : "You received an ") + "picture";
                 } else if (part.contentType == "text/plain") {
@@ -130,7 +142,7 @@ export default Ember.Controller.extend({
                 }
             });
         }
-        return (snippet) ? snippet : "";
+        return snippet
     },
 
     _isCurrentThread(androidId) {
@@ -173,6 +185,22 @@ export default Ember.Controller.extend({
 
     stopScrollListener() {
         clearInterval(this._scrollInterval)
+    },
+
+    unshiftOrReplace (collectionName, value, func) {
+        const array = this.get(collectionName)
+        let index = -1
+        for (let i = 0; i < array.length; i++) {
+            if (func(array[i])) {
+                index = i
+                break
+            }
+        }
+        if (index !== -1) {
+            array[index] = value
+        } else {
+            array.unshiftObject(value)
+        }
     },
     
     actions: {
