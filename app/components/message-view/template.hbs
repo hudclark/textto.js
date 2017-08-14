@@ -1,9 +1,9 @@
-{{#if sms}}
-    <message-bubble>
-        {{emoji-text content=message.body}}
-    </message-bubble>
-{{else}}
+{{#if mms}}
     {{#each message.parts as |part|}}
         {{mms-part part=part}}
     {{/each}}
+{{else}}
+    <message-bubble>
+        {{emoji-text content=message.body}}
+    </message-bubble>
 {{/if}}

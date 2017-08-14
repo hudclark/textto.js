@@ -58,6 +58,12 @@ export default Ember.Service.extend({
         return response.messages;
     },
 
+    async loadMoreMessages(threadId, after) {
+        let url = '/messages?threadId=' + threadId + '&after=' + after
+        const response = await this._authenticatedRequest(url)
+        return response.messages
+    },
+
     getAllMessages(threadId) {
         return this._authenticatedRequest(`/messages/all?threadId=${threadId}`)
     },
@@ -72,7 +78,7 @@ export default Ember.Service.extend({
         let options = {
             method: 'post',
             contentType: 'application/json',
-            data: JSON.stringify({scheduledMessage: message})
+            data: JSON.stringify(message)
         };
         return this._authenticatedRequest('/scheduledMessages', options);
     },

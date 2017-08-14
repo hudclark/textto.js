@@ -4,6 +4,15 @@ export default Ember.Route.extend({
 
     auth: Ember.inject.service(),
     websocket: Ember.inject.service(),
+    bus: Ember.inject.service(),
+
+    register: Ember.on('activate', function () {
+        this.get('bus').register(this);
+    }),
+
+    unregister: Ember.on('deactivate', function () {
+        this.get('bus').unregister(this);
+    }),
 
     beforeModel() {
         // this is a protected route.
@@ -16,8 +25,12 @@ export default Ember.Route.extend({
 
     setupController (controller, model) {
         controller.load();
-    }
+    },
 
+    onWebsocketConnectionLost() {
+        // TODO here should load error route.
+        this.transitionTo('error');
+    }
 
 
 });

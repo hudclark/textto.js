@@ -21,6 +21,8 @@ export default Ember.Service.extend({
             if (!this.hasRetried) {
                 this.hasRetried = true;
                 this.ensureConnected();
+            } else {
+                bus.post('websocketConnectionLost');
             }
         }, this.PING_TIMEOUT);
     },
@@ -40,8 +42,7 @@ export default Ember.Service.extend({
         }
         try {
             let message = JSON.parse(event.data);
-            let eventName = "on" + message.type.capitalize();
-            this.get('bus').post(eventName, message.payload);
+            this.get('bus').post(message.type, message.payload);
         } catch (err) {
             console.error("Error parsing ws event " + err);
         }
@@ -57,12 +58,15 @@ export default Ember.Service.extend({
     },
 
     async _onCloseWithRetry(err) {
-        if (err.code === 1006) {
+        try {
+            // TODO need a way to find out if it was an auth error or something else
             await this.get('auth').refreshToken();
             let url = this._getUrl();
             this._ws = new WebSocket(url);
             this._ws.onopen = () => { this._onOpen(); };
             this._ws.onclose = () => { this._onClose(); };
+        } catch (err) {
+            this.get('bus').post('websocketConnectionLost');
         }
     },
 
@@ -83,12 +87,7 @@ export default Ember.Service.extend({
         if (this.isConnected())  {
             return;
         }
-        // TODO what if this is the first request, and the auth
-        // token is expired, but we are still logged in. will need
-        // to catch and retry in on_close.
-        // maybe add two versions of onclose?
         console.log("Attempting to establish websocket connection");
-        // TODO better not be able to connect without the token
         this._ws = new WebSocket(this._getUrl());
         this._ws.onopen = () => { this._onOpen(); };
         this._ws.onclose = (err) => { this._onCloseWithRetry(err); };

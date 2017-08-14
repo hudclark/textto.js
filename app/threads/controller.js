@@ -17,11 +17,12 @@ export default Ember.Controller.extend({
     messages: Ember.computed.sort('_messages.[]', 'messageOrdering'),
     messageOrdering: ['date:desc'],
     scheduledMessages: Ember.computed.sort('_scheduledMessages.[]', 'scheduledMessageOrdering'),
-    scheduledMessageOrdering: ['createdAt:desc'],
+    scheduledMessageOrdering: ['uuid:desc'],
 
     init() {
         this._super(...arguments);
         this.get('bus').register(this);
+        this.startScrollListener()
     },
 
     async load() {
@@ -57,6 +58,9 @@ export default Ember.Controller.extend({
             this.set('_messages', request.messages);
             this.set('_scheduledMessages', request.scheduledMessages);
             $('send-box').focus();
+
+            this.isLoadingMore = false
+            this.hasMoreMessages = true
         }
     },
 
@@ -132,6 +136,44 @@ export default Ember.Controller.extend({
     _isCurrentThread(androidId) {
         return (androidId === this.get('activeThread.androidId'));
     },
+
+    startScrollListener() {
+        this._scrollInterval = setInterval(() => {
+            const $messages = $('.messages')
+            if (!$messages[0]) return
+
+            const events = $._data($messages[0]).events
+            if (!events || !events.scroll) {
+                $messages.scroll(() => this.didScroll = true)
+            }
+
+            if (this.didScroll) {
+                this.didScroll = false
+                if ($messages.scrollTop() < 200 && !this.isLoadingMore && this.hasMoreMessages) {
+                    this.loadMore()
+                }
+            }
+        }, 500)
+    },
+
+    async loadMore() {
+        console.log('loading more...')
+        this.isLoadingMore = true
+        try {
+            const messages = this.get('messages')
+            const after = messages[messages.length - 1].date
+            const newMessages = await this.get('api').loadMoreMessages(this.get('activeThread.androidId'), after)
+            this.get('_messages').pushObjects(newMessages)
+            this.isLoadingMore = false
+            this.hasMoreMessages = (newMessages.length > 0)
+        } catch (err) {
+            console.log(err)
+        }
+    },
+
+    stopScrollListener() {
+        clearInterval(this._scrollInterval)
+    },
     
     actions: {
 
@@ -140,16 +182,15 @@ export default Ember.Controller.extend({
         },
 
         onSend(body) {
-            let now = new Date();
+            let now = (new Date()).getTime();
             let scheduledMessage = {
                 body: body,
                 threadId: this.get('activeThread.androidId'),
-                uuid: now.getTime(),
-				type: "sms"
+                uuid: now,
+                createdAt: now
             };
             this.get('api').sendScheduledMessage(scheduledMessage);
-            this.get('_scheduledMessages').pushObject(scheduledMessage);
-            this.updateThreadSnippet(scheduledMessage.threadId, scheduledMessage, now.getTime());
+            this.onNewScheduledMessage({scheduledMessage: scheduledMessage})
         },
 
     }

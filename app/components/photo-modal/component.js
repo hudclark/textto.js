@@ -9,7 +9,7 @@ export default Ember.Component.extend({
     actions: {
 
         close() {
-            this.get('bus').post('onCloseModal');
+            this.get('bus').post('closeModal');
         }
 
     }

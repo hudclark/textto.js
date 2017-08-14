@@ -19,7 +19,7 @@ export default Ember.Component.extend({
                 componentName: 'photo-modal',
                 data: this.get('part.data')
             };
-            this.get('bus').post('onOpenModal', modal);
+            this.get('bus').post('openModal', modal);
         }
 
     }

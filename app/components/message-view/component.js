@@ -5,8 +5,8 @@ export default Ember.Component.extend({
     tagName: 'message-view',
     classNameBindings: ['received'],
 
-    sms: Ember.computed('message', function() {
-        return this.get('message.type') == "sms";
+    mms: Ember.computed('message', function() {
+        return this.get('message.type') === "mms";
     }),
 
     received: Ember.computed('message', function () {
