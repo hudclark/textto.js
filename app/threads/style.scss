@@ -32,6 +32,13 @@
         background-color: $colorPrimaryDark;
     }
 
+    time {
+        color: $textSecondary;
+        text-align: center;
+        font-size: 0.8em;
+        margin: 8px 0;
+    }
+
 }
 
 top-bar {

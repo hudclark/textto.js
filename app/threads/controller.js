@@ -66,7 +66,7 @@ export default Ember.Controller.extend({
 
     onNewMessage(payload) {
         let message = payload.message;
-        this.updateThreadSnippet(message.threadId, message, message.date);
+        this.updateThread(message.threadId, message, message.date);
         if (this._isCurrentThread(message.threadId)) {
             this.set('_scheduledMessages', this.get('_scheduledMessages').filter((msg) => {
                 if (msg.isDeleted) {
@@ -82,7 +82,7 @@ export default Ember.Controller.extend({
 
     onNewScheduledMessage(payload) {
         let message = payload.scheduledMessage;
-        this.updateThreadSnippet(message.threadId, message, message.createdAt);
+        this.updateThread(message.threadId, message, message.createdAt);
         if (this._isCurrentThread(message.threadId)) {
             let filtered = this.get('_scheduledMessages').filter((msg) => {
                 return (message.uuid !== msg.uuid);
@@ -108,10 +108,10 @@ export default Ember.Controller.extend({
         this.get('threads').unshiftObject(thread);
     },
 
-    updateThreadSnippet(threadId, msg, time) {
+    updateThread(threadId, msg, time) {
         let snippet = this._getSnippetForMessage(msg);
         this.get('threads').forEach((thread) => {
-            if (thread.androidId == threadId) {
+            if (thread.androidId == threadId && time > thread.last) {
                 Ember.set(thread, 'snippet', snippet);
                 Ember.set(thread, 'last', time);
             }
@@ -124,7 +124,7 @@ export default Ember.Controller.extend({
         if (msg.parts) {
             msg.parts.forEach((part) => {
                 if (!snippet && part.contentType.includes('image')) {
-                    snippet = ((msg.sender == 'me') ? "You send an " : "You received an ") + "image";
+                    snippet = ((msg.sender == 'me') ? "You sent an " : "You received an ") + "picture";
                 } else if (part.contentType == "text/plain") {
                     snippet = part.data;
                 }
@@ -153,7 +153,7 @@ export default Ember.Controller.extend({
                     this.loadMore()
                 }
             }
-        }, 500)
+        }, 300)
     },
 
     async loadMore() {
