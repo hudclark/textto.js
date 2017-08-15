@@ -27,4 +27,8 @@ message-view {
         @include elevation(1);
 
     }
+
+    loading {
+        margin: 0 8px;
+    }
 }

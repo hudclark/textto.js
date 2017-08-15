@@ -1,3 +1,6 @@
+{{#if isLoading}}
+    {{loading-view}}
+{{/if}}
 {{#if mms}}
     {{#each message.parts as |part|}}
         {{mms-part part=part}}

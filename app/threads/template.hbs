@@ -18,7 +18,7 @@
     {{#if (or messages.length scheduledMessages.length)}}
         <div class="messages">
             {{#each scheduledMessages as |message|}}
-                {{message-view message=message received=false}}
+                {{message-view message=message received=false isScheduled=true}}
             {{/each}}
             {{#each messages as |message index|}}
                 {{message-view message=message open-photo='openPhoto'}}
