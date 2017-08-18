@@ -39,7 +39,6 @@ export default Ember.Controller.extend({
     async setActiveThread(androidId) {
         let activeId = this.get('activeThread.androidId');
         if (androidId !== activeId) {
-            console.log("Switching to thread " + androidId)
             let newActiveThread = null;
             this.get('_messages').clear();
             this.get('_scheduledMessages').clear();
@@ -164,7 +163,7 @@ export default Ember.Controller.extend({
                     this.loadMore()
                 }
             }
-        }, 300)
+        }, 200)
     },
 
     async loadMore() {
