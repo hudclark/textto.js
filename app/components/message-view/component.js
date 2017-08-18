@@ -17,7 +17,8 @@ export default Ember.Component.extend({
     isLoading: Ember.computed('message', function () {
         if (!this.get('isScheduled')) return false
         const message = this.get('message')
-        return (!message.sent || !message.failed)
+        if (message.failed) return false
+        return true
     })
 
 });

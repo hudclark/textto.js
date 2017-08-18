@@ -39,6 +39,7 @@ export default Ember.Controller.extend({
     async setActiveThread(androidId) {
         let activeId = this.get('activeThread.androidId');
         if (androidId !== activeId) {
+            console.log("Switching to thread " + androidId)
             let newActiveThread = null;
             this.get('_messages').clear();
             this.get('_scheduledMessages').clear();
@@ -54,7 +55,10 @@ export default Ember.Controller.extend({
 
             let api = this.get('api');
             let request = await this.get('api').getAllMessages(androidId);
-
+            // check if request is cancelled and have moved to a different thread
+            if (this.get('activeThread.androidId') !== androidId) {
+                return
+            }
             this.set('_messages', request.messages);
             this.set('_scheduledMessages', request.scheduledMessages);
             $('send-box').focus();
@@ -70,14 +74,8 @@ export default Ember.Controller.extend({
         if (!this._isCurrentThread(message.threadId)) return
         // TODO needs to be cleaned up
         this.set('_scheduledMessages', this.get('_scheduledMessages').filter((msg) => {
-            if (msg.isDeleted || msg.sent) {
-                if ((msg.body && msg.body.includes(message.body)) || !msg.body && !message.body) {
-                    return false;
-                }
-            }
-            return true;
+            return !this.messageReplacesScheduledMessage(message, msg)
         }))
-
         this.unshiftOrReplace('_messages', message, (msg) => {
             return (msg._id === message._id)
         })
@@ -120,9 +118,9 @@ export default Ember.Controller.extend({
     },
 
     updateThread (threadId, msg, time) {
-        let snippet = this._getSnippetForMessage(msg);
+        const snippet = this._getSnippetForMessage(msg)
         this.get('threads').forEach((thread) => {
-            if (thread.androidId == threadId && time > thread.last) {
+            if (thread.androidId == threadId && (time > thread.last || msg.type === 'mms')) { // TODO this is a hack to fix mms rounding
                 if (snippet) Ember.set(thread, 'snippet', snippet);
                 Ember.set(thread, 'last', time);
             }
@@ -133,14 +131,15 @@ export default Ember.Controller.extend({
         if (msg.body) return msg.body;
         let snippet = null;
         if (msg.parts) {
-            msg.parts.forEach((part) => {
-                console.log(part)
-                if (!snippet && part.contentType.includes('image')) {
-                    snippet = ((msg.sender == 'me') ? "You sent an " : "You received an ") + "picture";
-                } else if (part.contentType == "text/plain") {
-                    snippet = part.data;
+            for (let i = 0; i < msg.parts.length; i++) {
+                const part = msg.parts[i]
+                if (part.contentType === 'text/plain') {
+                    snippet = part.data
+                    break
+                } else if (part.contentType.includes('image')) {
+                    snippet = ((msg.sender === 'me') ? 'You sent an ' : 'You received an ') + 'picture';
                 }
-            });
+            }
         }
         return snippet
     },
@@ -161,7 +160,7 @@ export default Ember.Controller.extend({
 
             if (this.didScroll) {
                 this.didScroll = false
-                if ($messages.scrollTop() < 200 && !this.isLoadingMore && this.hasMoreMessages) {
+                if ($messages.scrollTop() < 600 && !this.isLoadingMore && this.hasMoreMessages) {
                     this.loadMore()
                 }
             }
@@ -201,6 +200,18 @@ export default Ember.Controller.extend({
         } else {
             array.unshiftObject(value)
         }
+    },
+
+    messageReplacesScheduledMessage(message, scheduled) {
+        if (!(scheduled.sent || scheduled.isDeleted)) return false
+        let body = message.body
+        if (!body && message.parts) {
+            const part = message.parts.find((part) => {
+                return (part.contentType === 'text/plain')
+            })
+            if (part) body = part.data
+        }
+        return scheduled.body === body
     },
     
     actions: {

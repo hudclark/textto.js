@@ -22,6 +22,7 @@ message-view {
         word-wrap: break-word;
         background-color: $colorAccentSecondary;
         color: $textDark;
+        vertical-align: middle;
 
         border-bottom-right-radius: 1px;
         @include elevation(1);
