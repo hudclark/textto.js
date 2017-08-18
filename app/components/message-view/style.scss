@@ -2,6 +2,10 @@ message-view {
 
     margin: 6px 0;
 
+    &.hidden {
+        display: none;
+    }
+
     &.received {
         text-align: left;
         message-bubble {
@@ -29,7 +33,14 @@ message-view {
 
     }
 
+    .error {
+        cursor: pointer;
+        color: $errorColor;
+        vertical-align: middle;
+    }
+
     loading {
         margin: 0 8px;
     }
+
 }

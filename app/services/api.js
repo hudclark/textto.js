@@ -83,6 +83,16 @@ export default Ember.Service.extend({
         return this._authenticatedRequest('/scheduledMessages', options);
     },
 
+    retryFailedMessage(id) {
+        let options = { method: 'post' }
+        return this._authenticatedRequest('/scheduledMessages/' + id + '/retry', options)
+    },
+
+    deleteFailedMessage(id) {
+        let options = { method: 'delete' }
+        return this._authenticatedRequest('/scheduledMessages/' + id, options)
+    },
+
     // user
     async getUser() {
         let response = await this._authenticatedRequest('/user');

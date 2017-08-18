@@ -82,7 +82,6 @@ export default Ember.Controller.extend({
 
     onNewScheduledMessage (payload) {
         let message = payload.scheduledMessage;
-        this.updateThread(message.threadId, message, message.createdAt);
         if (!this._isCurrentThread(message.threadId)) return
         this.unshiftOrReplace('_scheduledMessages', message, (msg) => {
             return (msg.uuid === message.uuid)
@@ -95,7 +94,7 @@ export default Ember.Controller.extend({
         const array = this.get('_scheduledMessages')
         for (let i = 0; i < array.length; i++) {
             if (message.uuid === array[i].uuid) {
-                array[i] = message
+                array.replace(i, 1, message)
                 break
             }
         }
