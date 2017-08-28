@@ -1,4 +1,4 @@
-{{side-bar threads=threads onThreadClick=(action 'onThreadClick')}}
+{{side-bar threads=threads select-thread=(action 'onThreadSelected')}}
 
 <top-bar>
     {{nav-bar}}
@@ -13,7 +13,7 @@
 </top-bar>
 
 <div class="content-container">
-    {{ send-box threadId=activeThread.androidId to=(recipient-list contacts=activeThread.contacts addresses=activeThread.addresses)}}
+    {{send-box threadId=activeThread.androidId to=(recipient-list contacts=activeThread.contacts addresses=activeThread.addresses)}}
     {{conversation-view threadId=activeThread.androidId contacts=activeThread.contacts}}
 </div>
 

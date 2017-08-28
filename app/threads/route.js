@@ -23,10 +23,6 @@ export default Ember.Route.extend({
         }
     },
 
-    setupController (controller, model) {
-        controller.load();
-    },
-
     onWebsocketConnectionLost() {
         // TODO here should load error route.
         this.transitionTo('error');
