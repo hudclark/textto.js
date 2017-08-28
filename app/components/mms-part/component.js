@@ -12,6 +12,13 @@ export default Ember.Component.extend({
         return this.get('part.contentType') === "text/plain";
     }),
 
+    sender: Ember.computed('message', function () {
+        const message = this.get('message')
+        if (message.sender !== 'me' && message.addresses.length > 1) {
+            return (message.contact.name) ? message.contact.name : message.contact.address
+        }
+    }),
+
     actions: {
 
         openImage() {

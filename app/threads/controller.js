@@ -9,7 +9,7 @@ export default Ember.Controller.extend({
 
     actions: {
 
-        onThreadSelected(thread) {
+        onThreadSelected (thread) {
             this.set('activeThread', thread)
             $('send-box').focus();
         },

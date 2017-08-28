@@ -20,10 +20,13 @@
 
 }
 
-.sender {
-    position: absolute;
-    bottom: -10px;
-    color: $textSecondary;
+sender {
     font-size: 12px;
-    left: 48px;
+    color: $textSecondary;
+    display: block;
+    margin-top: 4px;
+}
+
+message-bubble > sender {
+    color: $textDarkSecondary;
 }

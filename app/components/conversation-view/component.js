@@ -27,10 +27,13 @@ export default Ember.Component.extend({
 
     didReceiveAttrs () {
         this._super(...arguments)
-        this.get('messages').clear()
-        this.get('scheduledMessages').clear()
         const threadId = this.get('threadId')
-        if (threadId) {
+        let oldId = null
+        if (this.get('messages').length) oldId = this.get('messages')[0].threadId
+        if (!oldId && this.get('scheduledMessages').length) oldId = this.get('scheduledMessages')[0].threadId
+        if (threadId && threadId !== oldId) {
+            this.get('messages').clear()
+            this.get('scheduledMessages').clear()
             this.loadThread(threadId)
             this.isLoadingMore = false
             this.hasMoreMessages = true
@@ -55,6 +58,7 @@ export default Ember.Component.extend({
                 msg.contact = contacts.find((c) =>{
                     return (c.address === msg.sender)
                 })
+                if (!msg.contact) msg.contact = {address: msg.sender}
             }
         })
 
