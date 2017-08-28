@@ -34,4 +34,7 @@ thread-view {
     &.active {
         background-color: $colorPrimary;
     }
+    &:hover {
+        background-color: $colorPrimary;
+    }
 }

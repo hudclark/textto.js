@@ -1,3 +1,9 @@
+{{#if contact }}
+    {{contact-picture length=1 contact=contact class='small-contact'}}
+    <div class="sender">
+        {{if contact.name contact.name contact.address}}
+    </div>
+{{/if}}
 {{#if isPlainText}}
     <message-bubble>
         {{emoji-text content=part.data}}

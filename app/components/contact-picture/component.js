@@ -9,8 +9,8 @@ export default Ember.Component.extend({
         this.set('image', null);
         this.set('text', null);
         let contacts = this.get('contacts');
-        if (contacts.length == 1) {
-            let contact = contacts[0];
+        if (contacts && contacts.length == 1 || this.get('contact')) {
+            let contact = (contacts) ? contacts[0] : this.get('contact')
             if (contact.image) {
                 this.set('image', contact.image);
                 return;

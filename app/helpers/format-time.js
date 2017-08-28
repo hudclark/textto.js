@@ -1,7 +1,7 @@
 import Ember from 'ember'
 
 export default Ember.Helper.helper(function(params, hash) {
-    const date = params[0]
+    const date = Number(params[0])
     let time = new Date(date)
     const year = ("" + time.getFullYear()).substr(2)
 

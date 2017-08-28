@@ -9,7 +9,9 @@ const Router = Ember.Router.extend({
 Router.map(function() {
 
   this.route('login');
-  this.route('threads');
+  this.route('threads', function () {
+    this.route('thread', {path: ':threadId'})
+  });
   this.route('error');
 
 });

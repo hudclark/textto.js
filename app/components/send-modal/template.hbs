@@ -1,0 +1,36 @@
+<div class="modal-content">
+    <div>To</div>
+    {{#each to as |contact|}}
+        <div class="chip">
+            {{#if contact.image}}
+                <img src="data:image/png;base64,{{contact.image}}">
+            {{/if}}
+            <span class="chip-text">
+                {{#if contact.name}}
+                    {{contact.name}}
+                {{else}}
+                    {{contact.address}}
+                {{/if}}
+            </span>
+            <i class="material-icons" {{action 'remove' contact}}>close</i>
+        </div>
+    {{/each}}
+    {{input type="text" keyUp='keyUp' value=searchTerm}}
+    {{#if searchResults}}
+        <div class="results">
+            {{#each searchResults as |result|}}
+                <div class="contact" {{action 'select' result}}>
+                    {{contact-picture contact=result length=1}}
+                    <div class="names">
+                        <div class="name">
+                            {{result.name}}
+                        </div>
+                        <div class="address">
+                            {{result.address}}
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    {{/if}}
+</div>

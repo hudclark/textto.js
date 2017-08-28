@@ -13,23 +13,8 @@
 </top-bar>
 
 <div class="content-container">
-    {{ send-box on-send=(action 'onSend') to=(recipient-list contacts=activeThread.contacts addresses=activeThread.addresses)}}
-
-    {{#if (or messages.length scheduledMessages.length)}}
-        <div class="messages">
-            {{#each scheduledMessages as |message|}}
-                {{message-view message=message received=false isScheduled=true}}
-            {{/each}}
-            {{#each messages as |message index|}}
-                {{message-view message=message open-photo='openPhoto'}}
-                {{! TODO could speed this up by just passing times}}
-                {{#if (show-time messages index)}}
-                    <time>{{{format-time message.date}}}</time>
-                {{/if}}
-            {{/each}}
-        </div>
-    {{/if}}
-
+    {{ send-box threadId=activeThread.androidId to=(recipient-list contacts=activeThread.contacts addresses=activeThread.addresses)}}
+    {{conversation-view threadId=activeThread.androidId contacts=activeThread.contacts}}
 </div>
 
 {{modal-service}}

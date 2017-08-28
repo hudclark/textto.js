@@ -1,0 +1,31 @@
+.modal.send-modal {
+    max-width: 600px;
+    min-height: 400px;
+    background-color: $colorPrimary;
+    color: $textLight;
+
+    input {
+        margin-bottom: 0 !important;
+    }
+
+    .results {
+        position: absolute;
+        background: white;
+        color: $textDark;
+        width: 80%;
+        .contact {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            &:hover {
+                background-color: #eee;
+            }
+            .names {
+                margin-left: 8px;
+            }
+
+        }
+    }
+}

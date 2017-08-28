@@ -3,3 +3,27 @@
     max-height: 600px;
     cursor: pointer;
 }
+
+.small-contact {
+
+    vertical-align: bottom;
+    margin-right: 8px;
+
+    .circular {
+        height: 36px;
+        width: 36px;
+    }
+
+    .text {
+        line-height: 36px;
+    }
+
+}
+
+.sender {
+    position: absolute;
+    bottom: -10px;
+    color: $textSecondary;
+    font-size: 12px;
+    left: 48px;
+}

@@ -3,7 +3,7 @@
 {{/if}}
 {{#if mms}}
     {{#each message.parts as |part|}}
-        {{mms-part part=part}}
+        {{mms-part part=part contact=message.contact}}
     {{/each}}
 {{else}}
     {{#if message.failed}}

@@ -97,9 +97,15 @@ export default Ember.Service.extend({
     async getUser() {
         let response = await this._authenticatedRequest('/user');
         return response.user;
-    }
+    },
 
     // refresh tokens TODO
+
+    // contacts
+    async searchContacts(q) {
+        const response = await this._authenticatedRequest('/contacts?suggest=true&q=' + q)
+        return response.contacts
+    }
 
 
     // TODO

@@ -1,0 +1,36 @@
+conversation-view {
+
+    display: flex;
+
+    time {
+        color: $textSecondary;
+        text-align: center;
+        font-size: 0.8em;
+        margin: 8px 0;
+    }
+
+    .messages {
+        overflow-y: auto;
+        animation: fadeIn .15s;
+        flex-direction: column-reverse;
+        text-align: right;
+        flex-direction: column-reverse;
+        text-align: right;
+        display: flex;
+        padding: 0px 32px;
+        box-sizing: border-box;
+        width: 100%;
+
+        &::-webkit-scrollbar {
+            width: 8px;
+            background: transparent;
+            border-radius: 2px;
+        }
+        &::-webkit-scrollbar-thumb {
+            border-radius: 4px;
+            background-color: $colorPrimaryDark;
+        }
+
+    }
+
+}
