@@ -2,7 +2,6 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
-    bus: Ember.inject.service(),
     tagName: 'mms-part',
 
     isImage: Ember.computed('part.contentType', function() {
@@ -18,18 +17,6 @@ export default Ember.Component.extend({
         if (message.sender !== 'me' && message.addresses.length > 1) {
             return (message.contact.name) ? message.contact.name : message.contact.address
         }
-    }),
-
-    actions: {
-
-        openImage() {
-            let modal = {
-                componentName: 'photo-modal',
-                data: this.get('part.data')
-            };
-            this.get('bus').post('openModal', modal);
-        }
-
-    }
+    })
 
 });

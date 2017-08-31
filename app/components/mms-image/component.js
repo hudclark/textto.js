@@ -2,6 +2,7 @@ import Ember from 'ember'
 
 export default Ember.Component.extend({
 
+    bus: Ember.inject.service(),
     tagName: 'img-wrapper',
     classNameBindings: ['blur'],
     classNames: ['mms-image'],
@@ -10,7 +11,12 @@ export default Ember.Component.extend({
 
     async didInsertElement() {
         this._super()
-        const images = await this.get('api').getMmsImages(this.get('partId'))
+
+        let images = this.get('part')
+        if (!(images.thumbnail && images.fullImage)) {
+            const images = await this.get('api').getMmsImages(images._id)
+        }
+
         if (this.isDestroyed || this.isDestroying) return
 
         this.set('src',  'data:image/png;base64,' + images.thumbnail)
@@ -23,6 +29,18 @@ export default Ember.Component.extend({
             this.set('src', images.fullImage)
             this.set('blur', false)
         }
+    },
+
+    actions: {
+
+        onClick() {
+            let modal = {
+                componentName: 'photo-modal',
+                data: this.get('part.fullImage')
+            };
+            this.get('bus').post('openModal', modal);
+        }
+
     }
 
 })
