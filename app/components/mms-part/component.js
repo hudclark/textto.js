@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
 
     bus: Ember.inject.service(),
+    tagName: 'mms-part',
 
     isImage: Ember.computed('part.contentType', function() {
         return this.get('part.contentType').includes('image');

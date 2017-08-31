@@ -4,6 +4,7 @@
 {{#if mms}}
     {{#each message.parts as |part|}}
         {{mms-part part=part message=message}}
+        <br>
     {{/each}}
 {{else}}
     {{#if message.failed}}

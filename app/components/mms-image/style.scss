@@ -1,0 +1,20 @@
+img-wrapper {
+    display: block;
+    max-width: 300px;
+    max-height: 600px;
+
+    overflow: hidden;
+    cursor: pointer;
+
+    img {
+        width: 300px;
+        filter: none;
+        transition: .5s filter;
+        -webkit-transition: .5s -webkit-filter;
+    }
+
+    &.blur > img {
+        filter: blur(2px)
+    }
+
+}

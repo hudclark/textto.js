@@ -40,9 +40,14 @@ export default Ember.Component.extend({
         }
     },
 
+    didInsertElement () {
+        this.startScrollListener()
+    },
+
     willDestoryElement () {
         this._super(...arguments)
         this.get('bus').unregister(this)
+        this.stopScrollListener()
     },
 
     async loadThread (threadId) {

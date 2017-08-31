@@ -68,6 +68,11 @@ export default Ember.Service.extend({
         return this._authenticatedRequest(`/messages/all?threadId=${threadId}`)
     },
 
+    async getMmsImages(partId) {
+        const response = await this._authenticatedRequest('/mmsparts/' + partId + '/images')
+        return response.images
+    },
+
     // scheduled messages
     async getScheduledMessages(threadId) {
         let response = await this._authenticatedRequest('/scheduledMessages?threadId=' + threadId);
