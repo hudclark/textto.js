@@ -29,13 +29,6 @@ export default Ember.Component.extend({
         } else {
             this.set('text', this.get('length'));
         }
-    },
-
-
-    actions: {
-
     }
 
-
-
-});
+})

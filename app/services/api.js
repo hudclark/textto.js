@@ -108,16 +108,8 @@ export default Ember.Service.extend({
 
     // contacts
     async searchContacts(q) {
-        const response = await this._authenticatedRequest('/contacts?suggest=true&q=' + q)
+        const response = await this._authenticatedRequest('/contacts/suggest?q=' + q)
         return response.contacts
     }
 
-
-    // TODO
-    // can add subscribe and unsubscribe methods.
-    // have event-bus style subscribers.
-    // if (subscriber.onNewMessage) {...}
-    // if (subscriber.onFailedScheduledMessage) {...}
-    // etc.
-
-});
+})

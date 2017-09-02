@@ -54,6 +54,11 @@ export default Ember.Component.extend({
         return snippet
     },
 
+    onSelectThread(threadId) {
+        const thread = this.get('threads').find((t) => t._id === threadId)
+        this.setActiveThread(thread)
+    },
+
     // ================== Websocket events =========================
 
     onNewThread (payload) {

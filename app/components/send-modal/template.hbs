@@ -1,36 +1,49 @@
 <div class="modal-content">
-    <div>To</div>
-    {{#each to as |contact|}}
-        <div class="chip">
-            {{#if contact.image}}
-                <img src="data:image/png;base64,{{contact.image}}">
-            {{/if}}
-            <span class="chip-text">
-                {{#if contact.name}}
-                    {{contact.name}}
-                {{else}}
-                    {{contact.address}}
-                {{/if}}
-            </span>
-            <i class="material-icons" {{action 'remove' contact}}>close</i>
-        </div>
-    {{/each}}
-    {{input type="text" keyUp='keyUp' value=searchTerm}}
-    {{#if searchResults}}
-        <div class="results">
-            {{#each searchResults as |result|}}
-                <div class="contact" {{action 'select' result}}>
-                    {{contact-picture contact=result length=1}}
-                    <div class="names">
-                        <div class="name">
-                            {{result.name}}
-                        </div>
-                        <div class="address">
-                            {{result.address}}
+
+    <div class="input-field to">
+        <span class="to-names">
+            {{#each to as |contact|}}
+                {{contact-name contact}}, 
+            {{/each}}
+        </span>
+        {{input id="to" type="text" keyUp='keyUp' value=searchTerm placeholder=(if to.length ' ')}}
+        <label for="to">To</label>
+
+        {{#if searchResults}}
+            <div class="results">
+                {{#each searchResults as |result|}}
+                    <div class="contact" {{action 'select' result}}>
+                        {{contact-picture contact=result length=1}}
+                        <div class="names">
+                            <div class="name">
+                                {{result.name}}
+                            </div>
+                            <div class="address">
+                                {{result.address}}
+                            </div>
                         </div>
                     </div>
-                </div>
-            {{/each}}
+                {{/each}}
+            </div>
+        {{/if}}
+    </div>
+
+    <div class="input-field message">
+        {{input id="message" type="text" value=message}}
+        <label for="message">Message</label>
+    </div>
+
+    {{#if error}}
+        <div class="errors">
+            {{error}}
         </div>
+    {{/if}}
+
+    {{#if isLoading }}
+        {{loading-view class="bottom-right"}}
+    {{else}}
+        <a class="btn-floating btn-small waves-effect waves-light bottom-right {{if sendDisabled 'disabled'}}" {{action 'send'}}>
+            <i class="material-icons">send</i>
+        </a>
     {{/if}}
 </div>
