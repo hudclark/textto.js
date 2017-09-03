@@ -91,6 +91,10 @@ export default Ember.Service.extend({
         this._ws = new WebSocket(this._getUrl());
         this._ws.onopen = () => { this._onOpen(); };
         this._ws.onclose = (err) => { this._onCloseWithRetry(err); };
+    },
+
+    close () {
+        if (this._ws) this._ws.close()
     }
 
 });

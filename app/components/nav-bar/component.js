@@ -5,6 +5,12 @@ export default Ember.Component.extend({
     tagName: 'nav-bar',
     bus: Ember.inject.service(),
 
+    didInsertElement() {
+        Ember.run.scheduleOnce('afterRender', this, function () {
+            $('.hamburger').sideNav()
+        })
+    },
+
     actions: {
 
         openSendModal: function () {

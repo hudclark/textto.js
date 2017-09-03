@@ -28,20 +28,30 @@ $side-bar-width: 300px;
 $row-height: 80px;
 $send-box-height: 80px;
 
-$colorPrimary: #364658;
-$colorPrimaryDark: #2B3846;
+$colorPrimary:#3e464c;
+$colorPrimaryDark: #333B41;
 
-$colorAccent: #00BCD4;
-$colorAccentSecondary: #80B392;
+$colorAccent: #42a5f5;
+$colorAccentSecondary: #92a1a1;
 
-$textLight: rgba(255, 255, 255, 0.98);
-$textDark: rgba(43,56,70, 0.87);
+$textLight: #fdf6e3;
+$textDark: rgba(0, 0, 0, .6);
 $textSecondary: rgba(255, 255, 255, 0.5);
 $textDarkSecondary: rgba(43,56,70, 0.6);
 
 $borderColor: rgba(255, 255, 255, 0.2);
 
 $errorColor: #f44336;
+
+$green: #4caf50;
+
+.ember-view > .btn {
+    background-color: $colorAccent;
+}
+
+.ember-view > .btn-floating {
+    background-color: $colorAccent;
+}
 
 // pods
 @import "./pods";
@@ -57,6 +67,6 @@ $errorColor: #f44336;
 }
 
 .emoji {
-    width: 18px;
+    width: 22px;
     padding: 0 2px;
 }

@@ -1,0 +1,41 @@
+.side-nav {
+    
+    .user-view {
+        color: $textLight;
+
+        .background > img {
+            width: 100%;
+        }
+
+    }
+
+    .important {
+        a {
+            color: $green;
+        }
+        .material-icons {
+            color: $green;
+        }
+    }
+
+    .switch {
+        float: right;
+        line-height: 44px;
+    }
+
+    .logout {
+
+        position: absolute;
+        bottom: 72px;
+        width: 100%;
+
+        a {
+            color: $errorColor;
+        }
+        .material-icons {
+            color: $errorColor;
+        }
+    }
+
+
+}

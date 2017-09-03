@@ -4,6 +4,7 @@ import config from '../config/environment';
 export default Ember.Service.extend({
 
     api: Ember.inject.service(),
+    websocket: Ember.inject.service(),
 
     AUTH_TOKEN_KEY: 'ajwt',
     REFRESH_TOKEN_KEY: 'rjwt',
@@ -44,6 +45,7 @@ export default Ember.Service.extend({
     logOut() {
         this.setAuthToken(null);
         this.setRefreshToken(null);
+        this.get('websocket').close()
         this._onLogOutListeners.forEach((listener) => {
             listener.onLogOut();
         });

@@ -1,0 +1,55 @@
+<li>
+    <div class="user-view">
+        <div class="background">
+            <img src="/images/bg.jpg">
+        </div>
+        <img class="image circle" src={{user.image}}>
+        <div class="name">{{user.displayName}}</div>
+        <div class="email">{{user.email}}</div>
+    </div>
+</li>
+
+{{#if isWeb}}
+    <li class="important">
+        <a class="waves-effect">
+            <i class="material-icons">get_app</i>
+            Download the Desktop App
+        </a>
+    </li>
+{{/if}}
+
+<li>
+    <a class="waves-effect">
+        <i class="material-icons">phone_android</i>
+        Manage Devices
+    </a>
+</li>
+
+<li>
+    <a class="waves-effect">
+        <i class="material-icons">person</i>
+        Sync Contacts
+    </a>
+</li>
+
+<li><div class="divider"></div></li>
+
+<li>
+    <a>
+        <i class="material-icons">notifications</i>
+        Notfications
+        <div class="switch">
+            <label>
+                {{input type="checkbox" checked=notifications change=(action 'onNotificationsChange')}}
+                <span class="lever"></span>
+            </label>
+        </div>
+    </a>
+</li>
+
+<li class="logout">
+    <a class="waves-effect" {{action 'logOut'}}>
+        <i class="material-icons">power_settings_new</i>
+        Log Out
+    </a>
+</li>
