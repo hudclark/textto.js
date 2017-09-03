@@ -55,7 +55,7 @@ export default Ember.Component.extend({
     },
 
     onSelectThread(threadId) {
-        const thread = this.get('threads').find((t) => t._id === threadId)
+        const thread = this.get('threads').find((t) => t.androidId === threadId)
         this.setActiveThread(thread)
     },
 

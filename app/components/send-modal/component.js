@@ -26,34 +26,6 @@ export default Ember.Component.extend({
         this.get('bus').unregister(this)
     },
 
-    async keyUp (e) {
-        const query = this.get('searchTerm')
-        if (e.keyCode === 8 && !query) {
-            if (this.willDelete) {
-                let to = this.get('to')
-                if (to.length) to.removeAt(to.length - 1)
-                setTimeout(() => {
-                    this.updateTo()
-                }, 0)
-            }
-            this.willDelete = true
-            return
-        }
-        this.willDelete = false // non empty query
-        if (query && query.length > 1) {
-            let results = await this.get('api').searchContacts(query)
-            if (query.length > 6 && this.validateAddress(query)) {
-                results.push({address: query})
-            }
-            if (results.length > 3) {
-                results = results.slice(0, 4)
-            }
-            this.set('searchResults', results)
-        } else {
-            this.set('searchResults', null)
-        }
-    },
-
     sendDisabled: Ember.computed('message', 'to', function () {
         return !(this.get('to.length') && this.get('message.length'))
     }),
@@ -92,7 +64,7 @@ export default Ember.Component.extend({
             setTimeout(() => {
                 this.get('bus').post('selectThread', message.threadId)
                 $('.modal').modal('close')
-            }, 200)
+            }, 500)
         }
     },
 
@@ -140,6 +112,34 @@ export default Ember.Component.extend({
                 .then((response) => {
                     this.set('scheduledMessage', response.scheduledMessage)
                 })
+        },
+
+        async keyUp (e) {
+            const query = this.get('searchTerm')
+            if (e.keyCode === 8 && !query) {
+                if (this.willDelete) {
+                    let to = this.get('to')
+                    if (to.length) to.removeAt(to.length - 1)
+                    setTimeout(() => {
+                        this.updateTo()
+                    }, 0)
+                }
+                this.willDelete = true
+                return
+            }
+            this.willDelete = false // non empty query
+            if (query && query.length > 1) {
+                let results = await this.get('api').searchContacts(query)
+                if (query.length > 6 && this.validateAddress(query)) {
+                    results.push({address: query})
+                }
+                if (results.length > 3) {
+                    results = results.slice(0, 4)
+                }
+                this.set('searchResults', results)
+            } else {
+                this.set('searchResults', null)
+            }
         },
 
     }

@@ -25,7 +25,7 @@ export default Ember.Component.extend({
     didRender: function () {
         this._super(...arguments)
         if (this.get('message.failed')) {
-            $('.dropdown-button').dropdown({ belowOrigin: true, alignment: 'right'})
+            $('.dropdown-button').dropdown({belowOrigin: true, alignment: 'right'})
         }
     },
 

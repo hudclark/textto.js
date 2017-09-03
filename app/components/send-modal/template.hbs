@@ -6,7 +6,7 @@
                 {{contact-name contact}}, 
             {{/each}}
         </span>
-        {{input id="to" type="text" keyUp='keyUp' value=searchTerm placeholder=(if to.length ' ')}}
+        {{input id="to" type="text" keyUp=(action 'keyUp') value=searchTerm placeholder=(if to.length ' ')}}
         <label for="to">To</label>
 
         {{#if searchResults}}

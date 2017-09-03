@@ -55,10 +55,17 @@ export default Ember.Component.extend({
 
         // make sure request is not cancelled
         if (threadId !== this.get('threadId')) return
+        this.attachContactsToMessages(response.messages)
 
+        this.set('messages', response.messages)
+        this.set('scheduledMessages', response.scheduledMessages)
+
+    },
+
+    attachContactsToMessages(messages) {
         // add thread's contacts to each message
         const contacts = this.get('contacts')
-        response.messages.forEach((msg) => {
+        messages.forEach((msg) => {
             if (msg.sender !== 'me') {
                 msg.contact = contacts.find((c) =>{
                     return (c.address === msg.sender)
@@ -66,10 +73,6 @@ export default Ember.Component.extend({
                 if (!msg.contact) msg.contact = {address: msg.sender}
             }
         })
-
-        this.set('messages', response.messages)
-        this.set('scheduledMessages', response.scheduledMessages)
-
     },
 
     unshiftOrReplace (collectionName, value, func) {
@@ -125,6 +128,7 @@ export default Ember.Component.extend({
             const messages = this.get('messages')
             const after = messages[messages.length - 1].date
             const newMessages = await this.get('api').loadMoreMessages(this.get('threadId'), after)
+            this.attachContactsToMessages(newMessages)
             this.get('messages').pushObjects(newMessages)
             this.hasMoreMessages = (newMessages.length > 0)
             this.isLoadingMore = false

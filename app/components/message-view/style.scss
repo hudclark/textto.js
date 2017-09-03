@@ -17,6 +17,11 @@ message-view {
         }
     }
 
+    .dropdown-content {
+        bottom: 48px;
+        top: initial !important;
+    }
+
     message-bubble {
         margin: 12px 0;
 

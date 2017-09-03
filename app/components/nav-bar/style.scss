@@ -3,4 +3,22 @@ nav-bar {
     width: $side-bar-width;
     height: $row-height;
     display: flex;
+    position: relative;
+
+    .btn-floating {
+        position: absolute;
+        right: 16px;
+        top: 20px;
+        height: 40px;
+        width: 40px;
+    }
+
+    .hamburger {
+        cursor: pointer;
+        color: white;
+        position: absolute;
+        left: 16px;
+        top: 20px;
+        padding: 8px;
+    }
 }
