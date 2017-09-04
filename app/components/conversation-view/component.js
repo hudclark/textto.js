@@ -6,6 +6,7 @@ export default Ember.Component.extend({
 
     bus: Ember.inject.service(),
     api: Ember.inject.service(),
+    notifications: Ember.inject.service(),
 
     threadId: null,
 
@@ -74,6 +75,16 @@ export default Ember.Component.extend({
                 if (!msg.contact) msg.contact = {address: msg.sender}
             }
         })
+    },
+
+    attachContactToMessage(msg) {
+        const contacts = this.get('contacts')
+        if (msg.sender !== 'me') {
+            msg.contact = contacts.find((c) =>{
+                return (c.address === msg.sender)
+            })
+            if (!msg.contact) msg.contact = {address: msg.sender}
+        }
     },
 
     unshiftOrReplace (collectionName, value, func) {
@@ -151,6 +162,16 @@ export default Ember.Component.extend({
         const message = payload.message
         // Don't include if message does not have a body
         if (!message.body && (!message.parts || message.parts.length === 0)) return
+
+        this.attachContactToMessage(message)
+
+        // notify
+        if (message.sender !== 'me') {
+            const image = message.contact.image
+            const title = (message.contact.name) ? message.contact.name : message.sender
+            this.get('notifications').displayNotification(title, message.body, image)
+        }
+
         if (message.threadId !== this.get('threadId')) return
         
         // check to see if any scheduled messages are replaced
