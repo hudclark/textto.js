@@ -12,7 +12,7 @@ side-bar {
 
     .threads {
         overflow-y: auto;
-        //animation: fadeIn .15s;
+        animation: fadeIn .15s;
 
         &::-webkit-scrollbar {
             display: none;

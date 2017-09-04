@@ -13,6 +13,8 @@ export default Ember.Service.extend({
     _refreshToken: null,
     _onLogOutListeners: [],
 
+    _refreshPromise: null,
+
     getAuthToken() {
         if (!this.get('_authToken')) {
             this.set('_authToken', window.localStorage.getItem(this.AUTH_TOKEN_KEY));
@@ -52,30 +54,35 @@ export default Ember.Service.extend({
     },
 
     refreshToken() {
-        let token = this.getRefreshToken();
-        let url = config.host + "/refreshToken"
-        let options = {
-            method: 'post',
-            contentType: 'application/json',
-            data: JSON.stringify({token: token})
-        };
-        return new Ember.RSVP.Promise((resolve, reject) => {
-            Ember.$.ajax(url, options)
-                .then((result) => {
-                    if (result.token) {
-                        this.setAuthToken(result.token);
-                        resolve("Refreshed.");
-                    }
-                    reject("Unable to refresh token.");
-                })
-                .catch((error) => {
-                    if (error.status == 401 || error.status == 404) {
-                        this.logOut();
-                    }
-                    console.log("Error refreshing token");
-                    reject(error);
-                });
-        });
+        if (!this._refreshPromise) {
+            let token = this.getRefreshToken();
+            let url = config.host + "/refreshToken"
+            let options = {
+                method: 'post',
+                contentType: 'application/json',
+                data: JSON.stringify({token: token})
+            };
+            this._refreshPromise = new Ember.RSVP.Promise((resolve, reject) => {
+                Ember.$.ajax(url, options)
+                    .then((result) => {
+                        this._refreshToken = null
+                        if (result.token) {
+                            this.setAuthToken(result.token);
+                            resolve("Refreshed.");
+                        }
+                        reject("Unable to refresh token.");
+                    })
+                    .catch((error) => {
+                        this._refreshToken = null
+                        if (error.status == 401 || error.status == 404) {
+                            this.logOut();
+                        }
+                        console.log("Error refreshing token");
+                        reject(error);
+                    });
+            });
+        }
+        return this._refreshPromise
     },
 
     async _postGoogleCode(code, postMessage) {

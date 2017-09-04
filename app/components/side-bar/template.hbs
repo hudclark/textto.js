@@ -1,5 +1,5 @@
-<div class="threads">
 {{#if isLoading}}
+<div class="threads">
     <thread-view>
         <div class="skeleton-contact"></div>
         <div class="details">
@@ -21,9 +21,11 @@
             <div class="skeleton-snippet"></div>
         </div>
     </thread-view>
+</div>
 {{else}}
+<div class="threads">
     {{#each sortedThreads as |thread|}}
         {{thread-view thread=thread onClick=(action 'onThreadClick')}}
     {{/each}}
-{{/if}}
 </div>
+{{/if}}
