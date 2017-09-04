@@ -1,4 +1,16 @@
-{{#if (or sortedMessages.length sortedScheduledMessages.length)}}
+{{#if isLoading}}
+    <div class="messages">
+        <message-view>
+            <message-bubble class="skeleton medium"></message-bubble>
+        </message-view>
+        <message-view class="received">
+            <message-bubble class="skeleton small"></message-bubble>
+        </message-view>
+        <message-view class="received">
+            <message-bubble class="skeleton"></message-bubble>
+        </message-view>
+    </div>
+{{else if (or sortedScheduledMessages.length sortedMessages.length)}}
     <div class="messages">
         {{#each sortedScheduledMessages as |message|}}
             {{message-view message=message received=false isScheduled=true}}

@@ -31,6 +31,17 @@ conversation-view {
             background-color: $colorPrimaryDark;
         }
 
+        .skeleton {
+            width: 200px;
+            height: 40px;
+            &.small {
+                width: 100px;
+            }
+            &.medium {
+                width: 150px;
+            }
+        }
+
     }
 
 }

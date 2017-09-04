@@ -14,11 +14,13 @@ export default Ember.Component.extend({
     async init () {
         this._super(...arguments)
 
+        this.set('isLoading', true)
         const threads = await this.get('api').getThreads()
         this.set('threads', threads)
         if (this.get('sortedThreads').length > 0) {
             this.setActiveThread(this.get('sortedThreads')[0])
         }
+        this.set('isLoading', false)
 
         this.get('bus').register(this)
     },

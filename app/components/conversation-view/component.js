@@ -22,6 +22,7 @@ export default Ember.Component.extend({
 
     init () {
         this._super(...arguments)
+        this.set('isLoading', true)
         this.get('bus').register(this)
     },
 
@@ -52,6 +53,7 @@ export default Ember.Component.extend({
 
     async loadThread (threadId) {
         const response = await this.get('api').getAllMessages(threadId)
+        this.set('isLoading', false)
 
         // make sure request is not cancelled
         if (threadId !== this.get('threadId')) return
@@ -59,7 +61,6 @@ export default Ember.Component.extend({
 
         this.set('messages', response.messages)
         this.set('scheduledMessages', response.scheduledMessages)
-
     },
 
     attachContactsToMessages(messages) {

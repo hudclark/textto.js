@@ -40,12 +40,13 @@ export default Ember.Service.extend({
             console.log('ping');
             return;
         }
+        let message = null
         try {
-            let message = JSON.parse(event.data);
-            this.get('bus').post(message.type, message.payload);
+            message = JSON.parse(event.data);
         } catch (err) {
             console.error("Error parsing ws event " + err);
         }
+        if (message) this.get('bus').post(message.type, message.payload);
     },
 
     _onOpen() {
