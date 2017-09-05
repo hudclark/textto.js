@@ -44,17 +44,30 @@ export default Ember.Service.extend({
         return token != null && token != 'null';
     },
 
-    logOut() {
+    async logOut() {
+        const refreshToken = this.getRefreshToken()
+        const authToken = this.getAuthToken()
+
         this.setAuthToken(null);
         this.setRefreshToken(null);
         this.get('websocket').close()
         this._onLogOutListeners.forEach((listener) => {
             listener.onLogOut();
         });
+
+        const options = {
+            method: 'post',
+            headers: { 'x-access-token': authToken }
+        }
+        try {
+            await this.get('api').request('/revokeToken?refreshToken=' + refreshToken, options)
+        } catch (err) {
+            console.log('Error logging out', err)
+        }
     },
 
     refreshToken() {
-        if (!this._refreshPromise) {
+        if (this._refreshPromise == null) {
             let token = this.getRefreshToken();
             let url = config.host + "/refreshToken"
             let options = {
@@ -65,7 +78,7 @@ export default Ember.Service.extend({
             this._refreshPromise = new Ember.RSVP.Promise((resolve, reject) => {
                 Ember.$.ajax(url, options)
                     .then((result) => {
-                        this._refreshToken = null
+                        this._refreshPromise = null
                         if (result.token) {
                             this.setAuthToken(result.token);
                             resolve("Refreshed.");
@@ -73,7 +86,7 @@ export default Ember.Service.extend({
                         reject("Unable to refresh token.");
                     })
                     .catch((error) => {
-                        this._refreshToken = null
+                        this._refreshPromise = null
                         if (error.status == 401 || error.status == 404) {
                             this.logOut();
                         }

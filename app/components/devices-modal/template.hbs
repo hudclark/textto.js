@@ -1,0 +1,13 @@
+<div class="modal-content">
+    <table>
+    {{#each refreshTokens as |token|}}
+        <tr>
+            <td>{{token.platform}}</td>
+            <td>{{token.lastUsed}}</td>
+            <td>
+                <a class="btn" {{action 'revokeToken' token}}>Revoke</a>
+            </td>
+        </tr>
+    {{/each}}
+    </table>
+</div>

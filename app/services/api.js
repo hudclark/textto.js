@@ -104,7 +104,16 @@ export default Ember.Service.extend({
         return response.user;
     },
 
-    // refresh tokens TODO
+    async getRefreshTokens () {
+        const currentToken = this.get('auth').getRefreshToken()
+        const response = await this._authenticatedRequest('/refreshTokens?refreshToken=' + currentToken)
+        return response.tokens
+    },
+
+    revokeRefreshToken (id) {
+        const options = { method: 'post' }
+        return this._authenticatedRequest('/revokeToken?id=' + id, options)
+    },
 
     // contacts
     async searchContacts(q) {

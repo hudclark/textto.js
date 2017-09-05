@@ -8,6 +8,7 @@ export default Ember.Component.extend({
     api: Ember.inject.service(),
     settings: Ember.inject.service(),
     auth: Ember.inject.service(),
+    bus: Ember.inject.service(),
 
     isWeb: (!window.ELECTRON),
 
@@ -38,6 +39,15 @@ export default Ember.Component.extend({
         logOut() {
             this.closeDrawer()
             this.get('auth').logOut()
+        },
+
+        manageDevices () {
+            this.closeDrawer()
+            const modal = {
+                componentName: 'devices-modal',
+                data: null
+            }
+            this.get('bus').post('openModal', modal)
         }
     }
 
