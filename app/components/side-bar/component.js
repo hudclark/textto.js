@@ -80,6 +80,18 @@ export default Ember.Component.extend({
         Ember.set(thread, 'last', message.date)
     },
 
+    onBulkContactUpdate () {
+        this.onWebsocketReconnected()
+    },
+
+    async onWebsocketReconnected () {
+        const activeThreadId = this.get('activeThread._id')
+        const threads = await this.get('api').getThreads()
+        this.set('activeThread', null)
+        this.set('threads', threads)
+        const activeThread = threads.find(t => t._id === activeThreadId)
+        this.setActiveThread(activeThread)
+    },
 
     actions: {
 

@@ -153,9 +153,6 @@ export default Ember.Component.extend({
         clearInterval(this.scrollInterval)
     },
 
-
-
-
     // ============== Websocket events ====================
 
     onNewMessage (payload) {
@@ -217,6 +214,12 @@ export default Ember.Component.extend({
                 break
             }
         }
+    },
+
+    onWebsocketReconnected () {
+        const threadId = this.get('threadId')
+        this.set('threadId', null)
+        this.loadThread(threadId)
     }
 
 })

@@ -48,6 +48,16 @@ export default Ember.Component.extend({
                 data: null
             }
             this.get('bus').post('openModal', modal)
+        },
+
+        syncContacts () {
+            this.set('syncingContacts', true)
+            this.get('api').syncContacts()
+            Ember.run.later(this, () => {
+                if (!this.isDestroyed && ! this.isDestroying) {
+                    this.set('syncingContacts', false)
+                }
+            }, 15000)
         }
     }
 

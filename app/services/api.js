@@ -119,6 +119,11 @@ export default Ember.Service.extend({
     async searchContacts(q) {
         const response = await this._authenticatedRequest('/contacts/suggest?q=' + q)
         return response.contacts
+    },
+
+    syncContacts () {
+        const options = { method: 'post' }
+        return this._authenticatedRequest('/user/sync-contacts', options)
     }
 
 })

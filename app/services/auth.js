@@ -82,8 +82,9 @@ export default Ember.Service.extend({
                         if (result.token) {
                             this.setAuthToken(result.token);
                             resolve("Refreshed.");
+                        } else {
+                            reject("Unable to refresh token.");
                         }
-                        reject("Unable to refresh token.");
                     })
                     .catch((error) => {
                         this._refreshPromise = null

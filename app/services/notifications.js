@@ -31,7 +31,7 @@ export default Ember.Service.extend({
                 body: body,
                 tag: 1 // at most 1 notification at a time
             })
-            setTimeout(notification.close.bind(notification), 2000)
+            setTimeout(notification.close.bind(notification), 4000)
             notification.onclick = function () {
                 notification.close()
             }

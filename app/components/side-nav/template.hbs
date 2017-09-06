@@ -26,9 +26,12 @@
 </li>
 
 <li>
-    <a class="waves-effect">
+    <a class="waves-effect" {{action 'syncContacts'}}>
         <i class="material-icons">person</i>
         Sync Contacts
+        {{#if syncingContacts}}
+            {{loading-view class="contact-loader"}}
+        {{/if}}
     </a>
 </li>
 

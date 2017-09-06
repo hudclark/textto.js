@@ -1,13 +1,24 @@
 <div class="modal-content">
+    <div class="title">Devices</div>
     <table>
-    {{#each refreshTokens as |token|}}
+        <tr>
+            <th>Device</th>
+            <th>Last Used</th>
+            <td></td>
+        </tr>
+        <tr class="hr">
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        {{#each refreshTokens as |token|}}
         <tr>
             <td>{{token.platform}}</td>
             <td>{{token.lastUsed}}</td>
             <td>
-                <a class="btn" {{action 'revokeToken' token}}>Revoke</a>
+                <a class="btn" {{action 'revokeToken' token}}>Remove</a>
             </td>
         </tr>
-    {{/each}}
+        {{/each}}
     </table>
 </div>
