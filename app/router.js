@@ -10,9 +10,7 @@ Router.map(function() {
 
   this.route('login')
   this.route('threads')
-  this.route('error')
 
 })
-
 
 export default Router

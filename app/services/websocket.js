@@ -16,9 +16,13 @@ export default Ember.Service.extend({
     _ping() {
         if (!this.isConnected()) return
         this._ws.send('ping');
+        console.log('ping')
         this._pingTimeout = setTimeout(() => {
             this._pingTimeout = null;
-            this.ensureConnected();
+            console.log('ping failed')
+            this._ws.close()
+            this._ws = null
+            this.connect()
         }, this.PING_TIMEOUT);
     },
 
@@ -73,7 +77,7 @@ export default Ember.Service.extend({
     },
 
     _onClose(err) {
-        console.log('Websocket closed')
+        console.log('Websocket closed', err)
         this.hasLostConnection = true
         this._ws = null;
     },
@@ -83,10 +87,11 @@ export default Ember.Service.extend({
     },
 
     isConnected() {
-        return (this._ws && this._ws.readyState !== this._ws.CLOSED);
+        return (this._ws && this._ws.readyState === this._ws.OPEN);
     },
 
     ensureConnected () {
+        console.log('ensure connected')
         if (this.isConnected()) return
         this.connect()
     },
@@ -99,7 +104,8 @@ export default Ember.Service.extend({
     },
 
     close () {
-        if (this._ws) this._ws.close()
+        this.hasLostConnection = false
+        if (this.isConnected()) this._ws.close()
     }
 
 });

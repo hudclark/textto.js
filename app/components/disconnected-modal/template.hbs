@@ -1,0 +1,8 @@
+<h1>Disconnected</h1>
+<h3>Are you connected to the internet?</h3>
+<a class="btn" {{action 'reconnect'}}>
+    {{#if isLoading}}
+        {{loading-view}}
+    {{/if}}
+    Retry
+</a>

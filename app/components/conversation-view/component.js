@@ -54,6 +54,7 @@ export default Ember.Component.extend({
 
     async loadThread (threadId) {
         const response = await this.get('api').getAllMessages(threadId)
+        if (this.isDestroyed || this.isDestroying) return
         this.set('isLoading', false)
 
         // make sure request is not cancelled
@@ -218,7 +219,6 @@ export default Ember.Component.extend({
 
     onWebsocketReconnected () {
         const threadId = this.get('threadId')
-        this.set('threadId', null)
         this.loadThread(threadId)
     }
 
