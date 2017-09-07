@@ -1,0 +1,235 @@
+conversation-demo {
+    position: relative;
+    text-align: left;
+
+    .screen {
+        position: relative;
+        width: 90%;
+        height: 90%;
+        background-color: $colorPrimary;
+
+        .top-bar {
+            height: 16px;
+            display: flex;
+            align-items: center;
+            background: $colorPrimaryDark;
+            padding: 4px;
+
+            .circle {
+                height: 6px;
+                width: 6px;
+                border-radius: 100%;
+                margin: 0 2px;
+
+                &.red {
+                    background: $errorColor;
+                }
+                &.yellow {
+                    background: yellow;
+                }
+                &.green {
+                    background: $green;
+                }
+            }
+
+            .name {
+                margin-left: 2px;
+                color: $textLight;
+                font-size: 8px;
+            }
+        }
+
+        .demo-threads {
+            position: absolute;
+            height: calc(100% - 16px);
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            background-color: $colorPrimaryDark;
+
+            thread-view {
+
+                @media (max-width: 700px) {
+                    min-height: 25px;
+                }
+
+                width: 100%;
+                min-height: 50px;
+                padding: 5% 10%;
+
+                .details {
+                    margin-left: 10px;
+                }
+
+                .skeleton-contact {
+                    height: 25px;
+                    width: 25px;
+                    @media (max-width: 700px) {
+                        height: 15px;
+                        width: 15px;
+                    }
+                }
+
+                .skeleton-name {
+                    height: .4em;
+                    width: 80px;
+                    @media (max-width: 700px) {
+                        height: .3em;
+                        width: 50px;
+                        margin-bottom: 4px;
+                    }
+                }
+                
+                .skeleton-snippet {
+                    height: .4em;
+                    width: 70%;
+                    @media (max-width: 700px) {
+                        height: .3em;
+                        width: 30px;
+                    }
+                }
+            }
+
+        }
+
+        .demo-content {
+            position: absolute;
+            height: calc(100% - 16px);
+            width: 70%;
+            margin-left: 30%;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+
+            send-box {
+                margin: 8px 16px;
+                min-height: 20px;
+                font-size: 11px;
+                line-height: 0px;
+                position: absolute;
+                bottom: 16px;
+                right: 16px;
+                left: 16px;
+                padding: 14px 24px;
+
+                @media (max-width: 700px) {
+                    padding: 10px 20px;
+                    line-height: 4px;
+                    bottom: 8px;
+                }
+            }
+
+            .demo-messages {
+                position: absolute;
+                bottom: 56px;
+                width: 100%;
+                display: flex;
+                flex-direction: column-reverse;
+                text-align: right;
+                padding: 0 16px;
+
+                @media (max-width: 700px) {
+                    bottom: 44px;
+                }
+
+                message-view {
+                    overflow: hidden;
+                    @keyframes up {
+                        from {
+                             max-height: 0;
+                        } to {
+                             max-height: 100px;
+                        }
+                    }
+                    animation: up 1s;
+
+                    message-bubble {
+                        @media (max-width: 700px) {
+                            margin: 4px;
+                            padding: 8px 12px;
+                        }
+                    }
+                }
+
+
+                .small {
+                    width: 20%;
+                }
+                .medium {
+                    width: 30%;
+                }
+                .long {
+                    width: 40%;
+                }
+            }
+        }
+
+    }
+
+    upper {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        background: #222;
+        justify-content: center;
+        align-items: center;
+        border-top: 2px solid #aeaeaa;
+        border-left: 2px solid #aeaeaa;
+        border-right: 2px solid #aeaeaa;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        position: relative;
+        overflow: hidden;
+        margin: 0 auto;
+        
+        &:after {
+            height: 0;
+            display: block;
+            content: '';
+            position: absolute;
+            border-bottom: 700px solid rgba(0,0,0,0.045);
+            border-right: 500px solid transparent;
+            border-top-left-radius: 100px;
+            left: 0;
+            bottom: 0;
+        }
+    }
+
+    lower {
+        position: relative;
+        width: 100%;
+        height: 20px;
+        background: #eaeaea;
+        display: block;
+        margin: 0 auto;
+        border-radius: 2px;
+
+        &:before {
+            display: block;
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 10px;;
+            background: #a1a1a1;
+            left: calc(50% - 50px);
+            top: 0;
+            border-radius: 0 0 6px 6px;
+        }
+
+
+        &:after {
+            display: block;
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 8px;
+            background: #bababa;
+            top: 20px;
+            border-bottom-right-radius: 7.5rem 2.5rem;
+            border-bottom-left-radius: 7.5rem 2.5rem;
+            box-shadow: 2px 2px 2px rgba(0, 0, 0, .1);
+        }
+    }
+
+
+}

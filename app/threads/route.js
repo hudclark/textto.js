@@ -8,13 +8,13 @@ export default Ember.Route.extend({
     api: Ember.inject.service(),
 
     register: Ember.on('activate', function () {
-        this.get('bus').register(this);
-        this.startConnectionInterval()
+        this.get('bus').register(this)
+        this.get('websocket').ensureConnected()
     }),
 
     unregister: Ember.on('deactivate', function () {
         this.get('bus').unregister(this);
-        this.stopConnectionInterval()
+        this.get('websockets').close()
     }),
 
     startConnectionInterval () {
@@ -33,7 +33,6 @@ export default Ember.Route.extend({
         if (!this.get('auth').isLoggedIn()) {
             return this.replaceWith('login');
         } else {
-            this.get('websocket').ensureConnected(true);
         }
     },
 

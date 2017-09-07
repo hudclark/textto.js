@@ -10,37 +10,37 @@ side-bar {
 
     @include elevation(1);
 
-    .threads {
-        overflow-y: auto;
-        animation: fadeIn .15s;
+}
+.threads {
+    overflow-y: auto;
+    animation: fadeIn .15s;
 
-        &::-webkit-scrollbar {
-            display: none;
-            width: 0;
-        }
-
-        .skeleton-contact {
-            height: 50px;
-            width: 50px;
-            border-radius: 50px;
-            background: $colorAccent;
-            display: inline-block;
-        }
-
-        .skeleton-name {
-            height: .7em;
-            width: 100px;
-            background-color: $textSecondary;
-            margin-bottom: 8px;
-            opacity: .4;
-        }
-
-        .skeleton-snippet {
-            height: .7em;
-            width: 200px;
-            background-color: $textSecondary;
-            opacity: .4;
-        }
-
+    &::-webkit-scrollbar {
+        display: none;
+        width: 0;
     }
+
+    .skeleton-contact {
+        height: 50px;
+        width: 50px;
+        border-radius: 100%;
+        background: $colorAccent;
+        display: inline-block;
+    }
+
+    .skeleton-name {
+        height: .7em;
+        width: 100px;
+        background-color: $textSecondary;
+        margin-bottom: 8px;
+        opacity: .4;
+    }
+
+    .skeleton-snippet {
+        height: .7em;
+        width: 200px;
+        background-color: $textSecondary;
+        opacity: .4;
+    }
+
 }

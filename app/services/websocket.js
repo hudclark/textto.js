@@ -16,17 +16,17 @@ export default Ember.Service.extend({
     _ping() {
         if (!this.isConnected()) return
         this._ws.send('ping');
-        console.log('ping')
         this._pingTimeout = setTimeout(() => {
-            this._pingTimeout = null;
             console.log('ping failed')
+            this._pingTimeout = null;
+            this.hasLostConnection = true
             this._ws.close()
             this._ws = null
             this.connect()
         }, this.PING_TIMEOUT);
     },
 
-    _pong() {
+    _pong () {
         clearTimeout(this._pingTimeout);
         setTimeout(() => {
             this._ping();
@@ -87,11 +87,10 @@ export default Ember.Service.extend({
     },
 
     isConnected() {
-        return (this._ws && this._ws.readyState === this._ws.OPEN);
+        return (this._ws && (this._ws.readyState === this._ws.OPEN || this._ws.readyState == this._ws.CONNECTING))
     },
 
     ensureConnected () {
-        console.log('ensure connected')
         if (this.isConnected()) return
         this.connect()
     },
