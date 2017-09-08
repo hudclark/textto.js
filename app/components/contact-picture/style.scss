@@ -1,6 +1,7 @@
 contact-picture {
     overflow: hidden;
-    display: inline-block;
+    display: flex;
+    align-content: center;
 
     .circular {
         height: 50px;
@@ -9,11 +10,11 @@ contact-picture {
     }
 
     .text {
-        color: $textDark;
         background-color: $colorAccent;
         line-height: 50px;
         text-align: center;
         font-size: 1em;
+        font-weight: 300;
     }
 
 }

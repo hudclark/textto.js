@@ -14,19 +14,27 @@ export default Ember.Service.extend({
     hasRetried: false,
 
     _ping() {
-        if (!this.isConnected()) return
+        if (!this.isConnected()) {
+            this._pingFailed()
+            return
+        }
         this._ws.send('ping');
         this._pingTimeout = setTimeout(() => {
-            console.log('ping failed')
-            this._pingTimeout = null;
-            this.hasLostConnection = true
-            this._ws.close()
-            this._ws = null
-            this.connect()
+            this._pingFailed()
         }, this.PING_TIMEOUT);
     },
 
+    _pingFailed() {
+        console.log('ping failed')
+        this._pingTimeout = null;
+        this.hasLostConnection = true
+        this._ws.close()
+        this._ws = null
+        this.connect()
+    },
+
     _pong () {
+        console.log('pong')
         clearTimeout(this._pingTimeout);
         setTimeout(() => {
             this._ping();
@@ -103,8 +111,8 @@ export default Ember.Service.extend({
     },
 
     close () {
-        this.hasLostConnection = false
         if (this.isConnected()) this._ws.close()
+        this.hasLostConnection = false
     }
 
 });

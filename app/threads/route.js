@@ -10,11 +10,13 @@ export default Ember.Route.extend({
     register: Ember.on('activate', function () {
         this.get('bus').register(this)
         this.get('websocket').ensureConnected()
+        this.startConnectionInterval()
     }),
 
     unregister: Ember.on('deactivate', function () {
         this.get('bus').unregister(this);
         this.get('websockets').close()
+        this.stopConnectionInterval()
     }),
 
     startConnectionInterval () {

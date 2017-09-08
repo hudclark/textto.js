@@ -5,9 +5,14 @@
     <div class="right-content">
         {{#if activeThread}}
             {{contact-picture contacts=activeThread.contacts length=activeThread.addresses.length}}
-            <span class="name">
-                {{recipient-list contacts=activeThread.contacts addresses=activeThread.addresses}}
-            </span>
+            <div class="details">
+                <span class="name">
+                    {{recipient-list contacts=activeThread.contacts addresses=activeThread.addresses}}
+                </span>
+                <span class="snippet">
+                    {{emoji-text content=activeThread.snippet}}
+                </span>
+            </div>
         {{/if}}
     </div>
 </top-bar>

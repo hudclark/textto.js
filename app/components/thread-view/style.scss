@@ -32,9 +32,9 @@ thread-view {
     }
 
     &.active {
-        background-color: $colorPrimary;
+        background-color: $colorActive;
     }
     &:hover {
-        background-color: $colorPrimary;
+        background-color: $colorActive;
     }
 }

@@ -29,9 +29,20 @@ top-bar {
         height: $row-height;
     }
 
-    .name {
-        font-size: 1.2em;
+    .details {
+        display: flex;
+        flex-direction: column;
         margin-left: 16px;
-        color: $textLight;
+        vertical-align: middle;
+        .name {
+            font-size: 1.2em;
+            color: rgba(0, 0, 0, 0.8);
+        }
+
+        .snippet {
+            font-size: .9em;
+            color: $textDarkSecondary;
+        }
     }
+
 }
