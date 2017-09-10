@@ -1,9 +1,10 @@
 conversation-demo {
 
     $demo-row-height: 13%;
-    $demo-row-min-height: 44px;
+    $demo-row-min-height: 35px;
     $contact-width: 40px;
-    $contact-width-mobile: 30px;
+    $contact-width-mobile: 24px;
+    text-align: left;
 
     .screen-wrapper {
         position: relative;
@@ -68,6 +69,12 @@ conversation-demo {
             display: flex;
             align-items: center;
             padding: 0 12px;
+
+            i {
+                @media (max-width: 700px) {
+                    font-size: 16px;
+                }
+            }
         }
     }
 
@@ -79,6 +86,13 @@ conversation-demo {
         border-bottom: 1px solid $borderColor;
         display: flex;
         align-items: center;
+
+        &.active {
+            background-color: $colorActive;
+        }
+        @media (max-width: 700px) {
+            padding: 2px 4px;
+        }
 
         img {
             width: $contact-width;
@@ -92,13 +106,36 @@ conversation-demo {
         }
 
         .details {
+            width: 60%;
             display: inline-block;
             margin-left: 8px;
             font-size: 12px;
             color: $textLight;
+
+            @media (max-width: 700px) {
+                line-height: 12px;
+                margin-left: 4px;
+            }
+
+
+            .name {
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                @media (max-width: 700px) {
+                    font-size: 10px;
+                }
+            }
+
             .snippet {
                 font-size: 12px;
                 color: $textSecondary;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                @media (max-width: 700px) {
+                    font-size: 8px;
+                }
             }
         }
     }
@@ -114,6 +151,11 @@ conversation-demo {
         align-items: center;
         @include elevation(1);
         padding: 0 12px;
+        z-index: 99;
+
+        @media (max-width: 700px) {
+            line-height: 14px;
+        }
 
         img {
             width: $contact-width;
@@ -149,6 +191,10 @@ conversation-demo {
 
         display: flex;
         flex-direction: column-reverse;
+
+        @media (max-width: 700px) {
+            top: $demo-row-min-height;
+        }
     }
 
     @keyframes insert {
@@ -171,6 +217,10 @@ conversation-demo {
         padding: 0 16px;
         text-align: right;
 
+        img {
+            max-width: 30%;
+        }
+
         message-view {
             animation: insert 1s;
         }
@@ -192,6 +242,13 @@ conversation-demo {
         height: 24px;
         min-height: 32px;
         font-size: 12px;
+        @media (max-width: 700px) {
+            padding: 8px 16px;
+            line-height: 4px;
+            height: 20px;
+            min-height: 20px;
+            font-size: 12px;
+        }
     }
 
 

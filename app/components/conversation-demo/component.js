@@ -8,10 +8,10 @@ export default Ember.Component.extend({
     messages: [],
 
     threads: [
-        { image: '/images/jane.png', name: 'Jane Smith', snippet: 'Let\'s catch up!' },
+        { class: 'active', image: '/images/jane.png', name: 'Jane Smith', snippet: 'Let\'s catch up!' },
         { image: '/images/rob.png', name: 'Rob Moore', snippet: 'When are you leaving?' },
-        { image: '/images/ellice.png', name: 'Ellice Anderson', snippet: 'It was so great catching up!' },
-        { image: '/images/harrison.png', name: 'Harrison Campbell', snippet: 'You sent an image' }
+        { image: '/images/ellice.png', name: 'Ellice A.', snippet: 'It was so great catching up!' },
+        { image: '/images/harrison.png', name: 'Harry Campbell', snippet: 'You sent an image' }
     ],
 
     conversation: [
@@ -22,7 +22,7 @@ export default Ember.Component.extend({
         },
         {
             length: 'medium',
-            body: 'Heard of Textto?',
+            body: 'How was your trip?',
             class: '',
             time: 1000
         },
@@ -32,13 +32,14 @@ export default Ember.Component.extend({
             time: 1000
         },
         {
+            image: '/images/mms.jpg',
             length: 'medium',
             class: 'received',
             time: 1000
         },
         {
             length: 'medium',
-            body: 'It\'s great!',
+            body: 'Wow, great shot!',
             class: '',
             time: 1000
         },
@@ -48,12 +49,12 @@ export default Ember.Component.extend({
             time: 1000
         },
         {
-            body: 'Yep, it\'s free!',
+            body: 'Can\'t wait to see more!',
             length: 'medium',
             class: '',
         },
         {
-            body: 'And easy to set up',
+            body: 'Fun!',
             length: 'medium',
             class: '',
         },
@@ -84,6 +85,7 @@ export default Ember.Component.extend({
         messages.unshiftObject({
             class: message.class,
             length: message.length,
+            image: message.image
         })
         setTimeout(this.conversationTick.bind(this), message.time)
     },

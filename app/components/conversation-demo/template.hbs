@@ -5,7 +5,7 @@
                 <i class="material-icons">menu</i>
             </div>
             {{#each threads as |thread|}}
-                <div class="demo-thread">
+                <div class="demo-thread {{thread.class}}">
                     <img src={{thread.image}}>
                     <div class="details">
                         <div class="name">{{thread.name}}</div>
