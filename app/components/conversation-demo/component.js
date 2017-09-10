@@ -7,6 +7,13 @@ export default Ember.Component.extend({
     index: 0,
     messages: [],
 
+    threads: [
+        { image: '/images/jane.png', name: 'Jane Smith', snippet: 'Let\'s catch up!' },
+        { image: '/images/rob.png', name: 'Rob Moore', snippet: 'When are you leaving?' },
+        { image: '/images/ellice.png', name: 'Ellice Anderson', snippet: 'It was so great catching up!' },
+        { image: '/images/harrison.png', name: 'Harrison Campbell', snippet: 'You sent an image' }
+    ],
+
     conversation: [
         {
             class: 'received',
@@ -20,7 +27,7 @@ export default Ember.Component.extend({
             time: 1000
         },
         {
-            length: 'large',
+            length: 'long',
             class: 'received',
             time: 1000
         },
@@ -64,7 +71,7 @@ export default Ember.Component.extend({
         if (this.isDestroyed || this.isDestroying) return
         if (this.index === this.conversation.length) {
             this.index = 0
-            this.get('messages').clear()
+            //this.get('messages').clear()
         }
         const messages = this.get('messages')
         const message = this.conversation[this.index]
@@ -73,7 +80,11 @@ export default Ember.Component.extend({
         if (message.class !== 'received') {
             await this.autoType(message.body)
         }
-        messages.unshiftObject(message)
+        messages.length = (messages.length > 10) ? 10 : messages.length
+        messages.unshiftObject({
+            class: message.class,
+            length: message.length,
+        })
         setTimeout(this.conversationTick.bind(this), message.time)
     },
 

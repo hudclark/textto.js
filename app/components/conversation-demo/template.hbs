@@ -1,53 +1,40 @@
-<div class="computer">
-    <upper>
-        <div class="screen">
-            <div class="top-bar">
-                <div class="circle red"></div>
-                <div class="circle yellow"></div>
-                <div class="circle green"></div>
-                <div class="name">Textto</div>
+<div class="screen-wrapper">
+    <div class="screen">
+        <div class="demo-threads">
+            <div class="top">
+                <i class="material-icons">menu</i>
             </div>
-            <div class="demo-threads threads">
-                <thread-view>
-                    <div class="skeleton-contact"></div>
+            {{#each threads as |thread|}}
+                <div class="demo-thread">
+                    <img src={{thread.image}}>
                     <div class="details">
-                        <div class="skeleton-name"></div>
-                        <div class="skeleton-snippet"></div>
+                        <div class="name">{{thread.name}}</div>
+                        <div class="snippet">{{thread.snippet}}</div>
                     </div>
-                </thread-view>
-                <thread-view>
-                    <div class="skeleton-contact"></div>
-                    <div class="details">
-                        <div class="skeleton-name"></div>
-                        <div class="skeleton-snippet"></div>
-                    </div>
-                </thread-view>
-                <thread-view>
-                    <div class="skeleton-contact"></div>
-                    <div class="details">
-                        <div class="skeleton-name"></div>
-                        <div class="skeleton-snippet"></div>
-                    </div>
-                </thread-view>
-                <thread-view>
-                    <div class="skeleton-contact"></div>
-                    <div class="details">
-                        <div class="skeleton-name"></div>
-                        <div class="skeleton-snippet"></div>
-                    </div>
-                </thread-view>
-            </div>
-            <div class="demo-content">
-                <div class="demo-messages">
-                    {{#each messages as |message|}}
-                        <message-view class={{message.class}}>
-                            <message-bubble class={{message.length}}></message-bubble>
-                        </message-view>
-                    {{/each}}
                 </div>
-                <send-box contentEditable='true' placeholder='Message John...'></send-box>
+            {{/each}}
+        </div>
+        <div class="demo-top-bar">
+            <img src={{threads.0.image}}>
+            <div class="details">
+                <div class="name">{{threads.0.name}}</div>
+                <div class="snippet">{{threads.0.snippet}}</div>
             </div>
         </div>
-    </upper>
-    <lower></lower>
+        <div class="demo-content-container">
+            <send-box placeholder="Message {{threads.0.name}}..."></send-box>
+            <div class="demo-messages">
+                {{#each messages as |message|}}
+                    <message-view class={{message.class}}>
+                        {{#if message.image}}
+                            <img src={{message.image}}>
+                        {{else}}
+                            <message-bubble class={{message.length}}></message-bubble>
+                        {{/if}}
+                    </message-view>
+                {{/each}}
+            </div>
+        </div>
+    </div>
 </div>
+<div class="lower"></div>

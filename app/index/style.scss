@@ -11,9 +11,9 @@
         align-items: center;
         height: 80px;
         width: 100%;
-        padding: 20px;
+        padding: 60px;
         font-size: 20px;
-        margin-bottom: 100px;
+        margin-bottom: 60px;
 
         .logo-placeholder {
             background: $colorAccent;
@@ -41,6 +41,9 @@
 
     .first-section {
 
+        background: url('/images/city.jpg') no-repeat center center fixed;
+        height: 100vh;
+
         z-index: 1;
         color: $textLight;
         position: relative;
@@ -50,46 +53,62 @@
             padding-bottom: 20%;
         }
 
-        .col {
-            text-align: center;
-        }
-        
-        .text-right {
-            text-align: right;
+        .container {
+            max-width: 90%;
+            width: 90%;
         }
 
+        .badges {
+            img {
+                width: 45%;
+            }
+
+            #google {
+                float: right;
+            }
+        }
+        
         .title {
             font-family: 'Montserrat', sans-serif;
-            font-size: 60px;
+            font-size: 80px;
             font-weight: 300;
+            line-height: 100px;
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 40px;
+            font-weight: 300;
+            margin-bottom: 40px;
         }
 
         &:after {
             content: '';
-            //background: $colorAccent;
-            background: linear-gradient(to bottom right, #2e76b0, #42a5f5);
+            background: rgba(0, 0, 0, 0.3);
             position: absolute;
-            top: -10%;
-            left: -10%;
-            width: 120%;
-            height: 110%;
-            transform: rotate(5deg);
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
             z-index: -1;
         }
 
-
-        conversation-demo > .computer {
-            margin: 0 auto;
-            width: 900px;
-            max-width: 90%;
-            upper {
-                @media (max-width: 700px) {
-                    height: 250px;
+        .down {
+            @keyframes down {
+                0%, 100% {
+                    color: $colorPrimary;
                 }
-                height: 500px;
-                width: 750px;
-                max-width: 85%;
+                80% {
+                    color: $colorPrimaryDark;
+                }
             }
+            animation: down 2s infinite ease-in-out both;
+            position: absolute;
+            bottom: 16px;
+            left: calc(50% - 30px);
+            font-size: 60px;
+            width: 60px;
         }
 
     }

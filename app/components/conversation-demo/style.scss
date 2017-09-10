@@ -1,235 +1,235 @@
 conversation-demo {
-    position: relative;
-    text-align: left;
+
+    $demo-row-height: 13%;
+    $demo-row-min-height: 44px;
+    $contact-width: 40px;
+    $contact-width-mobile: 30px;
+
+    .screen-wrapper {
+        position: relative;
+        display: block;
+        width: 95%;
+        height: 0;
+        padding-top: 55%;
+        margin: 0 auto;
+    }
 
     .screen {
-        position: relative;
-        width: 90%;
-        height: 90%;
+        position: absolute;
+        top: 15%;
+        left: 10%;
+        bottom: 0;
+        height: 80%;
+        width: 80%;
         background-color: $colorPrimary;
-
-        .top-bar {
-            height: 16px;
-            display: flex;
-            align-items: center;
-            background: $colorPrimaryDark;
-            padding: 4px;
-
-            .circle {
-                height: 6px;
-                width: 6px;
-                border-radius: 100%;
-                margin: 0 2px;
-
-                &.red {
-                    background: $errorColor;
-                }
-                &.yellow {
-                    background: yellow;
-                }
-                &.green {
-                    background: $green;
-                }
-            }
-
-            .name {
-                margin-left: 2px;
-                color: $textLight;
-                font-size: 8px;
-            }
-        }
-
-        .demo-threads {
-            position: absolute;
-            height: calc(100% - 16px);
-            width: 30%;
-            display: flex;
-            flex-direction: column;
-            background-color: $colorPrimaryDark;
-
-            thread-view {
-
-                @media (max-width: 700px) {
-                    min-height: 25px;
-                }
-
-                width: 100%;
-                min-height: 50px;
-                padding: 5% 10%;
-
-                .details {
-                    margin-left: 10px;
-                }
-
-                .skeleton-contact {
-                    height: 25px;
-                    width: 25px;
-                    @media (max-width: 700px) {
-                        height: 15px;
-                        width: 15px;
-                    }
-                }
-
-                .skeleton-name {
-                    height: .4em;
-                    width: 80px;
-                    @media (max-width: 700px) {
-                        height: .3em;
-                        width: 50px;
-                        margin-bottom: 4px;
-                    }
-                }
-                
-                .skeleton-snippet {
-                    height: .4em;
-                    width: 70%;
-                    @media (max-width: 700px) {
-                        height: .3em;
-                        width: 30px;
-                    }
-                }
-            }
-
-        }
-
-        .demo-content {
-            position: absolute;
-            height: calc(100% - 16px);
-            width: 70%;
-            margin-left: 30%;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-
-            send-box {
-                margin: 8px 16px;
-                min-height: 20px;
-                font-size: 11px;
-                line-height: 0px;
-                position: absolute;
-                bottom: 16px;
-                right: 16px;
-                left: 16px;
-                padding: 14px 24px;
-
-                @media (max-width: 700px) {
-                    padding: 10px 20px;
-                    line-height: 4px;
-                    bottom: 8px;
-                }
-            }
-
-            .demo-messages {
-                position: absolute;
-                bottom: 56px;
-                width: 100%;
-                display: flex;
-                flex-direction: column-reverse;
-                text-align: right;
-                padding: 0 16px;
-
-                @media (max-width: 700px) {
-                    bottom: 44px;
-                }
-
-                message-view {
-                    overflow: hidden;
-                    @keyframes up {
-                        from {
-                             max-height: 0;
-                        } to {
-                             max-height: 100px;
-                        }
-                    }
-                    animation: up 1s;
-
-                    message-bubble {
-                        @media (max-width: 700px) {
-                            margin: 4px;
-                            padding: 8px 12px;
-                        }
-                    }
-                }
-
-
-                .small {
-                    width: 20%;
-                }
-                .medium {
-                    width: 30%;
-                }
-                .long {
-                    width: 40%;
-                }
-            }
-        }
-
-    }
-
-    upper {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        background: #222;
-        justify-content: center;
-        align-items: center;
-        border-top: 2px solid #aeaeaa;
-        border-left: 2px solid #aeaeaa;
-        border-right: 2px solid #aeaeaa;
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
-        position: relative;
-        overflow: hidden;
-        margin: 0 auto;
-        
-        &:after {
-            height: 0;
-            display: block;
-            content: '';
-            position: absolute;
-            border-bottom: 700px solid rgba(0,0,0,0.045);
-            border-right: 500px solid transparent;
-            border-top-left-radius: 100px;
-            left: 0;
-            bottom: 0;
-        }
-    }
-
-    lower {
-        position: relative;
-        width: 100%;
-        height: 20px;
-        background: #eaeaea;
-        display: block;
-        margin: 0 auto;
-        border-radius: 2px;
+        border-radius: 6px;
 
         &:before {
-            display: block;
             content: '';
             position: absolute;
-            width: 100px;
-            height: 10px;;
-            background: #a1a1a1;
-            left: calc(50% - 50px);
-            top: 0;
-            border-radius: 0 0 6px 6px;
+            top: -6.0%;
+            left: calc(50% - 5px);
+
+            width: 12px;
+            height: 12px;
+            border-radius: 12px;
+
+            background-color: black;
         }
 
-
         &:after {
-            display: block;
             content: '';
             position: absolute;
-            width: 100%;
-            height: 8px;
-            background: #bababa;
-            top: 20px;
-            border-bottom-right-radius: 7.5rem 2.5rem;
-            border-bottom-left-radius: 7.5rem 2.5rem;
-            box-shadow: 2px 2px 2px rgba(0, 0, 0, .1);
+            top: -10%;
+            left: -5%;
+            width: 110%;
+            height: 120%;
+            background-color: #3d4144;
+            z-index: -1;
+            border-top: 2px solid #efefef;
+            border-left: 2px solid #efefef;
+            border-right: 2px solid #efefef;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
         }
     }
 
+    .demo-threads {
+        width: 30%;
+        height: 100%;
+        background-color: $colorPrimaryDark;
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+
+        .top {
+            height: $demo-row-height;
+            min-height: $demo-row-min-height;
+            border-bottom: 1px solid $borderColor;
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+        }
+    }
+
+    .demo-thread {
+        width: 100%;
+        padding: 6px 12px;
+        height: $demo-row-height;
+        min-height: $demo-row-min-height;
+        border-bottom: 1px solid $borderColor;
+        display: flex;
+        align-items: center;
+
+        img {
+            width: $contact-width;
+            height: $contact-width;
+            @media (max-width: 700px) {
+                width: $contact-width-mobile;
+                height: $contact-width-mobile;
+            }
+            border-radius: 100%;
+            display: inline-block;
+        }
+
+        .details {
+            display: inline-block;
+            margin-left: 8px;
+            font-size: 12px;
+            color: $textLight;
+            .snippet {
+                font-size: 12px;
+                color: $textSecondary;
+            }
+        }
+    }
+
+    .demo-top-bar {
+        position: absolute;
+        top: 0;
+        left: 30%;
+        right: 0;
+        height: $demo-row-height;
+        min-height: $demo-row-min-height;
+        display: flex;
+        align-items: center;
+        @include elevation(1);
+        padding: 0 12px;
+
+        img {
+            width: $contact-width;
+            height: $contact-width;
+            @media (max-width: 700px) {
+                width: $contact-width-mobile;
+                height: $contact-width-mobile;
+            }
+            border-radius: 100%;
+            display: inline-block;
+        }
+
+        .details {
+            margin-left: 12px;
+        }
+
+        .name {
+            color: $textDark;
+            font-size: 14px;
+        }
+        .snippet {
+            color: $textDarkSecondary;
+            font-size: 12px;
+        }
+    }
+
+    .demo-content-container {
+        position: absolute;
+        top: $demo-row-height;
+        bottom: 0;
+        left: 30%;
+        right: 0;
+
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    @keyframes insert {
+        0% {
+            max-height: 0;
+        }
+        90% {
+            max-height: 500px;
+        }
+        100% {
+            max-height: none;
+        }
+    }
+
+    .demo-messages {
+        display: flex;
+        flex-direction: column-reverse;
+        overflow: hidden;
+
+        padding: 0 16px;
+        text-align: right;
+
+        message-view {
+            animation: insert 1s;
+        }
+        .long {
+            width: 100px;
+        }
+        .medium {
+            width: 75px;
+        }
+        .short {
+            width: 50px;
+        }
+    }
+
+    send-box {
+        margin: 12px 16px;
+        padding: 12px 20px;
+        line-height: 8px;
+        height: 24px;
+        min-height: 32px;
+        font-size: 12px;
+    }
+
+
+    .lower {
+        position: relative;
+        width: 100%;
+        background-color: #eaeaea;
+        height: 0;
+        padding-top: 3%;
+        display: block;
+        border-top-right-radius: 4px;
+        border-top-left-radius: 4px;
+
+        &:before {
+            content: '';
+            display: block;
+            background-color: #a1a1a1;
+            position: absolute;
+            top: 0;
+            left: 40%;
+            height: 40%;
+            width: 20%;
+            border-bottom-right-radius: 8px;
+            border-bottom-left-radius: 8px;
+        }
+
+        &:after {
+            content: '';
+            display: block;
+            background-color: #bababa;
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 30%;
+            border-bottom-right-radius: 7.5rem 2.5rem;
+            border-bottom-left-radius: 7.5rem 2.5rem;
+            @include elevation(2);
+        }
+    }
 
 }
