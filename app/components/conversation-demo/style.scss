@@ -4,6 +4,7 @@ conversation-demo {
     $demo-row-min-height: 35px;
     $contact-width: 40px;
     $contact-width-mobile: 24px;
+    $contact-width-medium: 30px;
     text-align: left;
 
     .screen-wrapper {
@@ -101,6 +102,10 @@ conversation-demo {
                 width: $contact-width-mobile;
                 height: $contact-width-mobile;
             }
+            @media (max-width: 1400px) {
+                width: $contact-width-medium;
+                height: $contact-width-medium;
+            }
             border-radius: 100%;
             display: inline-block;
         }
@@ -115,6 +120,9 @@ conversation-demo {
             @media (max-width: 700px) {
                 line-height: 12px;
                 margin-left: 4px;
+            }
+            @media (max-width: 1400px) {
+                line-height: 16px;
             }
 
 
@@ -156,6 +164,9 @@ conversation-demo {
         @media (max-width: 700px) {
             line-height: 14px;
         }
+        @media (max-width: 1400px) {
+            line-height: 16px;
+        }
 
         img {
             width: $contact-width;
@@ -163,6 +174,10 @@ conversation-demo {
             @media (max-width: 700px) {
                 width: $contact-width-mobile;
                 height: $contact-width-mobile;
+            }
+            @media (max-width: 1400px) {
+                width: $contact-width-medium;
+                height: $contact-width-medium;
             }
             border-radius: 100%;
             display: inline-block;
