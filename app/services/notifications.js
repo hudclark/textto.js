@@ -29,7 +29,6 @@ export default Ember.Service.extend({
             const notification = new Notification(title, {
                 icon: image,
                 body: body,
-                tag: 1 // at most 1 notification at a time
             })
             setTimeout(notification.close.bind(notification), 4000)
             notification.onclick = function () {

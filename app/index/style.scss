@@ -4,6 +4,55 @@
     overflow-x: hidden;
     background: #e0e0e0;
 
+    .row {
+        margin-bottom: 0;
+    }
+
+    .appearing {
+        opacity: 0;
+        transition: opacity .4s ease-in;
+    }
+
+    .visible {
+        opacity: 1;
+    }
+
+    .container {
+        max-width: 75%;
+        width: 75%;
+    }
+
+    .title {
+        font-size: 60px;
+        font-weight: 600;
+        line-height: 60px;
+        color: white;
+
+        @media (max-width: 700px) {
+            font-size: 40px;
+            line-height: 50px;
+        }
+    }
+
+    .subtitle {
+        font-size: 30px;
+        font-weight: 400;
+        line-height: 50px;
+        color: white;
+        margin-top: 5%;
+
+        @media (max-width: 700px) {
+            font-size: 30px;
+            line-height: 40px;
+        }
+    }
+
+    .col {
+        @media (max-width: 700px) {
+            text-align: center;
+        }
+    }
+
     .nav {
 
         position: absolute;
@@ -31,6 +80,8 @@
 
         .logo-name {
             color: $textLight;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
         }
 
         .login {
@@ -63,9 +114,9 @@
         }
 
         .container {
-            max-width: 90%;
-            width: 90%;
             padding-bottom: 100px;
+            max-width: 85%;
+            width: 85%;
 
             @media (max-width: 700px) {
                 padding-bottom: 0;
@@ -85,20 +136,9 @@
         .col {
             text-align: center;
         }
-        
+
         .title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 60px;
-            font-weight: 500;
-            line-height: 80px;
-            margin-bottom: 20px;
-            margin-top: 20px;
-            
-            @media (max-width: 700px) {
-                margin-top: 0px;
-                font-size: 50px;
-                line-height: 60px;
-            }
+            margin-top: 10%;
         }
 
         .subtitle {
@@ -141,13 +181,24 @@
             left: calc(50% - 30px);
             font-size: 60px;
             width: 60px;
+
+            &:after {
+                content: '';
+                position: absolute;
+                animation: pulse-animation 2s infinite;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                border-radius: 100%;
+                background: rgba(255, 255, 255, 0.1);
+            }
         }
 
     }
 
     .second-section {
-        padding: 50px 0;
-
+        padding-bottom: 100px;
         background: url('/images/poly.png');
 
         .col {
@@ -155,17 +206,102 @@
         }
 
         img {
-            max-width: 250px;
+            padding-top: 100px;
+            width: 100%;
+            max-width: 200px;
         }
 
         .title {
-            font-size: 50px;
-            line-height: 80px;
-            color: $textDark;
+            font-size: 30px;
+            font-weight: 500;
+            line-height: 60px;
+            color: #020202;
         }
 
         .subtitle {
             font-size: 18px;
+            color: #030303;
+            line-height: 30px;
+        }
+    }
+
+    .third-section {
+        background: linear-gradient(to top left, #64b5f6, #374D63);
+        padding: 50px 0;
+
+
+        img {
+            width: 100%;
+        }
+
+        .title {
+            margin-top: 10%;
+        }
+
+        .badges {
+            margin-top: 30px;
+            margin-left: -20px;
+            img {
+                max-width: 300px;
+            }
+        }
+    }
+
+    .fourth-section {
+        padding: 50px 0;
+        background: url('/images/poly.png');
+
+        .title {
+            color: $colorPrimaryDark;
+            font-size: 40px;
+            text-align: center;
+            display: inline-block;
+            margin-left: auto;
+        }
+
+
+        .col {
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+
+            @media (max-width: 700px) {
+                justify-content: center;
+                padding: 10% 10%;
+            }
+        }
+
+        .button {
+            display: inline-block;
+            padding: 16px 40px;
+            background: $colorAccent;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 6px;
+
+            color: white;
+            font-weight: 500;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+    }
+
+    .footer {
+        background: #eee;
+        color: $textDark;
+        padding: 30px 0;
+        font-weight: 500;
+
+        .row {
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            @media (max-width: 700px) {
+                max-width: 90%;
+                width: 90%;
+        }
         }
     }
 
