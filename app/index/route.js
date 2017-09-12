@@ -20,7 +20,6 @@ export default Ember.Route.extend({
                         callback: function () { onAppear(id) }
                     })
                 })
-                console.log(options)
                 Materialize.scrollFire(options)
             })
         }

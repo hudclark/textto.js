@@ -97,7 +97,16 @@ conversation-demo {
 
             width: 12px;
             height: 12px;
-            border-radius: 12px;
+            border-radius: 100%;
+
+            @media (max-width: 700px) {
+                width: 8px;
+                height: 8px;
+            }
+            @media (max-width: 500px) {
+                width: 4px;
+                height: 4px;
+            }
 
             background-color: black;
         }
