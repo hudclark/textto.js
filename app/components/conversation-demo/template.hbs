@@ -1,12 +1,12 @@
 <div class="screen-wrapper">
     <div class="screen">
         <div class="demo-threads">
-            <div class="top">
+            <div class="top row-height">
                 <i class="material-icons">menu</i>
             </div>
             {{#each threads as |thread|}}
-                <div class="demo-thread {{thread.class}}">
-                    <img src={{thread.image}}>
+                <div class="demo-thread row-height {{thread.class}}">
+                    <img class="demo-contact" src={{thread.image}}>
                     <div class="details">
                         <div class="name">{{thread.name}}</div>
                         <div class="snippet">{{thread.snippet}}</div>
@@ -14,8 +14,8 @@
                 </div>
             {{/each}}
         </div>
-        <div class="demo-top-bar">
-            <img src={{threads.0.image}}>
+        <div class="demo-top-bar row-height">
+            <img class="demo-contact" src={{threads.0.image}}>
             <div class="details">
                 <div class="name">{{threads.0.name}}</div>
                 <div class="snippet">{{threads.0.snippet}}</div>
