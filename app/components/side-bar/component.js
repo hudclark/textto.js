@@ -20,6 +20,7 @@ export default Ember.Component.extend({
         if (this.get('sortedThreads').length > 0) {
             this.setActiveThread(this.get('sortedThreads')[0])
         }
+
         this.set('isLoading', false)
 
         this.get('bus').register(this)
@@ -62,6 +63,9 @@ export default Ember.Component.extend({
     },
 
     // ================== Websocket events =========================
+
+
+    // TODO: bulk thread update.
 
     onNewThread (payload) {
         const thread = payload.thread

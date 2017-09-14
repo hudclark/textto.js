@@ -8,7 +8,7 @@ export default Ember.Component.extend({
     messages: [],
 
     threads: [
-        { class: 'active', image: '/images/jane.png', name: 'Jane Smith', snippet: 'Let\'s catch up!' },
+        { class: 'active', image: '/images/jane.png', name: 'Jane Smith', snippet: 'Let\'s catch up! 😀😀' },
         { image: '/images/rob.png', name: 'Rob Moore', snippet: 'When are you leaving?' },
         { image: '/images/ellice.png', name: 'Ellice A.', snippet: 'It was so great catching up!' },
         { image: '/images/harrison.png', name: 'Harry Campbell', snippet: 'You sent an image' }

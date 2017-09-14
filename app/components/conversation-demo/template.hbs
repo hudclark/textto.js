@@ -18,7 +18,9 @@
             <img class="demo-contact" src={{threads.0.image}}>
             <div class="details">
                 <div class="name">{{threads.0.name}}</div>
-                <div class="snippet">{{threads.0.snippet}}</div>
+                <div class="snippet">
+                    {{emoji-text content=threads.0.snippet}}
+                </div>
             </div>
         </div>
         <div class="demo-content-container">
