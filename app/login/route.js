@@ -13,8 +13,11 @@ export default Ember.Route.extend({
     actions: {
 
         onLogin() {
-            console.log('test');
             this.transitionTo('threads');
+        },
+
+        openIndex () {
+            this.transitionTo('index')
         }
 
     }

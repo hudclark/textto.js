@@ -4,7 +4,7 @@ login-view {
     padding: 24px 40px;
     text-align: center;
     display: inline-block;
-    min-width: 300px;
+    width: 300px;
 
     .title {
         font-size: 2em;
@@ -21,6 +21,12 @@ login-view {
         cursor: pointer;
         margin-top: 16px;
         display: inline-block;
+    }
+
+    .subtext {
+        font-size: 12px;
+        margin-top: 12px;
+        color: $textDarkSecondary;
     }
 
 }

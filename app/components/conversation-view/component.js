@@ -33,7 +33,7 @@ export default Ember.Component.extend({
         let oldId = null
         if (this.get('messages').length) oldId = this.get('messages')[0].threadId
         if (!oldId && this.get('scheduledMessages').length) oldId = this.get('scheduledMessages')[0].threadId
-        if (threadId && threadId !== oldId) {
+        if (threadId != null && threadId !== oldId) {
             this.get('messages').clear()
             this.get('scheduledMessages').clear()
             this.loadThread(threadId)
@@ -219,7 +219,7 @@ export default Ember.Component.extend({
 
     onWebsocketReconnected () {
         const threadId = this.get('threadId')
-        this.loadThread(threadId)
+        if (threadId != null) this.loadThread(threadId)
     }
 
 })

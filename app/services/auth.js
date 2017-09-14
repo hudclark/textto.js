@@ -5,13 +5,13 @@ export default Ember.Service.extend({
 
     api: Ember.inject.service(),
     websocket: Ember.inject.service(),
+    bus: Ember.inject.service(),
 
     AUTH_TOKEN_KEY: 'ajwt',
     REFRESH_TOKEN_KEY: 'rjwt',
 
     _authToken: null,
     _refreshToken: null,
-    _onLogOutListeners: [],
 
     _refreshPromise: null,
 
@@ -51,9 +51,7 @@ export default Ember.Service.extend({
         this.setAuthToken(null);
         this.setRefreshToken(null);
         this.get('websocket').close()
-        this._onLogOutListeners.forEach((listener) => {
-            listener.onLogOut();
-        });
+        this.get('bus').post('logout')
 
         const options = {
             method: 'post',
@@ -147,10 +145,5 @@ export default Ember.Service.extend({
         }
         return this._postGoogleCode(code, postMessage);
     },
-
-    addOnLogOutListener(listener) {
-        this._onLogOutListeners.push(listener);
-        // TODO no remove for now because only application should subscribe.
-    }
 
 });

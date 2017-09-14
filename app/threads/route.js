@@ -57,6 +57,11 @@ export default Ember.Route.extend({
         this.get('bus').post('closeModal')
         this.get('websocket').ensureConnected()
         this.startConnectionInterval()
+    },
+
+    onLogout () {
+        this.controllerFor('threads').set('activeThread', null)
+        this.transitionTo('login')
     }
 
 });

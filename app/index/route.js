@@ -29,7 +29,7 @@ export default Ember.Route.extend({
             if (elements.length === 0) {
                 this.stopScrollListener()
             }
-        }, 200)
+        }, 100)
     },
 
     stopScrollListener () {
