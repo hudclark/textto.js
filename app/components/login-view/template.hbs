@@ -1,6 +1,6 @@
 <div class="title">Sign In</div>
 {{#if isLoading }}
-    loading...
+    {{loading-view}}
 {{else}}
     <img src="/images/g-signin.png" {{action 'login'}}>
 {{/if}}

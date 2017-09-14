@@ -4,8 +4,9 @@ import config from '../config/environment';
 export default Ember.Service.extend({
 
     PING_TIMEOUT: 5 * 1000,
-    PING_INTERVAL: 10 * 1000,
+    PING_INTERVAL: 5 * 1000,
     _pingTimeout: null,
+    _pongTimeout: null,
     _ws: null,
 
     auth: Ember.inject.service(),
@@ -28,15 +29,16 @@ export default Ember.Service.extend({
         console.log('ping failed')
         this._pingTimeout = null;
         this.hasLostConnection = true
-        this._ws.close()
+        if (this._ws !== null) this._ws.close()
         this._ws = null
         this.connect()
     },
 
+    // Called when server sends 'pong'
     _pong () {
         console.log('pong')
         clearTimeout(this._pingTimeout);
-        setTimeout(() => {
+        this._pongTimeout = setTimeout(() => {
             this._ping();
         }, this.PING_INTERVAL)
     },
@@ -111,6 +113,8 @@ export default Ember.Service.extend({
     },
 
     close () {
+        clearTimeout(this._pingTimeout)
+        clearTimeout(this._pongTimeout)
         if (this.isConnected()) this._ws.close()
         this.hasLostConnection = false
     }

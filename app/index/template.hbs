@@ -11,7 +11,7 @@
                     <div class="title">Text From Your Computer</div>
                     <div class="subtitle">With the Free Website and App</div>
                     <div class="badges hide-on-small-only">
-                        <img id="google" src="/images/web-badge.png">
+                        <img id="google" src="/images/web-badge.png" {{ action 'openWeb'}}>
                         <img id="google" src="/images/google-play-badge.png">
                     </div>
                 </div>
@@ -87,7 +87,7 @@
                     <div class="title">Start Texting For Free</div>
                 </div>
                 <div class="col m6 s12">
-                    <div class="button">Launch the Web App</div>
+                    <div class="button" {{action 'openWeb'}}>Launch the Web App</div>
                 </div>
             </div>
         </div>

@@ -15,7 +15,7 @@ export default Ember.Route.extend({
 
     unregister: Ember.on('deactivate', function () {
         this.get('bus').unregister(this);
-        this.get('websockets').close()
+        this.get('websocket').close()
         this.stopConnectionInterval()
     }),
 

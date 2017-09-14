@@ -1,23 +1,20 @@
 login-view {
     background: #fff;
     border-radius: 8px;
-    width: 200px;
-    height: 100px;
-
-    position: relative;
-    top: 300px;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    display: block;
-    
-    padding: 32px;
+    padding: 24px 40px;
+    text-align: center;
+    display: inline-block;
+    min-width: 300px;
 
     .title {
-        text-align: center;
         font-size: 2em;
-        font-weight: 100;
+        font-weight: 300;
         color: $textDark;
+    }
+
+    loading {
+        margin: 8px auto;
+        display: block;
     }
 
     img {
