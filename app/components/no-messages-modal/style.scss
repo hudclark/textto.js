@@ -1,6 +1,26 @@
 .no-messages-modal {
-    min-height: 400px;
     max-width: 600px;
-    background-color: $colorPrimary;
-    color: $textDark;
+    color: $textDarkSecondary;
+    background: url('/images/poly.png');
+
+    text-align: center;
+
+    .title {
+        font-size: 40px;
+    }
+
+    #google {
+        max-width: 300px;
+    }
+
+    a {
+        cursor: pointer;
+    }
+
+    .empty-image {
+        margin: 24px 0 16px 0;
+        max-width: 200px;
+        display: none;
+    }
+
 }

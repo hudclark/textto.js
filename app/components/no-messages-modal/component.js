@@ -3,6 +3,7 @@ import Ember from 'ember'
 export default Ember.Component.extend({
 
     bus: Ember.inject.service(),
+    auth: Ember.inject.service(),
     classNames: ['modal', 'no-messages-modal'],
 
     didInsertElement () {
@@ -10,11 +11,16 @@ export default Ember.Component.extend({
         this.get('bus').register(this)
         Ember.run.scheduleOnce('afterRender', this, () => {
             $('.modal').modal({
+            })
+            //$('.modal').modal('open')``
+            // TODO
+            this.$().modal({
+                dismissible: false,
                 complete: () => {
                     this.get('bus').post('closeModal')
                 }
             })
-            $('.modal').modal('open')
+            this.$().modal('open')
         })
     },
 
@@ -33,7 +39,21 @@ export default Ember.Component.extend({
         $('.modal').modal('close')
     },
 
+    close () {
+        $('.modal').modal('close')
+        this.get('bus').post('closeModal')
+    },
+
     // TODO add an event for onBulkThreadInsert
+
+    actions: {
+
+        logOut () {
+            this.close()
+            this.get('auth').logOut()
+        }
+
+    }
 
 
 })

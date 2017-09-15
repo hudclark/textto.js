@@ -24,6 +24,11 @@ export default Ember.Component.extend({
         this.set('isLoading', false)
 
         this.get('bus').register(this)
+
+        // User has no threads. Show no-messages dialog
+        if (threads.length === 0) {
+            this.get('bus').post('openModal', { componentName: 'no-messages-modal' })
+        }
     },
 
     willDestroyElement () {
@@ -70,6 +75,9 @@ export default Ember.Component.extend({
     onNewThread (payload) {
         const thread = payload.thread
         this.get('threads').unshiftObject(thread)
+        if (this.get('threads.length') === 1) {
+            this.setActiveThread(thread)
+        }
     },
 
     onNewMessage (payload) {

@@ -3,7 +3,7 @@ import config from '../config/environment';
 
 export default Ember.Service.extend({
 
-    PING_TIMEOUT: 5 * 1000,
+    PING_TIMEOUT: 2 * 1000,
     PING_INTERVAL: 5 * 1000,
     _pingTimeout: null,
     _pongTimeout: null,
