@@ -69,9 +69,6 @@ export default Ember.Component.extend({
 
     // ================== Websocket events =========================
 
-
-    // TODO: bulk thread update.
-
     onNewThread (payload) {
         const thread = payload.thread
         this.get('threads').unshiftObject(thread)
@@ -92,7 +89,7 @@ export default Ember.Component.extend({
         Ember.set(thread, 'last', message.date)
     },
 
-    onBulkContactUpdate () {
+    onContactsUpdated () {
         this.onWebsocketReconnected()
     },
 

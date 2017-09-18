@@ -43,6 +43,10 @@ export default Ember.Route.extend({
             this.transitionTo('threads')
         },
 
+        scrollDown () {
+            $(window).scrollTop($(window).height())
+        },
+
         didTransition () {
             Ember.run.scheduleOnce('afterRender', this, function () {
                 const selector = $('.appearing')

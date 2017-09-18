@@ -32,7 +32,9 @@ export default Ember.Component.extend({
         async reconnect () {
             this.set('isLoading', true)
             await this.ping()
-            this.set('isLoading', false)
+            if (!this.isDestroyed && !this.isDestroying) {
+                this.set('isLoading', false)
+            }
         }
 
     }

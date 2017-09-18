@@ -9,26 +9,13 @@ export default Ember.Route.extend({
 
     register: Ember.on('activate', function () {
         this.get('bus').register(this)
-        this.get('websocket').ensureConnected()
-        this.startConnectionInterval()
+        this.get('websocket').connect()
     }),
 
     unregister: Ember.on('deactivate', function () {
         this.get('bus').unregister(this);
         this.get('websocket').close()
-        this.stopConnectionInterval()
     }),
-
-    startConnectionInterval () {
-        this.connectionTimeout = setInterval(() => {
-            this.get('websocket').ensureConnected()
-        }, 5000)
-    },
-
-    stopConnectionInterval() {
-        console.log('Stopping connection interval')
-        clearInterval(this.connectionTimeout)
-    },
 
     beforeModel() {
         // this is a protected route.
@@ -44,7 +31,6 @@ export default Ember.Route.extend({
 
     onLostConnection () {
         console.log('Lost connection')
-        this.stopConnectionInterval()
         this.get('websocket').close()
         const modal = {
             componentName: 'disconnected-modal',
@@ -55,8 +41,7 @@ export default Ember.Route.extend({
 
     onReconnectedToNetwork () {
         this.get('bus').post('closeModal')
-        this.get('websocket').ensureConnected()
-        this.startConnectionInterval()
+        this.get('websocket').connect()
     },
 
     onLogout () {
