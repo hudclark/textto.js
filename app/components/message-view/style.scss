@@ -1,7 +1,22 @@
 message-view {
 
-    position: relative;
+    @keyframes insert {
+        0% {
+            max-height: 0;
+        }
+        90% {
+            max-height: 500px;
+        }
+        100% {
+            max-height: none;
+        }
+    }
 
+    &.animated {
+        animation: insert 0.2s ease-in;
+    }
+
+    position: relative;
     margin: 6px 0;
 
     &.hidden {

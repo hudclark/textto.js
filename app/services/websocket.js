@@ -8,7 +8,7 @@ export default Ember.Service.extend({
 
     RECONNECT_INTERVAL: 1000,
     PING_INTEVAL: 5000,
-    PING_FAIL_TIMEOUT: 1000,
+    PING_FAIL_TIMEOUT: 8000,
     CLOSE_CODE: 3022, // specific to this app only
 
     ws: null,
@@ -68,6 +68,11 @@ export default Ember.Service.extend({
 
         this.ws.onclose = (e) => {
             console.log('WS closed: ', e)
+            this.ws.onerror = null
+            this.ws.onmessage = null
+            this.ws.onopen = null
+            this.ws.onclose = null
+            this.clearTimeouts()
             if (e.code !== this.CLOSE_CODE) this.reconnect()
         }
 
@@ -76,11 +81,15 @@ export default Ember.Service.extend({
         }
     },
 
-    close () {
-        console.log('Closing WS...')
+    clearTimeouts () {
         clearTimeout(this.pingTimeout)
         clearTimeout(this.reconnectionTimeout)
         clearTimeout(this.pongTimeout)
+    },
+
+    close () {
+        console.log('Closing WS...')
+        this.clearTimeouts()
         this.ws.close(this.CLOSE_CODE)
     },
 
@@ -101,9 +110,9 @@ export default Ember.Service.extend({
 
     onPong () {
         console.log('pong')
-        clearInterval(this.pingTimeout)
+        clearTimeout(this.pingTimeout)
         this.pongTimeout = setTimeout( () => {
-            if (this.isConnected()) this.ping()
+            this.ping()
         }, this.PING_INTEVAL)
     }
 

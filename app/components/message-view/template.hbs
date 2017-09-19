@@ -1,7 +1,7 @@
 {{#if isLoading}}
     {{loading-view}}
 {{/if}}
-{{#if mms}}
+{{#if (eq message.type 'mms')}}
     {{#each message.parts as |part|}}
         {{mms-part part=part message=message}}
         <br>

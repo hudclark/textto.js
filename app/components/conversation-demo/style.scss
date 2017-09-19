@@ -236,18 +236,6 @@ conversation-demo {
         }
     }
 
-    @keyframes insert {
-        0% {
-            max-height: 0;
-        }
-        90% {
-            max-height: 500px;
-        }
-        100% {
-            max-height: none;
-        }
-    }
-
     .demo-messages {
         display: flex;
         flex-direction: column-reverse;
@@ -269,12 +257,15 @@ conversation-demo {
         }
 
         message-view {
-            animation: insert 1s;
             @media (max-width: 700px) {
                 margin: 4px 0;
             }
             @media (max-width: 500px) {
                 margin: 2px 0;
+            }
+
+            &.animated {
+                animation: insert .5s ease-in;
             }
         }
 

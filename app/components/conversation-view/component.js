@@ -88,7 +88,7 @@ export default Ember.Component.extend({
         }
     },
 
-    unshiftOrReplace (collectionName, value, func) {
+    unshiftOrReplace (collectionName, value, func, animate) {
         const array = this.get(collectionName)
         let index = -1
         for (let i = 0; i < array.length; i++) {
@@ -98,6 +98,7 @@ export default Ember.Component.extend({
             }
         }
         if (index === -1) {
+            if (animate) value.animated = true
             array.unshiftObject(value)
         } else {
             array[index] = value
@@ -171,15 +172,19 @@ export default Ember.Component.extend({
         }
 
         if (message.threadId !== this.get('threadId')) return
+
+        let didReplace = false
         
         // check to see if any scheduled messages are replaced
         let scheduledMessages = this.get('scheduledMessages').filter((msg) => {
-            return !this.messageReplacesscheduledMessage(message, msg)
+            const replaced = this.messageReplacesscheduledMessage(message, msg)
+            didReplace |= replaced
+            return !replaced
         })
         this.set('scheduledMessages', scheduledMessages)
 
         // add message
-        this.unshiftOrReplace('messages', message, m => (m._id === message._id))
+        this.unshiftOrReplace('messages', message, m => (m._id === message._id), !didReplace)
     },
 
     onNewScheduledMessage (payload) {
@@ -188,7 +193,7 @@ export default Ember.Component.extend({
 
         this.unshiftOrReplace('scheduledMessages', scheduledMessage, function (msg) {
             return (msg.uuid === scheduledMessage.uuid)
-        })
+        }, true)
     },
 
     onUpdateScheduledMessage (payload) {

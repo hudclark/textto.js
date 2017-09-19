@@ -3,11 +3,11 @@ import Ember from 'ember';
 export default Ember.Component.extend({
 
     tagName: 'message-view',
-    classNameBindings: ['received', 'hidden'],
+    classNameBindings: ['received', 'hidden', 'animated'],
     api: Ember.inject.service(),
 
-    mms: Ember.computed('message', function() {
-        return this.get('message.type') === "mms";
+    animated: Ember.computed('message', function () {
+        return this.get('message.animated')
     }),
 
     received: Ember.computed('message', function () {
@@ -16,8 +16,8 @@ export default Ember.Component.extend({
     }),
 
     isLoading: Ember.computed('message', function () {
-        if (!this.get('isScheduled')) return false
         const message = this.get('message')
+        if (!this.get('isScheduled')) return false
         if (message.failed) return false
         return true
     }),

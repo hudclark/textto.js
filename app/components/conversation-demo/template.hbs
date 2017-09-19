@@ -27,7 +27,7 @@
             <send-box placeholder="Message {{threads.0.name}}..."></send-box>
             <div class="demo-messages">
                 {{#each messages as |message|}}
-                    <message-view class={{message.class}}>
+                    <message-view class="{{message.class}} animated">
                         {{#if message.image}}
                             <img src={{message.image}}>
                         {{else}}
