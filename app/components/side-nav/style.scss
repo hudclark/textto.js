@@ -18,6 +18,15 @@
         }
     }
 
+    .disabled {
+        a {
+            color: $textDarkSecondary;
+        }
+        .material-icons {
+            color: $textDarkSecondary !important;
+        }
+    }
+
     .switch {
         float: right;
         line-height: 44px;

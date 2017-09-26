@@ -32,7 +32,7 @@ $colorPrimary:#f7f7f7;
 $colorPrimaryDark: #374D63;
 $colorActive: #405a73;
 
-$colorAccent: #64b5f6;
+$colorAccent: #19B5FE;
 $colorAccentSecondary: #BDC3C7;
 
 $textLight: #fdf6e3;
@@ -46,12 +46,18 @@ $errorColor: #f44336;
 
 $green: #4caf50;
 
-.ember-view > .btn {
-    background-color: $colorAccent;
+.btn {
+    background-color: $colorAccent !important;
+    &:hover {
+        background-color: $colorAccent !important;
+    }
 }
 
-.ember-view > .btn-floating {
-    background-color: $colorAccent;
+.btn-floating {
+    background-color: $colorAccent !important;
+    &:hover {
+        background-color: $colorAccent !important;
+    }
 }
 
 // pods

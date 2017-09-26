@@ -14,7 +14,7 @@
         {{#each refreshTokens as |token|}}
         <tr>
             <td>{{token.platform}}</td>
-            <td>{{token.lastUsed}}</td>
+            <td>{{format-time token.lastUsed}}</td>
             <td>
                 <a class="btn" {{action 'revokeToken' token}}>Remove</a>
             </td>

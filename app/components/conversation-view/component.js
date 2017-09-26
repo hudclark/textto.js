@@ -142,6 +142,7 @@ export default Ember.Component.extend({
             const messages = this.get('messages')
             const after = messages[messages.length - 1].date
             const newMessages = await this.get('api').loadMoreMessages(this.get('threadId'), after)
+            if (this.isDestroyed || this.isDestroying) return
             this.attachContactsToMessages(newMessages)
             this.get('messages').pushObjects(newMessages)
             this.hasMoreMessages = (newMessages.length > 0)
@@ -158,6 +159,7 @@ export default Ember.Component.extend({
     // ============== Websocket events ====================
 
     onNewMessage (payload) {
+        if (this.isDestroyed || this.isDestroying) return
         const message = payload.message
         // Don't include if message does not have a body
         if (!message.body && (!message.parts || message.parts.length === 0)) return
@@ -188,6 +190,7 @@ export default Ember.Component.extend({
     },
 
     onNewScheduledMessage (payload) {
+        if (this.isDestroyed || this.isDestroying) return
         const scheduledMessage = payload.scheduledMessage
         if (this.get('threadId') !== scheduledMessage.threadId) return
 
@@ -197,6 +200,7 @@ export default Ember.Component.extend({
     },
 
     onUpdateScheduledMessage (payload) {
+        if (this.isDestroyed || this.isDestroying) return
         const scheduledMessage = payload.scheduledMessage
         if (this.get('threadId') !== scheduledMessage.threadId) return
 
@@ -210,6 +214,7 @@ export default Ember.Component.extend({
     },
 
     onDeleteScheduledMessage (payload) {
+        if (this.isDestroyed || this.isDestroying) return
         const scheduledMessage = payload.scheduledMessage
         if (this.get('threadId') !== scheduledMessage.threadId) return
 
@@ -223,6 +228,7 @@ export default Ember.Component.extend({
     },
 
     onWebsocketReconnected () {
+        if (this.isDestroyed || this.isDestroying) return
         const threadId = this.get('threadId')
         if (threadId != null) this.loadThread(threadId)
     }
