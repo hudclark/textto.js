@@ -19,6 +19,10 @@ export default Ember.Component.extend({
                 data: null
             }
             this.get('bus').post('openModal', modal)
+        },
+
+        goHome: function () {
+            this.sendAction('go-home')
         }
     }
 

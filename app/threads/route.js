@@ -47,6 +47,6 @@ export default Ember.Route.extend({
     onLogout () {
         this.controllerFor('threads').set('activeThread', null)
         this.transitionTo('login')
-    }
+    },
 
 });

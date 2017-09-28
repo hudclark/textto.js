@@ -1,7 +1,7 @@
 {{side-bar threads=threads select-thread=(action 'onThreadSelected')}}
 
 <top-bar>
-    {{nav-bar}}
+    {{nav-bar go-home=(action "goHome")}}
     <div class="right-content">
         {{#if activeThread}}
             {{contact-picture contacts=activeThread.contacts length=activeThread.addresses.length}}

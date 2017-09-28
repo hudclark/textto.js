@@ -5,21 +5,30 @@ nav-bar {
     display: flex;
     position: relative;
 
-    .btn-floating {
+    justify-content: center;
+
+    i {
+        color: $textLight;
         position: absolute;
-        right: 16px;
         top: 20px;
-        height: 40px;
-        width: 40px;
+        cursor: pointer;
+        padding: 8px;
+    }
+
+    .logo {
+        padding: 8px;
+        color: $textLight;
+        font-size: 20px;
+        cursor: pointer;
+        align-self: center;
+    }
+
+    .new {
+        right: 16px;
     }
 
     .hamburger {
-        cursor: pointer;
-        color: white;
-        position: absolute;
         left: 16px;
-        top: 20px;
-        padding: 8px;
     }
 
     .side-nav {

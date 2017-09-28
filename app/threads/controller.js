@@ -14,6 +14,10 @@ export default Ember.Controller.extend({
             $('send-box').focus();
         },
 
+        goHome () {
+            this.transitionToRoute('index')
+        }
+
     }
 
 });
