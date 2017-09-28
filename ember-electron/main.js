@@ -32,6 +32,10 @@ app.on('ready', () => {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
+    webPreferences: {
+        webSecurity: false,
+        allowRunningInsecureContent: false,
+    }
   });
 
   // If you want to open up dev tools programmatically, call

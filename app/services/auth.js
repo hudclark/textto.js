@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import config from '../config/environment';
+import require from 'require'
 
 export default Ember.Service.extend({
 
@@ -126,15 +127,11 @@ export default Ember.Service.extend({
         this.setRefreshToken(response.tokens.refresh);
     },
 
-    async getGoogleCode() {
-
-    },
-
     async signIn() {
         let code = null;
         let postMessage = false;
         if (window.ELECTRON) {
-            // TODO
+            code = await this.electronLogin()
         } else {
             let result = await auth2.grantOfflineAccess({
                 redirect_uri: 'postmessage',
@@ -145,5 +142,40 @@ export default Ember.Service.extend({
         }
         return this._postGoogleCode(code, postMessage);
     },
+
+    // used with electron
+    async electronLogin() {
+        const { BrowserWindow } = require('electron').remote
+        const loginWindow = new BrowserWindow({
+            width: 600,
+            height: 800,
+            show: false,
+            'node-integration': false,
+            'web-security': false
+        })
+        const googleUrl = 'https://accounts.google.com/o/oauth2/v2/auth'
+        const clientId = '447535604738-jp8o5if9nhl2v2b4ba5o425up9gmn7kr.apps.googleusercontent.com'
+        const redirectUri = config.host + '/redirect'
+        const url = `${googleUrl}?response_type=code&scope=profile&prompt=select_account&client_id=${clientId}&redirect_uri=${redirectUri}`
+
+        loginWindow.loadURL(url)
+        loginWindow.show()
+
+        return new Ember.RSVP.Promise((resolve, reject) => {
+            const callback = (url) => {
+                const error = /\?error=(.+)$/.exec(url)
+                if (error && error.length) return reject(error)
+                const code = /code=([^&]*)/.exec(url)[1]
+                if (code && code.length) {
+                    loginWindow.destroy()
+                    resolve(code)
+                }
+            }
+            loginWindow.webContents.on('will-navigate', (event, url) => callback(url))
+            loginWindow.webContents.on('did-get-redirect-request',
+                (event, oldUrl, newUrl) => callback(newUrl))
+        })
+    },
+
 
 });
