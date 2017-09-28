@@ -2,6 +2,12 @@ import Ember from 'ember'
 
 export default Ember.Route.extend({
 
+    redirect () {
+        if (window.ELECTRON) {
+            return this.transitionTo('threads')
+        }
+    },
+
     unregister: Ember.on('deactivate', function () {
         this.stopScrollListener()
     }),
