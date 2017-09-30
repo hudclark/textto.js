@@ -6,7 +6,6 @@ export default Ember.Component.extend({
         if (this.get('content')) {
             const dirty = this.get('content')
             const clean = DOMPurify.sanitize(dirty)
-            console.log(clean)
             return twemoji.parse(clean);
         } else {
             return "";

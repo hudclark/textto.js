@@ -18,19 +18,19 @@ export default Ember.Service.extend({
 
     displayNotification (title, body, image) {
         if (this.showNotifications()) {
-            const func = (window.ELECTRON) ? this.displayElectronNotification : this.displayWebNotification
-            func(title, body, image)
+            this._createNotification(title, body, image)
         }
     },
 
-    displayWebNotification (title, body, image) {
+    _createNotification (title, body, image) {
         if (Notification.permission === 'granted') {
+            // TODO app icons
             image = (image === undefined) ? 'TODO' : 'data:image/png;base64,' + image
             const notification = new Notification(title, {
                 icon: image,
                 body: body,
             })
-            setTimeout(notification.close.bind(notification), 4000)
+            setTimeout(notification.close.bind(notification), 3000)
             notification.onclick = function () {
                 notification.close()
             }
@@ -38,9 +38,4 @@ export default Ember.Service.extend({
             Notification.requestPermission()
         }
     },
-
-    displayElectronNotification (title, body, image) {
-        // TODO
-    }
-
 })

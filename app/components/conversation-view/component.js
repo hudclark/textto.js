@@ -99,7 +99,7 @@ export default Ember.Component.extend({
         }
         if (index === -1) {
             // TODO decide whether or not to animate
-            //if (animate) value.animated = true
+            if (animate) value.animated = true
             array.unshiftObject(value)
         } else {
             array[index] = value
@@ -130,7 +130,7 @@ export default Ember.Component.extend({
 
             if (this.didScroll) {
                 this.didScroll = false
-                if ($messages.scrollTop() < 600 && !this.isLoadingMore && this.hasMoreMessages) {
+                if ($messages.scrollTop() < 350 && !this.isLoadingMore && this.hasMoreMessages) {
                     this.loadMore()
                 }
             }
@@ -203,6 +203,13 @@ export default Ember.Component.extend({
     onUpdateScheduledMessage (payload) {
         if (this.isDestroyed || this.isDestroying) return
         const scheduledMessage = payload.scheduledMessage
+
+        // notify
+        if (scheduledMessage.failed) {
+            const title = (message.contact.name) ? message.contact.name : message.sender
+            this.get('notifications').displayNotification('Failed sending message', 'Failed: ' + scheduledMessage.body)
+        }
+
         if (this.get('threadId') !== scheduledMessage.threadId) return
 
         const array = this.get('scheduledMessages')
