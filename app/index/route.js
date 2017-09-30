@@ -50,7 +50,7 @@ export default Ember.Route.extend({
         },
 
         scrollDown () {
-            $(window).scrollTop($(window).height())
+            $('html').animate({scrollTop: $(window).height()})
         },
 
         didTransition () {

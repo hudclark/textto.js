@@ -23,9 +23,9 @@
     </thread-view>
 </div>
 {{else}}
-<div class="threads">
-    {{#each sortedThreads as |thread|}}
-        {{thread-view thread=thread onClick=(action 'onThreadClick')}}
-    {{/each}}
-</div>
+    <div class="threads">
+        {{#each sortedThreads as |thread|}}
+            {{thread-view thread=thread onClick=(action 'onThreadClick')}}
+        {{/each}}
+    </div>
 {{/if}}

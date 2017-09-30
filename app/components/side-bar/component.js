@@ -89,6 +89,11 @@ export default Ember.Component.extend({
         Ember.set(thread, 'last', message.date)
     },
 
+    // TODO maybe do this when a scheduled messages is actually sent
+    onNewScheduledMessage () {
+        $('.threads').animate({scrollTop: 0}, 300)
+    },
+
     onContactsUpdated () {
         this.onWebsocketReconnected()
     },

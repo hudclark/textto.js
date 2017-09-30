@@ -37,6 +37,10 @@ export default Ember.Service.extend({
         } else {
             Notification.requestPermission()
         }
+    },
+
+    displayElectronNotification (title, body, image) {
+        // TODO
     }
 
 })

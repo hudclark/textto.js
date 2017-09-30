@@ -98,7 +98,8 @@ export default Ember.Component.extend({
             }
         }
         if (index === -1) {
-            if (animate) value.animated = true
+            // TODO decide whether or not to animate
+            //if (animate) value.animated = true
             array.unshiftObject(value)
         } else {
             array[index] = value

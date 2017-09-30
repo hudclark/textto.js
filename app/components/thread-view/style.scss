@@ -23,12 +23,16 @@ thread-view {
 
     .snippet {
         color: $textSecondary;
-        font-size: .8em;
+        font-size: .9em;
 
         max-width: 200px;
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
+
+        .emoji {
+            vertical-align: middle;
+        }
     }
 
     &.active {

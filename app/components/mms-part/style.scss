@@ -19,12 +19,16 @@ mms-part {
 
     sender {
         font-size: 12px;
-        color: $textSecondary;
+        color: $textDarkSecondary;
         display: block;
         margin-top: 4px;
+        margin-left: 4px;
+        margin-right: 4px;
     }
 
     message-bubble > sender {
+        margin-left: 0;
+        margin-right: 0;
         color: $textDarkSecondary;
     }
 

@@ -42,6 +42,13 @@ top-bar {
         .snippet {
             font-size: .9em;
             color: $textDarkSecondary;
+            .ember-view {
+                text-overflow: ellipsis !important;
+                display: inline-block;
+                white-space: nowrap;
+                overflow: hidden;
+                max-width: 400px;
+            }
         }
     }
 
