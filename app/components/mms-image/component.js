@@ -10,6 +10,8 @@ export default Ember.Component.extend(ScrollMixin, {
 
     api: Ember.inject.service(),
 
+    retries: 0,
+
     didInsertElement() {
         this._super(...arguments)
         const thumbnail = this.get('part.thumbnail')
@@ -60,6 +62,14 @@ export default Ember.Component.extend(ScrollMixin, {
             if (this.isDestroyed || this.isDestroying) return
             this.set('src', images.fullImage)
             this.set('blur', false)
+        }
+        $fullImage[0].onerror = () => {
+            if (this.retries < 4) {
+                this.retries++
+                console.log('retrying fetch')
+                const timeout = 1000 * this.retries
+                setTimeout(() => this.renderFullImage(), timeout)
+            }
         }
     },
 

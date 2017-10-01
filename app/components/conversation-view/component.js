@@ -43,6 +43,7 @@ export default Ember.Component.extend({
     },
 
     didInsertElement () {
+        this._super(...arguments)
         this.startScrollListener()
     },
 
@@ -164,20 +165,9 @@ export default Ember.Component.extend({
         const message = payload.message
         // Don't include if message does not have a body
         if (!message.body && (!message.parts || message.parts.length === 0)) return
-
-        this.attachContactToMessage(message)
-
-        // notify
-        if (message.sender !== 'me') {
-            const image = message.contact.image
-            const title = (message.contact.name) ? message.contact.name : message.sender
-            this.get('notifications').displayNotification(title, message.body, image)
-        }
-
         if (message.threadId !== this.get('threadId')) return
-
+        this.attachContactToMessage(message)
         let didReplace = false
-        
         // check to see if any scheduled messages are replaced
         let scheduledMessages = this.get('scheduledMessages').filter((msg) => {
             const replaced = this.messageReplacesscheduledMessage(message, msg)

@@ -37,6 +37,10 @@ export default Ember.Service.extend({
     reconnect () {
         this.reconnectionTimeout = setTimeout( async () => {
             console.log('Reconnecting...')
+            this.ws.onerror = null
+            this.ws.onmessage = null
+            this.ws.onopen = null
+            this.ws.onclose = null
             this.get('auth').refreshToken()
                 .then(() => this.connect(true))
                 .catch(e => {
