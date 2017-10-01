@@ -98,6 +98,7 @@ export default Ember.Component.extend({
                 $('send-box')[0].textContent = $('send-box')[0].textContent + letter
                 if (letters.length === 0) {
                     setTimeout(() => {
+                        if (this.isDestroyed || this.isDestroying) return
                         $('send-box')[0].textContent = ''
                         resolve()
                     }, 500)

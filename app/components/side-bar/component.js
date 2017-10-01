@@ -5,6 +5,7 @@ export default Ember.Component.extend({
 
     bus: Ember.inject.service(),
     api: Ember.inject.service(),
+    notifications: Ember.inject.service(),
 
     activeThread: null,
     threads: [],
@@ -67,6 +68,16 @@ export default Ember.Component.extend({
         this.setActiveThread(thread)
     },
 
+    attachContactToMessage(msg) {
+        if (msg.sender === 'me') return
+        const thread = this.get('threads').find(t => msg.threadId === t.androidId)
+        if (thread) {
+            msg.contact = thread.contacts.find((c) =>{
+                return (c.address === msg.sender)
+            })
+        }
+    },
+
     // ================== Websocket events =========================
 
     onNewThread (payload) {
@@ -87,6 +98,15 @@ export default Ember.Component.extend({
         if (!thread || thread.last > message.date) return
         Ember.set(thread, 'snippet', snippet)
         Ember.set(thread, 'last', message.date)
+
+        // display notification
+        if (message.sender !== 'me') {
+            this.attachContactToMessage(message)
+            const image = (message.contact) ? message.contact.image : undefined
+            const title = (message.contact && message.contact.name) ? message.contact.name : message.sender
+            this.get('notifications').displayNotification(title, message.body, image)
+        }
+
     },
 
     // TODO maybe do this when a scheduled messages is actually sent

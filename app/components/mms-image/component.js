@@ -1,6 +1,7 @@
 import Ember from 'ember'
+import ScrollMixin from '../../mixins/scroll'
 
-export default Ember.Component.extend({
+export default Ember.Component.extend(ScrollMixin, {
 
     bus: Ember.inject.service(),
     tagName: 'img-wrapper',
@@ -9,21 +10,52 @@ export default Ember.Component.extend({
 
     api: Ember.inject.service(),
 
-    async didInsertElement() {
-        this._super()
+    didInsertElement() {
+        this._super(...arguments)
+        const thumbnail = this.get('part.thumbnail')
+        this.set('src',  'data:image/png;base64,' + thumbnail)
+        this.set('blur', true)
+        if (this.isInViewPort()) {
+            this.renderFullImage()
+        } else {
+            const id = this.get('elementId')
+            this.bindScrolling({
+                namespace: id,
+                selector: '.messages',
+                debounce: 50,
+            })
+        }
+    },
 
+    willDestoryElement() {
+        this.unbindScrolling()
+    },
+
+    scrolled () {
+        if (this.isInViewPort()) {
+            this.unbindScrolling()
+            this.renderFullImage()
+        }
+    },
+
+    isInViewPort () {
+        const delta = this.$().height() + this.$()[0].getBoundingClientRect().top
+        return delta > -50
+    },
+
+    async renderFullImage () {
+        if (this.isFetching) {
+            console.log('was already fetching')
+            return
+        }
+        this.isFetching = true
         let images = this.get('part')
         if (!(images.thumbnail && images.fullImage)) {
             const images = await this.get('api').getMmsImages(images._id)
         }
-
+        this.isFetching = false
         if (this.isDestroyed || this.isDestroying) return
-
-        this.set('src',  'data:image/png;base64,' + images.thumbnail)
-        this.set('blur', true)
-
         const $fullImage = $('<img src="' + images.fullImage + '">')
-
         $fullImage[0].onload = () => {
             if (this.isDestroyed || this.isDestroying) return
             this.set('src', images.fullImage)
