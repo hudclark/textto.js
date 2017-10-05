@@ -66,7 +66,6 @@ export default Ember.Component.extend(ScrollMixin, {
         $fullImage[0].onerror = () => {
             if (this.retries < 4) {
                 this.retries++
-                console.log('retrying fetch')
                 const timeout = 1000 * this.retries
                 setTimeout(() => this.renderFullImage(), timeout)
             }

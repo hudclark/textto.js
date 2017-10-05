@@ -25,7 +25,7 @@ export default Ember.Service.extend({
     _createNotification (title, body, image) {
         if (Notification.permission === 'granted') {
             // TODO app icons
-            image = (image === undefined) ? 'TODO' : 'data:image/png;base64,' + image
+            image = (image === undefined) ? '/images/logo.png' : 'data:image/png;base64,' + image
             const notification = new Notification(title, {
                 icon: image,
                 body: body,

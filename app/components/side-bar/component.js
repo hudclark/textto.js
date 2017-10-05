@@ -118,6 +118,10 @@ export default Ember.Component.extend({
         this.onWebsocketReconnected()
     },
 
+    onDeviceChanged () {
+        this.onWebsocketReconnected()
+    },
+
     async onWebsocketReconnected () {
         const activeThreadId = this.get('activeThread._id')
         const threads = await this.get('api').getThreads()

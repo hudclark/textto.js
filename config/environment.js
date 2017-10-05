@@ -33,8 +33,8 @@ module.exports = function(environment) {
 
     //ENV.host = 'http://localhost:5000';
     //ENV.wsHost = 'ws://localhost:5000';
-    ENV.wsHost = 'ws://textto.herokuapp.com';
-    ENV.host = 'https://textto.herokuapp.com';
+    ENV.wsHost = 'ws://api.textto.io';
+    ENV.host = 'http://api.textto.io';
   }
 
   if (environment === 'test') {

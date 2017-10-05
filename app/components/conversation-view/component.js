@@ -131,7 +131,7 @@ export default Ember.Component.extend({
 
             if (this.didScroll) {
                 this.didScroll = false
-                if ($messages.scrollTop() < 350 && !this.isLoadingMore && this.hasMoreMessages) {
+                if ($messages.scrollTop() < 100 && !this.isLoadingMore && this.hasMoreMessages) {
                     this.loadMore()
                 }
             }
@@ -142,13 +142,20 @@ export default Ember.Component.extend({
         this.isLoadingMore = true
         try {
             const messages = this.get('messages')
-            const after = messages[messages.length - 1].date
+            const last = messages[messages.length - 1]
+            if (!last) {
+                this.isLoadingMore = false
+                return
+            }
+            const after = last.date
             const newMessages = await this.get('api').loadMoreMessages(this.get('threadId'), after)
             if (this.isDestroyed || this.isDestroying) return
             this.attachContactsToMessages(newMessages)
             this.get('messages').pushObjects(newMessages)
             this.hasMoreMessages = (newMessages.length > 0)
-            this.isLoadingMore = false
+            setTimeout(() => {
+                this.isLoadingMore = false
+            }, 1000)
         } catch (err) {
             console.log('Error loading more messages', err)
         }
@@ -223,6 +230,10 @@ export default Ember.Component.extend({
                 break
             }
         }
+    },
+
+    onDeviceChanged () {
+        this.onWebsocketReconnected()
     },
 
     onWebsocketReconnected () {
