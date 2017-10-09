@@ -104,7 +104,8 @@ export default Ember.Component.extend({
             this.attachContactToMessage(message)
             const image = (message.contact) ? message.contact.image : undefined
             const title = (message.contact && message.contact.name) ? message.contact.name : message.sender
-            this.get('notifications').displayNotification(title, message.body, image)
+            const body = this.getSnippetForMessage(message)
+            this.get('notifications').displayNotification(title, body, image)
         }
 
     },
