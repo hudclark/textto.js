@@ -49,7 +49,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.wsHost = 'ws://api.textto.io';
+    ENV.host = 'http://api.textto.io';
   }
 
   return ENV;

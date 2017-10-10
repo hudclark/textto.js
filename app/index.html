@@ -34,19 +34,18 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
 
+    <script src="https://apis.google.com/js/client:platform.js?onload=onGapiLoad" async defer></script>
     <script>
-    function start () {
-        if(window.ELECTRON) {
-        } else {
-          gapi.load('auth2', function() {
-            auth2 = gapi.auth2.init({
-              client_id: '447535604738-jp8o5if9nhl2v2b4ba5o425up9gmn7kr.apps.googleusercontent.com'
+      window.onGapiLoad = function () {
+          if (!window.ELECTRON) {
+            gapi.load('auth2', function() {
+              auth2 = gapi.auth2.init({
+                client_id: '447535604738-jp8o5if9nhl2v2b4ba5o425up9gmn7kr.apps.googleusercontent.com'
+              });
             });
-          });
+          }
         }
-      }
     </script>
-    <script src="https://apis.google.com/js/client:platform.js" async defer onload="start()"></script>
     <script src="https://twemoji.maxcdn.com/2/twemoji.min.js?2.3.0"></script>
 
     {{content-for "body-footer"}}
