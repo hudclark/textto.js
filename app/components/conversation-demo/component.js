@@ -95,11 +95,11 @@ export default Ember.Component.extend({
             const letters = input.split('')
             const next = () => {
                 const letter = letters.shift()
-                $('send-box')[0].textContent = $('send-box')[0].textContent + letter
+                $('send-box-input')[0].textContent = $('send-box-input')[0].textContent + letter
                 if (letters.length === 0) {
                     setTimeout(() => {
                         if (this.isDestroyed || this.isDestroying) return
-                        $('send-box')[0].textContent = ''
+                        $('send-box-input')[0].textContent = ''
                         resolve()
                     }, 500)
                 } else {

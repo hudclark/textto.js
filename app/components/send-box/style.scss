@@ -1,27 +1,44 @@
 send-box {
-    min-height: 48px;
-    margin: 32px;
-    padding: 16px 32px;
-    line-height: 16px;
-    color: $textDark;
-    box-sizing: border-box;
-    border-radius: 24px;
-    @include elevation(1);
-    overflow: hidden;
+    display: flex;
     flex-shrink: 0;
+    position: relative;
 
-    background-color: #d4d8db;
-    border: none;
-    resize: none;
+    send-box-input {
+        flex-grow: 1;
+        display: flex;
+        min-height: 48px;
+        margin: 32px;
+        padding: 16px 64px 16px 32px;
+        line-height: 16px;
+        color: $textDark;
+        box-sizing: border-box;
+        border-radius: 24px;
+        @include elevation(1);
+        overflow: hidden;
 
-    &:focus {
-        outline: none;
+        background-color: #d4d8db;
+        border: none;
+        resize: none;
+        &:focus {
+            outline: none;
+        }
+
+        &:empty:before {
+            content: attr(placeholder);
+            display: block;
+            color: $textDarkSecondary;
+        }
+
     }
 
-    &:empty:before {
-        content: attr(placeholder);
-        display: block;
+    i {
+        position: absolute;
+        z-index: 2;
+        right: 54px;
+        top: 44px;
         color: $textDarkSecondary;
+        cursor: pointer;
     }
+
 
 }

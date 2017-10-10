@@ -47,6 +47,11 @@ app.on('ready', () => {
   // Load the ember application using our custom protocol/scheme
   mainWindow.loadURL(emberAppLocation);
 
+  mainWindow.webContents.on('new-window', function (event, url) {
+    event.preventDefault();
+    require('electron').shell.openExternal(url);
+  });
+
   // If a loading operation goes wrong, we'll send Electron back to
   // Ember App entry point
   mainWindow.webContents.on('did-fail-load', () => {

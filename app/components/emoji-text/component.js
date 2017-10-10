@@ -4,13 +4,17 @@ export default Ember.Component.extend({
 
     classNames: ['emoji-text'],
 
-    text: Ember.computed('content', function() {
+    didReceiveAttrs () {
+        this._super(...arguments)
         if (this.get('content')) {
             const dirty = this.get('content')
-            const clean = DOMPurify.sanitize(dirty)
-            return twemoji.parse(clean);
+            let clean = DOMPurify.sanitize(dirty)
+            if (this.get('linkify')) {
+                clean = Autolinker.link(clean)
+            }
+            this.set('text', twemoji.parse(clean))
         } else {
-            return "";
+            this.set('text', '')
         }
-    })
+    }
 });

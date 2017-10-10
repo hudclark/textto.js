@@ -26,7 +26,9 @@
             </div>
         </div>
         <div class="demo-content-container">
-            <send-box placeholder="Message {{threads.0.name}}..."></send-box>
+            <send-box>
+                <send-box-input placeholder="Message {{threads.0.name}}..."></send-box-input>
+            </send-box>
             <div class="demo-messages">
                 {{#each messages as |message|}}
                     <message-view class="{{message.class}} animated">

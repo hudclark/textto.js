@@ -10,10 +10,12 @@ export default Ember.Component.extend({
         return this.get('message.animated')
     }),
 
-    received: Ember.computed('message', function () {
-        let message = this.get('message');
-        return (message.sender !== 'me');
-    }),
+    didReceiveAttrs () {
+        this._super(...arguments)
+
+        const message = this.get('message')
+        this.set('received', (message.sender !== 'me'))
+    },
 
     isLoading: Ember.computed('message', function () {
         const message = this.get('message')
