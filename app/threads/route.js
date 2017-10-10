@@ -1,6 +1,9 @@
 import Ember from 'ember';
+import ApplicationRoute from 'textto/application/route'
 
-export default Ember.Route.extend({
+export default ApplicationRoute.extend({
+
+    title: 'Threads | Textto',
 
     auth: Ember.inject.service(),
     websocket: Ember.inject.service(),

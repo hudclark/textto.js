@@ -12,7 +12,12 @@ module.exports = {
       "rpm"
     ]
   },
-  "electronPackagerConfig": {},
+"electronPackagerConfig": {
+	"appCopyright": "Copyright (c) 2017 Textto",
+	"name": "Textto",
+	"overwrite": true,
+	"icon": "icons/png/icon.png"
+},
   "electronWinstallerConfig": {
     "name": ""
   },
@@ -21,7 +26,7 @@ module.exports = {
     "homepage": "https://textto.io",
     "genericName": "Text from your computer",
     "bin": "Textto",
-    "icon": path.join(__dirname, '../public/images/logo.png')
+    "icon": path.join(__dirname, '../icons/png/icon.png')
   },
   "electronInstallerRedhat": {},
   "github_repository": {

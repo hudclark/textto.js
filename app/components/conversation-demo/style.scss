@@ -154,6 +154,9 @@ conversation-demo {
             padding: 0 12px;
 
             i {
+                @media (max-width: 1400px) {
+                    font-size: 18px;
+                }
                 @media (max-width: 700px) {
                     font-size: 16px;
                 }
@@ -161,6 +164,19 @@ conversation-demo {
                     font-size: 12px;
                 }
             }
+
+
+            .textto {
+                flex-grow: 1;
+                text-align: center;
+                @media (max-width: 700px) {
+                    font-size: 10px;
+                }
+                @media (max-width: 500px) {
+                    font-size: 8px;
+                }
+            }
+
         }
     }
 
@@ -215,7 +231,6 @@ conversation-demo {
         @media (max-width: 500px) {
             padding: 0 4px;
         }
-
     }
 
     .demo-content-container {

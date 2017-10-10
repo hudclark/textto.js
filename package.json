@@ -1,7 +1,8 @@
 {
-  "name": "textto",
+  "name": "Textto",
   "version": "0.0.0",
-  "description": "Small description for textto goes here",
+  "description": "Sync your Android device with Textto and text from your computer.",
+	"productName": "Textto",
   "license": "MIT",
   "author": "",
   "directories": {

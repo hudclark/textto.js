@@ -1,6 +1,6 @@
-import Ember from 'ember'
+import ApplicationRoute from 'textto/application/route'
 
-export default Ember.Route.extend({
+export default ApplicationRoute.extend({
 
     redirect () {
         if (window.ELECTRON) {
