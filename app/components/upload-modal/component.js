@@ -42,7 +42,8 @@ export default Ember.Component.extend({
                 const opts = {
                     type: 'PUT',
                     processData: false,
-                    data: file
+                    data: file,
+                    contentType: file.type
                 }
                 await Ember.$.ajax(fileUrls.url, opts)
                 const reader = new FileReader()
