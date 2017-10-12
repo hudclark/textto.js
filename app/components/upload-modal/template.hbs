@@ -1,0 +1,31 @@
+<div class="modal-content">
+    <div class="title">Send Image</div>
+
+    {{#if preview.length}}
+        <img class="preview" src="{{preview}}">
+    {{else if isLoading}}
+        <div class="center">
+        {{loading-view}}
+        </div>
+    {{else}}
+        <div class="center">
+            <div class="file-field">
+                <div class="btn">
+                    <span>Choose Image</span>
+                    <input id="fileupload" type='file' accept='image/png,image/gif,image/jpeg,image/jpg' onchange={{action 'upload'}}>
+                </div>
+            </div>
+        </div>
+    {{/if}}
+    {{#if error}}
+        <div class="errors">{{error}}</div>
+    {{/if}}
+
+    {{#if isSending}}
+        {{loading-view class="bottom-right"}}
+    {{else}}
+        <a class="btn-floating btn-small waves-effect waves-light bottom-right {{if sendDisabled 'disabled'}}" {{action 'send'}}>
+            <i class="material-icons">send</i>
+        </a>
+    {{/if}}
+</div>

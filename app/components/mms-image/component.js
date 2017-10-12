@@ -52,9 +52,6 @@ export default Ember.Component.extend(ScrollMixin, {
         }
         this.isFetching = true
         let images = this.get('part')
-        if (!(images.thumbnail && images.fullImage)) {
-            const images = await this.get('api').getMmsImages(images._id)
-        }
         this.isFetching = false
         if (this.isDestroyed || this.isDestroying) return
         const $fullImage = $('<img src="' + images.fullImage + '">')

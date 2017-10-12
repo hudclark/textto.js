@@ -42,6 +42,10 @@ export default Ember.Component.extend({
             }
         },
 
+        attachFile () {
+            this.get('bus').post('openModal', {componentName: 'upload-modal', data: { threadId: this.get('threadId')}})
+        }
+
     }
 
 })

@@ -6,23 +6,23 @@ export default Ember.Component.extend({
     classNameBindings: ['received', 'hidden', 'animated'],
     api: Ember.inject.service(),
 
-    animated: Ember.computed('message', function () {
-        return this.get('message.animated')
-    }),
-
-    didReceiveAttrs () {
-        this._super(...arguments)
-
-        const message = this.get('message')
-        this.set('received', (message.sender !== 'me'))
-    },
-
     isLoading: Ember.computed('message', function () {
         const message = this.get('message')
         if (!this.get('isScheduled')) return false
         if (message.failed) return false
         return true
     }),
+
+    didReceiveAttrs () {
+        this._super(...arguments)
+
+        const message = this.get('message')
+        const received = (!this.get('isScheduled') && (message.sender !== 'me'))
+        this.set('received', received)
+        this.set('animated', message.animated)
+
+        this.set('mms', (message.type === 'mms'))
+    },
 
     didRender: function () {
         this._super(...arguments)

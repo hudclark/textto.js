@@ -98,6 +98,10 @@ export default Ember.Service.extend({
         return this._authenticatedRequest('/scheduledMessages/' + id, options)
     },
 
+    getUploadImageUrl () {
+        return this._authenticatedRequest('/scheduledMessages/upload')
+    },
+
     // user
     async getUser() {
         let response = await this._authenticatedRequest('/user');

@@ -1,7 +1,7 @@
 {{#if isLoading}}
     {{loading-view}}
 {{/if}}
-{{#if (eq message.type 'mms')}}
+{{#if mms}}
     {{#each message.parts as |part|}}
         {{mms-part part=part message=message}}
         <br>
@@ -16,7 +16,12 @@
             <i class="material-icons error">error_outline</i>
         </a>
     {{/if}}
-    <message-bubble>
-        {{emoji-text content=message.body linkify=true}}
-    </message-bubble>
+
+    {{#if message.fileUrl}}
+        <img class="small" src={{message.fileUrl}}>
+    {{else}}
+        <message-bubble>
+            {{emoji-text content=message.body linkify=true}}
+        </message-bubble>
+    {{/if}}
 {{/if}}

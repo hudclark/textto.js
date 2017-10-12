@@ -17,6 +17,6 @@ export default Ember.Component.extend({
         if (message.sender !== 'me' && message.addresses.length > 1) {
             return (message.contact.name) ? message.contact.name : message.contact.address
         }
-    })
+    }),
 
-});
+})

@@ -109,6 +109,12 @@ export default Ember.Component.extend({
 
     messageReplacesscheduledMessage(message, scheduled) {
         if (!(scheduled.sent || scheduled.isDeleted)) return false
+
+        // TODO no good way to verify this
+        if (scheduled.filename && message.parts[0] && message.parts[0].contentType.includes('image')) {
+            return true
+        }
+
         let body = message.body
         if (!body && message.parts) {
             const part = message.parts.find((part) => {
@@ -203,8 +209,7 @@ export default Ember.Component.extend({
 
         // notify
         if (scheduledMessage.failed) {
-            const title = (message.contact.name) ? message.contact.name : message.sender
-            this.get('notifications').displayNotification('Failed sending message', 'Failed: ' + scheduledMessage.body)
+            this.get('notifications').displayNotification('Failed sending message', 'Failed: ' + (scheduledMessage.body || 'Sending image'))
         }
 
         if (this.get('threadId') !== scheduledMessage.threadId) return

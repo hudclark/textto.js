@@ -70,4 +70,10 @@ message-view {
         margin: 0 8px;
     }
 
+    img.small {
+        max-width: 300px;
+        max-height: 600px;
+        vertical-align: middle;
+    }
+
 }
