@@ -29,15 +29,26 @@ export default Ember.Component.extend({
 
     actions: {
 
-        async upload () {
+        selectImage () {
             this.set('preview', null)
             this.set('sendDisabled', true)
+            const file = $('#fileupload')[0].files[0]
+            this.set('file', file)
+            if (!file) return
+            const reader = new FileReader()
+            reader.addEventListener('load', () => {
+                this.set('preview', reader.result)
+                this.set('sendDisabled', false)
+            })
+            reader.readAsDataURL(file)
+        },
+
+        async send () {
             this.set('error', null)
-            this.set('filename', null)
             try {
-                const file = $('#fileupload')[0].files[0]
+                const file = this.get('file')
                 if (!file) return
-                this.set('isLoading', true)
+                this.set('isSending', true)
                 const fileUrls = await this.get('api').getUploadImageUrl()
                 const opts = {
                     type: 'PUT',
@@ -46,41 +57,21 @@ export default Ember.Component.extend({
                     contentType: file.type
                 }
                 await Ember.$.ajax(fileUrls.url, opts)
-                const reader = new FileReader()
-                this.set('filename', fileUrls.filename)
-                reader.addEventListener('load', () => {
-                    this.set('preview', reader.result)
-                    this.set('isLoading', false)
-                    this.set('sendDisabled', false)
-                }, false)
-                reader.readAsDataURL(file)
+                const now = (new Date()).getTime()
+                const scheduledMessage = {
+                    threadId: this.get('data.threadId'),
+                    uuid: now,
+                    filename: fileUrls.filename
+                }
+                await this.get('api').sendScheduledMessage(scheduledMessage)
+                this.set('isSending', false)
+                $('.modal').modal('close')
             } catch (err) {
-                this.set('isLoading', false)
+                this.set('isSending', false)
                 const errMsg = (err.message) ? err.message : err
                 this.set('error', errMsg)
             }
-        },
-
-        send () {
-            if (!this.get('filename') || !this.get('data.threadId')) return
-            this.set('isSending', true)
-            this.set('error', null)
-            const now = (new Date()).getTime()
-            const scheduledMessage = {
-                threadId: this.get('data.threadId'),
-                uuid: now,
-                filename: this.get('filename')
-            }
-            this.get('api').sendScheduledMessage(scheduledMessage)
-                .then( () => {
-                    this.set('isSending', false)
-                    $('.modal').modal('close')
-                }).catch((err) => {
-                    this.set('error', err.message)
-                    this.set('isSending', false)
-                })
         }
 
     }
-
 })

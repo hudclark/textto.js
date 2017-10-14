@@ -1,18 +1,8 @@
 .modal.send-modal {
-    max-width: 600px;
-    min-height: 400px;
-    background-color: $colorPrimary;
-    color: $textDark;
 
     input {
         margin-bottom: 0;
     }
-
-    .title {
-        font-size: 1.5em;
-        margin-bottom: 24px;
-    }
-
 
     .to {
         .to-names {
@@ -36,7 +26,6 @@
         position: absolute;
         top: 46px;
         background: white;
-        color: $textDark;
         width: 80%;
         z-index: 9;
         .contact {
@@ -60,11 +49,5 @@
         bottom: 32px;
         left: 32px;
         margin-right: 64px;
-    }
-
-    .bottom-right {
-        position: absolute;
-        bottom: 32px;
-        right: 32px;
     }
 }

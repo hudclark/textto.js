@@ -1,22 +1,6 @@
 mms-part {
     display: inline-block;
 
-    .small-contact {
-
-        vertical-align: bottom;
-        margin-right: 8px;
-
-        .circular {
-            height: 36px;
-            width: 36px;
-        }
-
-        .text {
-            line-height: 36px;
-        }
-
-    }
-
     sender {
         font-size: 12px;
         color: $textDarkSecondary;

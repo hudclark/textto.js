@@ -4,14 +4,11 @@ send-box {
     position: relative;
 
     send-box-input {
-        flex-grow: 1;
-        display: flex;
+        width: 100%;
         min-height: 48px;
         margin: 32px;
         padding: 16px 64px 16px 32px;
         line-height: 16px;
-        color: $textDark;
-        box-sizing: border-box;
         border-radius: 24px;
         @include elevation(1);
         overflow: hidden;
@@ -19,6 +16,7 @@ send-box {
         background-color: #d4d8db;
         border: none;
         resize: none;
+
         &:focus {
             outline: none;
         }
@@ -26,9 +24,8 @@ send-box {
         &:empty:before {
             content: attr(placeholder);
             display: block;
-            color: $textDarkSecondary;
+            color: rgba(0, 0, 0, 0.4);
         }
-
     }
 
     i {

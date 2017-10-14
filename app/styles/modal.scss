@@ -1,0 +1,17 @@
+.modal {
+    max-width: 600px;
+    min-height: 400px;
+    overflow-y: auto;
+    background-color: $colorPrimary;
+
+    .title {
+        font-size: 1.5em;
+        margin-bottom: 24px;
+    }
+
+    .bottom-right {
+        position: absolute;
+        bottom: 32px;
+        right: 32px;
+    }
+}

@@ -3,16 +3,12 @@
 
     {{#if preview.length}}
         <img class="preview" src="{{preview}}">
-    {{else if isLoading}}
-        <div class="center">
-        {{loading-view}}
-        </div>
     {{else}}
         <div class="center">
             <div class="file-field">
                 <div class="btn">
                     <span>Choose Image</span>
-                    <input id="fileupload" type='file' accept='image/png,image/gif,image/jpeg,image/jpg' onchange={{action 'upload'}}>
+                    <input id="fileupload" type='file' accept='image/png,image/gif,image/jpeg,image/jpg' onchange={{action 'selectImage'}}>
                 </div>
             </div>
         </div>

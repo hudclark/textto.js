@@ -12,12 +12,11 @@ message-view {
         }
     }
 
+    margin: 6px 0;
+
     &.animated {
         animation: insert 0.15s ease-in;
     }
-
-    position: relative;
-    margin: 6px 0;
 
     &.hidden {
         display: none;
@@ -47,7 +46,6 @@ message-view {
         max-width: 300px;
         word-wrap: break-word;
         background-color: $colorAccentSecondary;
-        color: $textDark;
         vertical-align: middle;
 
         border-bottom-right-radius: 1px;
@@ -68,12 +66,6 @@ message-view {
 
     loading {
         margin: 0 8px;
-    }
-
-    img.small {
-        max-width: 300px;
-        max-height: 600px;
-        vertical-align: middle;
     }
 
 }

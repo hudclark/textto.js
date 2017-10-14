@@ -1,7 +1,5 @@
 img-wrapper {
     display: block;
-    max-width: 300px;
-    max-height: 600px;
 
     overflow: hidden;
     cursor: pointer;
@@ -17,4 +15,9 @@ img-wrapper {
         filter: blur(2px)
     }
 
+}
+
+img-small {
+    width: 300px;
+    max-height: 600px;
 }
