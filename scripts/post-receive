@@ -1,14 +1,22 @@
 #!/bin/bash
 
+WORKING_DIR=~/textto.js
+DEPLOYMENT_BRANCH=master
+
 while read oldrev newrev ref
 do
 	if [[ $ref =~ .*/master$ ]];
 	then
 		echo "Master ref received. Deploying master branch to production..."
+		cd $WORKING_DIR
+		unset GIT_DIR
+		git pull origin $DEPLOYMENT_BRANCH
+
 		npm install
 		ember build --environment="production"
 		rm -r ~/app
 		mkdir ~/app
 		cp -a ./dist/. ~/app
+
 	fi
 done
