@@ -1,0 +1,14 @@
+#!/bin/bash
+
+while read oldrev newrev ref
+do
+	if [[ $ref =~ .*/master$ ]];
+	then
+		echo "Master ref received. Deploying master branch to production..."
+		npm install
+		ember build --environment="production"
+		rm -r ~/app
+		mkdir ~/app
+		cp -a ./dist/. ~/app
+	fi
+done
