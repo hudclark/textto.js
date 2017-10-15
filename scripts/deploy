@@ -1,0 +1,10 @@
+#!/bin/bash
+WORKING_DIR=~/textto.js
+DEPLOYMENT_BRANCH=master
+
+git pull origin $DEPLOYMENT_BRANCH
+npm install
+ember build --environment="production"
+rm -r ~/app
+mkdir ~/app
+cp -a ./dist/. ~/app
