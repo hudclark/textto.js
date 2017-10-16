@@ -1,6 +1,7 @@
 import Ember from 'ember'
+import MessageMixin from '../../mixins/messaging'
 
-export default Ember.Component.extend({
+export default Ember.Component.extend(MessageMixin, {
 
     api: Ember.inject.service(),
     bus: Ember.inject.service(),
@@ -53,19 +54,14 @@ export default Ember.Component.extend({
                     this.set('isLoading', false)
                 })
         }
+        this.set('scheduledMessage', scheduledMessage)
     },
 
     onNewMessage (payload) {
         if (!this.get('isLoading')) return
         const message = payload.message
 
-        let body = message.body
-        if (!body && message.parts) {
-            const part = message.parts.find(p => (p.contentType === 'text/plain'))
-            if (part) body = part.data
-        }
-
-        if (this.get('scheduledMessage.body').includes(body)) {
+        if (this.messageReplacesScheduledMessage(message, this.get('scheduledMessage'))) {
             this.set('isLoading', false)
             setTimeout(() => {
                 this.get('bus').post('selectThread', message.threadId)

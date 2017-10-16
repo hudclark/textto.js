@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import MessageMixin from '../../mixins/messaging'
 
-export default Ember.Component.extend({
+export default Ember.Component.extend(MessageMixin, {
     tagName: 'side-bar',
 
     bus: Ember.inject.service(),
@@ -46,23 +47,6 @@ export default Ember.Component.extend({
         this.sendAction('select-thread', thread)
     },
 
-    getSnippetForMessage (message) {
-        if (message.body) return message.body
-        let snippet = null
-        if (message.parts) {
-            for (let i = 0; i < message.parts.length; i++) {
-                const part = message.parts[i]
-                if (part.contentType === 'text/plain') {
-                    snippet = part.data
-                    break
-                } else if (part.contentType.includes('image')) {
-                    snippet = ((message.sender === 'me') ? 'You sent an ' : 'You received an ') + 'image'
-                }
-            }
-        }
-        return snippet
-    },
-
     onSelectThread(threadId) {
         const thread = this.get('threads').find((t) => t.androidId === threadId)
         this.setActiveThread(thread)
@@ -90,7 +74,7 @@ export default Ember.Component.extend({
 
     onNewMessage (payload) {
         const message = payload.message
-        const snippet = this.getSnippetForMessage(message)
+        const snippet = this.getMessageSnippet(message)
         if (!snippet) return
         let thread = this.get('threads').find((thread) => {
             return (thread.androidId === message.threadId)
@@ -104,7 +88,7 @@ export default Ember.Component.extend({
             this.attachContactToMessage(message)
             const image = (message.contact) ? message.contact.image : undefined
             const title = (message.contact && message.contact.name) ? message.contact.name : message.sender
-            const body = this.getSnippetForMessage(message)
+            const body = this.getMessageSnippet(message)
             this.get('notifications').displayNotification(title, body, image)
         }
 

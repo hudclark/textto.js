@@ -1,6 +1,7 @@
 import Ember from 'ember'
+import MessageMixin from '../../mixins/messaging'
 
-export default Ember.Component.extend({
+export default Ember.Component.extend(MessageMixin, {
 
     tagName: 'conversation-view',
 
@@ -107,24 +108,6 @@ export default Ember.Component.extend({
         }
     },
 
-    messageReplacesscheduledMessage(message, scheduled) {
-        if (!(scheduled.sent || scheduled.isDeleted)) return false
-
-        // TODO no good way to verify this
-        if (scheduled.filename && message.parts[0] && message.parts[0].contentType.includes('image')) {
-            return true
-        }
-
-        let body = message.body
-        if (!body && message.parts) {
-            const part = message.parts.find((part) => {
-                return (part.contentType === 'text/plain')
-            })
-            if (part) body = part.data
-        }
-        return (scheduled.body === body)
-    },
-
     startScrollListener () {
         this.scrollInterval = setInterval(() => {
             const $messages = $('.messages')
@@ -183,7 +166,7 @@ export default Ember.Component.extend({
         let didReplace = false
         // check to see if any scheduled messages are replaced
         let scheduledMessages = this.get('scheduledMessages').filter((msg) => {
-            const replaced = this.messageReplacesscheduledMessage(message, msg)
+            const replaced = this.messageReplacesScheduledMessage(message, msg)
             didReplace |= replaced
             return !replaced
         })
