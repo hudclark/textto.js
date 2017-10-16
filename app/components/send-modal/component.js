@@ -58,9 +58,14 @@ export default Ember.Component.extend({
     onNewMessage (payload) {
         if (!this.get('isLoading')) return
         const message = payload.message
-        const addresses = this.get('scheduledMessage.addresses')
-        if (message.addresses.find(a => (!addresses.includes(a)))) return
-        if (this.get('scheduledMessage.body').includes(message.body)) {
+
+        let body = message.body
+        if (!body && message.parts) {
+            const part = message.parts.find(p => (p.contentType === 'text/plain'))
+            if (part) body = part.data
+        }
+
+        if (this.get('scheduledMessage.body').includes(body)) {
             this.set('isLoading', false)
             setTimeout(() => {
                 this.get('bus').post('selectThread', message.threadId)

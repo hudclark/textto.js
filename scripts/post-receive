@@ -11,6 +11,7 @@ do
 		git --work-tree=/home/hudson/build --git-dir=/home/hudson/textto.js checkout -f
 
 		cd $WORKING_DIR
+		rm -r node_modules
 		npm install
 		ember build --environment="production"
 		rm -r ~/app
