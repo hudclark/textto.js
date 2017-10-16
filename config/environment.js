@@ -33,8 +33,8 @@ module.exports = function(environment) {
 
     //ENV.host = 'http://localhost:5000';
     //ENV.wsHost = 'ws://localhost:5000';
-    ENV.wsHost = 'ws://api.textto.io';
-    ENV.host = 'http://api.textto.io';
+    ENV.wsHost = 'wss://api.textto.io';
+    ENV.host = 'https://api.textto.io';
   }
 
   if (environment === 'test') {
@@ -49,8 +49,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.wsHost = 'ws://api.textto.io';
-    ENV.host = 'http://api.textto.io';
+    ENV.wsHost = 'wss://api.textto.io';
+    ENV.host = 'https://api.textto.io';
   }
 
   return ENV;
