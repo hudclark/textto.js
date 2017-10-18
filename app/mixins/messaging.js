@@ -28,9 +28,9 @@ export default Ember.Mixin.create({
     getMessageSnippet (message) {
         let snippet = this.getMessageBody(message)
         if (!snippet && message.parts) {
-            const image = messages.parts.find(p => (p.contentType.includes('image')))
+            const image = message.parts.find(p => (p.contentType.includes('image')))
             if (image) {
-                snippet = 'You' + ((message.sender === 'me') ? 'sent ' : 'received') + ' an image'
+                snippet = 'You' + ((message.sender === 'me') ? 'sent ' : ' received') + ' an image'
             }
         }
         return snippet
