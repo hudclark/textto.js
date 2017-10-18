@@ -11,11 +11,13 @@
 
     .appearing {
         opacity: 0;
-        transition: opacity .4s ease-in;
+        transition: all .4s ease-in;
+        transform: translateY(40px);
     }
 
     .visible {
         opacity: 1;
+        transform: translateY(0);
     }
 
     .container {
@@ -206,7 +208,7 @@
     }
 
     .third-section {
-        background: linear-gradient(to top right, #2e3192, #1bffff);
+        background: linear-gradient(to top right, #CBBACC, #2580B3);
         padding: 50px 0;
         text-align: center;
 
