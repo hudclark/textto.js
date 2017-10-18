@@ -8,7 +8,7 @@ export default Ember.Mixin.create({
         // TODO could verify addresses
 
         // TODO no good way to verify this
-        if (scheduled.filename && message.parts[0] && message.parts[0].contentType.includes('image')) {
+        if (scheduled.filename && message.parts && message.parts[0] && message.parts[0].contentType.includes('image')) {
             return true
         }
 

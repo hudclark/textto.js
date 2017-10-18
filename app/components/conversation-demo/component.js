@@ -95,6 +95,7 @@ export default Ember.Component.extend({
             const letters = input.split('')
             const next = () => {
                 const letter = letters.shift()
+                if (this.isDestroyed || this.isDestroying) return
                 $('send-box-input')[0].textContent = $('send-box-input')[0].textContent + letter
                 if (letters.length === 0) {
                     setTimeout(() => {
