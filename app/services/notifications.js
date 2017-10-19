@@ -3,7 +3,7 @@ import Ember from 'ember'
 export default Ember.Service.extend({
 
     settings: Ember.inject.service(),
-    disable: false,
+    isDisabled: false,
 
     requestPermission () {
         if (Notification.permission !== 'granted') {
@@ -13,16 +13,16 @@ export default Ember.Service.extend({
 
     disable () {
         console.log('Disabling notifications')
-        this.disable = true
+        this.isDisabled = true
     },
 
     enable () {
         console.log('Enabling notifications')
-        this.disable = false
+        this.isDisabled = false
     },
 
     showNotifications () {
-        if (this.disable) return false
+        if (this.isDisabled) return false
         const enabled = this.get('settings').getSetting('notifications', true)
         return (enabled && !document.hasFocus())
     },
@@ -34,6 +34,10 @@ export default Ember.Service.extend({
     },
 
     _createNotification (title, body, image) {
+        console.log(title)
+        console.log(body)
+        console.log(image)
+        console.log(Notification.permission)
         if (Notification.permission === 'granted') {
             // TODO app icons
             image = (image === undefined) ? '/images/logo.png' : 'data:image/png;base64,' + image

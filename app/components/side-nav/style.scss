@@ -1,7 +1,13 @@
 .side-nav {
     
+
+    .padded-item {
+        padding: 4px 0;
+    }
+
     .user-view {
         color: $textLight;
+        margin-bottom: 0 !important;
 
         .background > img {
             width: 100%;
@@ -48,6 +54,10 @@
 
     .contact-loader {
         float: right;
+    }
+
+    .divider {
+        margin-top: 0 !important;
     }
 
 }

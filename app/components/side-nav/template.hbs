@@ -1,4 +1,4 @@
-<li>
+<li class=".user-view-wrapper">
     <div class="user-view">
         <div class="background">
             <img src="/images/bg.jpg">
@@ -10,22 +10,23 @@
 </li>
 
 {{#if isWeb}}
-    <li class="important disabled">
+    <li class="important disabled padded-item">
         <a class="disabled tooltipped" data-tooltip="Coming Soon!">
             <i class="material-icons">get_app</i>
             Download the Desktop App
         </a>
     </li>
+    <div class="divider"></div>
 {{/if}}
 
-<li>
+<li class="padded-item">
     <a class="waves-effect" {{action 'manageDevices'}}>
         <i class="material-icons">phone_android</i>
         Manage Devices
     </a>
 </li>
 
-<li>
+<li class="padded-item">
     <a class="waves-effect" {{action 'syncContacts'}}>
         <i class="material-icons">person</i>
         Sync Contacts
@@ -35,9 +36,7 @@
     </a>
 </li>
 
-<li><div class="divider"></div></li>
-
-<li>
+<li class="padded-item">
     <a>
         <i class="material-icons">notifications</i>
         Notifications
@@ -49,8 +48,16 @@
         </div>
     </a>
 </li>
+<div class="divider"></div>
 
-<li class="logout">
+<li class="padded-item">
+    <a class="waves-effect" href="mailto:help@textto.io">
+        <i class="material-icons">email</i>
+        Contact Support
+    </a>
+</li>
+
+<li class="logout padded-item">
     <a class="waves-effect" {{action 'logOut'}}>
         <i class="material-icons">power_settings_new</i>
         Log Out

@@ -104,9 +104,6 @@ export default Ember.Component.extend(MessageMixin, {
             array.unshiftObject(value)
             // scroll to the bottom now
             const div = $('.messages')
-            console.log(div[0].scrollTop)
-            console.log(div[0].scrollHeight)
-            console.log($('send-box').offset())
             if (div[0].scrollTop === div[0].scrollHeight) {
                 console.log('animating')
                 div.delay(200).animate({scrollTop: div.height()})
