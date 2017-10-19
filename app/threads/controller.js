@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import RecipientListHelper from '../helpers/recipient-list'
 
 export default Ember.Controller.extend({
 
@@ -12,6 +13,7 @@ export default Ember.Controller.extend({
         onThreadSelected (thread) {
             this.set('activeThread', thread)
             $('send-box').focus();
+            this.send('setPageTitle', RecipientListHelper.compute(null, thread))
         },
 
         goHome () {

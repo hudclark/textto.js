@@ -1,7 +1,7 @@
 import Ember from 'ember';
-import ApplicationRoute from 'textto/application/route'
+import BaseRoute from 'textto/application/base-route'
 
-export default ApplicationRoute.extend({
+export default BaseRoute.extend({
 
     title: 'Threads | Textto',
 

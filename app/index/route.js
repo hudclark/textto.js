@@ -1,6 +1,6 @@
-import ApplicationRoute from 'textto/application/route'
+import BaseRoute from 'textto/application/base-route'
 
-export default ApplicationRoute.extend({
+export default BaseRoute.extend({
 
     redirect () {
         if (window.ELECTRON) {

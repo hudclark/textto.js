@@ -1,6 +1,6 @@
-import ApplicationRoute from 'textto/application/route'
+import BaseRoute from 'textto/application/base-route'
 
-export default ApplicationRoute.extend({
+export default BaseRoute.extend({
 
     title: 'Log In | Textto',
     description: 'Log in and sync your Android device with Textto.',
