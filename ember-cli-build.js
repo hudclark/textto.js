@@ -11,6 +11,9 @@ module.exports = function(defaults) {
     },
     sassOptions: {
       includePaths: ['app']
+    },
+    fingerprint: {
+      exclude: ['images/logo.png']
     }
   });
 
