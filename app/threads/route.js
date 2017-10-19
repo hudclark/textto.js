@@ -9,10 +9,12 @@ export default BaseRoute.extend({
     websocket: Ember.inject.service(),
     bus: Ember.inject.service(),
     api: Ember.inject.service(),
+    notifications: Ember.inject.service(),
 
     register: Ember.on('activate', function () {
         this.get('bus').register(this)
         this.get('websocket').connect()
+        this.get('notifications').requestPermission()
     }),
 
     unregister: Ember.on('deactivate', function () {

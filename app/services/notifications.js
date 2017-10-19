@@ -5,8 +5,7 @@ export default Ember.Service.extend({
     settings: Ember.inject.service(),
     disable: false,
 
-    init () {
-        this._super(...arguments)
+    requestPermission () {
         if (Notification.permission !== 'granted') {
             Notification.requestPermission()
         }
