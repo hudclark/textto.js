@@ -100,9 +100,17 @@ export default Ember.Component.extend(MessageMixin, {
             }
         }
         if (index === -1) {
-            // TODO decide whether or not to animate
             if (animate) value.animated = true
             array.unshiftObject(value)
+            // scroll to the bottom now
+            const div = $('.messages')
+            console.log(div[0].scrollTop)
+            console.log(div[0].scrollHeight)
+            console.log($('send-box').offset())
+            if (div[0].scrollTop === div[0].scrollHeight) {
+                console.log('animating')
+                div.delay(200).animate({scrollTop: div.height()})
+            }
         } else {
             array[index] = value
         }
@@ -220,7 +228,25 @@ export default Ember.Component.extend(MessageMixin, {
         }
     },
 
+    // Should be very rare
     onDeviceChanged () {
+        this.onWebsocketReconnected()
+    },
+
+    // TODO move to mixin
+    onNewMessages () {
+        if (!this.disableRequests) {
+            this.onWebsocketReconnected()
+        }
+    },
+
+    onStartInitialSync () {
+        console.log('Starting sync')
+        this.disableRequests = true
+    },
+
+    onEndInitialSync () {
+        this.disableRequests = false
         this.onWebsocketReconnected()
     },
 

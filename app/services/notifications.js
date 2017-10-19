@@ -3,6 +3,7 @@ import Ember from 'ember'
 export default Ember.Service.extend({
 
     settings: Ember.inject.service(),
+    disable: false,
 
     init () {
         this._super(...arguments)
@@ -11,7 +12,18 @@ export default Ember.Service.extend({
         }
     },
 
+    disable () {
+        console.log('Disabling notifications')
+        this.disable = true
+    },
+
+    enable () {
+        console.log('Enabling notifications')
+        this.disable = false
+    },
+
     showNotifications () {
+        if (this.disable) return false
         const enabled = this.get('settings').getSetting('notifications', true)
         return (enabled && !document.hasFocus())
     },

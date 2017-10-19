@@ -1,6 +1,7 @@
 conversation-view {
 
     display: flex;
+    min-height: 0;
 
     time {
         color: $textDarkSecondary;

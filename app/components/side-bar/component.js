@@ -40,7 +40,7 @@ export default Ember.Component.extend(MessageMixin, {
 
     setActiveThread (thread) {
         let currentlyActive = this.get('activeThread')
-        if (currentlyActive && (thread._id === currentlyActive._id)) return
+        if (currentlyActive && (currentlyActive && thread._id === currentlyActive._id)) return
         if (currentlyActive) this.set('activeThread.active', false)
         this.set('activeThread', thread)
         this.set('activeThread.active', true)
@@ -97,6 +97,23 @@ export default Ember.Component.extend(MessageMixin, {
     // TODO maybe do this when a scheduled messages is actually sent
     onNewScheduledMessage () {
         $('.threads').animate({scrollTop: 0}, 300)
+    },
+
+    onNewMessages () {
+        if (!this.disableRequests) {
+            this.onWebsocketReconnected()
+        }
+    },
+
+    // TODO move to mixin
+    onStartInitialSync () {
+        console.log('Starting sync')
+        this.disableRequests = true
+    },
+
+    onEndInitialSync () {
+        this.disableRequests = false
+        this.onWebsocketReconnected()
     },
 
     onContactsUpdated () {

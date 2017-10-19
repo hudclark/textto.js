@@ -4,6 +4,7 @@ export default Ember.Component.extend({
 
     bus: Ember.inject.service(),
     auth: Ember.inject.service(),
+    notifications: Ember.inject.service(),
     classNames: ['modal', 'no-messages-modal'],
 
     didInsertElement () {
@@ -12,8 +13,6 @@ export default Ember.Component.extend({
         Ember.run.scheduleOnce('afterRender', this, () => {
             $('.modal').modal({
             })
-            //$('.modal').modal('open')``
-            // TODO
             this.$().modal({
                 dismissible: false,
                 complete: () => {
@@ -29,14 +28,14 @@ export default Ember.Component.extend({
         this.get('bus').unregister(this)
     },
 
-    onNewThread (paylaod) {
-        // TODO done here
-        $('.modal').modal('close')
+    onStartInitialSync () {
+        this.set('isSyncing', true)
+        this.get('notifications').disable()
     },
 
-    onNewMessages (payload) {
-        // TODO done here
-        $('.modal').modal('close')
+    onEndInitialSync () {
+        this.get('notifications').enable()
+        this.close()
     },
 
     close () {

@@ -1,10 +1,15 @@
 <div class="modal-content">
-    <div class="title">No Messages</div>
-    <div class="subtitle">Make sure you have signed into the Android application and have internet access.</div>
+    {{#if isSyncing}}
+        <div class="title">Syncing Up</div>
+        <div class="subtitle">Just a moment while we set up you!</div>
+        {{loading-view}}
+    {{else}}
+        <div class="title">No Messages</div>
+        <div class="subtitle">Make sure you have signed into the Android application and have internet access.</div>
+        <div class="badge">
+            <img id="google" src="/images/google-play-badge.png" {{ action 'openPlayStore'}}>
+        </div>
 
-    <div class="badge">
-        <img id="google" src="/images/google-play-badge.png" {{ action 'openPlayStore'}}>
-    </div>
-
-    <a class="logout" {{action 'logOut'}}>Sign in with a different account</a>
+        <a class="logout" {{action 'logOut'}}>Sign in with a different account</a>
+    {{/if}}
 </div>
