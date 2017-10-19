@@ -20,11 +20,9 @@ export default BaseRoute.extend({
         this.get('websocket').close()
     }),
 
-    beforeModel() {
-        // this is a protected route.
+    redirect () {
         if (!this.get('auth').isLoggedIn()) {
-            return this.replaceWith('login');
-        } else {
+            this.replaceWith('login')
         }
     },
 
