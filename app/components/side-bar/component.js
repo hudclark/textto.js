@@ -106,6 +106,8 @@ export default Ember.Component.extend(MessageMixin, {
     },
 
     // TODO move to mixin
+    // IF this is missed.... tons of unneccessary requests
+    // TODO 1
     onStartInitialSync () {
         console.log('Starting sync')
         this.disableRequests = true
