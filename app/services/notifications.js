@@ -6,7 +6,7 @@ export default Ember.Service.extend({
     isDisabled: false,
 
     requestPermission () {
-        if (Notification.permission !== 'granted') {
+        if (Notification && Notification.permission !== 'granted') {
             Notification.requestPermission()
         }
     },
@@ -22,7 +22,7 @@ export default Ember.Service.extend({
     },
 
     showNotifications () {
-        if (this.isDisabled) return false
+        if (this.isDisabled || !Notification) return false
         const enabled = this.get('settings').getSetting('notifications', true)
         return (enabled && !document.hasFocus())
     },

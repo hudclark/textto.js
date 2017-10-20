@@ -13,11 +13,11 @@ export default Ember.Component.extend(MessageMixin, {
 
     messages: [],
     sortedMessages: Ember.computed.sort('messages.[]', 'messageOrdering'),
-    messageOrdering: ['date:desc'],
+    messageOrdering: ['date:asc'],
 
     scheduledMessages: [],
     sortedScheduledMessages: Ember.computed.sort('scheduledMessages.[]', 'scheduledMessageOrdering'),
-    scheduledMessageOrdering: ['uuid:desc'],
+    scheduledMessageOrdering: ['uuid:asc'],
 
     isLoadingMore: false,
     hasMoreMessages: true,
@@ -65,6 +65,18 @@ export default Ember.Component.extend(MessageMixin, {
 
         this.set('messages', response.messages)
         this.set('scheduledMessages', response.scheduledMessages)
+
+        Ember.run.scheduleOnce('afterRender', this, function () {
+            this.scrollToBottom(0)
+            this.scrollToBottom(150)
+        })
+    },
+
+    scrollToBottom (delay) {
+        setTimeout(function () {
+            const $messages = $('.messages')
+            $messages.scrollTop($messages[0].scrollHeight)
+        }, delay)
     },
 
     attachContactsToMessages(messages) {
@@ -101,13 +113,7 @@ export default Ember.Component.extend(MessageMixin, {
         }
         if (index === -1) {
             if (animate) value.animated = true
-            array.unshiftObject(value)
-            // scroll to the bottom now
-            const div = $('.messages')
-            if (div[0].scrollTop === div[0].scrollHeight) {
-                console.log('animating')
-                div.delay(200).animate({scrollTop: div.height()})
-            }
+            array.pushObject(value)
         } else {
             array[index] = value
         }
@@ -145,11 +151,25 @@ export default Ember.Component.extend(MessageMixin, {
             const newMessages = await this.get('api').loadMoreMessages(this.get('threadId'), after)
             if (this.isDestroyed || this.isDestroying) return
             this.attachContactsToMessages(newMessages)
-            this.get('messages').pushObjects(newMessages)
+
             this.hasMoreMessages = (newMessages.length > 0)
+            // Do not allow another load for three seconds
             setTimeout(() => {
+                if (this.isDestroyed || this.isDestroying) return
                 this.isLoadingMore = false
-            }, 1000)
+            }, 3000)
+
+            // save current scroll position
+            const $messages = $('.messages')
+            const scrollFromBottom = $messages[0].scrollHeight - $messages.scrollTop()
+
+            // set the model
+            this.get('messages').pushObjects(newMessages)
+
+            // return to scroll position
+            Ember.run.scheduleOnce('afterRender', this, function () {
+                $messages.scrollTop($messages[0].scrollHeight - scrollFromBottom)
+            })
         } catch (err) {
             console.log('Error loading more messages', err)
         }

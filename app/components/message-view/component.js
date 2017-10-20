@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
 
     tagName: 'message-view',
-    classNameBindings: ['received', 'hidden', 'animated'],
+    classNameBindings: ['received', 'hidden'],
     api: Ember.inject.service(),
 
     isLoading: Ember.computed('message', function () {
@@ -19,8 +19,6 @@ export default Ember.Component.extend({
         const message = this.get('message')
         const received = (!this.get('isScheduled') && (message.sender !== 'me'))
         this.set('received', received)
-        this.set('animated', message.animated)
-
         this.set('mms', (message.type === 'mms'))
     },
 
@@ -28,6 +26,11 @@ export default Ember.Component.extend({
         this._super(...arguments)
         if (this.get('message.failed')) {
             $('.dropdown-button').dropdown({belowOrigin: true, alignment: 'right'})
+        }
+        if (this.get('message.animated')) {
+            $('.messages').animate({
+                scrollTop: `+=${this.$().outerHeight(true)}px`
+            }, 100)
         }
     },
 

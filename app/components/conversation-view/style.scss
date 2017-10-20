@@ -13,12 +13,13 @@ conversation-view {
     .messages {
         overflow-y: auto;
         animation: fadeIn .15s;
-        flex-direction: column-reverse;
-        text-align: right;
         display: flex;
+        flex-direction: column;
+        text-align: right;
         padding: 0px 32px;
         box-sizing: border-box;
         width: 100%;
+        position: relative;
 
         &::-webkit-scrollbar {
             width: 8px;
