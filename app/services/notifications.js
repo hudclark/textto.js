@@ -6,7 +6,16 @@ export default Ember.Service.extend({
     isDisabled: false,
 
     requestPermission () {
-        if (Notification && Notification.permission !== 'granted') {
+        console.log('requesting permission')
+        console.log('1')
+        console.log('N: ' + Notification)
+        console.log('2')
+        if (Notification !== undefined) {
+            console.log('Notifications are available')
+        } else {
+            console.log('Notifications are not available')
+        }
+        if (Notification !== undefined && Notification.permission !== 'granted') {
             Notification.requestPermission()
         }
     },
@@ -46,7 +55,7 @@ export default Ember.Service.extend({
                 notification.close()
             }
         } else {
-            Notification.requestPermission()
+            this.requestPermission()
         }
     },
 })

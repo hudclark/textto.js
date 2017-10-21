@@ -12,6 +12,7 @@ export default BaseRoute.extend({
     notifications: Ember.inject.service(),
 
     register: Ember.on('activate', function () {
+        console.log('Register')
         this.get('bus').register(this)
         this.get('websocket').connect()
         this.get('notifications').requestPermission()
