@@ -17,8 +17,12 @@ send-box {
         border: none;
         resize: none;
 
+        transition: box-shadow .2s;
+        cursor: text;
+
         &:focus {
             outline: none;
+            @include elevation(1.5);
         }
 
         &:empty:before {
