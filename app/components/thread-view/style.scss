@@ -26,9 +26,12 @@ thread-view {
         font-size: .9em;
 
         max-width: 180px;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
+
+        .emoji-text {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
 
         .emoji {
             vertical-align: middle;

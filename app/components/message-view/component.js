@@ -28,10 +28,20 @@ export default Ember.Component.extend({
             $('.dropdown-button').dropdown({belowOrigin: true, alignment: 'right'})
         }
         if (this.get('message.animated')) {
-            $('.messages').animate({
-                scrollTop: `+=${this.$().outerHeight(true)}px`
-            }, 100)
+            if (this.get('mms') || this.get('message.fileUrl')) {
+                setTimeout(() => {
+                    if (!(this.isDestroyed || this.isDestroying)) this.animateDown()
+                }, 500)
+            } else {
+                this.animateDown()
+            }
         }
+    },
+
+    animateDown () {
+        $('.messages').animate({
+            scrollTop: `+=${this.$().outerHeight(true)}px`
+        }, 100)
     },
 
     actions: {
