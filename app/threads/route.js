@@ -15,7 +15,7 @@ export default BaseRoute.extend({
         console.log('Register')
         this.get('bus').register(this)
         this.get('websocket').connect()
-        //this.get('notifications').requestPermission()
+        this.get('notifications').askPermission()
     }),
 
     unregister: Ember.on('deactivate', function () {

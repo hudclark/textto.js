@@ -1,5 +1,6 @@
 thread-view {
     min-height: $row-height;
+    height: $row-height;
     border-bottom: 1px solid $borderColor;
     padding: 0 16px;
     display: flex;
