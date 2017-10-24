@@ -24,6 +24,11 @@ export default Ember.Component.extend({
             .catch(e => console.log(e))
     },
 
+    didRender ( ){
+        this._super(...arguments)
+        this.$('.tooltipped').dropdown()
+    },
+
     closeDrawer() {
         $('.hamburger').sideNav('hide')
     },
