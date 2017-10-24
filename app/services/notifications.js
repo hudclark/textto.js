@@ -6,8 +6,12 @@ export default Ember.Service.extend({
     isDisabled: false,
 
     askPermission () {
-        if (Notification && Notification.permission !== 'granted') {
-            Notification.requestPermission()
+        try {
+            if (Notification && Notification.permission !== 'granted') {
+                Notification.requestPermission()
+            }
+        } catch (err) {
+            console.log('Error requesting notification access', err)
         }
     },
 
@@ -22,9 +26,14 @@ export default Ember.Service.extend({
     },
 
     showNotifications () {
-        if (this.isDisabled || !Notification) return false
-        const enabled = this.get('settings').getSetting('notifications', true)
-        return (enabled && !document.hasFocus())
+        try {
+            if (this.isDisabled || !Notification) return false
+            const enabled = this.get('settings').getSetting('notifications', true)
+            return (enabled && !document.hasFocus())
+        } catch (err) {
+            console.log('Error with notifications', err)
+            return false
+        }
     },
 
     displayNotification (title, body, image) {
