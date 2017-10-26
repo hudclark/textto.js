@@ -25,6 +25,10 @@
         width: 75%;
     }
 
+    .subscription-box {
+        margin-top: 44px;
+    }
+
     h1 {
         text-align: center;
         margin-top: 10%;
@@ -109,6 +113,8 @@
 
         @media (max-width: 700px) {
             padding-bottom: 20%;
+            justify-content: flex-start;
+            min-height: 90vh;
         }
 
         .container {

@@ -53,6 +53,11 @@ export default BaseRoute.extend({
             $('html').animate({scrollTop: $(window).height()})
         },
 
+        onSubscribed (email) {
+            this.controllerFor('index').set('subscribed', true)
+            this.controllerFor('index').set('email', email)
+        },
+
         didTransition () {
             Ember.run.scheduleOnce('afterRender', this, function () {
                 const selector = $('.appearing')

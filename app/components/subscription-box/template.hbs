@@ -1,0 +1,36 @@
+<div class="sub-card">
+    <div class="header">
+        <div class="uncompleted">
+            {{#if completed}}
+                Thanks! You'll hear from us soon!
+            {{else}}
+                Get notified when the Android app is launched this November!
+            {{/if}}
+        </div>
+    </div>
+
+    <div class="form">
+        {{input class="sub-input" type='email' value=email disabled=(or completed isLoading) enter='submit' placeholder="Email"}}
+        <div class="button waves-effect {{if isLoading 'disabled'}}" {{action 'submit'}}>
+            {{#if isLoading}}
+                <div class="preloader-wrapper small active">
+                    <div class="spinner-layer spinner-white-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                    </div>
+                </div>
+            {{else if completed}}
+                <i class="material-icons">done</i>
+            {{else if error}}
+                <i class="material-icons">error</i>
+            {{else}}
+                GO
+            {{/if}}
+        </div>
+    </div>
+</div>

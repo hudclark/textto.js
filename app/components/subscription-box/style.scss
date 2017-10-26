@@ -1,0 +1,102 @@
+.subscription-box {
+
+    &.completed {
+        .form >.sub-input {
+            border-color: #4caf50 !important;
+        }
+        .form >.button {
+            background: #4caf50;
+            &:hover {
+                background: #4caf50;
+            }
+        }
+    }
+
+    &.error {
+        .form >.sub-input {
+            border-color: $errorColor !important;
+        }
+        .form >.button {
+            background: $errorColor;
+            &:hover {
+                background: $errorColor;
+            }
+        }
+    }
+
+    .sub-card {
+        max-width: 450px;
+        padding: 24px;
+        background: rgba(255, 255, 255, 0.92);
+        margin: 0 auto;
+        border-radius: 8px;
+        transition: all .3s;
+
+        .header {
+            text-align: center;
+            font-weight: 500;
+            font-size: 22px;
+            margin-bottom: 24px;
+        }
+    }
+
+    .form {
+        display: flex;
+
+        $sub-box-height: 55px;
+
+
+        .sub-input {
+            background: white !important;
+            flex-grow: 1;
+            padding: 8px 20px !important;
+            margin: 0 !important;
+            border-top-left-radius: 8px !important;
+            border-bottom-left-radius: 8px !important;
+            height: $sub-box-height !important;
+            border: 2px solid #eee !important;
+            box-sizing: border-box !important;
+
+            font-size: 18px !important;
+
+            &:focus {
+                border-color: $colorAccent !important;
+            }
+
+            &::placeholder {
+                color: rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        .button {
+            width: 100px;
+            background: $colorAccent;
+            color: white;
+            height: $sub-box-height;
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+            font-size: 22px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            transition: all 0.3s;
+
+            &:hover {
+                background: #2196f3;
+            }
+        }
+
+        .spinner-white-only {
+            border-color: white;
+        }
+
+        .preloader-wrapper.small {
+            width: 24px;
+            height: 24px;
+        }
+
+    }
+
+}

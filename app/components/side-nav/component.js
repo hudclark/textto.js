@@ -24,7 +24,7 @@ export default Ember.Component.extend({
             .catch(e => console.log(e))
     },
 
-    didRender ( ){
+    didRender () {
         this._super(...arguments)
         this.$('.tooltipped').dropdown()
     },

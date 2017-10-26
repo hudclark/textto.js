@@ -66,10 +66,16 @@ export default Ember.Component.extend(MessageMixin, {
         this.set('messages', response.messages)
         this.set('scheduledMessages', response.scheduledMessages)
 
+        this.set('canLoadMore', false)
+        setTimeout(() => {
+            this.set('canLoadMore', true)
+        }, 160)
+
         Ember.run.scheduleOnce('afterRender', this, function () {
             this.scrollToBottom(0)
             this.scrollToBottom(150)
         })
+
     },
 
     scrollToBottom (delay) {
