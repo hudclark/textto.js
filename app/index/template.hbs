@@ -1,61 +1,123 @@
-<div class="landing container">
-    <div class="nav-bar">
-        {{#link-to 'index'}}
-        <div class="logo">
-            <img src="/images/logo.png">
-            <div class="text">Textto</div>
-        </div>
-        {{/link-to}}
-        <div class="grow"></div>
-        {{#link-to 'login'}}Log In{{/link-to}}
-    </div>
-
-    <div class="section row">
-
-        <div class="text-side left-side centered">
-
-            <h1 class="appearing" delay="200">Text From Your Computer.</h1>
-            <h2 class="appearing" delay="1000">For Free.</h2>
-            <div class="description appearing" delay="2000">
-                Enjoy feature rich messaging through Textto's website or desktop applictions.
-            </div>
-            <div class="appearing" delay="2100">
-                {{subscription-box email=email completed=completed}}
-            </div>
+<div class="landing">
+    <div class="first-section">
+        <div class="nav">
+            <img class="logo" src="/images/logo.png">
+            <span class="logo">Textto</span>
         </div>
 
-        <div class="image-side bigger">
-            <div class="block appearing demo" delay="1000">{{conversation-demo}}</div>
-        </div>
-
-    </div>
-
-    <div class="section row">
-        <div class="image-side left-side">
-            <img src="/images/screen.png">
-        </div>
-        <div class="text-side left-side">
-            <h2 class="appearing">Simple.</h2>
-            <div class="description appearing" delay="200">
-                <p>Get started in seconds.</p>
-                <p>Just install the Textto Android app and sign in with Google to connect your device.</p>
-                <p>Once your device is connected, use Textto's website or desktop applications to seamlessly text through your phone.</p>
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m12 l5 text-center">
+                    <h1 class="title">Text From Your Computer</h1>
+                    <h2 class="subtitle">With the Free Website and App</h2>
+                    {{subscription-box class="hide-on-small-only" on-completed='onSubscribed' completed=subscribed email=email}}
+                    {{!--
+                    <div class="badges hide-on-small-only">
+                        {{#link-to 'login'}}
+                            <img class="badge" src="/images/web-badge.png">
+                        {{/link-to}}
+                        <img class="badge" id="google" src="/images/google-play-badge.png">
+                    </div>
+                    --}}
+                </div>
+                <div class="col s12 m12 l7">
+                    {{conversation-demo}}
+                </div>
+                {{!--
+                <div class="badges hide-on-med-and-up col s12">
+                    {{subscription-box on-completed='onSubscribed' completed=subscribed email=email}}
+                    {{! <img class="badge" id="google" src="/images/google-play-badge.png"> }}
+                </div>
+                --}}
             </div>
         </div>
+
+        <i class="material-icons down" {{action 'scrollDown'}} alt="Scroll down">keyboard_arrow_down</i>
     </div>
 
-    <div class="section row">
-        <div class="text-side">
-            <h2 class="appearing">Keep your texting app.</h2>
-            <div class="description appearing" delay="200">
-                <p>Textto syncs with your existing texting app.</p>
-                <p>Whether you use the default texting app or a third party app, we've got you covered. With Textto, there's no need to comprimise.</p>
-                <p></p>
+    <div class="second-section">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 l4">
+                    <img class="promo-image appearing" id="promo1" src="/images/piggy-bank.png" alt="Free to use">
+                    <div class="title">Free to Use</div>
+                    <div class="subtitle">
+                        Enjoy free texting, group messaging, and picture messaging.
+                    </div>
+                </div>
+                <div class="col s12 l4">
+                    <img class="promo-image appearing" id="promo2"  src="/images/computer.png" alt="Cross Platform">
+                    <div class="title">Cross Platform</div>
+                    <div class="subtitle">
+                        Use the Web App, or download the Mac, Windows, or Linux desktop applications.
+                    </div>
+                </div>
+                <div class="col s12 l4">
+                    <img class="promo-image appearing" id="promo3" src="/images/chat.png" alt="Simple">
+                    <div class="title">Simple</div>
+                    <div class="subtitle">
+                        We'll sync with your existing texting app. Don't change a thing!
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="image-side left-side">
-            <img src="/images/screen.png">
+    </div>
+
+    <div class="third-section">
+        <div class="container">
+            <div class="row">
+                <div class="col s4 hide-on-small-only">
+                    <img class="appearing" id="promo-screenshot" src="/images/screen.png" alt="Keep your default app">
+                </div>
+                <div class="col s12 l8">
+                    <h1 class="title">Keep Your Texting App</h1>
+                    <div class="hide-on-med-and-up">
+                        <img class="appearing" id="promo-screenshot-small" src="/images/screen.png" alt="Keep your default app">
+                    </div>
+                    <h2 class="subtitle">
+                        Textto syncs with your existing sms app.
+                        Simply install the Android client to connect to your computer.
+                    </h2>
+                    {{subscription-box on-completed='onSubscribed' completed=subscribed email=email}}
+                    {{!--
+                    <div class="badges">
+                        <img class="badge" id="google" src="/images/google-play-badge.png">
+                    </div>
+                    --}}
+                </div>
+            </div>
         </div>
     </div>
 
+    <div class="fourth-section">
+        <div class="container">
+            <div class="row">
+                <div class="col m6 s12">
+                    <h2 class="title">Start Texting For Free</h2>
+                </div>
+                <div class="col m6 s12">
+                    {{#link-to 'login' class="button"}}Launch the Web App{{/link-to}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col m2 s6">
+                    &copy; Textto 2017
+                </div>
+                <div class="col m2 s6">
+                    <a href="mailto:help@textto.io">Contact</a>
+                </div>
+                <div class="col m2 s6">
+                    <a href="/legal/privacy">Privacy Policy</a>
+                </div>
+                <div class="col m2 s6">
+                    <a href="/legal/terms">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

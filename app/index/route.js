@@ -20,30 +20,22 @@ export default BaseRoute.extend({
             this.didScroll = true
         })
 
-        const animateElementsIn = () => {
-            const scrolledElements = elements.filter(e => {
-                const offset = e.height() / 2
-                const pos = $window.scrollTop() - e.position().top + windowHeight
-                console.log(pos)
-                return (pos > offset)
-            })
-            scrolledElements.forEach (e => {
-                const delay = e.attr('delay') || 0
-                setTimeout(() => e.addClass('visible'), delay)
-                elements.removeObject(e)
-            })
-        }
-
         this.scrollInterval = setInterval(() => {
             if (!this.didScroll) return
             this.didScroll = false
-            animateElementsIn()
+            const scrolledElements = elements.filter(e => {
+                const offset = e.width() / 2
+                const pos = $window.scrollTop() - e.position().top + windowHeight
+                return (pos > offset)
+            })
+            scrolledElements.forEach (e => {
+                e.addClass('visible')
+                elements.removeObject(e)
+            })
             if (elements.length === 0) {
                 this.stopScrollListener()
             }
         }, 100)
-
-        animateElementsIn()
     },
 
     stopScrollListener () {
