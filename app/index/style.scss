@@ -3,7 +3,7 @@
     position: relative;
 
     max-width: 80% !important;
-    width: 70% !important;
+    width: 80% !important;
 
     h1 {
         color: #070707;
@@ -22,7 +22,7 @@
     h2 {
         color: #070707;
         font-size: 40px;
-        line-height: 30px;
+        line-height: 50px;
         font-weight: 700;
         font-family: 'Open Sans', sans-serif;
         margin: 0;
@@ -41,29 +41,33 @@
     }
 
     .section {
-        padding: 10% 0 0 0;
+        padding: 5% 0 5% 0;
         position: relative;
         display: flex;
         justify-content: center;
-        align-items: center;
     }
 
     .text-side {
         display: flex;
         flex-direction: column;
-    }
-    
-    .left-side {
-        justify-content: center;
+        max-width: 30%;
+        margin: 2.5%;
     }
 
     .image-side {
         display: flex;
+        margin: 2.5%;
     }
 
     .image-side > img {
         max-width: 100%;
         max-height: 80vh;
+    }
+
+    .bigger {
+        max-width: 55%;
+        flex-grow: 1;
+        margin: 0;
     }
 
     .appearing {
@@ -83,18 +87,33 @@
     }
 
     .nav-bar {
-        position: absolute;
+        position: fixed;
         height: 80px;
         padding: 12px;
         background: white;
+        z-index: 9999;
         display: flex;
         top: 0;
+        left: 0;
+        right: 0;
         align-items: center;
-        width: 100%;
+        padding-left: 10%;
+        padding-right: 10%;
 
         .logo {
-            height: 52px;
-            width: 52px;
+            display: flex;
+            align-items: center;
+            img {
+                height: 52px;
+                width: 52px;
+                margin-right: 8px;
+            }
+            .text {
+                color: $textDark;
+                display: inline-block;
+                font-weight: 400;
+                font-size: 24px;
+            }
         }
 
         .grow {
