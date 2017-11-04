@@ -5,12 +5,12 @@
         {{#link-to 'login'}}Log In{{/link-to}}
     </div>
 
-    <div class="section row">
+    <div class="section row first-section">
 
-        <div class="col m12 l4">
+        <div class="col s12 m12 l4">
             <div class="text-side left-side">
 
-                <h1 class="appearing" delay="200">Text From Your Computer.</h1>
+                <h1 class="appearing big-shift" delay="200">Text From Your Computer.</h1>
                 <h2 class="appearing" delay="1500">For Free.</h2>
                 <div class="description appearing" delay="2400">
                     Enjoy feature rich messaging through Textto's website or desktop applictions.
@@ -21,20 +21,17 @@
             </div>
         </div>
 
-        <div class="col m12 l7 image-side">
-            <div class="block">{{conversation-demo}}</div>
+        <div class="col s12 m12 l8 image-side">
+            <div class="block appearing" delay="1500">{{conversation-demo}}</div>
         </div>
 
     </div>
 
-    <div class="section row">
-        <div class="col m12 l6">
-            <div class="image-side left-side">
-                <img src="/images/screen.png">
+    <div class="section row reverse appearing">
+            <div class="image-side section-item phone-halo" id="login-screen">
+                <img src="/images/login-screen.png">
             </div>
-        </div>
-        <div class="col m12 l6">
-            <div class="text-side left-side">
+            <div class="text-side section-item">
                 <h2 class="appearing">Simple.</h2>
                 <div class="description appearing" delay="200">
                     <p>Get started in seconds.</p>
@@ -42,24 +39,19 @@
                     <p>Once your device is connected, use Textto's website or desktop applications to seamlessly text through your phone.</p>
                 </div>
             </div>
-        </div>
     </div>
 
-    <div class="section row">
-        <div class="col m12 l6">
-            <div class="text-side left-side">
-                <h2 class="appearing">Keep your texting app.</h2>
-                <div class="description appearing" delay="200">
-                    <p>Textto syncs with your existing texting app.</p>
-                    <p>Whether you use the default texting app or a third party app, we've got you covered. With Textto, there's no need to comprimise.</p>
-                    <p></p>
-                </div>
+    <div class="section row appearing">
+        <div class="text-side section-item">
+            <h2 class="appearing">Keep your texting app.</h2>
+            <div class="description appearing" delay="200">
+                <p>Textto syncs with your existing texting app.</p>
+                <p>Whether you use the default texting app or a third party app, we've got you covered. With Textto, there's no need to comprimise.</p>
+                <p></p>
             </div>
         </div>
-        <div class="col m12 l6">
-            <div class="image-side left-side">
-                <img src="/images/screen.png">
-            </div>
+        <div id="chat-screen" class="image-side section-item phone-halo">
+            <img src="/images/chat-screen.png">
         </div>
     </div>
 
