@@ -34,17 +34,38 @@ export default Ember.Component.extend({
             // enter pressed
             if (e.keyCode == 13) {
                 let el = this.$('send-box-input')[0];
-                if (el.textContent.length > 0) {
-                    this.sendMessage(el.textContent)
-                    el.textContent = '';
-                }
+                const nodes = [...el.childNodes]
+                const text = nodes.map((node) => {
+                    if (node.alt) {
+                        return node.alt
+                    } else if (node.textContent.length) {
+                        return node.textContent
+                    } else {
+                        return ''
+                    }
+                }).join('')
+                if (text.length) this.sendMessage(text)
+                el.textContent = ''
                 return false;
             }
         },
 
         attachFile () {
             this.get('bus').post('openModal', {componentName: 'upload-modal', data: { threadId: this.get('threadId')}})
+        },
+
+        openEmojis () {
+            this.set('emojisOpen', true)
+        },
+
+        closeEmojis () {
+            this.set('emojisOpen', false)
+        },
+
+        emojiClick (emoji) {
+            const input = this.$('send-box-input')[0].appendChild(emoji.cloneNode(true))
         }
+
 
     }
 
