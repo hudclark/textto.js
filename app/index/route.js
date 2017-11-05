@@ -22,7 +22,7 @@ export default BaseRoute.extend({
 
         const animateElementsIn = () => {
             const scrolledElements = elements.filter(e => {
-                const offset = windowHeight / 6
+                const offset = windowHeight / 7
                 const pos = $window.scrollTop() - e.offset().top + windowHeight
                 return (pos > offset)
             })
