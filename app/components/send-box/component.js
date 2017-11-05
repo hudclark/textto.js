@@ -28,6 +28,25 @@ export default Ember.Component.extend({
         this.get('bus').post('newScheduledMessage', {scheduledMessage: scheduledMessage})
     },
 
+    focusOnEnd () {
+        const el = this.$('send-box-input')[0]
+        el.focus()
+        if (typeof window.getSelection != 'undefined' &&
+            typeof document.createRange != 'undefined') {
+                const range = document.createRange()
+                range.selectNodeContents(el)
+                range.collapse(false)
+                const selection = window.getSelection()
+                selection.removeAllRanges()
+                selection.addRange(range)
+        } else if (typeof document.body.createTextRange != 'undefined') {
+            const range = document.body.createTextRange()
+            range.moveToElementText(el)
+            range.collapse()
+            range.select()
+        }
+    },
+
     actions: {
 
         keyDown (e) {
@@ -60,6 +79,7 @@ export default Ember.Component.extend({
 
         closeEmojis () {
             this.set('emojisOpen', false)
+            this.focusOnEnd()
         },
 
         emojiClick (emoji) {
