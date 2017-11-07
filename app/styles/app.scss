@@ -32,7 +32,7 @@ $side-bar-width: 300px;
 $row-height: 80px;
 $send-box-height: 80px;
 
-$colorPrimary:#fefefe;
+$colorPrimary:#fff;
 $colorPrimaryDark: #374D63;
 $colorActive: #405a73;
 
@@ -107,4 +107,5 @@ img.logo {
 .emoji {
     width: 22px;
     padding: 0 2px;
+    vertical-align: middle;
 }

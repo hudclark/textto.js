@@ -1,0 +1,41 @@
+.emoji-box {
+    position: absolute;
+    right: 24px;
+    background: white;
+    top: -280px;
+    z-index: 99;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    @include elevation(2);
+    overflow: hidden;
+    width: 250px;
+
+    input {
+        margin: 0px 8px 0 8px !important;
+        padding: 4px !important;
+        min-width: 0 !important;
+        width: 90% !important;
+    }
+
+    .results {
+        height: 240px;
+        overflow-y: auto;
+        display: block;
+        padding: 8px;
+        margin-top: 8px;
+        margin: 0 auto;
+        .emoji {
+            padding: 4px;
+            height: 32px;
+            width: 32px;
+
+            &:hover {
+                padding: 0;
+                cursor: pointer;
+            }
+        }
+
+    }
+
+
+}

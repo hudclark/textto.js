@@ -7,7 +7,7 @@ send-box {
         width: 100%;
         min-height: 48px;
         margin: 32px;
-        padding: 16px 64px 16px 32px;
+        padding: 16px 100px 16px 32px;
         line-height: 16px;
         border-radius: 24px;
         @include elevation(1);
@@ -40,6 +40,10 @@ send-box {
         top: 44px;
         color: $textDarkSecondary;
         cursor: pointer;
+
+        &.emoji {
+            right: 90px;
+        }
     }
 
 

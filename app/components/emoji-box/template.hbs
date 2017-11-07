@@ -1,0 +1,12 @@
+{{input placeholder="search" keyUp=(action "search") value=q}}
+<div class="results">
+    {{#if showResults}}
+        {{#each searchResults as |emoji|}}
+            {{{emoji}}}
+        {{/each}}
+    {{else}}
+        {{#each baseEmojis as |emoji|}}
+            {{{emoji}}}
+        {{/each}}
+    {{/if}}
+</div>

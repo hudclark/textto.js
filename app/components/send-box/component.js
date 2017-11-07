@@ -28,23 +28,64 @@ export default Ember.Component.extend({
         this.get('bus').post('newScheduledMessage', {scheduledMessage: scheduledMessage})
     },
 
+    focusOnEnd () {
+        const el = this.$('send-box-input')[0]
+        el.focus()
+        if (typeof window.getSelection != 'undefined' &&
+            typeof document.createRange != 'undefined') {
+                const range = document.createRange()
+                range.selectNodeContents(el)
+                range.collapse(false)
+                const selection = window.getSelection()
+                selection.removeAllRanges()
+                selection.addRange(range)
+        } else if (typeof document.body.createTextRange != 'undefined') {
+            const range = document.body.createTextRange()
+            range.moveToElementText(el)
+            range.collapse()
+            range.select()
+        }
+    },
+
     actions: {
 
         keyDown (e) {
             // enter pressed
             if (e.keyCode == 13) {
                 let el = this.$('send-box-input')[0];
-                if (el.textContent.length > 0) {
-                    this.sendMessage(el.textContent)
-                    el.textContent = '';
-                }
+                const nodes = [...el.childNodes]
+                const text = nodes.map((node) => {
+                    if (node.alt) {
+                        return node.alt
+                    } else if (node.textContent.length) {
+                        return node.textContent
+                    } else {
+                        return ''
+                    }
+                }).join('')
+                if (text.length) this.sendMessage(text)
+                el.textContent = ''
                 return false;
             }
         },
 
         attachFile () {
             this.get('bus').post('openModal', {componentName: 'upload-modal', data: { threadId: this.get('threadId')}})
+        },
+
+        openEmojis () {
+            this.set('emojisOpen', true)
+        },
+
+        closeEmojis () {
+            this.set('emojisOpen', false)
+            this.focusOnEnd()
+        },
+
+        emojiClick (emoji) {
+            const input = this.$('send-box-input')[0].appendChild(emoji.cloneNode(true))
         }
+
 
     }
 

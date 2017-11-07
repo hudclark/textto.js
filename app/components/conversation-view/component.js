@@ -74,6 +74,7 @@ export default Ember.Component.extend(MessageMixin, {
         Ember.run.scheduleOnce('afterRender', this, function () {
             this.scrollToBottom(0)
             this.scrollToBottom(150)
+            $('send-box-input').focus()
         })
 
     },
