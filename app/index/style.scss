@@ -125,7 +125,7 @@
     .text-side {
         z-index: 1;
         &.spacing-bottom {
-            padding-bottom: 15%;
+            padding-bottom: 250px;
             @media (max-width: 1000px) {
                 padding-bottom: 0;
             }
