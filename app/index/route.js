@@ -15,6 +15,7 @@ export default BaseRoute.extend({
     scrollFire (elements) {
         const $window = $(window)
         const windowHeight = $window.height()
+        const isMobile = $window.width() < 1000
 
         $window.on('scroll.appearing', () => {
             this.didScroll = true
@@ -27,7 +28,8 @@ export default BaseRoute.extend({
                 return (pos > offset)
             })
             scrolledElements.forEach (e => {
-                const delay = e.attr('delay') || 0
+                let delay = e.attr('delay') || 0
+                if (isMobile && delay === 200) delay =0
                 setTimeout(() => e.addClass('visible'), delay)
                 elements.removeObject(e)
             })

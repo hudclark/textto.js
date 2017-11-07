@@ -2,26 +2,23 @@
     padding-top: 90px;
     position: relative;
 
-    max-width: 80% !important;
-    width: 70% !important;
-
-    @media (max-width: 700px) {
+    @media (max-width: 1000px) {
         text-align: center;
     }
 
     h1 {
         color: #070707;
-        font-size: 50px;
+        font-size: 40px;
         line-height: 50px;
         font-weight: 700;
-        margin: 0 0 24px 0;
+        margin: 0 0 16px 0;
         font-family: 'Open Sans', sans-serif;
     }
 
     h2 {
         color: #070707;
-        font-size: 40px;
-        line-height: 50px;
+        font-size: 30px;
+        line-height: 40px;
         font-weight: 700;
         font-family: 'Open Sans', sans-serif;
         margin: 0;
@@ -32,12 +29,24 @@
         line-height: 1.5em;
         margin-top: 40px;
         max-width: 400px;
+        @media (max-width: 1000px) {
+            margin: 40px auto 0 auto;
+        }
+    }
+
+    .subscription-box {
+        .form {
+            @media (max-width: 1000px) {
+                margin: 32px auto;
+            }
+        }
     }
 
     .section {
-        min-height: 100vh;
         display: flex;
-        justify-content: center;
+        align-items: center;
+        max-width: 80%;
+        min-height: 80vh;
         &.reverse {
             @media (max-width: 1000px) {
                 flex-direction: column-reverse;
@@ -53,11 +62,10 @@
         display: inline-block;
         margin-left: 10%;
         margin-right: 10%;
-        margin-top: 10%;
         height: fit-content;
         position: relative;
         &.big {
-            margin-left: 2.5%;
+            margin-left: 10%;
             margin-right: 5%;
         }
 
@@ -65,34 +73,62 @@
             margin-left: 5%;
             margin-right: 2.5%;
         }
-    }
 
-    .first-section {
-        @media (max-width: 700px) {
-            margin-top: 0;
-        }
-        .section-item {
-            @media (max-width: 700px) {
-                margin-top: 0;
-            }
-        }
-        .text-side {
-            min-width: 40%;
-            margin-top: 10%;
-        }
-        .image-side {
-            margin-top: 0;
-        }
-    }
-
-    .text-side {
-        margin-top: 15%;
         @media (max-width: 1000px) {
             margin-top: 10%;
         }
     }
+
+    .first-section {
+        min-height: calc(100vh - 80px);
+        max-width: 1600px;
+        margin-right: 5%;
+        margin-left: 5%;
+        @media (max-width: 1000px) {
+            min-height: 0;
+        }
+
+        .section-item {
+            margin-bottom: 10%;
+            @media (max-width: 1000px) {
+                margin-bottom: 0;
+            }
+        }
+        .text-side {
+            min-width: 35%;
+            margin-right: 0;
+            z-index: 1;
+            @media (max-width: 1000px) {
+                margin-left: 0;
+            }
+        }
+        .image-side {
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+
+    .second-section {
+        .image-side {
+            margin-top: 0;
+            @media (max-width: 1000px) {
+                margin-top: 15%;
+            }
+        }
+    }
+
+    .text-side {
+        z-index: 1;
+        &.spacing-bottom {
+            padding-bottom: 15%;
+            @media (max-width: 1000px) {
+                padding-bottom: 0;
+            }
+        }
+    }
     
     .image-side {
+        z-index: 0;
     }
 
     .image-side > img {
@@ -127,11 +163,11 @@
         display: flex;
         top: 0;
         align-items: center;
-        width: 100%;
+        width: 80%;
+        left: 10%;
 
         .logo {
             height: 52px;
-            width: 52px;
         }
 
         .grow {
@@ -182,10 +218,9 @@
             width: 160%;
             height: 120%;
             background:radial-gradient( rgba(0, 0, 0, 0.5), #fff 65%);
-            border-radius: 100%;
             z-index: -1;
 
-            @media (max-width: 700px) {
+            @media (max-width: 1000px) {
                 width: 120%;
                 left: -15%;
                 right: 0;

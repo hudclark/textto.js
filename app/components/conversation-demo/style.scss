@@ -1,6 +1,6 @@
 conversation-demo {
 
-    $demo-row-height: 50px;
+    $demo-row-height: 60px;
     $demo-row-height-small: 30px;
     $demo-row-height-medium: 30px;
 
@@ -334,13 +334,12 @@ conversation-demo {
         }
     }
 
-
     .lower {
         position: relative;
         width: 100%;
         background-color: #eaeaea;
         height: 0;
-        padding-top: 3%;
+        padding-top: 2%;
         display: block;
         border-top-right-radius: 4px;
         border-top-left-radius: 4px;
@@ -365,7 +364,7 @@ conversation-demo {
             position: absolute;
             left: 0;
             right: 0;
-            height: 30%;
+            height: 40%;
             border-bottom-right-radius: 7.5rem 2.5rem;
             border-bottom-left-radius: 7.5rem 2.5rem;
             @include elevation(2);

@@ -1,4 +1,4 @@
-<div class="landing container">
+<div class="landing">
     <div class="nav-bar">
         {{#link-to 'index'}}<img src="/images/logo.png" class="logo">{{/link-to}}
         <div class="grow"></div>
@@ -7,29 +7,40 @@
 
     <div class="section row first-section">
 
-            <div class="text-side section-item big">
+            <div class="text-side section-item">
                 <h1 class="appearing big-shift" delay="200">Text From Your Computer.</h1>
                 <h2 class="appearing" delay="800">For Free.</h2>
-                <div class="description appearing" delay="1200">
-                    Enjoy feature rich messaging through Textto's website or desktop applictions.
-                </div>
-                <div class="appearing" delay="1240">
-                    {{subscription-box email=email completed=completed}}
+                <div class="hide-on-small-only">
+                    <div class="description appearing" delay="1200">
+                        Enjoy feature rich messaging through Textto's website or desktop applictions.
+                    </div>
+                    <div class="appearing" delay="1240">
+                        {{subscription-box email=email completed=completed}}
+                    </div>
                 </div>
             </div>
 
-        <div class="image-side section-item phone-halo appearing" id="chat-screen" delay="800">
-            <img src="/images/login-screen.png">
+        <div class="image-side section-item appearing block" delay="800">
+            {{conversation-demo}}
+        </div>
+
+        <div class="section-item hide-on-med-and-up">
+            <div class="description appearing" delay="200">
+                Enjoy feature rich messaging through Textto's website or desktop applictions.
+            </div>
+            <div class="appearing" delay="200">
+                {{subscription-box email=email completed=completed}}
+            </div>
         </div>
 
     </div>
 
-    <div class="section row reverse appearing">
-            <div class="image-side section-item phone-halo" id="login-screen">
+    <div class="section row reverse second-section">
+            <div class="image-side section-item phone-halo appearing" id="login-screen">
                 <img src="/images/login-screen.png">
             </div>
-            <div class="text-side section-item">
-                <h2 class="appearing">Simple.</h2>
+            <div class="text-side section-item spacing-bottom">
+                <h1 class="appearing">Simple.</h1>
                 <div class="description appearing" delay="200">
                     <p>Get started in seconds.</p>
                     <p>Just install the Textto Android app and sign in with Google to connect your device.</p>
@@ -38,25 +49,26 @@
             </div>
     </div>
 
-    <div class="section row appearing">
-        <div class="text-side section-item">
-            <h2 class="appearing">Keep your texting app.</h2>
+    <div class="section row ">
+        <div class="text-side section-item spacing-bottom">
+            <h1 class="appearing">Keep your texting app.</h1>
             <div class="description appearing" delay="200">
                 <p>Textto syncs with your existing texting app.</p>
-                <p>Whether you use the default texting app or a third party app, we've got you covered. With Textto, there's no need to comprimise.</p>
+                <p>Whether you use the default texting app or a third party app, we've got you covered.</p>
+                <p>With Textto, there's no need to comprimise.</p>
                 <p></p>
             </div>
         </div>
-        <div id="chat-screen" class="image-side section-item phone-halo">
+        <div id="chat-screen" class="image-side section-item phone-halo appearing" delay="200">
             <img src="/images/chat-screen.png">
         </div>
     </div>
-    <div class="section reverse row appearing">
-        <div class="image-side section-item big">
+    <div class="section reverse row">
+        <div class="image-side section-item big appearing" delay="200">
             <img src="/images/emoji.gif">
         </div>
         <div class="text-side section-item small">
-            <h2 class="appearing">Fully Featured.</h2>
+            <h1 class="appearing">Fully Featured.</h1>
             <div class="description appearing" delay="200">
                 <p>Textto comes with all of the features you would expect in a messaging application.</p>
                 <p>Express yourself with countless emojis, easily searched and added to your texts.</p>
