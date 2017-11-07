@@ -15,27 +15,36 @@ export default BaseRoute.extend({
     scrollFire (elements) {
         const $window = $(window)
         const windowHeight = $window.height()
+        const isMobile = $window.width() < 1000
 
         $window.on('scroll.appearing', () => {
             this.didScroll = true
         })
 
-        this.scrollInterval = setInterval(() => {
-            if (!this.didScroll) return
-            this.didScroll = false
+        const animateElementsIn = () => {
             const scrolledElements = elements.filter(e => {
-                const offset = e.width() / 2
-                const pos = $window.scrollTop() - e.position().top + windowHeight
+                const offset = windowHeight / 7
+                const pos = $window.scrollTop() - e.offset().top + windowHeight
                 return (pos > offset)
             })
             scrolledElements.forEach (e => {
-                e.addClass('visible')
+                let delay = e.attr('delay') || 0
+                if (isMobile && delay === 200) delay =0
+                setTimeout(() => e.addClass('visible'), delay)
                 elements.removeObject(e)
             })
+        }
+
+        this.scrollInterval = setInterval(() => {
+            if (!this.didScroll) return
+            this.didScroll = false
+            animateElementsIn()
             if (elements.length === 0) {
                 this.stopScrollListener()
             }
         }, 100)
+
+        animateElementsIn()
     },
 
     stopScrollListener () {

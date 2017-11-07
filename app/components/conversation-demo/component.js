@@ -3,6 +3,7 @@ import Ember from 'ember'
 export default Ember.Component.extend({
 
     tagName: 'conversation-demo',
+    classNames: 'conversation-demo',
 
     index: 0,
     messages: [],
