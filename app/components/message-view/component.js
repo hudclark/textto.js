@@ -31,7 +31,7 @@ export default Ember.Component.extend({
             if (this.get('mms') || this.get('message.fileUrl')) {
                 setTimeout(() => {
                     if (!(this.isDestroyed || this.isDestroying)) this.animateDown()
-                }, 500)
+                }, 800) // wait for image to render...
             } else {
                 this.animateDown()
             }
@@ -39,8 +39,10 @@ export default Ember.Component.extend({
     },
 
     animateDown () {
+        const amount = this.get('isScheduled') ? $('.messages')[0].scrollHeight :
+                                                 `+=${this.$().outerHeight(true)}px`
         $('.messages').animate({
-            scrollTop: `+=${this.$().outerHeight(true)}px`
+            scrollTop: amount
         }, 100)
     },
 
