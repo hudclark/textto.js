@@ -12,46 +12,6 @@ export default BaseRoute.extend({
         this.stopScrollListener()
     }),
 
-    scrollFire (elements) {
-        const $window = $(window)
-        const windowHeight = $window.height()
-        const isMobile = $window.width() < 1000
-
-        $window.on('scroll.appearing', () => {
-            this.didScroll = true
-        })
-
-        const animateElementsIn = () => {
-            const scrolledElements = elements.filter(e => {
-                const offset = windowHeight / 7
-                const pos = $window.scrollTop() - e.offset().top + windowHeight
-                return (pos > offset)
-            })
-            scrolledElements.forEach (e => {
-                let delay = e.attr('delay') || 0
-                if (isMobile && delay === 200) delay =0
-                setTimeout(() => e.addClass('visible'), delay)
-                elements.removeObject(e)
-            })
-        }
-
-        this.scrollInterval = setInterval(() => {
-            if (!this.didScroll) return
-            this.didScroll = false
-            animateElementsIn()
-            if (elements.length === 0) {
-                this.stopScrollListener()
-            }
-        }, 100)
-
-        animateElementsIn()
-    },
-
-    stopScrollListener () {
-        $(window).off('scroll.appearing')
-        clearInterval(this.scrollInterval)
-    },
-
     actions: {
 
         openWeb () {
@@ -69,12 +29,7 @@ export default BaseRoute.extend({
 
         didTransition () {
             Ember.run.scheduleOnce('afterRender', this, function () {
-                const selector = $('.appearing')
-                const elements = []
-                for (let i = 0; i < selector.length; i++) {
-                    elements.push(selector.eq(i))
-                }
-                this.scrollFire(elements)
+                $('.appearing').scrollIn()
             })
         }
     }
