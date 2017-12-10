@@ -9,7 +9,7 @@ export default BaseRoute.extend({
     },
 
     unregister: Ember.on('deactivate', function () {
-        this.stopScrollListener()
+        $().stopScrollIn()
     }),
 
     actions: {

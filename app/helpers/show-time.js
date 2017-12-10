@@ -6,6 +6,6 @@ export default Ember.Helper.helper(function(params, hash) {
     if (index === array.length - 1) return false
     const first = array[index]
     const second = array[index + 1]
-    const difference = first.date - second.date
-    return (difference > 1000 * 60  * 15)
+    const difference = second.date - first.date
+    return (difference > 1000 * 60  * 20)
 })
