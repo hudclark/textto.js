@@ -29,7 +29,21 @@ export default BaseRoute.extend({
 
         didTransition () {
             Ember.run.scheduleOnce('afterRender', this, function () {
-                $('.appearing').scrollIn()
+
+                const options = {}
+                const isMobile = ($(window).width() < 600)
+                if (isMobile) {
+                    options.delayFactor = 0.5
+                    options.durationFactor = 0.8
+                    options.percentageVisible = 0.1
+                    options.movementFactor = .5
+                }
+
+                // if ($(window).width() < 600) {
+                //     $('.appearing').css('opacity', 1)
+                // } else {
+                $('.appearing').scrollIn(options)
+                //}
             })
         }
     }

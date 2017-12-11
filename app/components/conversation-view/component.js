@@ -160,11 +160,6 @@ export default Ember.Component.extend(MessageMixin, {
             this.attachContactsToMessages(newMessages)
 
             this.hasMoreMessages = (newMessages.length > 0)
-            // Do not allow another load for three seconds
-            setTimeout(() => {
-                if (this.isDestroyed || this.isDestroying) return
-                this.isLoadingMore = false
-            }, 3000)
 
             // save current scroll position
             const $messages = $('.messages')
@@ -176,6 +171,11 @@ export default Ember.Component.extend(MessageMixin, {
             // return to scroll position
             Ember.run.scheduleOnce('afterRender', this, function () {
                 $messages.scrollTop($messages[0].scrollHeight - scrollFromBottom)
+                // Do not allow another load for three seconds
+                setTimeout(() => {
+                    if (this.isDestroyed || this.isDestroying) return
+                    this.isLoadingMore = false
+                }, 1000)
             })
         } catch (err) {
             console.log('Error loading more messages', err)

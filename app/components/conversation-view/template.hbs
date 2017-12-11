@@ -13,10 +13,10 @@
 {{else if (or sortedScheduledMessages.length sortedMessages.length)}}
     <div class="messages">
         {{#each sortedMessages as |message index|}}
-            {{message-view message=message open-photo='openPhoto'}}
             {{#if (show-time sortedMessages index)}}
-                <time>{{{format-time message.date}}}</time>
+                <time>{{{format-time message.date message.body}}}</time>
             {{/if}}
+            {{message-view message=message open-photo='openPhoto'}}
         {{/each}}
         {{#each sortedScheduledMessages as |message|}}
             {{message-view message=message received=false isScheduled=true}}
