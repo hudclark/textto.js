@@ -9,7 +9,5 @@ export default Ember.Helper.helper(function(params, hash) {
     const second = array[index - 1]
 
     const difference = first.date - second.date
-    console.log('Diff between ' + first.body + ' and ' + second.body)
-    console.log(difference)
     return (difference > 1000 * 60  * 20)
 })
