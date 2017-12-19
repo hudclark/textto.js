@@ -19,6 +19,7 @@ top-bar {
     flex-direction: row;
     display: flex;
     height: $row-height;
+    z-index: 1;
     @include elevation(1);
 
     .right-content {
