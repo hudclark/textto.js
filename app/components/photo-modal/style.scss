@@ -8,6 +8,8 @@ photo-modal {
 
     animation: fadeIn .15s ease-in;
 
+    z-index: 99;
+
     .mask {
         background: rgba(0, 0, 0, 0.8);
         position: fixed;

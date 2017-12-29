@@ -69,6 +69,12 @@ export default Ember.Component.extend({
             }
         },
 
+        paste (e) {
+            e.preventDefault()
+            const text = e.clipboardData.getData('text/plain')
+            document.execCommand('insertHTML', false, text)
+        },
+
         attachFile () {
             this.get('bus').post('openModal', {componentName: 'upload-modal', data: { threadId: this.get('threadId')}})
         },
