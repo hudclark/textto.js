@@ -1,8 +1,11 @@
-<div class="title">Sign In</div>
+<a href="/" class="logos">
+    <img class="logo" src="/images/logo.png">
+    <div class="logo" >Textto</div>
+</a>
 {{#if isLoading }}
     {{loading-view}}
 {{else}}
-    <img src="/images/g-signin.png" {{action 'login'}}>
+    <img class="sign-in" src="/images/g-signin.png" {{action 'login'}}>
 {{/if}}
 <div class="subtext">
     By using this site you agree to the <a href="/legal/terms">terms and conditions</a> and <a href="/legal/privacy">privacy policy</a>.

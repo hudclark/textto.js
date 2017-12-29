@@ -4,7 +4,10 @@ login-view {
     padding: 24px 40px;
     text-align: center;
     display: inline-block;
-    width: 300px;
+    width: 400px;
+    max-width: 80%;
+    box-shadow: 0 0 32px 8px rgba(0, 0, 0, 0.2);
+
 
     .title {
         font-size: 2em;
@@ -16,7 +19,7 @@ login-view {
         display: block;
     }
 
-    img {
+    .sign-in {
         cursor: pointer;
         margin-top: 16px;
         display: inline-block;

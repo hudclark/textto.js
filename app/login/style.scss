@@ -1,19 +1,40 @@
 .login-page {
-    //background: url('/images/city-small.jpg') no-repeat center center;
-    background: linear-gradient(to top right, #CBBACC, #2580B3);
+    overflow: hidden;
     height: 100vh;
+    width: 100vw;
     text-align: center;
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 10%;
+
+    &:after {
+        content: '';
+        position: absolute;
+        background-color: $colorAccent;
+        right: -20vw;
+        top: -20vh;
+        bottom: -20vh;
+        left: 50vw;
+        transform: rotate(10deg);
+        z-index: -1;
+
+    }
 
     .logos {
         display: flex;
-        margin: 0 auto 40px auto;
         align-items: center;
         justify-content: center;
-
-        padding-top: 10%;
-        @media (max-width: 700px) {
-            padding-top: 30%;
-        }
-
+        margin-bottom: 16px;
+        margin-top: 16px;
     }
+
+    .logo {
+        max-height: 70px;
+        font-size: 35px;
+        color: $colorAccent;
+    }
+
 }
