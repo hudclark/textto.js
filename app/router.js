@@ -11,6 +11,8 @@ Router.map(function() {
   this.route('login')
   this.route('threads')
 
+  this.route('no-messages')
+
 })
 
 export default Router

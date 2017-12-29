@@ -55,14 +55,16 @@ export default Ember.Service.extend({
         const url = config.wsHost + '?token=' + this.get('auth').getAuthToken()
         this.ws = new WebSocket(url)
 
-        this.ws.onopen = () => {
+        const ws = this.ws
+
+        ws.onopen = () => {
             if (isReconnect) {
                 this.get('bus').post('websocketReconnected')
             }
             this.onOpen()
         }
 
-        this.ws.onmessage = (msg) => {
+        ws.onmessage = (msg) => {
             if (msg.data === 'pong') {
                 this.onPong()
             } else {
@@ -70,17 +72,17 @@ export default Ember.Service.extend({
             }
         }
 
-        this.ws.onclose = (e) => {
+        ws.onclose = (e) => {
             console.log('WS closed: ', e)
-            this.ws.onerror = null
-            this.ws.onmessage = null
-            this.ws.onopen = null
-            this.ws.onclose = null
+            ws.onerror = null
+            ws.onmessage = null
+            ws.onopen = null
+            ws.onclose = null
             this.clearTimeouts()
             if (e.code !== this.CLOSE_CODE) this.reconnect()
         }
 
-        this.ws.onerror = (e) => {
+        ws.onerror = (e) => {
             console.log('WS error: ', e)
         }
     },

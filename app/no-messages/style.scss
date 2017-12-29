@@ -1,0 +1,67 @@
+.no-messages-page {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-bottom: 10%;
+    color: #070707;
+
+    &:after {
+        content: '';
+        position: absolute;
+        background-color: $colorAccent;
+        right: -20vw;
+        top: -20vh;
+        bottom: -20vh;
+        left: 50vw;
+        transform: rotate(10deg);
+        z-index: -1;
+
+    }
+
+    .title {
+        font-family: 'Open Sans',sans-serif;
+        font-weight: 700;
+        font-size: 40px;
+        margin-bottom: 8px;
+    }
+
+    .subtitle {
+        color: #888;
+        //font-family: 'Open Sans',sans-serif;
+        font-weight: 500;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .badge img {
+        max-width: 300px;
+        display: block;
+        margin: 20px auto;
+        cursor: pointer;
+    }
+
+    .card {
+        box-shadow: 0 0 32px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        padding: 32px;
+        border-radius: 16px;
+        width: 600px;
+        max-width: 80%;
+
+        loading {
+            display: block;
+            margin: 48px auto;
+        }
+    }
+
+
+    .logout {
+        cursor: pointer;
+    }
+
+}

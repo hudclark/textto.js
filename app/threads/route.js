@@ -53,4 +53,13 @@ export default BaseRoute.extend({
         this.transitionTo('login')
     },
 
+    actions: {
+
+
+        noMessages () {
+            this.transitionTo('no-messages')
+        }
+
+    }
+
 });
