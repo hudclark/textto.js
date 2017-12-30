@@ -10,8 +10,6 @@ export default Ember.Component.extend({
     auth: Ember.inject.service(),
     bus: Ember.inject.service(),
 
-    isWeb: (!window.ELECTRON),
-
     init() {
         this._super(...arguments)
 
@@ -24,9 +22,11 @@ export default Ember.Component.extend({
             .catch(e => console.log(e))
     },
 
-    didRender () {
+    didInsertElement () {
         this._super(...arguments)
-        this.$('.tooltipped').dropdown()
+        Ember.run.scheduleOnce('afterRender', this, () => {
+            $('#coming-soon').tooltip()
+        })
     },
 
     closeDrawer() {
