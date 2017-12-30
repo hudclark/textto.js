@@ -53,6 +53,16 @@ message-view {
         border-bottom-right-radius: 1px;
         @include elevation(1);
 
+        &.single-emoji {
+            background-color: initial !important;
+            box-shadow: none !important;
+            line-height: 120px;
+            max-width: 50%;
+            .emoji {
+                width: 60px;
+            }
+        }
+
         .emoji-text {
             text-align: left;
             white-space: pre-line;

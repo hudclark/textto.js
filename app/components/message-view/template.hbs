@@ -20,7 +20,8 @@
     {{#if message.fileUrl}}
         <img class="img-small" src={{message.fileUrl}}>
     {{else}}
-        <message-bubble>
+        {{! Just do text matching here instead of in emoji-text}}
+        <message-bubble class="{{if isSingleEmoji 'single-emoji'}}">
             {{emoji-text content=message.body linkify=true}}
         </message-bubble>
     {{/if}}
