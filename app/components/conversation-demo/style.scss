@@ -282,6 +282,7 @@
             &.animated {
                 animation: insert .5s ease-in;
             }
+
         }
 
         message-bubble {
@@ -292,6 +293,15 @@
             @media (max-width: 500px) {
                 margin: 2px;
                 padding: 6px 8px;
+            }
+
+            &.single-emoji {
+                margin: 0;
+                line-height: 0;
+                .emoji {
+                    max-width: 40px;
+                    margin: 0;
+                }
             }
         }
 

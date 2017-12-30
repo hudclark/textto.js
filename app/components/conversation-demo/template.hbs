@@ -34,6 +34,10 @@
                     <message-view class="{{message.class}} animated">
                         {{#if message.image}}
                             <img src={{message.image}}>
+                        {{else if message.emoji}}
+                            <message-bubble class="{{message.class}} single-emoji">
+                                {{{message.emoji}}}
+                            </message-bubble>
                         {{else}}
                             <message-bubble class={{message.length}}></message-bubble>
                         {{/if}}

@@ -45,7 +45,7 @@ export default Ember.Component.extend({
             time: 1000
         },
         {
-            length: 'long',
+            emoji: '<img class="emoji" draggable="false" alt="😀" src="https://twemoji.maxcdn.com/2/72x72/1f600.png">',
             class: 'received',
             time: 1000
         },
@@ -86,7 +86,8 @@ export default Ember.Component.extend({
         messages.unshiftObject({
             class: message.class,
             length: message.length,
-            image: message.image
+            image: message.image,
+            emoji: message.emoji
         })
         setTimeout(this.conversationTick.bind(this), message.time)
     },
