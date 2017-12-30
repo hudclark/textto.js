@@ -13,6 +13,10 @@ Router.map(function() {
 
   this.route('no-messages')
 
+  this.route('legal', function () {
+    this.route('privacy')
+  })
+
 })
 
 export default Router
