@@ -41,6 +41,7 @@ export default Ember.Component.extend(ScrollMixin, {
     },
 
     isInViewPort () {
+        if (!this.$()) return false
         const delta = this.$().height() + this.$()[0].getBoundingClientRect().top
         return delta > -50
     },

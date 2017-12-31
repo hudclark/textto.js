@@ -80,9 +80,13 @@ export default Ember.Component.extend(MessageMixin, {
     },
 
     scrollToBottom (delay) {
-        setTimeout(function () {
+        setTimeout(() => {
             const $messages = $('.messages')
-            $messages.scrollTop($messages[0].scrollHeight)
+            if (!$messages) {
+                this.scrollToBottom(200)
+            } else {
+                $messages.scrollTop($messages[0].scrollHeight)
+            }
         }, delay)
     },
 
