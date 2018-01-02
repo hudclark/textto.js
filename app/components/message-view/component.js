@@ -34,15 +34,18 @@ export default Ember.Component.extend({
             $('.dropdown-button').dropdown({belowOrigin: true, alignment: 'right'})
         }
         if (this.get('message.animated')) {
-            const delay = (this.get('mms') || this.get('message.fileUrl')) ? 800 : 50
+            const delay = (this.get('mms') || this.get('message.fileUrl')) ? 800 : 100
             setTimeout(() => this.animateDown(), delay)
         }
     },
 
     animateDown () {
         if (this.isDestroyed || this.isDestroying) return
-        const amount = this.get('isScheduled') ? $('.messages')[0].scrollHeight :
-                                                 `+=${this.$().outerHeight(true)}px`
+
+        const outerHeight = this.$().outerHeight(true) * 2
+
+        const amount = this.get('isScheduled') ? $('.messages')[0].scrollHeight  + outerHeight:
+                                                 `+=${outerHeight}px`
         $('.messages').animate({
             scrollTop: amount
         }, 200)
@@ -64,8 +67,6 @@ export default Ember.Component.extend({
         onLoad () {
             console.log('image loaded')
         }
-
-
 
     }
 });
