@@ -11,6 +11,8 @@ export default BaseRoute.extend({
     api: Ember.inject.service(),
     notifications: Ember.inject.service(),
 
+    hasMoved: false,
+
     register: Ember.on('activate', function () {
         console.log('Register')
         this.get('bus').register(this)

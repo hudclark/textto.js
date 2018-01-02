@@ -24,8 +24,7 @@ export default BaseRoute.extend({
 
     onEndInitialSync () {
         console.log('Ending initial sync')
-        this.controllerFor('no-messages').set('isSyncing', false)
-        this.transitionTo('threads')
+        window.location.href = '/threads'
     },
 
     onLogout () {
