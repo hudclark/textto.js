@@ -6,8 +6,14 @@ export default Ember.Component.extend({
     api: Ember.inject.service(),
 
     tagName: 'send-box',
+    enabled: true,
 
-    placeholder: Ember.computed('to', function () {
+    placeholder: Ember.computed('to', 'enabled', function () {
+
+        if (!this.get('enabled')) {
+            return 'Log into the Android app to send messages.'
+        }
+
         let to = this.get('to');
         if (to) {
             return 'Message ' + this.get('to') + '...';
@@ -15,6 +21,16 @@ export default Ember.Component.extend({
             return 'Send a message...';
         }
     }),
+
+    init () {
+        this._super(...arguments)
+        this.get('bus').register(this)
+    },
+
+    willDestoryElement () {
+        this._super(...arguments)
+        this.get('bus').unregister(this)
+    },
 
     sendMessage (body) {
         const now = (new Date()).getTime()
@@ -45,6 +61,15 @@ export default Ember.Component.extend({
             range.collapse()
             range.select()
         }
+    },
+
+    onAndroidLogin () {
+        this.set('enabled', true)
+    },
+
+    onNoAndroidDevice () {
+        console.log('No android')
+        this.set('enabled', false)
     },
 
     actions: {
@@ -91,7 +116,6 @@ export default Ember.Component.extend({
         emojiClick (emoji) {
             const input = this.$('send-box-input')[0].appendChild(emoji.cloneNode(true))
         }
-
 
     }
 

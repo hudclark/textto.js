@@ -1,7 +1,9 @@
-<send-box-input placeholder={{placeholder}} autofocus='true' contenteditable="true" onkeydown={{action 'keyDown'}} onpaste={{action 'paste'}}></send-box-input>
-<i class="material-icons emoji" {{action 'openEmojis'}}>tag_faces</i>
-<i class="material-icons" {{action 'attachFile'}}>attach_file</i>
+<send-box-input class={{unless enabled 'disabled'}} placeholder={{placeholder}} autofocus='true' contenteditable={{enabled}} onkeydown={{action 'keyDown'}} onpaste={{action 'paste'}}></send-box-input>
+{{#if enabled}}
+    <i class="material-icons emoji" {{action 'openEmojis'}}>tag_faces</i>
+    <i class="material-icons" {{action 'attachFile'}}>attach_file</i>
 
-{{#if emojisOpen}}
-    {{emoji-box on-close='closeEmojis' emoji-click='emojiClick'}}
+    {{#if emojisOpen}}
+        {{emoji-box on-close='closeEmojis' emoji-click='emojiClick'}}
+    {{/if}}
 {{/if}}

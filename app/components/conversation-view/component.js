@@ -57,6 +57,15 @@ export default Ember.Component.extend(MessageMixin, {
     async loadThread (threadId) {
         const response = await this.get('api').getAllMessages(threadId)
         if (this.isDestroyed || this.isDestroying) return
+
+        if (!response.canSendMessages) {
+            this.get('bus').post('noAndroidDevice')
+        }
+
+        // TODO
+        // Add a handler for registeredDevice in side bar and send box to disable/enable
+        // when a user gets/looses a device
+
         this.set('isLoading', false)
 
         // make sure request is not cancelled
