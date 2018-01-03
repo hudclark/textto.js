@@ -28,7 +28,7 @@ export default Ember.Component.extend(MessageMixin, {
         this.get('bus').unregister(this)
     },
 
-    sendDisabled: Ember.computed('message', 'to', function () {
+    sendDisabled: Ember.computed('message', 'to.@each', function () {
         return !(this.get('to.length') && this.get('message.length'))
     }),
 
