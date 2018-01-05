@@ -33,8 +33,11 @@ module.exports = function(environment) {
 
     //ENV.host = 'http://localhost:5000';
     //ENV.wsHost = 'ws://localhost:5000';
-    ENV.wsHost = 'ws://api.textto.io';
-    ENV.host = 'http://api.textto.io';
+    ENV.wsHost = 'wss://api.textto.io';
+    ENV.host = 'https://api.textto.io';
+
+    //ENV.wsHost = 'ws://localhost:8000';
+    //ENV.host = 'http://localhost:8000';
   }
 
   if (environment === 'test') {
@@ -46,6 +49,7 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
+
   }
 
   if (environment === 'production') {

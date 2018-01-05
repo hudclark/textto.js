@@ -7,8 +7,9 @@ export default Ember.Component.extend({
     api: Ember.inject.service(),
 
     isLoading: Ember.computed('message', function () {
-        const message = this.get('message')
         if (!this.get('isScheduled')) return false
+        const message = this.get('message')
+        if (message.sent) return false
         if (message.failed) return false
         return true
     }),
