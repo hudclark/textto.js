@@ -161,8 +161,8 @@ export default Ember.Component.extend(MessageMixin, {
     async loadMore () {
         this.isLoadingMore = true
         try {
-            const messages = this.get('messages')
-            const last = messages[messages.length - 1]
+            const messages = this.get('sortedMessages')
+            const last = messages[0]
             if (!last) {
                 this.isLoadingMore = false
                 return
