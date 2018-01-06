@@ -29,15 +29,17 @@ export default Ember.Component.extend({
         this.set('mms', (message.type === 'mms'))
     },
 
-    didRender: function () {
+    didInsertElement () {
         this._super(...arguments)
-        if (this.get('message.failed')) {
-            $('.dropdown-button').dropdown({belowOrigin: true, alignment: 'right'})
-        }
-        if (this.get('message.animated')) {
-            const delay = (this.get('mms') || this.get('message.fileUrl')) ? 800 : 100
-            setTimeout(() => this.animateDown(), delay)
-        }
+        Ember.run.scheduleOnce('afterRender', this, () => {
+            if (this.get('message.failed')) {
+                $('.dropdown-button').dropdown({belowOrigin: true, alignment: 'right'})
+            }
+            if (this.get('message.animated')) {
+                const delay = (this.get('mms') || this.get('message.fileUrl')) ? 800 : 100
+                setTimeout(() => this.animateDown(), delay)
+            }
+        })
     },
 
     animateDown () {
