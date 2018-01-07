@@ -15,9 +15,7 @@
                     <div class="description appearing" delay="1200">
                         Enjoy feature rich messaging through Textto's website or desktop applications.
                     </div>
-                    <div class="appearing" delay="1240">
-                        {{subscription-box email=email completed=completed}}
-                    </div>
+                    <div class="cta large appearing" delay="1240" {{action 'openWeb'}}>Get Started</div>
                 </div>
             </div>
 
@@ -30,7 +28,9 @@
                 Enjoy feature rich messaging through Textto's website or desktop applictions.
             </div>
             <div class="appearing" delay="200">
-                {{subscription-box email=email completed=completed}}
+                <a href="https://play.google.com/apps/testing/com.moduloapps.textto">
+                    <img class="badge" src="/images/google-play-badge.png">
+                </a>
             </div>
         </div>
 
@@ -46,6 +46,7 @@
                     <p>Get started in seconds.</p>
                     <p>Just install the Android app and sign in with Google to connect your device.</p>
                     <p>Once your device is connected, use Textto's website or desktop applications to seamlessly text through your phone.</p>
+                    <div class="cta hide-on-small-only" {{action 'openWeb'}}>Get Started</div>
                 </div>
             </div>
     </div>
@@ -57,6 +58,7 @@
                 <p>Textto comes with all the features you would expect in a messaging application.</p>
                 <p>Express yourself with countless emojis, easily searched and added to your texts.</p>
                 <p>Quickly send photos from your computer through your Android device.</p>
+                <div class="cta hide-on-small-only" {{action 'openWeb'}}>Get Started</div>
             </div>
         </div>
         <div class="image-side section-item appearing" delay="200">
@@ -74,6 +76,7 @@
                 <p>Textto syncs with your existing texting app.</p>
                 <p>Whether you use the default texting app or a third party app, we've got you covered.</p>
                 <p>With Textto, there's no need to compromise.</p>
+                <div class="cta hide-on-small-only" {{action 'openWeb'}}>Get Started</div>
                 <p></p>
             </div>
         </div>
@@ -85,6 +88,7 @@
             <div class="description appearing">
                 <p>Download the desktop application available for Mac and Windows, or use the fully-featured website.</p>
                 <p>Manage all of your devices directly securely from the web.</p>
+                <div class="cta hide-on-small-only" {{action 'openWeb'}}>Get Started</div>
             </div>
         </div>
 
@@ -101,10 +105,11 @@
     </div>
 
     <div class="row centered">
-        <h2>Get early access when Textto launches this winter.</h2>
-        <div>
-            {{subscription-box email=email completed=completed}}
-        </div>
+        <h2>Join Textto and Start Texting for Free</h2>
+        <div class="cta large hide-on-small-only" {{action 'openWeb'}}>Get Started</div>
+        <a class="hide-on-med-and-up" href="https://play.google.com/apps/testing/com.moduloapps.textto">
+            <img class="badge" src="/images/google-play-badge.png">
+        </a>
     </div>
 
     <div class="footer">
