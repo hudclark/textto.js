@@ -52,6 +52,10 @@ export default Ember.Service.extend({
         return response.threads;
     },
 
+    deleteThread(threadId) {
+        return this._authenticatedRequest('/threads/' + threadId, {method: 'delete'})
+    },
+
     // messages
     async getMessages(threadId) {
         let response = await this._authenticatedRequest('/messages?threadId=' + threadId);
@@ -80,7 +84,7 @@ export default Ember.Service.extend({
     },
 
     sendScheduledMessage(message) {
-        let options = {
+        const options = {
             method: 'post',
             contentType: 'application/json',
             data: JSON.stringify(message)

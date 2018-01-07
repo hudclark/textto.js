@@ -25,7 +25,7 @@
 {{else}}
     <div class="threads">
         {{#each sortedThreads as |thread|}}
-            {{thread-view thread=thread onClick=(action 'onThreadClick')}}
+            {{thread-view thread=thread onClick=(action 'onThreadClick') delete="delete"}}
         {{/each}}
     </div>
 {{/if}}

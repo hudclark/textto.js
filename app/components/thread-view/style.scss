@@ -6,6 +6,7 @@ thread-view {
     display: flex;
     align-items: center;
     cursor: pointer;
+    position: relative;
 
     .details {
         display: inline-block;
@@ -39,10 +40,22 @@ thread-view {
         }
     }
 
+    .cancel {
+        display: none;
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        color: white;
+        font-size: 14px;
+    }
+
     &.active {
         background-color: $colorActive;
     }
     &:hover {
         background-color: $colorActive;
+        .cancel {
+            display: block;
+        }
     }
 }
