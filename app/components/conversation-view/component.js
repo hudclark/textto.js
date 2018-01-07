@@ -217,6 +217,8 @@ export default Ember.Component.extend(MessageMixin, {
         })
         this.set('scheduledMessages', scheduledMessages)
 
+        if (didReplace) message.animated = true
+
         // add message
         this.unshiftOrReplace('messages', message, m => (m._id === message._id), !didReplace)
     },
