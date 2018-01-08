@@ -132,6 +132,12 @@ export default Ember.Service.extend({
     syncContacts () {
         const options = { method: 'post' }
         return this._authenticatedRequest('/user/sync-contacts', options)
+    },
+
+    // admin
+
+    getDailyStats () {
+        return this._authenticatedRequest('/admin/stats/daily')
     }
 
 })

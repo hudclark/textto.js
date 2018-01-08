@@ -1,0 +1,21 @@
+<div class="admin-stats">
+    <div class="header">Total messages sent this month: {{model.totalSentThisMonth}}</div>
+
+    <div class="header">Today's analytics:</div>
+    <table>
+        <tr>
+            <th>Event Name</th>
+            <th>Time</th>
+            <th>Data</th>
+            <th>User</th>
+        </tr>
+        {{#each model.analytics as |event|}}
+            <tr>
+                <td>{{event.name}}</td>
+                <td>{{local-time event.time}}</td>
+                <td>{{event.data}}</td>
+                <td>{{event.user}}</td>
+            </tr>
+        {{/each}}
+    </table>
+</div>

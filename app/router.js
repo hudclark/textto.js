@@ -17,6 +17,8 @@ Router.map(function() {
     this.route('privacy')
   })
 
+  this.route('admin')
+
 })
 
 export default Router
