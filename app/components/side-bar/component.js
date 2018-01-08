@@ -144,6 +144,15 @@ export default Ember.Component.extend(MessageMixin, {
         delete (thread) {
             if (confirm('Are you sure you want to delete this thread?')) {
                 this.get('threads').removeObject(thread)
+
+                if (this.get('activeThread') === thread) {
+                    if (this.get('threads').length === 0) {
+                        this.sendAction('no-messages')
+                    } else {
+                        this.setActiveThread(this.get('threads').objectAt(0))
+                    }
+                }
+
                 this.get('api').deleteThread(thread._id)
                     .then(() => console.log('deleted thread'))
                     .catch(() => console.error('error deleting thread'))
