@@ -2,15 +2,9 @@ import BaseRoute from 'textto/application/base-route'
 
 export default BaseRoute.extend({
 
-    auth: Ember.inject.service(),
-
-    redirect () {
+    redirect (e) {
         if (window.ELECTRON) {
             return this.transitionTo('threads')
-        }
-        // If logged in, go straight to /threads
-        if (this.get('auth').isLoggedIn()) {
-            this.transitionTo('threads')
         }
     },
 
