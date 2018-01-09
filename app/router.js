@@ -15,6 +15,7 @@ Router.map(function() {
 
   this.route('legal', function () {
     this.route('privacy')
+    this.route('terms')
   })
 
   this.route('admin')
