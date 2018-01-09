@@ -14,8 +14,13 @@ export default Ember.Component.extend({
             this.set('text', length)
             return
         }
+        let contact = this.get('contact')
+        if (!contact && this.get('contacts')) {
+            contact = this.get('contacts').find((c) => c.image != null)
+            if (!contact) contact = this.get('contacts')[0]
+        }
 
-        const contact = (this.get('contacts')) ? this.get('contacts')[0] : this.get('contact')
+        //const contact = (this.get('contacts')) ? this.get('contacts')[0] : this.get('contact')
 
         if (!contact) {
             this.set('text', '#')
