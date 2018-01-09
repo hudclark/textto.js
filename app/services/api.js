@@ -138,6 +138,14 @@ export default Ember.Service.extend({
 
     getDailyStats () {
         return this._authenticatedRequest('/admin/stats/daily')
+    },
+
+    cleanMessages () {
+        return this._authenticatedRequest('/admin/cleanMessages', {method: 'post'})
+    },
+
+    cleanThreads () {
+        return this._authenticatedRequest('/admin/cleanThreads', {method: 'post'})
     }
 
 })
