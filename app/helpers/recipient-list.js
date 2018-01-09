@@ -8,7 +8,7 @@ export default Ember.Helper.helper(function(params, hash) {
     addresses.forEach((a) => result[a] = a);
     contacts.forEach((c) => {
         if (c.name && result[c.address]) {
-            result[c.address] = twemoji.parse(c.name);
+            result[c.address] = c.name;
         }
     });
     let isFirst = true;

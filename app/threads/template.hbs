@@ -7,7 +7,7 @@
             {{contact-picture contacts=activeThread.contacts length=activeThread.addresses.length}}
             <div class="details">
                 <span class="name">
-                    {{recipient-list contacts=activeThread.contacts addresses=activeThread.addresses}}
+                    {{emoji-text content=(recipient-list contacts=activeThread.contacts addresses=activeThread.addresses)}}
                 </span>
                 <span class="snippet">
                     {{emoji-text content=activeThread.snippet print=true}}

@@ -1,7 +1,7 @@
 {{contact-picture contacts=thread.contacts length=thread.addresses.length}}
 <div class="details">
     <div class="name">
-        {{recipient-list contacts=thread.contacts addresses=thread.addresses}}
+        {{emoji-text content=(recipient-list contacts=thread.contacts addresses=thread.addresses)}}
     </div>
     <div class="snippet">
         {{emoji-text content=thread.snippet}}
