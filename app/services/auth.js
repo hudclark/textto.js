@@ -45,6 +45,13 @@ export default Ember.Service.extend({
         return token != null && token != 'null';
     },
 
+    getBrowser () {
+        const browser = ['Chrome', 'Firefox', 'MISE', 'Safari', 'Opera']
+            .find((b) => navigator.userAgent.search(b) > 0)
+        
+        return (browser != null) ? browser : navigator.platform
+    },
+
     async logOut() {
         const refreshToken = this.getRefreshToken()
         const authToken = this.getAuthToken()
@@ -101,11 +108,10 @@ export default Ember.Service.extend({
     async _postGoogleCode(code, postMessage) {
         let platform;
         if (window.ELECTRON) {
-            platform = "Desktop - ";
+            platform = "Desktop";
         } else {
-            platform = "Web - ";
+            platform = this.getBrowser();
         }
-        platform += navigator.platform;
         let params = {
             code: code,
             platform: platform
