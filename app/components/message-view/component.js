@@ -35,7 +35,7 @@ export default Ember.Component.extend({
             if (this.get('message.failed')) {
                 $('.dropdown-button').dropdown({belowOrigin: true, alignment: 'right'})
             }
-            if (this.get('message.animated')) {
+            if (this.get('message.animated') || this.get('isScheduled')) {
                 const delay = (this.get('mms') || this.get('message.fileUrl')) ? 800 : 100
                 setTimeout(() => this.animateDown(), delay)
             }
