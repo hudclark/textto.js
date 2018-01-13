@@ -20,6 +20,8 @@ Router.map(function() {
 
   this.route('admin')
 
+  this.route('faq')
+
 })
 
 export default Router

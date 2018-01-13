@@ -109,3 +109,72 @@ img.logo {
     padding: 0 2px;
     vertical-align: middle;
 }
+
+.nav-bar {
+    position: fixed;
+    height: 80px;
+    padding: 12px;
+    background: white;
+    z-index: 9999;
+    display: flex;
+    top: 0;
+    align-items: center;
+    width: 80%;
+    left: 10%;
+
+    @media (max-width: 1000px) {
+        left: 5%;
+        width: 90%;
+    }
+
+    .logo {
+        height: 52px;
+        vertical-align: middle;
+    }
+
+    span {
+        font-size: 20px;
+    }
+
+    .grow {
+        display: flex;
+        flex-grow: 1;
+    }
+
+    a {
+        font-size: 16px;
+        font-weight: 500;
+        margin-right: 32px;
+
+        &:first-child {
+            margin-right: 0;
+        }
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+.ember-view {
+
+    h1 {
+        color: #070707;
+        font-size: 40px;
+        line-height: 50px;
+        font-weight: 700;
+        margin: 0 0 16px 0;
+        font-family: 'Open Sans', sans-serif;
+    }
+    h2 {
+        color: #070707;
+        font-size: 30px;
+        line-height: 40px;
+        font-weight: 700;
+        font-family: 'Open Sans', sans-serif;
+        margin: 0;
+
+        &.small {
+            font-size: 28px;
+        }
+    }
+}
