@@ -1,0 +1,24 @@
+<div class="form">
+    {{input class="sub-input" type='phone' value=number disabled=(or completed isLoading) enter='submit' placeholder="Enter your number"}}
+    <div class="button waves-effect {{if isLoading 'disabled'}}" {{action 'submit'}}>
+        {{#if isLoading}}
+            <div class="preloader-wrapper small active">
+                <div class="spinner-layer spinner-white-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                    <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+                </div>
+            </div>
+        {{else if completed}}
+            <i class="material-icons">done</i>
+        {{else if error}}
+            <i class="material-icons">error</i>
+        {{else}}
+            Text Me a Link
+        {{/if}}
+    </div>
+</div>

@@ -8,9 +8,9 @@
         {{else}}
             <div class="title">No Messages</div>
             <div class="subtitle">Make sure you have signed into the Android application and have internet access.</div>
-            <div class="badge">
-                <a href="https://play.google.com/store/apps/details?id=com.moduloapps.textto" target="_blank"><img id="google" src="/images/google-play-badge.png"></a>
-            </div>
+
+            Don't have the app? Enter your number and we'll text you a link!
+            {{phone-input}}
 
             <a class="logout" {{action 'logOut'}}>Sign in with a different account</a>
         {{/if}}

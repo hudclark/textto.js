@@ -46,8 +46,12 @@ export default Ember.Service.extend({
     },
 
     getBrowser () {
-        const browser = ['Chrome', 'Firefox', 'MISE', 'Safari', 'Opera']
+        let browser = ['Chrome', 'Firefox', 'MISE', 'Safari', 'Opera']
             .find((b) => navigator.userAgent.search(b) > 0)
+
+        if (browser != null && $(window).width() < 800) {
+            browser = browser + ' Mobile'
+        }
         
         return (browser != null) ? browser : navigator.platform
     },

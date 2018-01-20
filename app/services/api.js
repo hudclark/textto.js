@@ -118,6 +118,14 @@ export default Ember.Service.extend({
         return response.tokens
     },
 
+    textAppLink (address) {
+        return this._authenticatedRequest('/user/text-link', {
+            method: 'post',
+            contentType: 'application/json',
+            data: JSON.stringify({address: address})
+        })
+    },
+
     revokeRefreshToken (id) {
         const options = { method: 'post' }
         return this._authenticatedRequest('/revokeToken?id=' + id, options)
