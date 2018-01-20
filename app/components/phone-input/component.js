@@ -17,7 +17,7 @@ export default Ember.Component.extend({
             const endTime = new Date().getTime()
             // Pretend to take longer...
             if (endTime - startTime < 500) {
-                setTimeout(() => this.onSubscribed(), 1000 - (endTime - startTime))
+                setTimeout(() => this.onEntered(), 1000 - (endTime - startTime))
             } else {
                 this.onEntered()
             }
