@@ -13,13 +13,15 @@ module.exports = {
     ]
   },
 "electronPackagerConfig": {
-	"appCopyright": "Copyright (c) 2017 Textto",
+	"appCopyright": "Copyright (c) 2018 Textto",
 	"name": "Textto",
 	"overwrite": true,
 	"icon": "icons/png/icon.png"
 },
   "electronWinstallerConfig": {
-    "name": ""
+    "name": "Textto",
+    "title": "Textto",
+	"authors": "Hudson Clark"
   },
   "electronInstallerDebian": {
     "name": "Textto",
@@ -29,11 +31,4 @@ module.exports = {
     "icon": path.join(__dirname, '../icons/png/icon.png')
   },
   "electronInstallerRedhat": {},
-  "github_repository": {
-    "owner": "",
-    "name": ""
-  },
-  "windowsStoreConfig": {
-    "packageName": ""
-  }
 };
