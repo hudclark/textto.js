@@ -4,9 +4,9 @@ export default Ember.Component.extend({
 
     tagName: 'message-view',
     classNameBindings: ['received', 'hidden'],
-    api: Ember.inject.service(),
+    bus: Ember.inject.service(),
 
-    isLoading: Ember.computed('message', function () {
+    isLoading: Ember.computed('message', 'message.sent', 'message.failed', function () {
         if (!this.get('isScheduled')) return false
         const message = this.get('message')
         if (message.sent) return false
@@ -56,15 +56,8 @@ export default Ember.Component.extend({
 
     actions: {
 
-        retry: function () {
-            this.set('isLoading', true)
-            this.get('api').retryFailedMessage(this.get('message._id'))
-            this.set('message.failed', false)
-        },
-
-        delete: function () {
-            this.get('api').deleteFailedMessage(this.get('message._id'))
-            this.set('hidden', true)
+        openFailedModal () {
+            this.get('bus').post('openModal', {componentName: 'failed-modal', data: {scheduledMessage: this.get('message')}})
         },
 
         onLoad () {

@@ -77,6 +77,21 @@ message-view {
         vertical-align: middle;
     }
 
+    .why {
+        display: inline-block;
+        background: #bbb;
+        color: white;
+        font-weight: 800;
+        margin-right: 4px;
+        width: 22px;
+        height: 22px;
+        border-radius: 22px;
+        vertical-align: middle;
+        text-align: center;
+        line-height: 22px;
+        cursor: pointer;
+    }
+
     loading {
         margin: 0 8px;
     }

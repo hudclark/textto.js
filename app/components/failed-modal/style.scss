@@ -1,0 +1,37 @@
+.failed-modal {
+
+    min-height: 0 !important;
+
+    .title > .emoji {
+        width: 35px;
+    }
+
+    .error {
+        font-size: 16px;
+        font-weight: 500;
+        color: #0e0e0e;
+        margin-bottom: 8px;
+    }
+
+    .solution {
+        margin-bottom: 20px;
+    }
+
+    .buttons {
+        margin-top: 64px;
+        display: flex;
+        justify-content: flex-end;
+
+        .delete {
+            color: $errorColor;
+        }
+
+        .retry {
+            color: $colorAccent;
+        }
+
+    }
+
+
+
+}

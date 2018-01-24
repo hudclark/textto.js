@@ -240,6 +240,7 @@ export default Ember.Component.extend(MessageMixin, {
         // notify
         if (scheduledMessage.failed) {
             this.get('notifications').displayNotification('Failed sending message', 'Failed: ' + (scheduledMessage.body || 'Sending image'))
+            this.get('bus').post('openModal', {componentName: 'failed-modal', data: {scheduledMessage}})
         }
 
         if (this.get('threadId') !== scheduledMessage.threadId) return
@@ -264,6 +265,27 @@ export default Ember.Component.extend(MessageMixin, {
                 array[i].isDeleted = true
                 break
             }
+        }
+    },
+
+    onRemoveScheduledMessage (payload) {
+        if (this.isDestroyed || this.isDestroying) return
+        const id = payload.id
+        const array = this.get('scheduledMessages')
+        const msg = array.find((msg) => id === msg._id)
+        if (msg) {
+            array.removeObject(msg)
+        }
+    },
+
+    onRetryScheduledMessage (payload) {
+        if (this.isDestroyed || this.isDestroying) return
+        const id = payload.id
+        const array = this.get('scheduledMessages')
+        const msg = array.find((msg) => id === msg._id)
+        if (msg) {
+            Ember.set(msg, 'failed', false)
+            Ember.set(msg, 'sent', false)
         }
     },
 

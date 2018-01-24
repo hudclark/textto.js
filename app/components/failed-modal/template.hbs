@@ -1,0 +1,14 @@
+<div class="modal-content">
+    <div class="title">Failed to send message <img class="emoji" draggable="false" alt="😞" src="https://twemoji.maxcdn.com/2/72x72/1f61e.png"></div>
+    <div class="error">{{problem.error}}</div>
+    <div class="solution">{{problem.solution}}</div>
+
+    <div class="message">
+        Message: {{snippet}}
+    </div>
+
+    <div class="buttons">
+        <a class="btn-flat delete" {{action 'delete'}}>Delete</a>
+        <a class="btn-flat retry" {{action 'retry'}}>Retry</a>
+    </div>
+</div>

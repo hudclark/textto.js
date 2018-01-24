@@ -8,11 +8,7 @@
     {{/each}}
 {{else}}
     {{#if message.failed}}
-        <ul id="dropdown-{{message._id}}" class="dropdown-content">
-            <li><a {{action 'retry'}}>Retry</a></li>
-            <li><a {{action 'delete'}}>Delete</a></li>
-        </ul>
-        <a class="dropdown-button" data-activates="dropdown-{{message._id}}">
+        <a {{action 'openFailedModal'}}>
             <i class="material-icons error">error_outline</i>
         </a>
     {{/if}}

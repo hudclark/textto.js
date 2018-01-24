@@ -6,7 +6,7 @@ export default Ember.Route.extend({
     redirect () {
         // If logged in, go straight to /threads
         const path = window.location.pathname
-        if (path === '/' && this.get('auth').isLoggedIn()) {
+        if ((path === '/' || path === '/no-messages') && this.get('auth').isLoggedIn()) {
             this.transitionTo('threads')
         }
     }

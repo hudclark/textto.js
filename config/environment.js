@@ -31,11 +31,11 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
 
-    ENV.wsHost = 'wss://api.textto.io';
-    ENV.host = 'https://api.textto.io';
+    //ENV.wsHost = 'wss://api.textto.io';
+    //ENV.host = 'https://api.textto.io';
 
-    //ENV.wsHost = 'ws://localhost:8000';
-    //ENV.host = 'http://localhost:8000';
+    ENV.wsHost = 'ws://localhost:8000';
+    ENV.host = 'http://localhost:8000';
   }
 
   if (environment === 'test') {
