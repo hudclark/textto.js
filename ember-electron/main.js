@@ -17,8 +17,8 @@ function handleSquirrelEvent() {
   const path = require('path')
 
   const appFolder = path.resolve(process.execPath, '..')
-  const rootAtomFolter = path.resolve(appFolder, '..')
-  const updateDotExe = path.resolve(path.join(rootAtomFolter, 'Update.exe'))
+  const rootAtomFolder = path.resolve(appFolder, '..')
+  const updateDotExe = path.resolve(path.join(rootAtomFolder, 'Update.exe'))
   const exeName = path.basename(process.execPath)
 
   const spawn = function (command, args) {
