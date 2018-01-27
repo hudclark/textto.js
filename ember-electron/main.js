@@ -1,7 +1,59 @@
 /* eslint-env node */
 const { app, BrowserWindow, protocol } = require('electron');
-const { dirname, join, resolve } = require('path');
 const protocolServe = require('electron-protocol-serve');
+const { dirname, join, resolve } = require('path');
+
+if (handleSquirrelEvent()) {
+  return false
+}
+
+function handleSquirrelEvent() {
+  // TOOD need to make sure we're on win32
+  if (process.argv.length === 1) return false
+
+  const ChildProcess = require('child_process')
+  const path = require('path')
+
+  const appFolder = path.resolve(process.execPath, '..')
+  const rootAtomFolter = path.resolve(appFolder, '..')
+  const updateDotExe = path.resolve(path.join(rootAtomFolter, 'Update.exe'))
+  const exeName = path.basename(process.execPath)
+
+  const spawn = function (command, args) {
+    let spawnedProcess, error
+    try {
+      spawnedProcess = ChildProcess.spawn(command, args, {detached: true})
+    } catch (err) {}
+
+    return spawnedProcess
+  }
+
+  const spawnUpdate = function (args) {
+    return spawn(updateDotExe, args)
+  }
+
+  const squirrelEvent = process.argv[1]
+  switch (squirrelEvent) {
+    case '--squirrel-install':
+    case '--squirrel-updated':
+      spawnUpdate(['--createShortcut', exeName])
+      setTimeout(app.quit, 1000)
+      return true
+    
+    case '--squirrel-uninstall':
+      spawnUpdate(['--removeShortcut', exeName])
+      setTimeout(app.quit, 1000)
+      return true
+
+    case '--squirrel-obsolete':
+      app.quit()
+      return true
+  }
+
+
+}
+
+
 
 let mainWindow = null;
 

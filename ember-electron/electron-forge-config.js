@@ -12,21 +12,20 @@ module.exports = {
       "rpm"
     ]
   },
-"electronPackagerConfig": {
-	"appCopyright": "Copyright (c) 2018 Textto",
-	"name": "Textto",
-	"overwrite": true,
-	"icon": "icons/png/icon.png"
-},
+  "electronPackagerConfig": {
+    "appCopyright": "Copyright (c) 2018 Textto",
+    "name": "Textto",
+    "overwrite": true,
+    "icon": "icons/png/icon.png"
+  },
   "electronWinstallerConfig": {
     "name": "Textto",
     "title": "Textto",
-	"authors": "Hudson Clark",
+    "authors": "Hudson Clark",
     "icon": path.join(__dirname, '../icons/win/icon.ico'),
-	"noMsi": "false",
-	"setupExe": "texttosetup.exe",
-	"setupIcon": path.join(__dirname, '../icons/win/icons'),
-	"exe": "textto.exe"
+    "setupExe": "texttosetup.exe",
+    "setupIcon": path.join(__dirname, '../icons/win/icon.ico'),
+    "exe": "test.exe"
   },
   "electronInstallerDebian": {
     "name": "Textto",
