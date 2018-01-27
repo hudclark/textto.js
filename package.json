@@ -4,7 +4,7 @@
   "description": "Sync your Android device with Textto and text from your computer for free!.",
   "productName": "Textto",
   "authors": "Hudson Clark",
-	"ownders": "Modulo Apps LLC",
+	"owners": "Modulo Apps LLC",
   "directories": {
     "doc": "doc",
     "test": "tests"

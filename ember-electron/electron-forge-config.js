@@ -21,7 +21,12 @@ module.exports = {
   "electronWinstallerConfig": {
     "name": "Textto",
     "title": "Textto",
-	"authors": "Hudson Clark"
+	"authors": "Hudson Clark",
+    "icon": path.join(__dirname, '../icons/win/icon.ico'),
+	"noMsi": "false",
+	"setupExe": "texttosetup.exe",
+	"setupIcon": path.join(__dirname, '../icons/win/icons'),
+	"exe": "textto.exe"
   },
   "electronInstallerDebian": {
     "name": "Textto",
