@@ -23,7 +23,6 @@ module.exports = {
     "title": "Textto",
     "authors": "Hudson Clark",
     "loadingGif": path.join(__dirname, '../icons/installing.gif'),
-    "icon": path.join(__dirname, '../icons/win/icon.ico'),
     "iconUrl": "https://textto.io/images/icon.ico",
     "setupIcon": path.join(__dirname, '../icons/win/icon.ico'),
   },
