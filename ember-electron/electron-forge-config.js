@@ -22,10 +22,9 @@ module.exports = {
     "name": "Textto",
     "title": "Textto",
     "authors": "Hudson Clark",
+    "loadingGif": path.join(__dirname, '../icons/installing.gif'),
     "icon": path.join(__dirname, '../icons/win/icon.ico'),
-    "setupExe": "texttosetup.exe",
     "setupIcon": path.join(__dirname, '../icons/win/icon.ico'),
-    "exe": "test.exe"
   },
   "electronInstallerDebian": {
     "name": "Textto",
