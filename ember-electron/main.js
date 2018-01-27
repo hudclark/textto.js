@@ -1,3 +1,5 @@
+if (require('electron-squirrel-startup')) return;
+
 /* eslint-env node */
 const { app, BrowserWindow, protocol } = require('electron');
 const protocolServe = require('electron-protocol-serve');
