@@ -9,6 +9,7 @@ export default Ember.Component.extend({
     actions: {
 
         async login() {
+            this.set('error', false)
             this.set('isLoading', true);
             try {
                 await this.get('auth').signIn()
@@ -16,6 +17,7 @@ export default Ember.Component.extend({
             } catch (err) {
                 console.log('error logging in');
                 console.log(err);
+                this.set('error', true)
             }
             this.set('isLoading', false);
         }
