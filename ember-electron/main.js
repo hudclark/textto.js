@@ -1,9 +1,12 @@
-if (require('electron-squirrel-startup')) return;
 
 /* eslint-env node */
 const { app, BrowserWindow, protocol } = require('electron');
 const protocolServe = require('electron-protocol-serve');
 const { dirname, join, resolve } = require('path');
+
+const package = require('../package.json')
+
+if (require('electron-squirrel-startup')) app.quit();
 // this should be placed at top of main.js to handle setup events quickly
 if (handleSquirrelEvent()) {
   // squirrel event handled and app will exit in 1000ms, so don't do anything else
@@ -22,6 +25,8 @@ function handleSquirrelEvent() {
   const rootAtomFolder = path.resolve(appFolder, '..');
   const updateDotExe = path.resolve(path.join(rootAtomFolder, 'Update.exe'));
   const exeName = path.basename(process.execPath);
+  const exeName = path.resolve(path.dirname(process.execPath), '..', 'app-' + package.version, path.basename(process.execPath))
+  //const exeName = basename(process.execPath)
 
   const spawn = function(command, args) {
     let spawnedProcess, error;
