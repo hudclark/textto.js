@@ -14,25 +14,25 @@ module.exports = {
   },
   "electronPackagerConfig": {
     "appCopyright": "Copyright (c) 2018 Textto",
-    "name": "Textto",
+    "name": "Textto Beta",
     "overwrite": true,
-    "icon": "icons/png/icon.png"
-  },
-  "electronWinstallerConfig": {
-    "name": "Textto",
-    "title": "Textto",
-    "authors": "Modulo Apps LLC",
-    "loadingGif": path.join(__dirname, '../icons/installing.gif'),
-    "iconUrl": "https://textto.io/images/icon.ico",
-    "setupIcon": path.join(__dirname, '../icons/win/icon.ico'),
     "icon": 'icons/win/icon.ico'
   },
+  "electronWinstallerConfig": {
+        icon: 'icons/win/icon.ico',
+        noMsi: true,
+        authors: 'Modulo Apps LLC',
+        iconUrl: `https://textto.io/images/icon.ico`,
+        setupIcon: path.join(__dirname, '../icons/win/icon.ico'),
+        title: 'Textto',
+        noMsi: true,
+        loadingGif: path.join(__dirname, '../icons/installing.gif')
+  },
   "electronInstallerDebian": {
-    "name": "Textto",
+    "name": 'app',
     "homepage": "https://textto.io",
     "genericName": "Text from your computer",
-    "bin": "Textto",
-    "icon": path.join(__dirname, '../icons/png/icon.png')
+    "bin": "Textto"
   },
   "electronInstallerRedhat": {},
 };
