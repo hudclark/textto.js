@@ -22,6 +22,10 @@ Router.map(function() {
 
   this.route('faq')
 
+  this.route('beta', function () {
+    this.route('windows')
+  })
+
 })
 
 export default Router

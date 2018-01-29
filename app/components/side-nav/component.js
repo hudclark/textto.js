@@ -9,6 +9,7 @@ export default Ember.Component.extend({
     settings: Ember.inject.service(),
     auth: Ember.inject.service(),
     bus: Ember.inject.service(),
+    web: !window.ELECTRON,
 
     init() {
         this._super(...arguments)

@@ -1,6 +1,7 @@
 {
   "name": "textto",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "license": "x",
   "description": "Sync your Android device with Textto and text from your computer for free!.",
   "productName": "Textto",
   "authors": "Modulo Apps LLC",

@@ -1,0 +1,45 @@
+.beta-page {
+    width: 1200px;
+    max-width: 90%;
+    margin: 100px auto 0 auto;
+    text-align: center;
+
+
+    .row {
+        margin-top: 100px;
+        display: flex;
+    }
+
+    .col {
+        overflow: hidden;
+    }
+
+    .feature-image {
+        max-width: 100%;
+    }
+
+    .title {
+        font-weight: 800;
+        font-size: 22px;
+    }
+
+    .subtitle {
+        margin-top: 20px;
+    }
+
+    ul {
+        padding: 16px !important;
+        margin: 0;
+        list-style-type: disc !important;
+        text-align: left;
+        li {
+            list-style-type: disc !important;
+            margin: 0;
+            padding: 4px;
+        }
+    }
+
+    .download-btn {
+    }
+
+}

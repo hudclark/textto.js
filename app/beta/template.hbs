@@ -1,0 +1,20 @@
+<div class="nav-bar">
+    {{#link-to 'index'}}<img src="/images/logo.png" class="logo">{{/link-to}}
+    {{#link-to 'index'}}<span>Textto</span>{{/link-to}}
+    <div class="grow"></div>
+    {{#link-to 'faq'}}FAQ{{/link-to}}
+    {{#link-to 'login'}}Log In{{/link-to}}
+</div>
+<div class="beta-page">
+    <h1>Textto Beta</h1>
+    <h2>Thank you for helping us test Textto!</h2>
+    <hr>
+    <div class="subtitle">
+        Plase note that beta software is still undergoing testing and may be unstable.
+    </div>
+
+    <div class="help">
+        To submit issues, feedback, feature requests, or any other questions, please email <a href="mailto:hudson@textto.io">hudson@textto.io</a>.
+    </div>
+    {{outlet}}
+</div>

@@ -9,13 +9,15 @@
     </div>
 </li>
 
-<li class="important disabled padded-item">
-    <a class="disabled" id="coming-soon" data-tooltip="Coming Soon!">
-        <i class="material-icons">get_app</i>
-        Download the Desktop App
-    </a>
-</li>
-<div class="divider"></div>
+{{#if web}}
+    <li class="important disabled padded-item">
+        <a class="disabled" id="coming-soon" data-tooltip="Coming Soon!">
+            <i class="material-icons">get_app</i>
+            Download the Desktop App
+        </a>
+    </li>
+    <div class="divider"></div>
+{{/if}}
 
 <li class="padded-item">
     <a class="waves-effect" {{action 'manageDevices'}}>

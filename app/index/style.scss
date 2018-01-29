@@ -12,25 +12,6 @@
         margin-top: 20px;
     }
 
-    .cta {
-        display: inline-block;
-        background: $colorAccent;
-        color: white;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 16px;
-        padding: 8px 20px;
-
-        &.large {
-            margin-top: 32px;
-            font-size: 17px;
-            padding: 12px 24px;
-        }
-
-        &:hover {
-            background: #0099de;
-        }
-    }
 
     .description {
         font-size: 18px;
