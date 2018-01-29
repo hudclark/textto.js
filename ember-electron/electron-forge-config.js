@@ -25,7 +25,7 @@ module.exports = {
     "loadingGif": path.join(__dirname, '../icons/installing.gif'),
     "iconUrl": "https://textto.io/images/icon.ico",
     "setupIcon": path.join(__dirname, '../icons/win/icon.ico'),
-    "icon": path.join(__dirname, '../icons/win/icon.ico')
+    "icon": 'icons/win/icon.ico'
   },
   "electronInstallerDebian": {
     "name": "Textto",

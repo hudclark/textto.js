@@ -106,7 +106,6 @@ app.on('ready', () => {
   mainWindow = new BrowserWindow({
     width: 900,
     height: 600,
-	icon: join(__dirname, 'icons/png/icon.png'),
     webPreferences: {
         webSecurity: false,
         allowRunningInsecureContent: false,
