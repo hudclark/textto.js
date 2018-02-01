@@ -1,0 +1,24 @@
+.news-page {
+
+    margin-top: $navbarHeight;
+    text-align: center;
+
+    .banner {
+        max-height: 60vh;
+    }
+
+    .title {
+        margin: 128px auto 64px auto;
+        max-width: 700px;
+    }
+
+    .content {
+        padding-top: 24px;
+        max-width: 650px;
+        margin: 0 auto;
+        font-size: 20px;
+        text-align: left;
+        color: #202020;
+    }
+
+}

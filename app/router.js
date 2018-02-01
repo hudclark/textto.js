@@ -22,6 +22,10 @@ Router.map(function() {
 
   this.route('faq')
 
+  this.route('news', function () {
+    this.route('story', {path: ':story'})
+  })
+
   this.route('beta', function () {
     this.route('windows')
   })

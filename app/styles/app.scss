@@ -91,9 +91,6 @@ img.logo {
 }
 
 
-// pods
-@import "./pods";
-
 .ember-application {
     margin: 0;
     background-color: $colorPrimary;
@@ -110,9 +107,11 @@ img.logo {
     vertical-align: middle;
 }
 
+$navbarHeight: 80px;
+
 .nav-bar {
     position: fixed;
-    height: 80px;
+    height: $navbarHeight;
     padding: 12px;
     background: white;
     z-index: 9999;
@@ -201,3 +200,6 @@ img.logo {
         background: #0099de;
     }
 }
+
+// pods
+@import "./pods";

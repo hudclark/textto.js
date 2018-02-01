@@ -154,6 +154,12 @@ export default Ember.Service.extend({
 
     cleanThreads () {
         return this._authenticatedRequest('/admin/cleanThreads', {method: 'post'})
+    },
+
+    // news
+    getNewsStory (story) {
+        return this.request('/news/' + story)
     }
+
 
 })
