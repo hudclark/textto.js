@@ -39,7 +39,8 @@ export default Ember.Service.extend({
     getTheme (name) {
         // first check to see if it is a base theme
         let theme = this.BASE_THEMES[name]
-        if (theme == null) theme = localStorage.getItem(name)
+        if (theme != null) theme = Object.assign({}, theme)
+        else theme = localStorage.getItem(name)
         if (theme != null) {
             try {
                 theme = JSON.parse(theme)
@@ -85,7 +86,6 @@ export default Ember.Service.extend({
             allThemes = JSON.parse(allThemes)
         }
 
-
         if (!justNames) {
             allThemes = allThemes.map(name => this.getTheme(name))
         }
@@ -98,7 +98,6 @@ export default Ember.Service.extend({
     },
 
     setCurrentTheme (name) {
-        console.log(name)
         localStorage.setItem('currentTheme', name)
         this.injectTheme(this.getTheme(name))
     },

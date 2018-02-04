@@ -9,9 +9,6 @@ export default ModalComponent.extend({
     didReceiveAttrs () {
         this.set('themes', this.get('theme').getAllThemes(false))
         this.set('current', this.get('theme').getCurrentThemeName())
-
-        console.log (this.get('theme').getAllThemes(false))
-        console.log(this.get('theme').getCurrentThemeName())
     },
 
     actions: {
