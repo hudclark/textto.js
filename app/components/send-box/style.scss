@@ -13,7 +13,6 @@ send-box {
         @include elevation(1);
         overflow: hidden;
 
-        background-color: #d4d8db;
         border: none;
         resize: none;
 
@@ -28,7 +27,6 @@ send-box {
         &:empty:before {
             content: attr(placeholder);
             display: block;
-            color: rgba(0, 0, 0, 0.4);
         }
 
         &.disabled {
@@ -42,7 +40,7 @@ send-box {
         z-index: 2;
         right: 54px;
         top: 44px;
-        color: $textDarkSecondary;
+        opacity: 0.8;
         cursor: pointer;
 
         &.emoji {

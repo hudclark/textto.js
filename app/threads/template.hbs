@@ -1,26 +1,28 @@
-{{side-bar threads=threads select-thread=(action 'onThreadSelected') no-messages='noMessages'}}
+<div class="threads-page color-text-primary">
+    {{side-bar threads=threads select-thread=(action 'onThreadSelected') no-messages='noMessages'}}
 
-<top-bar>
-    {{nav-bar go-home=(action "goHome")}}
-    <div class="right-content">
-        {{#if activeThread}}
-            {{contact-picture contacts=activeThread.contacts length=activeThread.addresses.length}}
-            <div class="details">
-                <span class="name">
-                    {{emoji-text content=(recipient-list contacts=activeThread.contacts addresses=activeThread.addresses)}}
-                </span>
-                <span class="snippet">
-                    {{address-list activeThread.addresses}}
-                </span>
-            </div>
-        {{/if}}
+    <top-bar class="color-primary">
+        {{nav-bar go-home=(action "goHome")}}
+        <div class="right-content">
+            {{#if activeThread}}
+                {{contact-picture contacts=activeThread.contacts length=activeThread.addresses.length}}
+                <div class="details">
+                    <span class="name color-text-primary">
+                        {{emoji-text content=(recipient-list contacts=activeThread.contacts addresses=activeThread.addresses)}}
+                    </span>
+                    <span class="snippet dark">
+                        {{address-list activeThread.addresses}}
+                    </span>
+                </div>
+            {{/if}}
+        </div>
+    </top-bar>
+
+    <div class="content-container color-primary color-text-primary">
+        {{send-box threadId=activeThread.androidId to=(recipient-list contacts=activeThread.contacts addresses=activeThread.addresses)}}
+        {{conversation-view threadId=activeThread.androidId contacts=activeThread.contacts}}
     </div>
-</top-bar>
 
-<div class="content-container">
-    {{send-box threadId=activeThread.androidId to=(recipient-list contacts=activeThread.contacts addresses=activeThread.addresses)}}
-    {{conversation-view threadId=activeThread.androidId contacts=activeThread.contacts}}
+    {{modal-service}}
+    {{side-nav}}
 </div>
-
-{{modal-service}}
-{{side-nav}}

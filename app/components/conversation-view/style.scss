@@ -4,10 +4,10 @@ conversation-view {
     overflow-y: auto;
 
     time {
-        color: $textDarkSecondary;
         text-align: center;
         font-size: 0.8em;
         margin: 8px 0;
+        opacity: 0.5;
     }
 
     .messages {
@@ -25,11 +25,6 @@ conversation-view {
             background: transparent;
             border-radius: 2px;
         }
-        &::-webkit-scrollbar-thumb {
-            border-radius: 4px;
-            background-color: $colorPrimaryDark;
-        }
-
         .skeleton {
             width: 200px;
             height: 40px;

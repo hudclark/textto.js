@@ -1,5 +1,4 @@
 nav-bar {
-    background-color: $colorPrimaryDark;
     width: $side-bar-width;
     height: $row-height;
     display: flex;
@@ -8,7 +7,6 @@ nav-bar {
     justify-content: center;
 
     i {
-        color: $textLight;
         position: absolute;
         top: 20px;
         cursor: pointer;
@@ -17,7 +15,6 @@ nav-bar {
 
     .logo {
         padding: 8px;
-        color: $textLight;
         font-size: 20px;
         cursor: pointer;
         align-self: center;

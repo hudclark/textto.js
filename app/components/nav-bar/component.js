@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
 
     tagName: 'nav-bar',
+    classNames: ['color-secondary'],
     bus: Ember.inject.service(),
 
     didInsertElement() {

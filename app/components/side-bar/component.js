@@ -3,6 +3,8 @@ import MessageMixin from '../../mixins/messaging'
 
 export default Ember.Component.extend(MessageMixin, {
     tagName: 'side-bar',
+    classNames: ['color-secondary'],
+
 
     bus: Ember.inject.service(),
     api: Ember.inject.service(),

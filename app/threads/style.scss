@@ -38,12 +38,10 @@ top-bar {
         vertical-align: middle;
         .name {
             font-size: 1.2em;
-            color: rgba(0, 0, 0, 0.8);
         }
 
         .snippet {
             font-size: .9em;
-            color: $textDarkSecondary;
             .ember-view {
                 text-overflow: ellipsis !important;
                 display: inline-block;

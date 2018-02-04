@@ -2,7 +2,7 @@ import Ember from 'ember'
 
 export default Ember.Component.extend({
 
-    classNames: 'side-nav',
+    classNames: ['side-nav', 'color-primary'],
     elementId: 'side-nav',
     tagName: 'ul',
     api: Ember.inject.service(),
@@ -64,6 +64,15 @@ export default Ember.Component.extend({
                     this.set('syncingContacts', false)
                 }
             }, 15000)
+        },
+
+        openThemes () {
+            this.closeDrawer()
+            const modal = {
+                componentName: 'theme-modal',
+                data: null
+            }
+            this.get('bus').post('openModal', modal)
         }
     }
 

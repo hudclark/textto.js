@@ -2,7 +2,7 @@ import Ember from 'ember'
 
 export default Ember.Component.extend({
 
-    classNames: ['emoji-box'],
+    classNames: ['emoji-box', 'color-primary'],
     api: Ember.inject.service(),
     q: null,
 

@@ -1,10 +1,10 @@
 {{contact-picture contacts=thread.contacts length=thread.addresses.length}}
 <div class="details">
-    <div class="name">
+    <div class="name color-text-secondary">
         {{emoji-text content=(recipient-list contacts=thread.contacts addresses=thread.addresses)}}
     </div>
     <div class="snippet">
         {{emoji-text content=thread.snippet}}
     </div>
 </div>
-<i class="material-icons cancel">close</i>
+<i class="material-icons cancel color-text-secondary">close</i>

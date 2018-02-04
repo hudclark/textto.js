@@ -14,7 +14,6 @@ thread-view {
     }
 
     .name {
-        color: $textLight;
         margin-bottom: 8px;
 
         max-width: 180px;
@@ -24,7 +23,6 @@ thread-view {
     }
 
     .snippet {
-        color: $textSecondary;
         font-size: .9em;
 
         max-width: 180px;
@@ -45,15 +43,10 @@ thread-view {
         position: absolute;
         top: 8px;
         right: 8px;
-        color: white;
         font-size: 14px;
     }
 
-    &.active {
-        background-color: $colorActive;
-    }
     &:hover {
-        background-color: $colorActive;
         .cancel {
             display: block;
         }

@@ -1,0 +1,100 @@
+.threads-page {
+
+    // Default theme
+    .color-primary {
+        background-color: $colorPrimary;
+    }
+
+    .color-secondary{
+        background-color: $colorPrimaryDark;
+    }
+
+    .color-accent {
+        background-color: $colorAccent;
+    }
+
+    .text-color-accent {
+        color: $colorAccent;
+    }
+
+    .color-text-primary {
+        color: $textDark;
+    }
+
+    .color-text-background {
+        background-color: $textLight;
+    }
+
+    .color-text-secondary {
+        color: $textLight;
+    }
+
+    // Custom shit
+
+    .color-scroll-bar {
+        &::-webkit-scrollbar-thumb {
+            border-radius: 4px;
+            background-color: $colorPrimaryDark;
+        }
+    }
+
+    message-bubble {
+        background-color: $colorAccentSecondary;
+    }
+
+    message-view.received message-bubble {
+        background-color: $colorAccent;
+    }
+
+    thread-view:hover {
+        background-color: $colorActive;
+    }
+
+    thread-view.active {
+        background-color: $colorActive;
+    }
+
+    .btn {
+        background-color: $colorAccent !important;
+        &:hover {
+            background-color: $colorAccent !important;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,.26);
+        }
+    }
+
+    .btn-floating {
+        background-color: $colorAccent !important;
+        &:hover {
+            background-color: $colorAccent !important;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,.26);
+        }
+    }
+
+    .snippet {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .snippet.dark {
+        color: $textDarkSecondary;
+    }
+
+    .modal {
+        background-color: $colorPrimary;
+    }
+
+    .emoji-text > a {
+        color: $textDark;
+    }
+
+    .threads-page {
+        color: $textDark;
+    }
+
+    send-box-input {
+        background-color: rgba(189, 195, 199, 0.6);
+    }
+
+    send-box-input:empty:before {
+        color: rgba(0, 0, 0, 0.4);
+    }
+}

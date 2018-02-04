@@ -1,0 +1,98 @@
+<div class="modal-content">
+    <div class="title">Themes</div>
+    <div class="my-tabs">
+        <div class="my-tab {{if (eq currentTab 'all') 'text-color-accent'}}" {{action 'openTab' 'all'}}>All</div>
+        <div class="my-tab {{if (eq currentTab 'create') 'text-color-accent'}}" {{action 'openTab' 'create'}}>Create</div>
+    </div>
+    {{#if (eq currentTab 'all')}}
+        <table>
+            {{#each themes as |theme|}}
+                <tr class="theme">
+                    <td class="name">{{theme.name}}</td>
+                    <td class="colors">
+                        {{color-preview color=theme.secondary}}
+                        {{color-preview color=theme.primary}}
+                        {{color-preview color=theme.accent}}
+                        {{color-preview color=theme.accentSecondary}}
+                    </td>
+                    <td>
+                        {{#if (not theme.default)}}
+                            <i class="material-icons" {{action 'removeTheme' theme.name}}>close</i>
+                        {{/if}}
+                    </td>
+                    <td>
+                        {{input id=theme.name type="checkbox" checked=(eq theme.name current) class="filled-in" change=(action 'changeTheme' theme.name)}}
+                        <label for={{theme.name}}>&nbsp;</label>
+                    </td>
+                </tr>
+            {{/each}}
+        </table>
+    {{else}}
+        <div class="theme-form">
+            <div class="flex">
+                <label for="name">Theme Name: </label>
+                {{input type='text' value=newTheme.name}}
+            </div>
+
+            <table>
+                <tr class="input-row">
+                    <td>Primary Background:</td>
+                    <td>
+                        {{color-preview color=newTheme.primary}}
+                        #{{input type='text' class="small" value=newTheme.primary maxlength=6}}
+                    </td>
+                </tr>
+                <tr class="input-row">
+                    <td>Secondary Background:</td>
+                    <td>
+                        {{color-preview color=newTheme.secondary}}
+                        #{{input type='text' class="small" value=newTheme.secondary maxlength=6}}
+                    </td>
+                </tr>
+                <tr class="input-row">
+                    <td>Primary Text Color:</td>
+                    <td>
+                        {{color-preview color=newTheme.primaryText}}
+                        #{{input type='text' class="small" value=newTheme.primaryText maxlength=6}}
+                    </td>
+                </tr>
+                <tr class="input-row">
+                    <td>Secondary Text Color:</td>
+                    <td>
+                        {{color-preview color=newTheme.secondaryText}}
+                        #{{input type='text' class="small" value=newTheme.secondaryText maxlength=6}}
+                    </td>
+                </tr>
+                <tr class="input-row">
+                    <td>Accent:</td>
+                    <td>
+                        {{color-preview color=newTheme.accent}}
+                        #{{input type='text' class="small" value=newTheme.accent maxlength=6}}
+                    </td>
+                </tr>
+                <tr class="input-row">
+                    <td>Secondary Accent:</td>
+                    <td>
+                        {{color-preview color=newTheme.secondaryAccent}}
+                        #{{input type='text' class="small" value=newTheme.secondaryAccent maxlength=6}}
+                    </td>
+                </tr>
+                <tr class="input-row">
+                    <td>Active:</td>
+                    <td>
+                        {{color-preview color=newTheme.active}}
+                        #{{input type='text' class="small" value=newTheme.active maxlength=6}}
+                    </td>
+                </tr>
+            </table>
+
+            <div class="centered">
+                {{#if error}}
+                    <div class="error">{{error}}</div>
+                {{/if}}
+                <a class="btn" {{action 'saveTheme'}}>Save and Apply</a>
+            </div>
+
+        </div>
+    {{/if}}
+</div>

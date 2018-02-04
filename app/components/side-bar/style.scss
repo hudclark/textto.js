@@ -6,7 +6,6 @@ side-bar {
     width: $side-bar-width;
     display: flex;
     flex-direction: column;
-    background-color: $colorPrimaryDark;
 
     @include elevation(1);
 
@@ -24,14 +23,12 @@ side-bar {
         height: 50px;
         width: 50px;
         border-radius: 100%;
-        background: $colorAccent;
         display: inline-block;
     }
 
     .skeleton-name {
         height: .7em;
         width: 100px;
-        background-color: $textSecondary;
         margin-bottom: 8px;
         opacity: .4;
     }
@@ -39,7 +36,6 @@ side-bar {
     .skeleton-snippet {
         height: .7em;
         width: 200px;
-        background-color: $textSecondary;
         opacity: .4;
     }
 

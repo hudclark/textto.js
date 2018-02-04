@@ -11,8 +11,8 @@
 
 {{#if web}}
     <li class="important disabled padded-item">
-        <a class="disabled" id="coming-soon" data-tooltip="Coming Soon!">
-            <i class="material-icons">get_app</i>
+        <a class="disabled color-text-primary" id="coming-soon" data-tooltip="Coming Soon!">
+            <i class="material-icons color-text-primary">get_app</i>
             Download the Desktop App
         </a>
     </li>
@@ -20,15 +20,22 @@
 {{/if}}
 
 <li class="padded-item">
-    <a class="waves-effect" {{action 'manageDevices'}}>
-        <i class="material-icons">phone_android</i>
+    <a class="waves-effect color-text-primary" {{action 'openThemes'}}>
+        <i class="material-icons color-text-primary">invert_colors</i>
+        Themes
+    </a>
+</li>
+
+<li class="padded-item">
+    <a class="waves-effect color-text-primary" {{action 'manageDevices'}}>
+        <i class="material-icons color-text-primary">phone_android</i>
         Manage Devices
     </a>
 </li>
 
 <li class="padded-item">
-    <a class="waves-effect" {{action 'syncContacts'}}>
-        <i class="material-icons">person</i>
+    <a class="waves-effect color-text-primary" {{action 'syncContacts'}}>
+        <i class="material-icons color-text-primary">person</i>
         Sync Contacts
         {{#if syncingContacts}}
             {{loading-view class="contact-loader"}}
@@ -37,7 +44,7 @@
 </li>
 
 <li class="padded-item">
-    <a>
+    <a class="color-text-primary">
         <i class="material-icons">notifications</i>
         Notifications
         <div class="switch">
@@ -51,7 +58,7 @@
 <div class="divider"></div>
 
 <li class="padded-item">
-    <a class="waves-effect" href="mailto:help@textto.io">
+    <a class="waves-effect color-text-primary" href="mailto:help@textto.io">
         <i class="material-icons">email</i>
         Contact Support
     </a>
