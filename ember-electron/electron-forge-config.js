@@ -14,7 +14,7 @@ module.exports = {
   },
   "electronPackagerConfig": {
     "appCopyright": "Copyright (c) 2018 Textto",
-    "name": "Textto Beta",
+    "name": "Textto",
     "overwrite": true,
     "icon": 'icons/win/icon.ico'
   },
@@ -24,9 +24,10 @@ module.exports = {
         authors: 'Modulo Apps LLC',
         iconUrl: `https://textto.io/images/icon.ico`,
         setupIcon: path.join(__dirname, '../icons/win/icon.ico'),
-        title: 'Textto',
         noMsi: true,
-        loadingGif: path.join(__dirname, '../icons/installing.gif')
+        loadingGif: path.join(__dirname, '../icons/installing.gif'),
+        certificateFile: path.join(__dirname, '../moduloappscert.p12'),
+        certificatePassword: process.env.CERT_PASSWORD
   },
   "electronInstallerDebian": {
     "name": 'app',

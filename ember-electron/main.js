@@ -4,6 +4,8 @@ const { app, BrowserWindow, protocol } = require('electron');
 const protocolServe = require('electron-protocol-serve');
 const { dirname, join, resolve } = require('path');
 
+app.setAppUserModelId('com.squirrel.textto.Textto')
+
 const package = require('../package.json')
 
 if (require('electron-squirrel-startup')) app.quit();
