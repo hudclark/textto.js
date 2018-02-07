@@ -1,7 +1,7 @@
 const {app, autoUpdater, dialog} = require('electron')
 
 module.exports = function startAutoUpdater (feedUrl) {
-    autoUpdater.setFeedUrl(feedUrl)
+    autoUpdater.setFeedURL(feedUrl)
 
     // Handle events
 
@@ -11,7 +11,7 @@ module.exports = function startAutoUpdater (feedUrl) {
     autoUpdater.on('update-not-available', () => console.log('update not available'))
 
     // Display a success message on successful update
-    autoUpdater.addListener('update-downloaded', (event, releaseNotes, releaseName) => {
+    autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
         let message = `${app.getName()} is now available. It will be installed the next time you restart the application.`
 
         if (releaseNotes) {

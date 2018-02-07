@@ -155,7 +155,7 @@ app.on('ready', () => {
   });
 
   // auto updates
-  if (process.env.NODE_ENV !== 'dev' || true) startAutoUpdater('http://localhost:8080')
+  if (process.env.NODE_ENV !== 'dev' || true) startAutoUpdater('https://s3.amazonaws.com/textto.electron/win/x64')
 
 });
 
