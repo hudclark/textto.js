@@ -4,9 +4,24 @@ const { app, BrowserWindow, protocol } = require('electron');
 const protocolServe = require('electron-protocol-serve');
 const { dirname, join, resolve } = require('path');
 const startAutoUpdater = require('./auto-updates')
-const package = require('../package.json')
+//const package = require('../package.json')
 
-app.setAppUserModelId(`com.squirrel.${package.id}.Textto`)
+app.setAppUserModelId(`com.squirrel.textto.Textto`)
+
+
+// TODO
+
+/*
+
+Notifications confirmed working with no auto update and LAUNCHING the root Textt exe.
+NOT the one in the dist folder.
+
+To try to remidate:
+- Change exe path to basename - confirm everything okay
+- Add in auto updater - confirm everything okay
+- Download from s3 - confirm everything okay
+
+*/
 
 
 if (require('electron-squirrel-startup')) app.quit();
@@ -27,8 +42,8 @@ function handleSquirrelEvent() {
   const appFolder = path.resolve(process.execPath, '..');
   const rootAtomFolder = path.resolve(appFolder, '..');
   const updateDotExe = path.resolve(path.join(rootAtomFolder, 'Update.exe'));
-  const exeName = path.resolve(path.dirname(process.execPath), '..', 'app-' + package.version, path.basename(process.execPath))
-  //const exeName = basename(process.execPath)
+  //const exeName = path.resolve(path.dirname(process.execPath), '..', 'app-' + package.version, path.basename(process.execPath))
+  const exeName = path.basename(process.execPath)
 
   const spawn = function(command, args) {
     let spawnedProcess, error;
