@@ -4,6 +4,8 @@ const { app, BrowserWindow, protocol } = require('electron');
 const protocolServe = require('electron-protocol-serve');
 const { dirname, join, resolve } = require('path');
 
+const startAutoUpdater = require('./auto-updates')
+
 app.setAppUserModelId('com.squirrel.textto.Textto')
 
 const package = require('../package.json')
@@ -112,7 +114,9 @@ app.on('ready', () => {
         webSecurity: false,
         allowRunningInsecureContent: false,
     }
+
   });
+
 
   // If you want to open up dev tools programmatically, call
   // mainWindow.openDevTools();
@@ -149,6 +153,10 @@ app.on('ready', () => {
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
+
+  // auto updates
+  if (process.env.NODE_ENV !== 'dev' || true) startAutoUpdater('http://localhost:8080')
+
 });
 
 // Handle an unhandled error in the main thread
