@@ -3,12 +3,11 @@
 const { app, BrowserWindow, protocol } = require('electron');
 const protocolServe = require('electron-protocol-serve');
 const { dirname, join, resolve } = require('path');
-
 const startAutoUpdater = require('./auto-updates')
-
-app.setAppUserModelId('com.squirrel.textto.Textto')
-
 const package = require('../package.json')
+
+app.setAppUserModelId(`com.squirrel.${package.id}.Textto`)
+
 
 if (require('electron-squirrel-startup')) app.quit();
 // this should be placed at top of main.js to handle setup events quickly

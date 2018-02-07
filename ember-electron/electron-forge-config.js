@@ -25,6 +25,7 @@ module.exports = {
         iconUrl: `https://textto.io/images/icon.ico`,
         setupIcon: path.join(__dirname, '../icons/win/icon.ico'),
         noMsi: true,
+        exe: 'Textto.exe',
         loadingGif: path.join(__dirname, '../icons/installing.gif'),
         certificateFile: path.join(__dirname, '../moduloappscert.p12'),
         certificatePassword: process.env.CERT_PASSWORD

@@ -1,4 +1,4 @@
-const {app, autoUpdater, dialog} = require('electron')
+const {autoUpdater, dialog} = require('electron')
 
 module.exports = function startAutoUpdater (feedUrl) {
     autoUpdater.setFeedURL(feedUrl)
@@ -12,7 +12,7 @@ module.exports = function startAutoUpdater (feedUrl) {
 
     // Display a success message on successful update
     autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
-        let message = `${app.getName()} is now available. It will be installed the next time you restart the application.`
+        let message = 'An update for Textto is now available. It will be installed the next time you restart the application.'
 
         if (releaseNotes) {
             message += '\n\nRelease notes:\n'
@@ -26,7 +26,7 @@ module.exports = function startAutoUpdater (feedUrl) {
             type: 'question',
             buttons: ['Install and Relaunch', 'Later'],
             defaultId: 0,
-            message: `A new version of ${app.getName()} has been downloaded.`,
+            message: `A new version of Textto has been downloaded.`,
             detail: message
         }, (response) => {
             if (response === 0) {
