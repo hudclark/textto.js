@@ -9,21 +9,6 @@ const startAutoUpdater = require('./auto-updates')
 app.setAppUserModelId(`com.squirrel.textto.Textto`)
 
 
-// TODO
-
-/*
-
-Notifications confirmed working with no auto update and LAUNCHING the root Textt exe.
-NOT the one in the dist folder.
-
-To try to remidate:
-- Change exe path to basename - confirm everything okay
-- Add in auto updater - confirm everything okay
-- Download from s3 - confirm everything okay
-
-*/
-
-
 if (require('electron-squirrel-startup')) app.quit();
 // this should be placed at top of main.js to handle setup events quickly
 if (handleSquirrelEvent()) {

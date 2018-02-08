@@ -23,13 +23,6 @@ export default Ember.Component.extend({
             .catch(e => console.log(e))
     },
 
-    didInsertElement () {
-        this._super(...arguments)
-        Ember.run.scheduleOnce('afterRender', this, () => {
-            $('#coming-soon').tooltip()
-        })
-    },
-
     closeDrawer() {
         $('.hamburger').sideNav('hide')
     },

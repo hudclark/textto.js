@@ -189,6 +189,43 @@ $navbarHeight: 80px;
         background: #0099de;
     }
 }
+.comp-window {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    @include elevation(2);
+    font-size: 0;
+    img {
+        max-width: 100%;
+    }
+    .nav {
+        padding: 8px;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #eee;
+
+        i {
+            font-size: 16px;
+            color: #aaa;
+            margin: 0 4px;
+        }
+
+        .spacer {
+            display: flex;
+            flex-grow: 1;
+        }
+
+        .button {
+            height: 12px;
+            width: 12px;
+            border-radius: 12px;
+            margin-right: 4px;
+            .red { background: red; }
+            .yellow { background: yellow; }
+            .green { background: green; }
+        }
+
+    }
+}
 
 // pods
 @import "./pods";

@@ -1,0 +1,60 @@
+<div class="nav-bar">
+    {{#link-to 'index'}}<img src="/images/logo.png" class="logo">{{/link-to}}
+    {{#link-to 'index'}}<span>Textto</span>{{/link-to}}
+    <div class="grow"></div>
+    {{#link-to 'faq'}}FAQ{{/link-to}}
+    {{#link-to 'login'}}Log In{{/link-to}}
+</div>
+<div class="downloads-page">
+    {{#if model.mac}}
+        <div class="col">
+            <h2 class="padding-top">Coming Soon on Mac.</h2>
+            <div class="description">
+                We're hard at work getting Textto ready for Mac computer. Don't worry though, we'll send out an email when it's ready!
+            </div>
+        <div class="cta large" {{action 'openWeb'}}>Launch the Web App</div>
+        </div>
+        <div class="col">
+            <div class="comp-window">
+                <div class="nav">
+                    <div class="button red"></div>
+                    <div class="button yellow"></div>
+                    <div class="button green"></div>
+                </div>
+                <img src="/images/linux-screen.png">
+            </div>
+        </div>
+    {{else if model.mobile}}
+        <div class="centered">
+            <h2>Download the Textto Android app!</h2>
+            <div class="description">
+                Sync your Android phone with Textto and text from your computer for free!
+            </div>
+            <a href="https://play.google.com/store/apps/details?id=com.moduloapps.textto">
+                <img class="badge" src="/images/google-play-badge.png">
+            </a>
+            <img class="feature-image" src="/images/login-screen.png">
+        </div>
+    {{else}}
+        <div class="col">
+            <h2 class="padding-top">Download Textto for Windows.</h2>
+            <div class="description">
+                Everything you love about Textto installed right to your computer.
+            </div>
+            <a class="download-btn cta large" href="https://s3.amazonaws.com/textto.electron/win/x64/Textto-1.1.0 Setup.exe" download>
+                Windows 64 bit <i class="material-icons">file_download</i>
+            </a>
+        </div>
+        <div class="col">
+            <div class="comp-window">
+                <div class="nav">
+                    <div class="spacer"></div>
+                    <i class="material-icons">remove</i>
+                    <i class="material-icons">crop_square</i>
+                    <i class="material-icons">close</i>
+                </div>
+                <img src="/images/linux-screen.png">
+            </div>
+        </div>
+    {{/if}}
+</div>

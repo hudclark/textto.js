@@ -30,6 +30,8 @@ Router.map(function() {
     this.route('windows')
   })
 
+  this.route('downloads')
+
 })
 
 export default Router

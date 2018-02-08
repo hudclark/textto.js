@@ -1,0 +1,58 @@
+.downloads-page {
+    width: 1400px;
+    max-width: 90%;
+    margin: 100px auto 0 auto;
+    display: flex;
+    padding-top: 5%;
+
+    flex-direction: row;
+    @media (max-width: 1000px) {
+        flex-direction: column;
+        max-width: 100%;
+    }
+
+    .col {
+        display: inline-block;
+        min-width: 40%;
+        padding: 32px;
+
+        @media (max-width: 1000px) {
+            text-align: center;
+        }
+    }
+
+    .feature-image {
+        max-width: 80%;
+    }
+
+    .padding-top {
+        padding-top: 15%;
+
+        @media (max-width: 1000px) {
+            text-align: center;
+            padding-top: 16px;
+        }
+    }
+
+    .description {
+        font-size: 18px;
+        line-height: 1.5em;
+        margin-top: 40px;
+        max-width: 400px;
+        margin-bottom: 32px;
+        @media (max-width: 1000px) {
+            margin: 40px auto 0 auto;
+        }
+    }
+
+    .centered {
+        text-align: center;
+    }
+
+    .badge {
+        width: 250px;
+        max-width: 80%;
+        margin-bottom: 32px;
+    }
+
+}
