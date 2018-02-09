@@ -76,7 +76,7 @@ export default Ember.Component.extend({
 
         keyDown (e) {
             // enter pressed
-            if (e.keyCode == 13) {
+            if (e.keyCode == 13 && !e.shiftKey) {
                 let el = this.$('send-box-input')[0];
                 const nodes = [...el.childNodes]
                 const text = nodes.map((node) => {
@@ -84,6 +84,8 @@ export default Ember.Component.extend({
                         return node.alt
                     } else if (node.textContent.length) {
                         return node.textContent
+                    } else if ($(node).is('br')) {
+                        return '\n'
                     } else {
                         return ''
                     }
@@ -91,6 +93,13 @@ export default Ember.Component.extend({
                 if (text.length) this.sendMessage(text)
                 el.textContent = ''
                 return false;
+            } else if (e.keyCode === 8) {
+                // check to see if only a single br left
+                let el = this.$('send-box-input')[0];
+                const nodes = [...el.childNodes]
+                if (nodes.length === 1 && $(nodes[0]).is('br')) {
+                    el.textContent = ''
+                }
             }
         },
 

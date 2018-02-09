@@ -31,10 +31,11 @@ module.exports = {
         certificatePassword: process.env.CERT_PASSWORD
   },
   "electronInstallerDebian": {
-    "name": 'app',
+    "name": 'Textto',
     "homepage": "https://textto.io",
     "genericName": "Text from your computer",
-    "bin": "Textto"
+    "bin": "Textto",
+    "icon": path.join(__dirname, '../icons/png/icon.png')
   },
   "electronInstallerRedhat": {},
 };
