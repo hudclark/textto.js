@@ -28,12 +28,8 @@ export default Ember.Component.extend(MessageMixin, {
         this.get('bus').unregister(this)
     },
 
-    sendDisabled: Ember.computed('message', 'to.@each', function () {
-        return !(this.get('to.length') && this.get('message.length'))
-    }),
-
     validateAddress (address) {
-        return /^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/.test(address)
+        return true
     },
 
     updateTo () {
@@ -98,7 +94,14 @@ export default Ember.Component.extend(MessageMixin, {
         },
         
         send () {
-            if (this.get('sendDisabled')) return
+            if (!(this.get('to.length') > 0)) {
+                this.set('error', 'Please select a contact or phone number.')
+                return
+            } else if (!(this.get('message.length') > 0)) {
+                this.set('error', 'Please enter a message.')
+                return
+            }
+
             this.set('error', null)
             this.set('isLoading', true)
 
