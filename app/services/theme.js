@@ -8,7 +8,7 @@ export default Ember.Service.extend({
             default: true,
             name: 'Default',
             primary: 'ffffff',
-            primaryText: '555555',
+            primaryText: '444444',
             secondary: '374d63',
             secondaryText: 'fdf6e3',
             accent: '03a9f4',
