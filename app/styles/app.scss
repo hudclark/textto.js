@@ -227,5 +227,11 @@ $navbarHeight: 80px;
     }
 }
 
+loading > div {
+    background-color: $colorAccent;
+}
+
+
+
 // pods
 @import "./pods";

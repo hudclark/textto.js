@@ -29,7 +29,7 @@ export default Ember.Component.extend(MessageMixin, {
     },
 
     validateAddress (address) {
-        return true
+        return /\d/.test(address)
     },
 
     updateTo () {
