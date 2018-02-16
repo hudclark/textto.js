@@ -18,6 +18,11 @@
                         <div class="names">
                             <div class="name">
                                 {{result.name}}
+                                {{#if (not-eq result.type 'Mobile')}}
+                                    <span class="type">
+                                        ({{result.type}})
+                                    </span>
+                                {{/if}}
                             </div>
                             <div class="address">
                                 {{result.address}}
