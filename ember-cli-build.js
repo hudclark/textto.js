@@ -13,7 +13,7 @@ module.exports = function(defaults) {
       includePaths: ['app']
     },
     fingerprint: {
-      exclude: ['images/logo.png']
+      exclude: ['images']
     }
   });
 
