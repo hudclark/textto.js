@@ -4,15 +4,58 @@ export default Ember.Component.extend({
 
     classNames: ['emoji-box', 'color-primary'],
     api: Ember.inject.service(),
+    
+    activeTab: 'faces',
+
+    tabs: [
+        {
+            name: 'people',
+            symbol: 'face',
+            active: true
+        },
+        {
+            name: 'animals_and_nature',
+            symbol: 'pets',
+            active: false
+        },
+        {
+            name: 'food_and_drink',
+            symbol: 'restaurant',
+            active: false
+        },
+        {
+            name: 'activity',
+            symbol: 'directions_run',
+            active: false
+        },
+        {
+            name: 'travel_and_places',
+            symbol: 'directions_car',
+            active: false
+        },
+        {
+            name: 'objects',
+            symbol: 'work',
+            active: false
+        },
+        {
+            name: 'symbols',
+            symbol: 'change_history',
+            active: false
+        },
+        {
+            name: 'flags',
+            symbol: 'flag',
+            active: false
+        },
+    ],
+
     q: null,
 
     didInsertElement () {
         this._super(...arguments)
-
-        this.get('api').request('/emojis')
-            .then((response) => {
-                this.set('baseEmojis', response.emojis.map(e => twemoji.parse(e)))
-            })
+        const tab = this.get('tabs').find((t) => t.active)
+        this.send('changeTab', tab)
 
         $(window).on('click.emoji', (e) => {
             const target = e.target
@@ -49,7 +92,25 @@ export default Ember.Component.extend({
                     this.set('searchResults', response.emojis.map(e => twemoji.parse(e)))
                     this.set('showResults', true)
                 })
+        },
+
+        changeTab (tab) {
+            this.get('tabs').forEach((t) => {
+                if (t.active && t.name !== tab.name) Ember.set(t, 'active', false)
+                else if (t.name === tab.name) Ember.set(t, 'active', true)
+            })
+
+            this.set('q', '')
+
+            this.get('api').request(`/emojis/${tab.name}`)
+                .then((response) => {
+                    console.log(response)
+                    this.set('baseEmojis', response.emojis.map(e => twemoji.parse(e)))
+                    this.set('showResults', false)
+                    this.$('.results')[0].scrollTop = 0
+                })
         }
+
 
     }
 

@@ -10,3 +10,10 @@
         {{/each}}
     {{/if}}
 </div>
+<div class="emoji-tabs">
+    {{#each tabs as |tab|}}
+        <i class="emoji-tab material-icons {{if tab.active 'active-text'}}"
+        {{action 'changeTab' tab}}>
+        {{tab.symbol}}</i>
+    {{/each}}
+</div>

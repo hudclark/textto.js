@@ -145,6 +145,8 @@ export default Ember.Service.extend({
         .threads-page thread-view:hover {background-color: #${theme.active};}
         .threads-page thread-view.active {background-color: #${theme.active};}
 
+        .threads-page .active-text {color: #${theme.accent};}
+
         .threads-page .btn { background-color: #${theme.accent} !important; }
 
         .threads-page .btn:hover {
