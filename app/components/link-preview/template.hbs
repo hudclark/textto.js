@@ -1,4 +1,9 @@
-<a href={{link}} target="_blank" class="color-text-primary">
+{{#if showButton}}
+    <div class="show-preview active-text" {{action 'showPreview'}}>Show Preview</div>
+{{else if isLoading}}
+    {{loading-view}}
+{{else if visible}}
+<a href={{link}} target="_blank" class="color-text-primary link-content">
     <div class="link" href={{link}} target="_blank">{{link}}</div>
     <div class="preview-container">
         {{#if imageLink}}
@@ -16,3 +21,4 @@
         {{/if}}
     </div>
 </a>
+{{/if}}

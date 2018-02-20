@@ -1,9 +1,7 @@
 .link-preview {
-    display: none;
     //border-left: 2px solid white;
     margin-top: 16px;
     text-align: left;
-
     border-top: 1px solid rgba(255, 255, 255, 0.4);
 
     .preview-container {
@@ -55,6 +53,19 @@
         margin-bottom: 12px;
     }
 
+    .show-preview {
+        margin-top: 4px;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    loading {
+        margin: 8px auto;
+        width: 100%;
+        display: block;
+    }
+
+    display: none;
     &.visible {
         display: block;
     }

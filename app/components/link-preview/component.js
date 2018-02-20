@@ -21,11 +21,13 @@ export default Ember.Component.extend({
 
         if (this.get('link') !== link) {
             this.set('link', link)
-            this.handleLink(link)
+            this.set('showButton', true)
+            this.set('visible', true)
         }
     },
 
-    handleLink (link) {
+    loadPreview (link) {
+        this.set('isLoading', true)
         // Is this link an image?
         if (/\.(gif|jpg|jpeg|tiff|png)$/i.test(link)) {
 
@@ -38,22 +40,31 @@ export default Ember.Component.extend({
     loadImage (link) {
         this.set('imageLink', true)
         this.set('image', link)
+        this.set('isLoading', false)
     },
 
     loadUrl (link) {
         this.get('api').getLinkPreview(link)
             .then((response) => {
                 const preview = response.preview
-                if (!preview) return
+                if (!preview) {
+                    this.set('isLoading', false)
+                    this.set('visible', false)
+                    return
+                }
                 if (!(this.isDestroyed || this.isDestroying)) {
                     if (preview.image) {
                         preview.image = DOMPurify.sanitize(preview.image)
                     }
                     this.set('linkPreview', preview)
-                    this.makeVisible()
+                    this.onLoaded()
+                    this.set('isLoading', false)
                 }
             })
-            .catch((e) => console.log(e))
+            .catch((e) => {
+                console.log(e)
+                this.set('isLoading', false)
+            })
     },
 
     isInViewPort () {
@@ -62,21 +73,28 @@ export default Ember.Component.extend({
         return delta > -50
     },
 
-    makeVisible () {
-        this.set('visible', true)
+    onLoaded () {
+        this.set('loaded', true)
         setTimeout(() => {
-            if (!this.isInViewPort()) return
-            const $messages = $('.messages')
-            $messages.animate({
-                scrollTop: `+=${this.$().outerHeight(true)}px`
-            }, 0)
-        }, 0)
+            const $messages = $('.messages')[0]
+            const delta = Math.abs($messages.scrollHeight - $messages.scrollTop - $messages.clientHeight)
+
+            if (delta < this.$().outerHeight(true)) {
+                $('.messages').scrollTop($messages.scrollHeight)
+            }
+        }, 100)
     },
 
     actions: {
 
         imageLoaded (){
-            this.makeVisible()
+            this.onLoaded()
+        },
+
+        showPreview () {
+            this.set('showButton', false)
+            this.set('isLoading', true)
+            this.loadPreview(this.get('link'))
         }
     }
 
