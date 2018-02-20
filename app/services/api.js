@@ -159,6 +159,11 @@ export default Ember.Service.extend({
     // news
     getNewsStory (story) {
         return this.request('/news/' + story)
+    },
+
+    // link previews
+    getLinkPreview (link) {
+        return this._authenticatedRequest('/link-preview?link=' + link)
     }
 
 

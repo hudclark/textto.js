@@ -1,6 +1,9 @@
 {{#if isPlainText}}
     <message-bubble>
         {{emoji-text content=part.data linkify=true}}
+        {{#unless isScheduled}}
+            {{link-preview text=part.data}}
+        {{/unless}}
         {{#if sender}}
             <sender class="color-text-primary">
                 {{sender}}

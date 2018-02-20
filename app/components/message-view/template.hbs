@@ -3,7 +3,7 @@
 {{/if}}
 {{#if mms}}
     {{#each message.parts as |part|}}
-        {{mms-part part=part message=message}}
+        {{mms-part part=part message=message isScheduled=isScheduled}}
         <br>
     {{/each}}
 {{else}}
@@ -19,6 +19,9 @@
         {{! Just do text matching here instead of in emoji-text}}
         <message-bubble class="{{if isSingleEmoji 'single-emoji'}}">
             {{emoji-text content=message.body linkify=true}}
+            {{#unless isScheduled}}
+                {{link-preview text=message.body}}
+            {{/unless}}
         </message-bubble>
     {{/if}}
 {{/if}}

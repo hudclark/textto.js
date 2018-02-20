@@ -1,0 +1,18 @@
+<a href={{link}} target="_blank" class="color-text-primary">
+    <div class="link" href={{link}} target="_blank">{{link}}</div>
+    <div class="preview-container">
+        {{#if imageLink}}
+            <img class="full-image" src={{image}} onload={{action 'imageLoaded'}}>
+        {{else if linkPreview}}
+            {{#if linkPreview.image}}
+                <div class="thumb-container">
+                    <img class="thumb-image" src={{linkPreview.image}}>
+                </div>
+            {{/if}}
+            <div class="web-info">
+                <div class="title">{{linkPreview.title}}</div>
+                <div class="description">{{linkPreview.description}}</div>
+            </div>
+        {{/if}}
+    </div>
+</a>
