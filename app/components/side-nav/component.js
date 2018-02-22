@@ -15,6 +15,7 @@ export default Ember.Component.extend({
         this._super(...arguments)
 
         this.set('notifications', this.get('settings').getSetting('notifications', true))
+        this.set('hideNotificationText', this.get('settings').getSetting('hideNotificationText', false))
 
         this.get('api').getUser()
             .then((user) => {
@@ -33,6 +34,12 @@ export default Ember.Component.extend({
             this.set('notifications', !this.get('notifications'))
             const setting = this.get('notifications')
             this.get('settings').putSetting('notifications', setting)
+        },
+
+        onNotificationTextChange () {
+            this.set('hideNotificationText', !this.get('hideNotificationText'))
+            const setting = this.get('hideNotificationText')
+            this.get('settings').putSetting('hideNotificationText', setting)
         },
 
         logOut() {

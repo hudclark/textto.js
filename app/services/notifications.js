@@ -44,11 +44,11 @@ export default Ember.Service.extend({
 
     _createNotification (title, body, image) {
         if (Notification.permission === 'granted') {
-            // TODO app icons
+            const hideText = this.get('settings').getSetting('hideNotificationText', false)
             image = (image == null) ? '/images/logo.png' : 'data:image/png;base64,' + image
             const notification = new Notification(title, {
                 icon: image,
-                body: body,
+                body: (hideText) ? 'You received a message.' : body,
             })
             setTimeout(notification.close.bind(notification), 3000)
             notification.onclick = function () {

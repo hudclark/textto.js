@@ -15,6 +15,12 @@
 
     }
 
+    .bounded {
+        max-width: 112px;
+        display: inline-block;
+        line-height: 22px;
+    }
+
     .switch {
         float: right;
         line-height: 44px;
