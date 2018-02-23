@@ -35,6 +35,30 @@
             </a>
             <img class="feature-image" src="/images/login-screen.png">
         </div>
+    {{else if model.linux}}
+        <div class="col">
+            <h2 class="padding-top">Download Textto for Linux.</h2>
+            <div class="description">
+                Everything you love about Textto installed right to your computer.
+            </div>
+            <a class="download-btn cta large" href="https://s3.amazonaws.com/textto.electron/linux/Textto-1.2.0.deb" download>
+                Linux 64 bit .deb<i class="material-icons">file_download</i>
+            </a>
+            <a class="download-btn cta large" href="https://s3.amazonaws.com/textto.electron/linux/Textto-1.2.0.rpm" download>
+                Linux 64 bit .rpm<i class="material-icons">file_download</i>
+            </a>
+        </div>
+        <div class="col">
+            <div class="comp-window">
+                <div class="nav">
+                    <div class="spacer"></div>
+                    <i class="material-icons">remove</i>
+                    <i class="material-icons">crop_square</i>
+                    <i class="material-icons">close</i>
+                </div>
+                <img src="/images/linux-screen.png">
+            </div>
+        </div>
     {{else}}
         <div class="col">
             <h2 class="padding-top">Download Textto for Windows.</h2>
