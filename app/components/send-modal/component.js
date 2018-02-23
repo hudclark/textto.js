@@ -20,6 +20,8 @@ export default Ember.Component.extend(MessageMixin, {
                 }
             })
             $('.modal').modal('open')
+
+            this.$('#to').focus()
         })
     },
 
