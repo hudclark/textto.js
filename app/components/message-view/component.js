@@ -15,9 +15,12 @@ export default Ember.Component.extend({
     }),
 
     isSingleEmoji: Ember.computed('message', function () {
+        /*
         const text = this.get('message.body')
         if (!text) return false
         return !(/[0-9a-zA-Z]/g.test(text))
+        */
+        return false
     }),
 
     didReceiveAttrs () {
