@@ -137,7 +137,7 @@ export default Ember.Component.extend(MessageMixin, {
             this.willDelete = false // non empty query
             if (query && query.length > 1) {
                 let results = await this.get('api').searchContacts(query)
-                if (query.length > 6 && this.validateAddress(query)) {
+                if (query.length > 3 && this.validateAddress(query)) {
                     results.push({address: query})
                 }
                 if (results.length > 3) {
