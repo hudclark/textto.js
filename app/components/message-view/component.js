@@ -1,5 +1,9 @@
 import Ember from 'ember';
 
+const emojiRegex = new RegExp(
+    '\ud83c[\udf00-\udfff]|\ud83d[\udc00-\ude4f]|\ud83d[\ude80-\udeff]| ', 'g'
+)
+
 export default Ember.Component.extend({
 
     tagName: 'message-view',
@@ -15,12 +19,10 @@ export default Ember.Component.extend({
     }),
 
     isSingleEmoji: Ember.computed('message', function () {
-        /*
-        const text = this.get('message.body')
-        if (!text) return false
-        return !(/[0-9a-zA-Z]/g.test(text))
-        */
-        return false
+        // NOTE: space on end necessary to match spaces
+        const body = this.get('message.body')
+        const stripped = body.replace(emojiRegex, '')
+        return (stripped.length === 0)
     }),
 
     didReceiveAttrs () {
