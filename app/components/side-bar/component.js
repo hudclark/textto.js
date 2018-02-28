@@ -54,16 +54,6 @@ export default Ember.Component.extend(MessageMixin, {
         this.setActiveThread(thread)
     },
 
-    attachContactToMessage(msg) {
-        if (msg.sender === 'me') return
-        const thread = this.get('threads').find(t => msg.threadId === t.androidId)
-        if (thread) {
-            msg.contact = thread.contacts.find((c) =>{
-                return (c.address === msg.sender)
-            })
-        }
-    },
-
     // ================== Websocket events =========================
 
     onNewThread (payload) {
@@ -87,7 +77,8 @@ export default Ember.Component.extend(MessageMixin, {
 
         // display notification
         if (message.sender !== 'me') {
-            this.attachContactToMessage(message)
+            this.matchContactToMessage(thread.contacts, message)
+
             const image = (message.contact) ? message.contact.image : undefined
             const title = (message.contact && message.contact.name) ? message.contact.name : message.sender
             const body = this.getMessageSnippet(message)

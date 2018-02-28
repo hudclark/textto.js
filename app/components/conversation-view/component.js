@@ -70,7 +70,7 @@ export default Ember.Component.extend(MessageMixin, {
 
         // make sure request is not cancelled
         if (threadId !== this.get('threadId')) return
-        this.attachContactsToMessages(response.messages)
+        this.matchContactsToMessages(this.get('contacts'), response.messages)
 
         this.set('messages', response.messages)
         this.set('scheduledMessages', response.scheduledMessages)
@@ -97,29 +97,6 @@ export default Ember.Component.extend(MessageMixin, {
                 $messages.scrollTop($messages[0].scrollHeight)
             }
         }, delay)
-    },
-
-    attachContactsToMessages(messages) {
-        // add thread's contacts to each message
-        const contacts = this.get('contacts')
-        messages.forEach((msg) => {
-            if (msg.sender !== 'me') {
-                msg.contact = contacts.find((c) =>{
-                    return (c.address === msg.sender)
-                })
-                if (!msg.contact) msg.contact = {address: msg.sender}
-            }
-        })
-    },
-
-    attachContactToMessage(msg) {
-        const contacts = this.get('contacts')
-        if (msg.sender !== 'me') {
-            msg.contact = contacts.find((c) =>{
-                return (c.address === msg.sender)
-            })
-            if (!msg.contact) msg.contact = {address: msg.sender}
-        }
     },
 
     unshiftOrReplace (collectionName, value, func, animate) {
@@ -170,7 +147,7 @@ export default Ember.Component.extend(MessageMixin, {
             const after = last.date
             const newMessages = await this.get('api').loadMoreMessages(this.get('threadId'), after)
             if (this.isDestroyed || this.isDestroying) return
-            this.attachContactsToMessages(newMessages)
+            this.matchContactsToMessages(this.get('contacts'), newMessages)
 
             this.hasMoreMessages = (newMessages.length > 0)
 
@@ -207,7 +184,7 @@ export default Ember.Component.extend(MessageMixin, {
         // Don't include if message does not have a body
         if (!message.body && (!message.parts || message.parts.length === 0)) return
         if (message.threadId !== this.get('threadId')) return
-        this.attachContactToMessage(message)
+        this.matchContactToMessage(this.get('contacts'), message)
         let didReplace = false
         // check to see if any scheduled messages are replaced
         let scheduledMessages = this.get('scheduledMessages').filter((msg) => {
