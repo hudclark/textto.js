@@ -7,7 +7,7 @@ export default BaseRoute.extend({
         const userAgent = window.navigator.userAgent
         const platform = window.navigator.platform
 
-        if ($(window).width() < 1000) {
+        if ($(window).width() < 700) {
             return 'mobile'
         }
 
