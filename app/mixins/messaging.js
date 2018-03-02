@@ -42,12 +42,18 @@ export default Ember.Mixin.create({
 
     matchContactToMessage (contacts, message) {
         if (message.sender === 'me') return
-        const normalized = message.sender.replace(/\D/g, '')
+        const normalized = this.normalizeAddress(message.sender)
         const regex = new RegExp(`${normalized}$`)
         message.contact = contacts.find(contact => {
+            const normalizedContactAddress = this.normalizeAddress(contact.address)
             // Message sender (normalized) is a suffix of contact (ie64)
-            return (regex.test(contact.address))
+            return regex.test(normalizedContactAddress)
         })
+    },
+
+    normalizeAddress (address) {
+        return address.replace(/\D/g, '')
+
     }
 
 })

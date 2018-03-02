@@ -4,22 +4,23 @@ export default Ember.Helper.helper(function(params, hash) {
     let contacts = hash.contacts;
     let addresses = hash.addresses;
     if (!contacts || !addresses) return null;
-    let result = {};
-    addresses.forEach((a) => result[a] = a);
-    contacts.forEach((c) => {
-        if (c.name && result[c.address]) {
-            result[c.address] = c.name;
-        }
-    });
-    let isFirst = true;
-    let text;
-    for (let address in result) {
-        if (isFirst) {
-            text = result[address];
-            isFirst = false;
+
+    // Want: a list of contact names or addresses
+    const normalize = (addr) => addr.replace(/\D/g, '')
+
+    const recipients = addresses.map(address => {
+        const regex = new RegExp(`${normalize(address)}$`)
+        const matchedContact = contacts.find(contact => {
+            const normalizedContact = normalize(contact.address)
+            return regex.test(normalizedContact)
+        })
+
+        if (matchedContact && matchedContact.name) {
+            return matchedContact.name
         } else {
-            text += ", " + result[address];
+            return address
         }
-    }
-    return text;
+    })
+
+    return recipients.join(', ')
 });
