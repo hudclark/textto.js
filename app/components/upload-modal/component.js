@@ -12,6 +12,12 @@ export default Ember.Component.extend({
     didInsertElement () {
         this._super(...arguments)
         this.get('bus').register(this)
+
+        // Was this created with a file?
+        if (this.get('data.file')) {
+            this.setFile(this.get('data.file'))
+        }
+
         Ember.run.scheduleOnce('afterRender', this, () => {
             $('.modal').modal({
                 complete: () => {
@@ -27,20 +33,40 @@ export default Ember.Component.extend({
         this.get('bus').unregister(this)
     },
 
+    setFile (file) {
+
+        // validate file
+        if (!this.isValidContentType(file.type)) {
+            this.set('error', 'Invalid file type.')
+            return
+        }
+
+        this.set('file', file)
+        if (!file) return
+        const reader = new FileReader()
+        reader.addEventListener('load', () => {
+            this.set('preview', reader.result)
+            this.set('sendDisabled', false)
+        })
+        reader.readAsDataURL(file)
+    },
+
+    isValidContentType (ct) {
+        return (
+            ct === 'image/png' ||
+            ct === 'image/gif' ||
+            ct === 'image/jpeg' ||
+            ct === 'image/jpg'
+        )
+    },
+
     actions: {
 
         selectImage () {
             this.set('preview', null)
             this.set('sendDisabled', true)
             const file = $('#fileupload')[0].files[0]
-            this.set('file', file)
-            if (!file) return
-            const reader = new FileReader()
-            reader.addEventListener('load', () => {
-                this.set('preview', reader.result)
-                this.set('sendDisabled', false)
-            })
-            reader.readAsDataURL(file)
+            this.setFile(file)
         },
 
         async send () {

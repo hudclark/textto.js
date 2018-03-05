@@ -45,13 +45,46 @@ export default Ember.Component.extend(MessageMixin, {
 
     didInsertElement () {
         this._super(...arguments)
-        this.startScrollListener()
+        Ember.run.scheduleOnce('afterRender', this, () => {
+            this.startScrollListener()
+            this.initializeDragAndDrop()
+        })
     },
 
     willDestoryElement () {
         this._super(...arguments)
         this.get('bus').unregister(this)
         this.stopScrollListener()
+    },
+
+    initializeDragAndDrop () {
+        const $conversationView = $('conversation-view')
+        $conversationView.on('drag dragstart dragend dragover dragcenter dragleave drop', (e) => {
+            e.preventDefault()
+            e.stopPropagation()
+        })
+        .on('dragover dragcenter', (e) => {
+            const files = e.originalEvent.dataTransfer.files
+            $conversationView.addClass('dragging-file')
+        })
+        .on('dragleave', (e) => {
+            if (e.originalEvent.pageX != 0 || e.originalEvent.pageY != 0) return false
+            $conversationView.removeClass('dragging-file')
+        })
+        .on('drop', (e) => {
+            $conversationView.removeClass('dragging-file')
+            const files = e.originalEvent.dataTransfer.files
+            if (files.length === 1) {
+                this.get('bus').post('openModal', {
+                    componentName: 'upload-modal', data: {
+                        threadId: this.get('threadId'),
+                        file: files[0]
+                    }
+                })
+            }
+        })
+
+
     },
 
     async loadThread (threadId) {
