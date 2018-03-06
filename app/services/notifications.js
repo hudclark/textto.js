@@ -50,7 +50,10 @@ export default Ember.Service.extend({
                 icon: image,
                 body: (hideText) ? 'You received a message.' : body,
             })
-            setTimeout(notification.close.bind(notification), 3000)
+
+            const duration = this.get('settings').getSetting('notificationLength', 3)
+
+            setTimeout(notification.close.bind(notification), duration * 1000)
             notification.onclick = function () {
                 notification.close()
             }

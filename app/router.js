@@ -10,6 +10,7 @@ Router.map(function() {
 
   this.route('login')
   this.route('threads')
+  this.route('settings') // note that this is a protected route.
 
   this.route('no-messages')
 

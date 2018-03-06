@@ -6,16 +6,12 @@ export default Ember.Component.extend({
     elementId: 'side-nav',
     tagName: 'ul',
     api: Ember.inject.service(),
-    settings: Ember.inject.service(),
     auth: Ember.inject.service(),
     bus: Ember.inject.service(),
     web: !window.ELECTRON,
 
     init() {
         this._super(...arguments)
-
-        this.set('notifications', this.get('settings').getSetting('notifications', true))
-        this.set('hideNotificationText', this.get('settings').getSetting('hideNotificationText', false))
 
         this.get('api').getUser()
             .then((user) => {
@@ -30,16 +26,12 @@ export default Ember.Component.extend({
 
     actions: {
 
-        onNotificationsChange () {
-            this.set('notifications', !this.get('notifications'))
-            const setting = this.get('notifications')
-            this.get('settings').putSetting('notifications', setting)
-        },
+        transitionToPath (path) {
+            this.closeDrawer()
+            setTimeout(() => {
+                this.sendAction('transitionToPath', path)
 
-        onNotificationTextChange () {
-            this.set('hideNotificationText', !this.get('hideNotificationText'))
-            const setting = this.get('hideNotificationText')
-            this.get('settings').putSetting('hideNotificationText', setting)
+            }, 200)
         },
 
         logOut() {

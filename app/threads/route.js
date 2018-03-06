@@ -10,6 +10,7 @@ export default BaseRoute.extend({
     bus: Ember.inject.service(),
     api: Ember.inject.service(),
     notifications: Ember.inject.service(),
+    protected: true,
 
     hasMoved: false,
 
@@ -24,12 +25,6 @@ export default BaseRoute.extend({
         this.get('bus').unregister(this);
         this.get('websocket').close()
     }),
-
-    redirect () {
-        if (!this.get('auth').isLoggedIn()) {
-            this.replaceWith('login')
-        }
-    },
 
     onWebsocketConnectionLost() {
         this.onLostConnection()
@@ -60,6 +55,10 @@ export default BaseRoute.extend({
 
         noMessages () {
             this.transitionTo('no-messages')
+        },
+
+        transitionToPath (path) {
+            this.transitionTo(path)
         }
 
     }

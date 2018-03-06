@@ -45,30 +45,22 @@
 
 <li class="padded-item">
     <a class="color-text-primary">
-        <i class="material-icons">notifications</i>
-        Notifications
-        <div class="switch">
-            <label>
-                {{input type="checkbox" checked=notifications change=(action 'onNotificationsChange')}}
-                <span class="lever"></span>
-            </label>
-        </div>
+        {{setting-item
+            type='switch'
+            icon='notifications'
+            displayName='Notifications'
+            default=true
+            setting='notifications'}}
     </a>
 </li>
+
 <li class="padded-item">
-    <a class="color-text-primary">
-        <i class="material-icons">remove_red_eye</i>
-        <span class="bounded">
-            Hide Notification Text
-        </span>
-        <div class="switch">
-            <label>
-                {{input type="checkbox" checked=hideNotificationText change=(action 'onNotificationTextChange')}}
-                <span class="lever"></span>
-            </label>
-        </div>
+    <a class="waves-effect color-text-primary" {{action 'transitionToPath' 'settings'}}>
+        <i class="material-icons color-text-primary">settings</i>
+        Settings
     </a>
 </li>
+
 <div class="divider"></div>
 
 <li class="padded-item">

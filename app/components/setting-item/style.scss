@@ -1,0 +1,23 @@
+.setting-item {
+    max-width: 100%;
+
+    .material-icons {
+        vertical-align: middle;
+        margin-right: 32px;
+        color: #777;
+    }
+
+    input {
+        float: right;
+    }
+
+    .switch {
+        float: right;
+    }
+
+    input[type="number"] {
+        max-width: 50px !important;
+        height: 24px !important;
+        margin: 0 !important;
+    }
+}

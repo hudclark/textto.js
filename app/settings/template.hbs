@@ -1,0 +1,39 @@
+<div class="settings-page">
+    <div class="nav-bar">
+        {{#link-to 'threads'}}<i class="material-icons">arrow_back</i>{{/link-to}}
+        <span>Settings</span>
+    </div>
+
+    <div class="settings-container">
+
+        <div class="settings-title">
+            Notifications
+        </div>
+
+        {{setting-item
+            type='switch'
+            icon='notifications'
+            displayName='Notifications'
+            default=true
+            setting='notifications'}}
+
+        {{setting-item
+            type='switch'
+            icon='remove_red_eye'
+            displayName='Hide NotificationText'
+            default=false
+            setting='hideNotificationText'}}
+
+        {{setting-item
+            type='number'
+            displayName='Notification Length (seconds)'
+            icon='access_time'
+            default=3
+            setting='notificationLength'}}
+
+        <div class="settings-title">
+            Encryption
+        </div>
+
+    </div>
+</div>

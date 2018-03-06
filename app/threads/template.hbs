@@ -1,4 +1,4 @@
-<div class="threads-page color-text-primary">
+<div class="threads-page themed color-text-primary">
     {{side-bar threads=threads select-thread=(action 'onThreadSelected') no-messages='noMessages'}}
 
     <top-bar class="color-primary">
@@ -24,5 +24,5 @@
     </div>
 
     {{modal-service}}
-    {{side-nav}}
+    {{side-nav transitionToPath='transitionToPath'}}
 </div>

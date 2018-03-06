@@ -1,0 +1,21 @@
+<i class="material-icons">{{icon}}</i>
+{{displayName}}
+
+{{#if (eq type 'switch')}}
+    <div class="switch">
+        <label>
+            {{input type="checkbox"
+                checked=value
+                change=(action 'changeBooleanSetting')}}
+            <span class="lever"></span>
+        </label>
+    </div>
+{{else if (eq type 'text')}}
+    {{input type="text"
+        value=value
+        change=(action 'changeTextSetting')}}
+{{else if (eq type 'number')}}
+    {{input type="number"
+        value=value
+        change=(action 'changeNumberSetting')}}
+{{/if}}

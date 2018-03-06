@@ -125,63 +125,63 @@ export default Ember.Service.extend({
     injectTheme (theme) {
         if (theme == null) return
         const css = `
-        .threads-page .color-primary {background-color: #${theme.primary};}
-        .threads-page .color-secondary {background-color: #${theme.secondary};}
-        .threads-page .color-accent {background-color: #${theme.accent};}
-        .threads-page .text-color-accent {color: #${theme.accent};}
-        .threads-page .color-text-primary {color: #${theme.primaryText};}
-        .threads-page .color-text-secondary {color: #${theme.secondaryText};}
-        .threads-page .color-text-background {background-color: #${theme.secondaryText};}
+        .themed .color-primary {background-color: #${theme.primary};}
+        .themed .color-secondary {background-color: #${theme.secondary};}
+        .themed .color-accent {background-color: #${theme.accent};}
+        .themed .text-color-accent {color: #${theme.accent};}
+        .themed .color-text-primary {color: #${theme.primaryText};}
+        .themed .color-text-secondary {color: #${theme.secondaryText};}
+        .themed .color-text-background {background-color: #${theme.secondaryText};}
 
 
-        .threads-page .color-scroll-bar::-webkit-scrollbar-thumb {
+        .themed .color-scroll-bar::-webkit-scrollbar-thumb {
             border-radius: 4px;
             background-color: #${theme.secondary};
         }
 
-        .threads-page message-bubble {background-color: #${theme.secondaryAccent};}
-        .threads-page message-view.received message-bubble {background-color: #${theme.accent};}
+        .themed message-bubble {background-color: #${theme.secondaryAccent};}
+        .themed message-view.received message-bubble {background-color: #${theme.accent};}
 
-        .threads-page thread-view:hover {background-color: #${theme.active};}
-        .threads-page thread-view.active {background-color: #${theme.active};}
+        .themed thread-view:hover {background-color: #${theme.active};}
+        .themed thread-view.active {background-color: #${theme.active};}
 
-        .threads-page .active-text {color: #${theme.accent};}
+        .themed .active-text {color: #${theme.accent};}
 
-        .threads-page .btn { background-color: #${theme.accent} !important; }
+        .themed .btn { background-color: #${theme.accent} !important; }
 
-        .threads-page .btn:hover {
+        .themed .btn:hover {
             background-color: #${theme.accent} !important;
             box-shadow: 0 4px 8px 0 rgba(0,0,0,.26);
         }
 
-        .threads-page .btn-floating {
+        .themed .btn-floating {
             background-color: #${theme.accent} !important;
         }
-        .threads-page .btn-floating:hover {
+        .themed .btn-floating:hover {
             background-color: #${theme.accent} !important;
             box-shadow: 0 4px 8px 0 rgba(0,0,0,.26);
         }
 
-        .threads-page .snippet {
+        .themed .snippet {
             color: ${this.hexToRGBA(theme.secondaryText, 0.5)};
         }
 
-        .threads-page .snippet.dark {
+        .themed .snippet.dark {
             color: #${theme.primaryText};
         }
 
-        .threads-page .modal {
+        .themed .modal {
             background-color: #${theme.primary};
         }
 
-        .threads-page .emoji-text > a {
+        .themed .emoji-text > a {
             color: #${theme.primaryText};
         }
-        .threads-page send-box-input {
+        .themed send-box-input {
             background-color: ${this.hexToRGBA(theme.secondaryAccent, 0.6)};
         }
 
-        .threads-page send-box-input:empty:before {
+        .themed send-box-input:empty:before {
             color: ${this.hexToRGBA(theme.primaryText, 0.6)};
         }
 
