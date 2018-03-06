@@ -105,8 +105,31 @@ export default Ember.Component.extend({
 
         paste (e) {
             e.preventDefault()
-            const text = e.clipboardData.getData('text/plain')
-            document.execCommand('insertHTML', false, text)
+
+            // Can we get an image?
+            const items = (e.clipboardData || e.originalEvent.clipboardData).items
+
+            // Was an image pasted?
+            let file = null
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].type.indexOf('image') !== -1) {
+                    file = items[i].getAsFile()
+                    break
+                }
+            }
+
+            // Just images right now
+            if (file != null) {
+                this.get('bus').post('openModal', {
+                    componentName: 'upload-modal', data: {
+                         threadId: this.get('threadId'),
+                         file: file
+                        }
+                    })
+            } else {
+                const text = e.clipboardData.getData('text/plain')
+                document.execCommand('insertHTML', false, text)
+            }
         },
 
         attachFile () {
