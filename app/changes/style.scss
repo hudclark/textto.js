@@ -1,0 +1,43 @@
+.change-log {
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    max-width: 100%;
+    padding: 0 16px;
+
+    border-left: 4px solid $colorAccent;
+
+    .change {
+
+        position: relative;
+        margin-top: 24px;
+        margin-bottom: 40px;
+        margin-left: 8px;
+
+        &:before {
+            content: '';
+            position: absolute;
+            left: -40px;
+            width: 28px;
+            height: 28px;
+            border-radius: 100%;
+            background-color: $colorAccent;
+        }
+
+        .date {
+            font-size: 12px;
+            margin-bottom: 16px;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+            display: inline-block;
+        }
+
+        .description {
+            white-space: pre-line;
+            padding: 12px;
+            border: 1px solid $colorAccent;
+            border-radius: 12px;
+        }
+    }
+}

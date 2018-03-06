@@ -12,6 +12,8 @@ Router.map(function() {
   this.route('threads')
   this.route('settings') // note that this is a protected route.
 
+  this.route('changes')
+
   this.route('no-messages')
 
   this.route('legal', function () {
