@@ -1,5 +1,5 @@
 .side-nav {
-    
+    width: 325px !important;
 
     .padded-item {
         padding: 4px 0;
@@ -13,6 +13,14 @@
             width: 100%;
         }
 
+    }
+
+    .scrollable {
+        position: absolute;
+        overflow-y: auto;
+        bottom: 148px;
+        top: 184px;
+        width: 325px !important;
     }
 
     .bounded {

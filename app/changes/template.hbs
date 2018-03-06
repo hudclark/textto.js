@@ -6,6 +6,11 @@
     {{#link-to 'faq'}}FAQ{{/link-to}}
     {{#link-to 'login'}}Log In{{/link-to}}
 </div>
-<div class="legal-page">
-    {{outlet}}
+<div class="change-log">
+    {{#each model as |change|}}
+        <div class="change">
+            <div class="date">{{change.date}}</div>
+            <div class="description">{{change.description}}</div>
+        </div>
+    {{/each}}
 </div>
