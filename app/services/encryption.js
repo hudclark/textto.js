@@ -2,6 +2,7 @@ import Ember from 'ember'
 
 const SETTINGS_KEY = 'ekey'
 const ENCRYPTION_ALG = 'AES-CBC'
+const ITERATIONS = 943786
 
 export default Ember.Service.extend({
 
@@ -54,7 +55,7 @@ export default Ember.Service.extend({
     /**
      * Removes the old key.
      */
-    disableEncryption () {
+    disable () {
         this.get('settings').putSetting(SETTINGS_KEY, null)
         this._key = null
     },
@@ -73,7 +74,7 @@ export default Ember.Service.extend({
         }
 
         // Derive key
-        const key = await this.deriveKey(password, salt)
+        const key = await this._deriveKey(password, salt)
 
         // Set current key
         this._key = key
@@ -162,7 +163,7 @@ export default Ember.Service.extend({
         return crypto.subtle.deriveKey(
             {
                 name: 'PBKDF2',
-                iterations: 3747,
+                iterations: ITERATIONS,
                 hash: 'SHA-256',
                 salt: this._stringToBuffer(salt)
             },
