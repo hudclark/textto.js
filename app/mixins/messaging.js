@@ -1,4 +1,5 @@
 import Ember from 'ember'
+import { isMatch } from '../utils/address-utils'
 
 export default Ember.Mixin.create({
 
@@ -42,18 +43,7 @@ export default Ember.Mixin.create({
 
     matchContactToMessage (contacts, message) {
         if (message.sender === 'me') return
-        const normalized = this.normalizeAddress(message.sender)
-        const regex = new RegExp(`${normalized}$`)
-        message.contact = contacts.find(contact => {
-            const normalizedContactAddress = this.normalizeAddress(contact.address)
-            // Message sender (normalized) is a suffix of contact (ie64)
-            return regex.test(normalizedContactAddress)
-        })
+        message.contact = contacts.find(contact => isMatch(message.sender, contact.address))
     },
-
-    normalizeAddress (address) {
-        return address.replace(/\D/g, '')
-
-    }
 
 })
