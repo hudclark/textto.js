@@ -2,9 +2,13 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
-    tagName: 'login-view',
-
     auth: Ember.inject.service(),
+    encryption: Ember.inject.service(),
+
+    async didInsertElement () {
+        this._super(...arguments)
+
+    },
 
     actions: {
 
@@ -13,7 +17,17 @@ export default Ember.Component.extend({
             this.set('isLoading', true);
             try {
                 await this.get('auth').signIn()
-                this.sendAction('on-login');
+
+
+                const encryption = this.get('encryption')
+                await encryption.finishInit()
+
+                if (!encryption.enabled()) {
+                    this.set('showEncryptionSetup', true)
+                } else {
+                    this.sendAction('on-login');
+                }
+
             } catch (err) {
                 console.log('error logging in');
                 console.log(err);
@@ -22,7 +36,12 @@ export default Ember.Component.extend({
                 this.set('error', true)
             }
             this.set('isLoading', false);
+        },
+
+        finish () {
+            this.sendAction('on-login');
         }
+
 
     }
 });

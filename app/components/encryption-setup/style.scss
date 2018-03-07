@@ -1,11 +1,13 @@
 .encryption-setup {
 
-    width: 500px;
-    height: 300px;
+    width: 550px;
+    height: 325px;
     max-width: 90%;
     border-radius: 4px;
     @include elevation(1);
     margin: 0 auto;
+    background: white;
+    text-align: left;
 
     position: relative;
 

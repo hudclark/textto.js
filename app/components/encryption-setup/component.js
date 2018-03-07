@@ -92,7 +92,7 @@ export default Ember.Component.extend({
         },
 
         skip () {
-            this.sendAction('skip')
+            this.sendAction('on-skip')
         },
 
         async setPassword () {
@@ -105,6 +105,11 @@ export default Ember.Component.extend({
                 // Success!
                 this.set('password', null)
                 this.set('stage', 3)
+
+                setTimeout( () => {
+                    this.sendAction('on-enabled')
+                }, 500)
+
             } catch (e) {
                 this.set('passwordError', e)
             }
