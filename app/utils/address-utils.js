@@ -37,7 +37,10 @@ export function isMatch(addr1, addr2) {
     const match = (
         normalized1 == normalized2 ||
         new RegExp(`${normalized1}`).test(normalized2) ||
-        new RegExp(`${normalized2}`).test(normalized1)
+        new RegExp(`${normalized2}`).test(normalized1) ||
+        // Lop off country codes
+        new RegExp(`${normalized1.substr(3)}`).test(normalized2) ||
+        new RegExp(`${normalized2.substr(3)}`).test(normalized1)
     )
 
     if (match) {
