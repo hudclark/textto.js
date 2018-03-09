@@ -69,6 +69,11 @@ export default Ember.Service.extend({
             method: 'post',
             headers: { 'x-access-token': authToken }
         }
+
+        if (refreshToken == null || refreshToken == 'null') {
+            return
+        }
+
         try {
             await this.get('api').request('/revokeToken?refreshToken=' + refreshToken, options)
         } catch (err) {
