@@ -22,6 +22,10 @@ export default Ember.Component.extend({
             error: 'Your phone does not have service',
             solution: 'Ensure your phone has service and attempt to send the message again.'
         }, 
+        89: {
+            error: 'Your phone could not decrypt the message',
+            solution: 'The master password on your computer and the Android app must match. You can change it by going into the setting screen.'
+        },
         'not-sent': {
             error: 'Textto timed out attempting to connect to your phone.',
             solution: 'Ensure your phone is connected to the internet and you are signed into the Textto Android application.'
@@ -47,18 +51,18 @@ export default Ember.Component.extend({
 
     didReceiveAttrs () {
         const message = this.get('data.scheduledMessage')
+        const failureCode = message.failureCode
 
-        if (!message.sent) {
-            this.set('problem', this.failureCodes['not-sent'])
-        } else {
-            const failureCode = message.failureCode
-            let problem = this.failureCodes[failureCode]
-            if (!problem) {
-                problem = this.failureCodes['unknown']
-            }
-            this.set('problem', problem)
+        let problem = this.failureCodes[failureCode]
+        if (!problem && !message.sent) {
+            problem = this.failureCodes['not-sent']
+            problem = this.failureCodes['unknown']
+        }
+        if (!problem) {
+            problem = this.failureCodes['unknown']
         }
 
+        this.set('problem', problem)
         this.set('snippet', (message.body) ? message.body : 'You sent an image.')
     },
 
