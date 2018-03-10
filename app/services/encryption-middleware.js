@@ -102,6 +102,7 @@ export default Ember.Service.extend({
 
         const postBody = {
             encrypted: scheduledMessage.encrypted || false,
+            addresses: scheduledMessage.addresses,
             body: scheduledMessage.body,
             threadId: scheduledMessage.threadId,
             uuid: scheduledMessage.uuid,
