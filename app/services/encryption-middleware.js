@@ -99,20 +99,26 @@ export default Ember.Service.extend({
      */
     async postScheduledMessage (scheduledMessage) {
         const enabled = await this._encryptionEnabled()
+
+        const postBody = {
+            encrypted: false,
+            body: scheduledMessage.body,
+            threadId: scheduledMessage.threadId,
+            uuid: scheduledMessage.uuid
+        }
+
         if (enabled) {
             const body = await this.get('encryption').encrypt(scheduledMessage.body)
             scheduledMessage = {
                 encrypted: true,
-                body,
-                threadId: scheduledMessage.threadId,
-                uuid: scheduledMessage.uuid
+                body
             }
         }
 
         return {
             method: 'post',
             contentType: 'application/json',
-            data: JSON.stringify(scheduledMessage)
+            data: JSON.stringify(postBody)
         }
     },
 
@@ -140,6 +146,5 @@ export default Ember.Service.extend({
 
 
     }
-
 
 })
