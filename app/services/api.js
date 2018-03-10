@@ -4,6 +4,7 @@ import config from '../config/environment';
 export default Ember.Service.extend({
 
     auth: Ember.inject.service(),
+    eMiddleware: Ember.inject.service('encryption-middleware'),
 
     request(url, options) {
         url = config.host + url;
@@ -47,29 +48,26 @@ export default Ember.Service.extend({
     },
 
     // thread
-    async getThreads() {
-        let response = await this._authenticatedRequest('/threads');
-        return response.threads;
+    getThreads() {
+        return this._authenticatedRequest('/threads')
+            .then(response => this.get('eMiddleware').getThreads(response))
+            .then(response => response.threads)
     },
 
     deleteThread(threadId) {
         return this._authenticatedRequest('/threads/' + threadId, {method: 'delete'})
     },
 
-    // messages
-    async getMessages(threadId) {
-        let response = await this._authenticatedRequest('/messages?threadId=' + threadId);
-        return response.messages;
-    },
-
-    async loadMoreMessages(threadId, after) {
+    loadMoreMessages(threadId, after) {
         let url = '/messages?threadId=' + threadId + '&after=' + after
-        const response = await this._authenticatedRequest(url)
-        return response.messages
+        return this._authenticatedRequest(url)
+            .then(response => this.get('eMiddleware').getMessages(response))
+            .then(response => response.messages)
     },
 
-    getAllMessages(threadId) {
+    async getAllMessages(threadId) {
         return this._authenticatedRequest(`/messages/all?threadId=${threadId}`)
+            .then(response => this.get('eMiddleware').getAllMessages(response))
     },
 
     async getMmsImages(partId) {
@@ -78,18 +76,9 @@ export default Ember.Service.extend({
     },
 
     // scheduled messages
-    async getScheduledMessages(threadId) {
-        let response = await this._authenticatedRequest('/scheduledMessages?threadId=' + threadId);
-        return response.scheduledMessages;
-    },
-
-    sendScheduledMessage(message) {
-        const options = {
-            method: 'post',
-            contentType: 'application/json',
-            data: JSON.stringify(message)
-        };
-        return this._authenticatedRequest('/scheduledMessages', options);
+    async sendScheduledMessage(message) {
+        return this.get('eMiddleware').postScheduledMessage(message)
+            .then(options => this._authenticatedRequest('/scheduledMessages', options))
     },
 
     retryFailedMessage(id) {

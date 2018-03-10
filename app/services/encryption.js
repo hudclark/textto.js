@@ -2,7 +2,7 @@ import Ember from 'ember'
 
 const SETTINGS_KEY = 'ekey'
 const ENCRYPTION_ALG = 'AES-CBC'
-const ITERATIONS = 943786
+const ITERATIONS = 243786
 
 export default Ember.Service.extend({
 
@@ -104,7 +104,16 @@ export default Ember.Service.extend({
         const alg = {name: ENCRYPTION_ALG, iv}
 
         return crypto.subtle.encrypt(alg, this._key, this._stringToBuffer(plaintext))
-            .then(buffer => this._bufferToHex(iv) + this._bufferToHex(buffer))
+            .then(buffer => {
+                const cipherBytes = new Uint8Array(buffer)
+
+                const len = iv.length + cipherBytes.length
+                const arr = new Uint8Array(len)
+
+                for (let i = 0; i < iv.length; i++) arr[i] = iv[i]
+                for (let i = 0; i < cipherBytes.length; i++) arr[iv.length + i] = cipherBytes[i]
+                return this._bufferToBase64(arr)
+            })
     },
 
     /**
@@ -121,14 +130,16 @@ export default Ember.Service.extend({
             throw 'Encryption is not enabled'
         }
 
-        // First 32 bytes are hex-encoded iv
-        const ivPart = ciphertext.slice(0, 32)
-        const cipherPart = ciphertext.slice(32)
+        const bytes = this._base64ToBuffer(ciphertext)
 
-        const iv = this._hexToBuffer(ivPart)
+        // First 32 bytes are hex-encoded iv
+        const iv = bytes.slice(0, 16)
+        const cipherPart = bytes.slice(16, bytes.length)
+
+        //const iv = this._hexToBuffer(ivPart)
         const alg = {name: ENCRYPTION_ALG, iv}
 
-        return crypto.subtle.decrypt(alg, this._key, this._hexToBuffer(cipherPart))
+        return crypto.subtle.decrypt(alg, this._key, cipherPart)
             .then(buffer => this._bufferToString(buffer))
     },
 
@@ -164,7 +175,7 @@ export default Ember.Service.extend({
             {
                 name: 'PBKDF2',
                 iterations: ITERATIONS,
-                hash: 'SHA-256',
+                hash: 'SHA-1',
                 salt: this._stringToBuffer(salt)
             },
             base,
@@ -212,6 +223,14 @@ export default Ember.Service.extend({
     
     _bufferToString (buff) {
         return new TextDecoder('utf-8').decode(buff)
+    },
+
+    _bufferToBase64 (buff) {
+        return base64js.fromByteArray(buff)
+    },
+
+    _base64ToBuffer (str) {
+        return base64js.toByteArray(str)
     },
 
     _bufferToHex (buffer) {

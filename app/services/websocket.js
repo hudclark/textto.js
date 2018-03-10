@@ -5,6 +5,7 @@ export default Ember.Service.extend({
 
     auth: Ember.inject.service(),
     bus: Ember.inject.service(),
+    eMiddleware: Ember.inject.service('encryption-middleware'),
 
     RECONNECT_INTERVAL: 1000,
     PING_INTEVAL: 5000,
@@ -108,7 +109,11 @@ export default Ember.Service.extend({
     onMessage (event) {
         try {
             const message = JSON.parse(event.data)
-            this.get('bus').post(message.type, message.payload)
+            const type = message.type
+            this.get('eMiddleware').decryptWebsocketEvent(type, message.payload)
+                .then(payload => {
+                    this.get('bus').post(type, payload)
+                })
         } catch (err) {
             console.log('Error decoding ws event: ', err)
         }

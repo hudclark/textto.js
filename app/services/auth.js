@@ -7,6 +7,8 @@ export default Ember.Service.extend({
     api: Ember.inject.service(),
     websocket: Ember.inject.service(),
     bus: Ember.inject.service(),
+    encryption: Ember.inject.service(),
+
 
     AUTH_TOKEN_KEY: 'ajwt',
     REFRESH_TOKEN_KEY: 'rjwt',
@@ -59,6 +61,9 @@ export default Ember.Service.extend({
     async logOut() {
         const refreshToken = this.getRefreshToken()
         const authToken = this.getAuthToken()
+
+        // Clear master password
+        this.get('encryption').disable()
 
         this.setAuthToken(null);
         this.setRefreshToken(null);
