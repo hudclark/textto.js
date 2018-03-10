@@ -30,7 +30,7 @@ export default Ember.Component.extend({
             case 0:
                 return 'Setting a master password will enable end-to-end encryption. For more information, visit <a href="https://textto.io/e2e">https://textto.io/e2e</a>.'
             case 1:
-                return 'You <i><strong>must</strong></i> also enter the same master password in the Android app\'s settings screen.<br><br><strong>If you do not set the same master password on the Android app, your messages <i>will not</i> send.</strong>'
+                return 'You <i><strong>must</strong></i> have the same master password in the Android app\'s settings screen.<br><br><strong>If they do not match, your messages <i>will not</i> send.</strong>'
             case 3:
                 return 'The content of your messages will now be encrypted.<br><br>Messages not sending? Make sure you\'ve set the same master password in the Android application.'
             case 4:
