@@ -101,18 +101,17 @@ export default Ember.Service.extend({
         const enabled = await this._encryptionEnabled()
 
         const postBody = {
-            encrypted: false,
+            encrypted: scheduledMessage.encrypted || false,
             body: scheduledMessage.body,
             threadId: scheduledMessage.threadId,
-            uuid: scheduledMessage.uuid
+            uuid: scheduledMessage.uuid,
+            filename: scheduledMessage.filename
         }
 
-        if (enabled) {
+        if (enabled && scheduledMessage.body) {
             const body = await this.get('encryption').encrypt(scheduledMessage.body)
-            scheduledMessage = {
-                encrypted: true,
-                body
-            }
+            postBody.encrypted = true
+            postBody.body = body
         }
 
         return {

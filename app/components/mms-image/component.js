@@ -13,11 +13,18 @@ export default Ember.Component.extend(ScrollMixin, {
 
     retries: 0,
 
+    /**
+     * thumbnail?: string
+     * url: url
+     */
+
     didInsertElement() {
         this._super(...arguments)
-        const thumbnail = this.get('part.thumbnail')
-        this.set('src',  'data:image/png;base64,' + thumbnail)
-        this.set('blur', true)
+        const thumbnail = this.get('thumbnail')
+        if (thumbnail) {
+            this.set('src',  'data:image/png;base64,' + thumbnail)
+            this.set('blur', true)
+        }
         if (this.isInViewPort()) {
             this.renderFullImage()
         } else {
@@ -52,20 +59,20 @@ export default Ember.Component.extend(ScrollMixin, {
             console.log('was already fetching')
             return
         }
-        this.isFetching = true
         let images = this.get('part')
-        this.isFetching = false
         if (this.isDestroyed || this.isDestroying) return
 
+        const url = this.get('url')
+
         if (this.get('encrypted')) {
-            this.renderEncryptedImage(images.fullImage)
+            this.renderEncryptedImage(url)
             return
         }
 
-        const $fullImage = $('<img src="' + images.fullImage + '">')
+        const $fullImage = $('<img src="' + url + '">')
         $fullImage[0].onload = () => {
             if (this.isDestroyed || this.isDestroying) return
-            this.set('src', images.fullImage)
+            this.set('src', url)
             this.set('blur', false)
         }
         $fullImage[0].onerror = (e) => {
@@ -84,7 +91,7 @@ export default Ember.Component.extend(ScrollMixin, {
                 return this.get('encryption').decrypt(response)
             })
             .then(plaintext => {
-                this.set('src', 'data:' + this.get('contentType') + ';base64,' + plaintext)
+                this.set('src', plaintext)
                 this.set('blur', 'false')
             })
             .catch(e => {

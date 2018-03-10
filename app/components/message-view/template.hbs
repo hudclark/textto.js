@@ -14,7 +14,7 @@
     {{/if}}
 
     {{#if message.fileUrl}}
-        <img class="img-small" src={{message.fileUrl}}>
+        {{mms-image url=message.fileUrl encrypted=message.encrypted}}
     {{else}}
         {{! Just do text matching here instead of in emoji-text}}
         <message-bubble class="{{if isSingleEmoji 'single-emoji'}}">
