@@ -11,7 +11,7 @@
         {{/unless}}
     </message-bubble>
 {{else if isImage}}
-    {{mms-image part=part}}
+    {{mms-image part=part encrypted=message.encrypted contentType=part.contentType}}
     {{#if sender}}
         <sender>
             {{sender}}

@@ -94,16 +94,19 @@ export default Ember.Service.extend({
      * @returns Promise<ciphertext>
      */
     async encrypt (plaintext) {
-        await this.finishInit()
+        return this.encryptRaw(this._stringToBuffer(plaintext))
+            .then(buffer => this._bufferToBase64(buffer))
+    },
 
+    async encryptRaw (rawBytes) {
+        await this.finishInit()
         if (!this.enabled()) {
             throw 'Encryption is not enabled'
         }
-
         const iv = this._generateIv()
         const alg = {name: ENCRYPTION_ALG, iv}
 
-        return crypto.subtle.encrypt(alg, this._key, this._stringToBuffer(plaintext))
+        return crypto.subtle.encrypt(alg, this._key, rawBytes)
             .then(buffer => {
                 const cipherBytes = new Uint8Array(buffer)
 
@@ -112,7 +115,7 @@ export default Ember.Service.extend({
 
                 for (let i = 0; i < iv.length; i++) arr[i] = iv[i]
                 for (let i = 0; i < cipherBytes.length; i++) arr[iv.length + i] = cipherBytes[i]
-                return this._bufferToBase64(arr)
+                return arr
             })
     },
 
@@ -124,23 +127,24 @@ export default Ember.Service.extend({
      * @returns Promise<plaintext>
      */
     async decrypt (ciphertext) {
+        return this.decryptRaw(this._base64ToBuffer(ciphertext))
+            .then(buffer => this._bufferToString(buffer))
+    },
+
+    async decryptRaw (rawBytes) {
         await this.finishInit()
 
         if (!this.enabled()) {
             throw 'Encryption is not enabled'
         }
 
-        const bytes = this._base64ToBuffer(ciphertext)
-
         // First 32 bytes are hex-encoded iv
-        const iv = bytes.slice(0, 16)
-        const cipherPart = bytes.slice(16, bytes.length)
+        const iv = rawBytes.slice(0, 16)
+        const cipherPart = rawBytes.slice(16, rawBytes.length)
 
-        //const iv = this._hexToBuffer(ivPart)
         const alg = {name: ENCRYPTION_ALG, iv}
 
         return crypto.subtle.decrypt(alg, this._key, cipherPart)
-            .then(buffer => this._bufferToString(buffer))
     },
 
     // Helpers
