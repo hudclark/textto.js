@@ -11,7 +11,11 @@ export default Ember.Service.extend({
     },
 
     putSetting (name, value) {
-        if (value === true) value = 'true'
+        if (value == null) {
+            localStorage.removeItem(name)
+            return
+        } 
+        else if (value === true) value = 'true'
         else if (value === false) value = 'false'
         localStorage.setItem(name, value)
     }

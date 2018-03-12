@@ -104,7 +104,6 @@ export default Ember.Component.extend({
 
             this.get('api').request(`/emojis/${tab.name}`)
                 .then((response) => {
-                    console.log(response)
                     this.set('baseEmojis', response.emojis.map(e => twemoji.parse(e)))
                     this.set('showResults', false)
                     this.$('.results')[0].scrollTop = 0
