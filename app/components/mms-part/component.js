@@ -15,7 +15,7 @@ export default Ember.Component.extend({
     sender: Ember.computed('message', function () {
         const message = this.get('message')
         if (message.sender !== 'me' && message.addresses.length > 1) {
-            return (message.contact.name) ? message.contact.name : message.contact.address
+            return (message.contact && message.contact.name) ? message.contact.name : message.sender
         }
     }),
 
