@@ -8,32 +8,26 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
 
-  this.route('login')
+
+  // Protected routes
   this.route('threads')
-  this.route('settings') // note that this is a protected route.
-
-  this.route('changes')
-
+  this.route('settings')
   this.route('no-messages')
+  this.route('admin')
 
+  // Open routes
+  this.route('e2e')
+  this.route('changes')
   this.route('legal', function () {
     this.route('privacy')
     this.route('terms')
   })
-
-  this.route('admin')
-
-  this.route('faq')
-
   this.route('news', function () {
     this.route('story', {path: ':story'})
   })
-
-  this.route('beta', function () {
-    this.route('windows')
-  })
-
   this.route('downloads')
+  this.route('faq')
+  this.route('login')
 
 })
 
