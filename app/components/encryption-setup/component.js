@@ -28,7 +28,7 @@ export default Ember.Component.extend({
         const stage = this.get('stage')
         switch (stage) {
             case 0:
-                return 'Setting a master password will enable end-to-end encryption. For more information, visit <a href="https://textto.io/e2e">https://textto.io/e2e</a>.'
+                return 'Setting a master password will enable end-to-end encryption. For more information, visit <a target="_blank" href="https://textto.io/e2e">https://textto.io/e2e</a>.'
             case 1:
                 return 'You <i><strong>must</strong></i> have the same master password in the Android app\'s settings screen.<br><br><strong>If they do not match, your messages <i>will not</i> send.</strong>'
             case 3:
