@@ -131,7 +131,7 @@ export default Ember.Service.extend({
                 await this._decryptMessage(payload.message)
             }
 
-            else if (type === 'newScheduledMessage' || type === 'updateScheduledMessage' || type === 'deleteScheduledMessage' && payload.scheduledMessage.encrypted) { 
+            else if (payload.scheduledMessage.encrypted && (type === 'newScheduledMessage' || type === 'updateScheduledMessage' || type === 'deleteScheduledMessage')) { 
                 await this._decryptMessage(payload.scheduledMessage)
             }
 
