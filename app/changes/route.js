@@ -10,6 +10,9 @@ export default BaseRoute.extend({
 
         return [
             {
+                date: 'March 12, 2018',
+                description: 'Add end-to-end encryption!',
+            }, {
                 date: 'March 5, 2018',
                 description: 'Add change log!',
             }, {

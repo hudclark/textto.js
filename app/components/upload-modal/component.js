@@ -4,6 +4,7 @@ export default Ember.Component.extend({
 
     api: Ember.inject.service(),
     bus: Ember.inject.service(),
+    encryption: Ember.inject.service(),
 
     classNames: ['modal', 'upload-modal'],
 
@@ -33,7 +34,7 @@ export default Ember.Component.extend({
         this.get('bus').unregister(this)
     },
 
-    setFile (file) {
+    async setFile (file) {
 
         // validate file
         if (!this.isValidContentType(file.type)) {
@@ -43,12 +44,10 @@ export default Ember.Component.extend({
 
         this.set('file', file)
         if (!file) return
-        const reader = new FileReader()
-        reader.addEventListener('load', () => {
-            this.set('preview', reader.result)
-            this.set('sendDisabled', false)
-        })
-        reader.readAsDataURL(file)
+
+        const result = await this.readFile(file, 'dataUrl')
+        this.set('preview', result)
+        this.set('sendDisabled', false)
     },
 
     isValidContentType (ct) {
@@ -58,6 +57,16 @@ export default Ember.Component.extend({
             ct === 'image/jpeg' ||
             ct === 'image/jpg'
         )
+    },
+
+    readFile (file, format) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader()
+            reader.onload = () => resolve(reader.result)
+            if (format == 'dataUrl') reader.readAsDataURL(file)
+            else if (format == 'arrayBuffer') reader.readAsArrayBuffer(file)
+            else reject('Inavlid format.')
+        })
     },
 
     actions: {
@@ -79,15 +88,29 @@ export default Ember.Component.extend({
                 const opts = {
                     type: 'PUT',
                     processData: false,
-                    data: file,
-                    contentType: file.type
+                    //data: file,
                 }
+
+
+                const encryption = this.get('encryption')
+                if (encryption.enabled()) {
+                    const plainBytes = await this.readFile(file, 'arrayBuffer')
+                    const imageString = 'data:' + file.type + ';base64,' + encryption._bufferToBase64(new Uint8Array( plainBytes))
+                    const cipherBytes = await encryption.encrypt(imageString)
+                    opts.data = cipherBytes
+                    opts.contentType = 'text/plain; charset=utf-8'
+                } else {
+                    opts.data = file
+                    opts.contentType = file.type
+                }
+
                 await Ember.$.ajax(fileUrls.url, opts)
                 const now = (new Date()).getTime()
                 const scheduledMessage = {
                     threadId: this.get('data.threadId'),
                     uuid: now,
-                    filename: fileUrls.filename
+                    filename: fileUrls.filename,
+                    encrypted: encryption.enabled()
                 }
                 await this.get('api').sendScheduledMessage(scheduledMessage)
                 this.set('isSending', false)

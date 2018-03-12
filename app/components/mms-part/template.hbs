@@ -11,7 +11,7 @@
         {{/unless}}
     </message-bubble>
 {{else if isImage}}
-    {{mms-image part=part}}
+    {{mms-image thumbnail=part.thumbnail url=part.fullImage encrypted=message.encrypted}}
     {{#if sender}}
         <sender>
             {{sender}}

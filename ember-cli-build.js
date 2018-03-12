@@ -20,6 +20,7 @@ module.exports = function(defaults) {
   app.import('vendor/purify.js')
   app.import('vendor/scroll-in.js')
   app.import('vendor/Autolinker.min.js')
+  app.import('vendor/base64.min.js')
 
   // Use `app.import` to add additional libraries to the generated
   // output files.

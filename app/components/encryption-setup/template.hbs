@@ -1,0 +1,58 @@
+<div class="circle">
+    <img src="/images/secure.png">
+</div>
+<div class="colored-half">
+    {{title}}
+</div>
+<div class="uncolored-half">
+    {{{description}}}
+
+    {{#if (eq stage 2)}}
+    {{! Third slide}}
+
+        {{! Set password stage }}
+
+        {{#if isDerivingPassword}}
+            {{loading-view}}
+        {{else}}
+            {{input type='password' value=password enter='setPassword' placeholder='Password'}}
+
+            {{#if passwordError}}
+                <div class="error">
+                    {{passwordError}}
+                </div>
+            {{/if}}
+
+        {{/if}}
+
+    {{/if}}
+</div>
+
+{{#if showBack}}
+    <div class="btn-flat bottom-left waves-effect-light" {{action 'decrementStage'}}>
+        Back
+    </div>
+{{/if}}
+
+{{#if showNext}}
+    <div class="btn bottom-right waves-effect-light" {{action 'advanceStage'}}>
+        Next
+    </div>
+{{/if}}
+
+{{#if (eq stage 0)}}
+    <div class="btn-flat bottom-left waves-effect-light" {{action 'skip'}}>
+        Skip
+    </div>
+{{else if (eq stage 2)}}
+    <div class="bottom-right important btn waves-effect-light" {{action 'setPassword'}}>
+        Set
+    </div>
+{{else if (eq stage 3)}}
+    <div class="btn-flat bottom-left waves-effect-light" {{action 'disable'}}>
+        Disable
+    </div>
+    <div class="btn-flat bottom-right waves-effect-light" {{action 'changePassword'}}>
+        Change
+    </div>
+{{/if}}

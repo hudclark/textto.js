@@ -1,0 +1,28 @@
+.e2e {
+    .content {
+        h2 {
+            font-size: 22px;
+        }
+        p {
+            font-size: 14px;
+        }
+
+        ul {
+            list-style-type: square !important;
+            li {
+                list-style-type: square !important;
+
+            }
+        }
+
+
+    }
+    .banner {
+        max-width: 1000px;
+    }
+
+    .inline-list {
+        padding-left: 16px;
+    }
+
+}
