@@ -101,7 +101,7 @@ export default Ember.Component.extend({
             this.set('isDerivingPassword', true)
             try {
                 const user = await this.get('api').getUser()
-                await this.get('encryption').setPassword(password, user.email)
+                await this.get('encryption').setPassword(password, user.email.toLowerCase())
                 // Success!
                 this.set('password', null)
                 this.set('stage', 3)
