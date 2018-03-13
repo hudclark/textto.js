@@ -176,7 +176,7 @@ export default Ember.Service.extend({
         const googleUrl = 'https://accounts.google.com/o/oauth2/v2/auth'
         const clientId = '447535604738-jp8o5if9nhl2v2b4ba5o425up9gmn7kr.apps.googleusercontent.com'
         const redirectUri = config.host + '/redirect'
-        const url = `${googleUrl}?response_type=code&scope=profile&prompt=select_account&client_id=${clientId}&redirect_uri=${redirectUri}`
+        const url = `${googleUrl}?response_type=code&scope=profile email&prompt=select_account&client_id=${clientId}&redirect_uri=${redirectUri}`
 
         loginWindow.loadURL(url)
         loginWindow.show()
