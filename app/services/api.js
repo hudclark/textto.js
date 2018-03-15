@@ -137,12 +137,12 @@ export default Ember.Service.extend({
         return this._authenticatedRequest('/admin/stats/daily')
     },
 
-    cleanMessages () {
-        return this._authenticatedRequest('/admin/cleanMessages', {method: 'post'})
+    startCleaning () {
+        return this._authenticatedRequest('/admin/startCleaning', {method: 'post'})
     },
 
-    cleanThreads () {
-        return this._authenticatedRequest('/admin/cleanThreads', {method: 'post'})
+    stopCleaning () {
+        return this._authenticatedRequest('/admin/stopCleaning', {method: 'post'})
     },
 
     // news

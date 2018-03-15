@@ -19,9 +19,11 @@
         {{/each}}
     </table>
 
+    Cleaning: {{model.cleaning}}
+
     <div class="buttons">
-        <a class="waves-effect waves-light btn" {{action 'cleanMessages'}}>Clean Messages</a>
-        <a class="waves-effect waves-light btn" {{action 'cleanThreads'}}>Clean Threads</a>
+        <a class="waves-effect waves-light btn" {{action 'startCleaning'}}>Start Cleaning</a>
+        <a class="waves-effect waves-light btn" {{action 'stopCleaning'}}>Stop Cleaning</a>
     </div>
 
     <div class="response">{{response}}</div>

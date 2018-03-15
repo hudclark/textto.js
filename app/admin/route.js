@@ -12,15 +12,15 @@ export default BaseRoute.extend({
     actions: {
 
 
-        cleanMessages() {
-            this.get('api').cleanMessages()
+        startCleaning() {
+            this.get('api').startCleaning()
                 .then((response) => {
                     this.controllerFor('admin').set('response', JSON.stringify(response))
                 })
         },
 
-        cleanThreads () {
-            this.get('api').cleanThreads()
+        stopCleaning () {
+            this.get('api').stopCleaning()
                 .then((response) => {
                     this.controllerFor('admin').set('response', JSON.stringify(response))
                 })
