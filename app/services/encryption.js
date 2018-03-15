@@ -19,7 +19,10 @@ export default Ember.Service.extend({
         this._initializing = true
 
         // Make sure that crypto is supprted before continuting
-        if (!this.browserSupported()) return
+        if (!this.browserSupported()) {
+            this._initializing = false
+            return
+        }
 
         const sKey = this.get('settings').getSetting(SETTINGS_KEY, null)
         if (sKey == null) {

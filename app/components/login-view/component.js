@@ -17,8 +17,6 @@ export default Ember.Component.extend({
             this.set('isLoading', true);
             try {
                 await this.get('auth').signIn()
-
-
                 const encryption = this.get('encryption')
                 await encryption.finishInit()
 

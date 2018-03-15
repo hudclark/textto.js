@@ -44,6 +44,10 @@
     <div class="btn-flat bottom-left waves-effect-light" {{action 'skip'}}>
         Skip
     </div>
+{{else if (eq stage 4)}}
+    <div class="btn-flat bottom-left waves-effect-light" {{action 'skip'}}>
+        Skip
+    </div>
 {{else if (eq stage 2)}}
     <div class="bottom-right important btn waves-effect-light" {{action 'setPassword'}}>
         Set
