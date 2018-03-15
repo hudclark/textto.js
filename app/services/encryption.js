@@ -37,13 +37,17 @@ export default Ember.Service.extend({
      * Returns true if this browser supports encryption.
      */
     browserSupported () {
-        return (
-            crypto                  &&
-            crypto.subtle           &&
-            crypto.subtle.deriveKey &&
-            TextEncoder             &&
-            TextDecoder
-        )
+        try {
+            return (
+                crypto                  &&
+                crypto.subtle           &&
+                crypto.subtle.deriveKey &&
+                TextEncoder             &&
+                TextDecoder
+            )
+        } catch (e) {
+            return false
+        }
     },
 
     /**
