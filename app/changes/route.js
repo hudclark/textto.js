@@ -10,6 +10,9 @@ export default BaseRoute.extend({
 
         return [
             {
+                date: 'March 15, 2018',
+                description: 'Fix bug when new encrypted threads are synced.',
+            }, {
                 date: 'March 12, 2018',
                 description: 'Add end-to-end encryption!',
             }, {
