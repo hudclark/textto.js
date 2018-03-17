@@ -13,111 +13,20 @@
     </div>
     <hr>
     <div class="spacer"></div>
+    <div class="questions">
 
-    <div class="question">
-        <div class="title">How do I get started with Textto?</div>
-        <div class="answer">
-            <ol>
-                <li>Download the <a href="https://play.google.com/store/apps/details?id=com.moduloapps.textto">Android app</a></li>
-                <li>Sign into the Android app with your Google account.</li>
-                <li>Visit <a href="https://textto.io/login">https://textto.io/login</a> and sign in with the same Google account.</li>
-                <li>You're all done! Enjoy texting!</li>
-            </ol>
-        </div>
+
+        {{#each model as |section|}}
+            <div class="section">
+                {{section.section}}
+            </div>
+            {{#each section.questions as |q|}}
+                <div class="question">
+                    <div class="title">{{q.title}}<i class="material-icons">keyboard_arrow_down</i></div>
+                    <div class="answer">{{{q.answer}}}</div>
+                </div>
+            {{/each}}
+        {{/each}}
     </div>
-
-    <div class="question">
-        <div class="title">How much does Textto cost?</div>
-        <div class="answer">Textto is free to use! Standard messaging rates from your carrier will still apply!</div>
-    </div>
-
-    <div class="question">
-        <div class="title">Some of my contacts aren't appearing.</div>
-        <div class="answer">
-            Ensure that the contacts on your phone have an area and country code attached to them. After changing your phone's contacts, hit 'Sync Contacts' in Textto.
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="title">I'm unable to sign into the Desktop app.</div>
-        <div class="answer">
-            Sometimes when signing into a new application for the first time, you will get a Google security alert. Check your inbox and make sure you verify with Google that you have attempted to sign in.
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="title">I'm unable to sign into the web app.</div>
-        <div class="answer">
-            Please make sure that third-party cookies are enabled. These are used for Google Authenitication and must be enabled by your browser. If you are using other privacy browser addons, try disabling them to log in.
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="title">How can I remove the 'Connected to Textto' notification on my phone?</div>
-        <div class="answer">
-            Try long pressing the notification, and then hiding the 'Sync' notifications.
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="title">How can I clear my Android phone's texting app's notifications.</div>
-        <div class="answer">
-            Make sure you've enabled 'Notification Access' in the Textto Android application. Once you've done that, Textto will clear your texting app's notifications whenever you send a message from your computer.
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="title">I've changed a contact but still see the old one online.</div>
-        <div class="answer">Open the side navigation bar on the Textto website and click on 'Sync Contacts'.</div>
-    </div>
-
-    <div class="question">
-        <div class="title">How do I download the Mac desktop application?</div>
-        <div class="answer">The Mac application is almost ready! Hang on and we'll email you when it is available.</div>
-    </div>
-
-    <div class="question">
-        <div class="title">Why can't I see my old messages?</div>
-        <div class="answer">To save of storage fees and pass those savings onto you, we only sync your recent messages.</div>
-    </div>
-
-
-    <div class="question">
-        <div class="title">My messages are not sending.</div>
-        <div class="answer">
-            <ol>
-                <li>Is your computer and Android device connected to the internet?</li>
-                <li>Are you signed into the same Google account on both the computer and your Android device?</li>
-                <li>Is your phone in service?</li>
-                <li>If you still can't send messages, <a href="mailto:help@textto.io">contact us</a> and we'll help you figure it out!</li>
-            </ol>
-        </div>
-    </div>
-
-    <div class="question">
-        <div class="title">I deleted a thread on my phone, but it still appears in Textto.</div>
-        <div class="answer">On the website, hover over thread you wish to delete and click the 'x' icon. Confirm you want to delete the thread and you're done!</div>
-    </div>
-
-    <div class="question">
-        <div class="title">How do I send pictures?</div>
-        <div class="answer">Click on the <i class="material-icons">attach_file</i> icon on the send-box. Now, select an image from your computer and hit send.</div>
-    </div>
-
-    <div class="question">
-        <div class="title">How do I send emojis?</div>
-        <div class="answer">Click on the <i class="material-icons">tag_faces</i> icon on the send-box. From there, you can search for emojis!</div>
-    </div>
-
-    <div class="question">
-        <div class="title">I've found a bug!</div>
-        <div class="answer">Uh oh, please <a href="mailto:help@textto.io">let us know</a> so we can fix it!</div>
-    </div>
-
-    <div class="question">
-        <div class="title">I wish you would add this feature!</div>
-        <div class="answer">We want to make Textto the best texting app out there. <a href="mailto:help@textto.io">Let us know</a> and we'll look into adding it!</div>
-    </div>
-
 
 </div>
