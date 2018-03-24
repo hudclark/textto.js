@@ -10,6 +10,9 @@ export default BaseRoute.extend({
 
         return [
             {
+                date: 'March 24, 2018',
+                description: 'Add notification mirroring!',
+            }, {
                 date: 'March 15, 2018',
                 description: 'Fix bug when new encrypted threads are synced.',
             }, {
