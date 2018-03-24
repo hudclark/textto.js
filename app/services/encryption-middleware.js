@@ -55,6 +55,21 @@ export default Ember.Service.extend({
         )
     },
 
+    async _decryptNotification (notification) {
+
+        console.log('decrypting')
+        const encryption = this.get('encryption')
+        const [title, thumbnail, subtitle] = await Promise.all([
+            encryption.decrypt(notification.title),
+            encryption.decrypt(notification.thumbnail),
+            (notification.subtitle) ? encryption.decrypt(notification.subtitle) : null,
+        ])
+
+        notification.title = title
+        notification.thumbnail = thumbnail
+        notification.subtitle = subtitle
+    },
+
     async _encryptionEnabled() {
         await this.get('encryption').finishInit()
         return this.get('encryption').enabled()
@@ -137,6 +152,11 @@ export default Ember.Service.extend({
 
             else if (type === 'newThread' && payload.thread.encrypted) {
                 await this._decryptThread(payload.thread)
+            }
+
+            // Notifications
+            else if (type === 'notificationReceived' && payload.notification.encrypted) {
+                await this._decryptNotification(payload.notification)
             }
         } catch (e) {
             console.log(e)

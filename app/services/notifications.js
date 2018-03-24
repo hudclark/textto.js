@@ -4,6 +4,12 @@ export default Ember.Service.extend({
 
     settings: Ember.inject.service(),
     isDisabled: false,
+    bus: Ember.inject.service(),
+
+    init () {
+        this._super(...arguments)
+        this.get('bus').register(this)
+    },
 
     askPermission () {
         try {
@@ -44,11 +50,11 @@ export default Ember.Service.extend({
 
     _createNotification (title, body, image) {
         if (Notification.permission === 'granted') {
-            const hideText = this.get('settings').getSetting('hideNotificationText', false)
             image = (image == null) ? '/images/logo.png' : 'data:image/png;base64,' + image
+            const hideText = this.get('settings').getSetting('hideNotificationText', false)
             const notification = new Notification(title, {
                 icon: image,
-                body: (hideText) ? 'You received a message.' : body,
+                body: (hideText) ? 'Contents Hidden' : body,
             })
 
             const duration = this.get('settings').getSetting('notificationLength', 3)
@@ -59,6 +65,23 @@ export default Ember.Service.extend({
             }
         } else {
             this.askPermission()
+        }
+    },
+
+
+    // Websocket events -------------------------------------------------------------
+
+    onNotificationReceived (payload) {
+        if (!settings.getSetting('mirrorNotifications', true)) return
+
+        // Mirroed notifications should show even if textto is in focus.
+        if (this.isDisabled || !Notification) return
+        const enabled = this.get('settings').getSetting('notifications', true)
+        if (enabled) {
+            const notification = payload.notification
+            console.log(notification.thumbnail.length)
+            this._createNotification(notification.title,
+                notification.subtitle, notification.thumbnail)
         }
     },
 })
