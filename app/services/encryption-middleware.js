@@ -56,8 +56,6 @@ export default Ember.Service.extend({
     },
 
     async _decryptNotification (notification) {
-
-        console.log('decrypting')
         const encryption = this.get('encryption')
         const [title, thumbnail, subtitle] = await Promise.all([
             encryption.decrypt(notification.title),

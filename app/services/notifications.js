@@ -72,7 +72,7 @@ export default Ember.Service.extend({
     // Websocket events -------------------------------------------------------------
 
     onNotificationReceived (payload) {
-        if (!settings.getSetting('mirrorNotifications', true)) return
+        if (!this.get('settings').getSetting('mirrorNotifications', true)) return
 
         // Mirroed notifications should show even if textto is in focus.
         if (this.isDisabled || !Notification) return
