@@ -46,6 +46,17 @@ export default BaseRoute.extend({
             },
 
             {
+                section: 'Security',
+                questions: [{
+                    title: 'Can Textto see my messages?',
+                    answer: 'If you have set a master password, then Textto uses end-to-end encryption. This means that your messages are encrypted before they ever get to Textto\'s servers. <strong>Since your master password is never sent over the internet, even those with access to our servers can never decrypt your messages.</strong><br>Read more about it <a href="/e2e">here</a>.'
+                }, {
+                    title: 'Are my messages encrypted?',
+                    answer: "Textto uses only secure connections to/from its servers. This means that all data is encrypted when it is sent over the internet to/from Textto's servers.<br>If you set a master password, messages will additionally be encrypted with your master password. Since this password is never sent to Textto's servers, it makes sure that your messages are safe from Textto. You can read more about end-to-end encryption <a href='/e2e/'>here</a>."
+                }]
+            },
+
+            {
                 section: 'Messaging',
                 questions: [{
                         title: 'Texts I sent via Textto do not show up in my phone\'s messaging app.',
