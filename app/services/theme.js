@@ -16,6 +16,18 @@ export default Ember.Service.extend({
             active: '405a73'
         },
 
+        'Clean Light': {
+            default: true,
+            name: 'Clean Light',
+            primary: 'ffffff',
+            primaryText: '000000',
+            secondary: 'f8f8f8',
+            secondaryText: '000000',
+            accent: 'cde7ff',
+            secondaryAccent: 'f4f4f4',
+            active: 'ebebeb'
+        },
+
         'Night': {
             default: true,
             name: 'Night',
@@ -26,7 +38,8 @@ export default Ember.Service.extend({
             accent: '087099',
             secondaryAccent: '424242',
             active: '303030'
-        }
+        },
+
 
     },
 
@@ -81,10 +94,18 @@ export default Ember.Service.extend({
 
     getAllThemes (justNames = true) {
         let allThemes = localStorage.getItem('allThemes')
-        if (allThemes == null) allThemes = ['Default', 'Night']
-        else {
+
+        if (allThemes != null) {
             allThemes = JSON.parse(allThemes)
         }
+        if (allThemes == null) allThemes = []
+        allThemes.unshift(...Object.keys(this.BASE_THEMES))
+
+        // remove duplicates
+        allThemes = allThemes.reduce((acc, cur) => {
+            if (acc.indexOf(cur) === -1) acc.push(cur)
+            return acc
+        }, [])
 
         if (!justNames) {
             allThemes = allThemes.map(name => this.getTheme(name))
