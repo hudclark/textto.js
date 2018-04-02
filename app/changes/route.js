@@ -10,6 +10,9 @@ export default BaseRoute.extend({
 
         return [
             {
+                date: 'April 2, 2018',
+                description: 'Add new theme "Clean Light". <strong>Thank you Marshall Cearfoss for the wonderful color palette.</strong>',
+            }, {
                 date: 'March 24, 2018',
                 description: 'Add notification mirroring!',
             }, {
