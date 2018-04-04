@@ -1,5 +1,9 @@
 <div class="admin-stats">
     <div class="header">Total messages sent this month: {{model.totalSentThisMonth}}</div>
+    <div class="header">Request Stats - Server {{model.pid}}</div>
+    <pre>
+        {{model.requestStats}}
+    </pre>
 
     <div class="header">Today's analytics:</div>
     <table>
