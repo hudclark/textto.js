@@ -60,7 +60,7 @@ export default BaseRoute.extend({
                 section: 'Messaging',
                 questions: [{
                         title: 'Texts I sent via Textto do not show up in my phone\'s messaging app.',
-                        answer: 'To fix this issue, try going to Settings -> Applications -> Your texting app. Then clear your apps storage and cache. Note that this will <i>not</i> delete your text messages, it will just cause the app to rescan for sent texts.'
+                        answer: 'To fix this issue, try going to Settings -> Applications -> Your texting app. Then clear your apps storage and cache. Note that this will <i>not</i> delete your text messages, it will just cause the app to rescan for sent texts.<br><br>If this still does not fix the issue, this seems to be an issue with Android messages. Textto uses the regular android api to send messages, and your phone\'s default sms app is supposed to update the phone\'s database with them. Since Textto is not the default app, it is unable to modify the database the default sms app uses to display messages. Your best bet is to try a 3rd party texting app.'
                     }, {
                         title: 'Why can\'t I see my old messages?',
                         answer: 'To save of storage fees and pass those savings onto you, we only sync your recent messages.'
