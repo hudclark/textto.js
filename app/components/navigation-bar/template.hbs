@@ -1,0 +1,39 @@
+{{#link-to 'index'}}<img src="/images/logo.png" class="logo">{{/link-to}}
+{{#link-to 'index'}}<span class="big">Textto</span>{{/link-to}}
+<div class="grow"></div>
+{{!--
+{{#unless (eq hide 'pro')}}
+    {{#link-to 'pro'}}<span class="pro-text">Textto Pro</span>{{/link-to}}
+{{/unless}}
+--}}
+{{#unless (eq hide 'donate')}}
+    {{#link-to 'donate'}}<span class="pro-text">Donate</span>{{/link-to}}
+{{/unless}}
+{{#unless (eq hide 'faq')}}
+    {{#link-to 'faq'}}FAQ{{/link-to}}
+{{/unless}}
+{{#if useDropdown}}
+    <a class="dropdown-trigger" id='nav-dropdown-trigger' data-activates="nav-dropdown">
+        <i class="material-icons">keyboard_arrow_down</i>
+    </a>
+
+    <ul id="nav-dropdown" class="dropdown-content">
+        {{#unless (eq hide 'downloads')}}
+            <li>
+                {{#link-to 'downloads'}}Downloads{{/link-to}}
+            </li>
+        {{/unless}}
+        {{#unless (eq hide 'login')}}
+            <li>
+                {{#link-to 'login'}}Log In{{/link-to}}
+            </li>
+        {{/unless}}
+    </ul>
+{{else}}
+    {{#unless (eq hide 'downloads')}}
+        {{#link-to 'downloads'}}Downloads{{/link-to}}
+    {{/unless}}
+    {{#unless (eq hide 'login')}}
+        {{#link-to 'login'}}Log In{{/link-to}}
+    {{/unless}}
+{{/if}}

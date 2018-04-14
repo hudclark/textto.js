@@ -56,4 +56,13 @@
         margin-top: 0 !important;
     }
 
+    .important {
+        a {
+            color: $green !important;
+        }
+        .material-icons {
+            color: $green !important;
+        }
+    }
+
 }

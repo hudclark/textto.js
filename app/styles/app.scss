@@ -95,53 +95,6 @@ img.logo {
 
 $navbarHeight: 80px;
 
-.nav-bar {
-    position: fixed;
-    height: $navbarHeight;
-    padding: 12px;
-    background: white;
-    z-index: 9999;
-    display: flex;
-    top: 0;
-    align-items: center;
-    width: 100%;
-    padding-left: 10%;
-    padding-right: 10%;
-    left: 0;
-    right: 0;
-
-    @media (max-width: 1000px) {
-        padding-left: 5%;
-        padding-right: 5%;
-    }
-
-    .logo {
-        height: 52px;
-        vertical-align: middle;
-    }
-
-    span {
-        font-size: 20px;
-    }
-
-    .grow {
-        display: flex;
-        flex-grow: 1;
-    }
-
-    a {
-        font-size: 16px;
-        font-weight: 500;
-        margin-right: 32px;
-
-        &:first-child {
-            margin-right: 0;
-        }
-        &:last-child {
-            margin-right: 0;
-        }
-    }
-}
 
 .ember-view {
 
@@ -174,6 +127,9 @@ $navbarHeight: 80px;
     cursor: pointer;
     font-size: 16px;
     padding: 8px 20px;
+    -webkit-user-select: none; /* Chrome/Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
 
     i {
         vertical-align: middle;
@@ -183,6 +139,22 @@ $navbarHeight: 80px;
         margin-top: 32px;
         font-size: 17px;
         padding: 12px 24px;
+    }
+
+    &.small {
+        padding: 8px 20px;
+        font-size: 14px;
+    }
+
+    &.secondary {
+        background-color: transparent;
+        border: 2px solid $colorAccent;
+        color: $colorAccent;
+        transition: box-shadow 0.2s;
+        &:hover {
+            background: transparent;
+            @include elevation(1);
+        }
     }
 
     &:hover {
@@ -229,6 +201,10 @@ $navbarHeight: 80px;
 
 loading > div {
     background-color: $colorAccent;
+}
+
+.pro-text {
+    color: $green;
 }
 
 

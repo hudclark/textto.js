@@ -1,0 +1,131 @@
+.donate-page {
+    position: fixed;
+    overflow-y: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to top right, #6dddfb, 10%, #005bea 100%);
+
+    padding-top: 128px;
+
+    @media (max-width: 1000px) {
+        text-align: center;
+        padding-top: 80px;
+    }
+
+    .nav-bar {
+        background: transparent;
+        a {
+            color: white;
+        }
+    }
+
+    .row {
+        display: flex;
+        max-width: 1400px;
+        margin: 0 auto;
+
+        @media (max-width: 1000px) {
+            text-align: center;
+            flex-direction: column-reverse;
+        }
+
+    }
+
+    .col {
+        width: 50%;
+        padding: 0 32px !important;
+
+        @media (max-width: 1000px) {
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 16px !important;
+        }
+
+        &.smaller {
+            @media (max-width: 1000px) {
+                width: 280px;
+                max-width: 80%;
+            }
+
+        }
+    }
+
+    .title-col {
+        padding-top: 54px;
+
+        @media (max-width: 1000px) {
+            padding-top: 24px;
+        }
+
+        h1 {
+            font-size: 54px;
+            color: white;
+            margin-bottom: 32px;
+        }
+
+        h2 {
+            color: white;
+            font-size: 22px;
+            line-height: 22px;
+        }
+
+        color: white;
+
+
+    }
+
+
+
+    .feature-image {
+        width: 100%;
+        padding-top: 100%;
+        position: relative;
+        background: url('/images/isometric.png') center center no-repeat;
+        background-size: contain;
+
+        .connection-animation {
+
+            position: absolute;
+            right: 20%;
+            bottom: 20%;
+            transform: rotate(35deg);
+            width: 15%;
+
+            .connection-dot {
+                width: 8px;
+                height: 8px;
+                margin-bottom: 8px;
+                background-color: white;
+                border-radius: 100%;
+                animation: connection-loop 2.0s infinite;
+
+                @media (max-width: 1000px) {
+                    width: 4px;
+                    height: 4px;
+                    margin-bottom: 4px;
+                }
+
+                &.two {
+                    animation-delay: 1s;
+                }
+            }
+        }
+    }
+
+    @keyframes connection-loop {
+        0% { margin-left: 0; }
+        50% { margin-left: 100%; }
+    }
+
+    .donation-card {
+        margin-top: 44px;
+
+        @media (max-width: 1000px) {
+            margin-top: 16px;
+        }
+    }
+
+}

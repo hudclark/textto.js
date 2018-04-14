@@ -28,6 +28,8 @@ Router.map(function() {
   this.route('downloads')
   this.route('faq')
   this.route('login')
+  //this.route('pro')
+  this.route('donate')
 
 })
 

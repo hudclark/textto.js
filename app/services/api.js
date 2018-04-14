@@ -153,7 +153,22 @@ export default Ember.Service.extend({
     // link previews
     getLinkPreview (link) {
         return this._authenticatedRequest('/link-preview?link=' + link)
+    },
+
+
+    donate (token, amount) {
+        const options = {
+            method: 'post',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                token,
+                amount
+            })
+        }
+        return this.request('/donate', options)
     }
+
+
 
 
 })

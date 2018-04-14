@@ -13,11 +13,13 @@ export default BaseRoute.extend({
         }
     },
 
-    actions: {
+    resetController (controller, isExiting, transition) {
+         if (isExiting) {
+             controller.set('redirect', null)
+         }
+    },
 
-        onLogin() {
-            this.transitionTo('threads');
-        },
+    actions: {
 
         openIndex () {
             this.transitionTo('index')

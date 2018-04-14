@@ -1,0 +1,64 @@
+.nav-bar {
+    position: fixed;
+    height: $navbarHeight;
+    padding: 12px;
+    background: white;
+    z-index: 9999;
+    display: flex;
+    top: 0;
+    align-items: center;
+    width: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
+    left: 0;
+    right: 0;
+
+    @media (max-width: 1000px) {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .logo {
+        height: 52px;
+        vertical-align: middle;
+    }
+
+    .big {
+        font-size: 20px;
+    }
+
+    .grow {
+        display: flex;
+        flex-grow: 1;
+    }
+
+    a {
+        font-size: 16px;
+        font-weight: 500;
+        margin-right: 32px;
+
+        @media (max-width: 1000px) {
+            font-size: 15px;
+            margin-right: 16px;
+        }
+
+        &:first-child {
+            margin-right: 0;
+        }
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    .dropdown-trigger > .material-icons {
+        vertical-align: middle;
+        -webkit-user-select: none; /* Chrome/Safari */        
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* IE10+ */
+    }
+
+    .dropdown-content > li > a{
+        font-size: 14px;
+        color: $colorAccent;
+    }
+}

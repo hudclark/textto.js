@@ -1,0 +1,35 @@
+<div class="header">
+    <div class="title">
+        Donate to Textto!
+    </div>
+    <div class="subtitle">
+        Your support keeps Textto alive!
+    </div>
+    <div class="bottom-hr"></div>
+</div>
+
+<div class="details">
+    Your donations keep Textto's servers running! Without your help, we couldn't offer this great service for free!
+    <br>
+    <br>
+    <span class="green-text">
+        Donations of any amount are greatly appreciated!
+    </span>
+</div>
+
+{{#if isLoading}}
+    {{loading-view}}
+{{else if donated}}
+    <div class="thank-you">
+        Thank you so much for your donation! You make Textto possible.
+    </div>
+{{else}}
+    <div class="actions">
+        <div class="cta small donation-btn" {{action 'donate' 2.00}}>$2</div>
+        <div class="cta small donation-btn" {{action 'donate' 5.00}}>$5</div>
+        <div class="cta small donation-btn" {{action 'donate' 10.00}}>$10</div>
+        <div class="cta small donation-btn" {{action 'donate' 50.00}}>$50</div>
+    </div>
+{{/if}}
+
+{{error-view error=error}}

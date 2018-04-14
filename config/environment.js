@@ -35,8 +35,9 @@ module.exports = function(environment) {
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
 
 
-    //ENV.wsHost = 'ws://localhost:8000';
-    //ENV.host = 'http://localhost:8000';
+    ENV.wsHost = 'ws://localhost:8000';
+    ENV.host = 'http://localhost:8000';
+    ENV.STRIPE_KEY = 'pk_test_kjjLg1dXinEQM3N2TlR4Ex2E'
   }
 
   if (environment === 'test') {
