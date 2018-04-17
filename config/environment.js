@@ -35,8 +35,8 @@ module.exports = function(environment) {
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
 
 
-    ENV.wsHost = 'ws://localhost:8000';
-    ENV.host = 'http://localhost:8000';
+    //ENV.wsHost = 'ws://localhost:8000';
+    //ENV.host = 'http://localhost:8000';
     ENV.STRIPE_KEY = 'pk_test_kjjLg1dXinEQM3N2TlR4Ex2E'
   }
 
@@ -55,6 +55,7 @@ module.exports = function(environment) {
   if (environment === 'production') {
     ENV.wsHost = 'wss://api.textto.io';
     ENV.host = 'https://api.textto.io';
+    ENV.STRIPE_KEY = 'pk_live_pY7sZp5rogmET3hiixAZ1VEe'
   }
 
   return ENV;
