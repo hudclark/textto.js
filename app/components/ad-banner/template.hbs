@@ -1,0 +1,13 @@
+{{#if (eq currentAd 'remove_ads')}}
+    <a href='#' {{action 'removeAds'}}>
+        <img src="/images/remove_ads.png">
+    </a>
+{{else if (eq currentAd 'advertise_on_textto' )}}
+    <a href="mailto:ads@textto.io">
+        <img src="/images/advertise_on_textto.png">
+    </a>
+{{else}}
+    <a href="https://api.textto.io/ads/click?id={{currentAd._id}}" target="_blank">
+        <img src={{currentAd.image}}>
+    </a>
+{{/if}}

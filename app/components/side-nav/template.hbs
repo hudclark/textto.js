@@ -11,6 +11,15 @@
 
 <div class="scrollable">
 
+{{#if showAds}}
+    <li class="important disabled padded-item">
+        <a class="" href="#" {{action 'removeAds'}}>
+            <i class="material-icons">visibility_off</i>
+            Remove Ads
+        </a>
+    </li>
+{{/if}}
+
 <li class="important disabled padded-item">
     <a class="" href="https://textto.io/donate" target="_blank">
         <i class="material-icons">favorite</i>

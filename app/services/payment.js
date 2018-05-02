@@ -21,6 +21,24 @@ export default Ember.Service.extend({
                 amount: Math.round(amount * 100)
             })
         })
+    },
+
+    removeAds () {
+        return new Ember.RSVP.Promise((resolve, reject) => {
+            const handler = StripeCheckout.configure({
+                key: config.STRIPE_KEY,
+                image: 'https://textto.io/images/logo.png',
+                locale: 'US',
+                token: (token) => resolve(this.get('api').removeAds(token)),
+                closed: () => reject()
+            })
+
+            handler.open({
+                name: 'Textto',
+                description: 'Remove Ads',
+                amount: 399
+            })
+        })
     }
 
 })

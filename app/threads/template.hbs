@@ -1,5 +1,5 @@
 <div class="threads-page themed color-text-primary">
-    {{side-bar threads=threads select-thread=(action 'onThreadSelected') no-messages='noMessages'}}
+    {{side-bar threads=threads select-thread=(action 'onThreadSelected') no-messages='noMessages' showAds=model.showAds}}
 
     <top-bar class="color-primary">
         {{nav-bar go-home=(action "goHome")}}
@@ -24,5 +24,5 @@
     </div>
 
     {{modal-service}}
-    {{side-nav transitionToPath='transitionToPath'}}
+    {{side-nav transitionToPath='transitionToPath' showAds=model.showAds}}
 </div>

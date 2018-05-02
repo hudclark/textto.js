@@ -166,9 +166,25 @@ export default Ember.Service.extend({
             })
         }
         return this.request('/donate', options)
+    },
+
+    // ads
+
+    getBannerAds () {
+        return this._authenticatedRequest('/ads/banner-ads').then(response => response.ads)
+    },
+
+    removeAds (token) {
+        const options = {
+            method: 'post',
+            contentType: 'application/json',
+            data: JSON.stringify({token})
+        }
+        return this._authenticatedRequest('/ads/remove', options)
+    },
+
+    getAppData () {
+        return this._authenticatedRequest('/user/app-data')
     }
-
-
-
 
 })

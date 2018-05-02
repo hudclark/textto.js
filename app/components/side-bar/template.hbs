@@ -24,6 +24,9 @@
 </div>
 {{else}}
     <div class="threads">
+        {{#if showAds}}
+            {{ad-banner}}
+        {{/if}}
         {{#each sortedThreads as |thread|}}
             {{thread-view thread=thread onClick=(action 'onThreadClick') delete="delete"}}
         {{/each}}

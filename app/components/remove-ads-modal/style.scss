@@ -1,0 +1,54 @@
+.remove-ads-modal {
+    background-image: linear-gradient(to top right, #6dddfb, 50%, #005bea 100%);
+
+    min-height: 0 !important;
+    padding: 32px !important;
+
+
+    .title {
+        text-align: center;
+        font-weight: 500;
+        color: white;
+    }
+
+    .subtitle {
+        text-align: center;
+        color: white;
+        max-width: 300px;
+        font-weight: 500;
+        margin: 0 auto;
+    }
+
+    .cta {
+        background-color: $green;
+        margin: 0 auto;
+        display: block;
+        width: 200px;
+        margin-top: 24px;
+        text-align: center;
+    }
+
+    loading {
+        display: block;
+        margin: 24px auto 24px auto;
+
+        .dot-one {
+            background-color: white;
+        }
+        .dot-two {
+            background-color: white;
+        }
+        .dot-threej {
+            background-color: white;
+        }
+    }
+
+    .thank-you {
+        text-align: center;
+        color: white;
+        margin-top: 24px;
+        font-weight: 500;
+        font-size: 22px;
+    }
+
+}
