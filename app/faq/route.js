@@ -43,9 +43,19 @@ export default BaseRoute.extend({
                         title: 'I\'ve found a bug!',
                         answer: 'Uh oh, please <a href="mailto:help@textto.io">let us know</a> so we can fix it!'
                     }]
-            },
-
-            {
+            }, {
+                section: 'Ads',
+                questions: [{
+                    title: 'What information is given to advertisors',
+                    answer: '<strong>No</strong> personal information is given to advertisors.'
+                }, {
+                    title: 'How can I advertise with Textto?',
+                    answer: 'Email <a href="mailto:ads@textto.io">ads@textto.io</a>'
+                }, {
+                    title: 'How can I remove ads?',
+                    answer: 'You can remove ads for $3.99. This support helps us keep Textto\'s servers running!'
+                }]
+            }, {
                 section: 'Security',
                 questions: [{
                     title: 'Can Textto see my messages?',
