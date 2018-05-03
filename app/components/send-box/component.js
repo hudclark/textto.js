@@ -7,6 +7,7 @@ export default Ember.Component.extend({
 
     tagName: 'send-box',
     enabled: true,
+    oldThreadId: null,
 
     placeholder: Ember.computed('to', 'enabled', function () {
 
@@ -26,6 +27,17 @@ export default Ember.Component.extend({
         this._super(...arguments)
         this.get('bus').register(this)
         this.updateCharCounter()
+    },
+
+    didUpdateAttrs () {
+        this._super(...arguments)
+
+        if (this.get('threadId') !== this.get('oldThreadId')) {
+            // clear the send box when changing threads
+            this.$('send-box-input')[0].textContent = ''
+        }
+
+        this.set('oldThreadId', this.get('threadId'))
     },
 
     willDestoryElement () {
