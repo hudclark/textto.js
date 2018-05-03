@@ -25,6 +25,7 @@ export default Ember.Component.extend({
     init () {
         this._super(...arguments)
         this.get('bus').register(this)
+        this.updateCharCounter()
     },
 
     willDestoryElement () {
@@ -72,27 +73,49 @@ export default Ember.Component.extend({
         this.set('enabled', false)
     },
 
+    updateCharCounter () {
+        setImmediate(() => {
+            const length = this.getTextContent().length
+            if (length < 140) {
+                this.set('chars', `${length}/140`)
+                this.set('type', 'sms')
+            } else {
+                this.set('chars', null)
+                this.set('type', 'mms')
+            }
+        })
+    },
+
+    getTextContent () {
+        let el = this.$('send-box-input')[0];
+        const nodes = [...el.childNodes]
+        const text = nodes.map((node) => {
+            if (node.alt) {
+                return node.alt
+            } else if (node.textContent.length) {
+                return node.textContent
+            } else if ($(node).is('br')) {
+                return '\n'
+            } else {
+                return ''
+            }
+        }).join('')
+
+        return text
+    },
+
     actions: {
 
         keyDown (e) {
             // enter pressed
+
+            let returnVal = true
+
             if (e.keyCode == 13 && !e.shiftKey) {
-                let el = this.$('send-box-input')[0];
-                const nodes = [...el.childNodes]
-                const text = nodes.map((node) => {
-                    if (node.alt) {
-                        return node.alt
-                    } else if (node.textContent.length) {
-                        return node.textContent
-                    } else if ($(node).is('br')) {
-                        return '\n'
-                    } else {
-                        return ''
-                    }
-                }).join('')
+                const text = this.getTextContent()
                 if (text.length) this.sendMessage(text)
-                el.textContent = ''
-                return false;
+                this.$('send-box-input')[0].textContent = ''
+                returnVal = false
             } else if (e.keyCode === 8) {
                 // check to see if only a single br left
                 let el = this.$('send-box-input')[0];
@@ -101,6 +124,9 @@ export default Ember.Component.extend({
                     el.textContent = ''
                 }
             }
+
+            this.updateCharCounter()
+            return returnVal
         },
 
         paste (e) {
@@ -130,6 +156,8 @@ export default Ember.Component.extend({
                 const text = e.clipboardData.getData('text/plain')
                 document.execCommand('insertHTML', false, text)
             }
+
+            this.updateCharCounter()
         },
 
         attachFile () {
@@ -147,6 +175,7 @@ export default Ember.Component.extend({
 
         emojiClick (emoji) {
             const input = this.$('send-box-input')[0].appendChild(emoji.cloneNode(true))
+            this.updateCharCounter()
         }
 
     }
