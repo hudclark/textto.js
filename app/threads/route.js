@@ -29,6 +29,7 @@ export default BaseRoute.extend({
 
     model () {
         return this.get('api').getAppData()
+            .catch(e => this.transitionTo('login'))
     },
 
     onWebsocketConnectionLost() {

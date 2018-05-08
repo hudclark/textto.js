@@ -97,7 +97,7 @@ export default Ember.Service.extend({
     close () {
         console.log('Closing WS...')
         this.clearTimeouts()
-        this.ws.close(this.CLOSE_CODE)
+        if (this.ws && this.ws.close) this.ws.close(this.CLOSE_CODE)
     },
 
     onOpen () {
