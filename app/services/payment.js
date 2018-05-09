@@ -54,7 +54,7 @@ export default Ember.Service.extend({
             handler.open({
                 name: 'Textto',
                 description: 'Upgrade Sync Limits',
-                amount: 399
+                amount: 499
             })
         })
     }
