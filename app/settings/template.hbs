@@ -44,6 +44,20 @@
 
         {{encryption-setup}}
 
+        {{#if model.upgradedSyncLimits}}
+            <div class="settings-title">
+                Sync older threads
+            </div>
+            <p>Since you've upgraded your sync limits, you can now retroactively sync more of your recent threads. Please note that only versions of Textto for Android v1.3.3 or above have this feature. It may take a few minutes to sync older conversations.</p>
+            <div class="centered">
+                {{#if syncingOldThreads}}
+                    {{loading-view}}
+                {{else}}
+                    <a class="waves-effect cta small" {{action 'syncOldThreads'}}>Sync Threads</a>
+                {{/if}}
+            </div>
+        {{/if}}
+
         <div class="settings-title">
             Other
         </div>

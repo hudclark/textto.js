@@ -1,0 +1,28 @@
+<script src="https://checkout.stripe.com/checkout.js"></script>
+<div class="modal-content">
+    <div class="title">Sync Up To 50 Conversations!</div>
+    <div class="subtitle">
+        Remove the 15 conversation limit and sync up to <strong>50</strong> conversations!
+        <div class="small">
+            It may take a few minutes to sync additional conversations after upgrading.
+        </div>
+    </div>
+
+    <div class="support">
+        Your support keeps Textto's servers running!
+    </div>
+
+    {{#if isLoading}}
+        {{loading-view}}
+    {{else if upgraded}}
+        <div class="thank-you">
+            Thank you so much!
+        </div>
+    {{else}}
+        <div class="actions">
+            <div class="cta" {{action 'upgrade'}}>Upgrade for $3.99</div>
+        </div>
+    {{/if}}
+    {{error-view error=error}}
+
+</div>

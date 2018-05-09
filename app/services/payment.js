@@ -39,6 +39,24 @@ export default Ember.Service.extend({
                 amount: 399
             })
         })
+    },
+
+    upgradeSyncLimits () {
+        return new Ember.RSVP.Promise((resolve, reject) => {
+            const handler = StripeCheckout.configure({
+                key: config.STRIPE_KEY,
+                image: 'https://textto.io/images/logo.png',
+                locale: 'US',
+                token: (token) => resolve(this.get('api').upgradeSyncLimits(token)),
+                closed: () => reject()
+            })
+
+            handler.open({
+                name: 'Textto',
+                description: 'Upgrade Sync Limits',
+                amount: 399
+            })
+        })
     }
 
 })

@@ -74,7 +74,18 @@ export default Ember.Component.extend({
                 data: null
             }
             this.get('bus').post('openModal', modal)
-        }
+        },
+
+        upgradeSyncLimits () {
+            this.closeDrawer()
+            const modal = {
+                componentName: 'upgrade-sync-limits-modal',
+                data: null
+            }
+            this.get('bus').post('openModal', modal)
+        },
+
+
     }
 
 })

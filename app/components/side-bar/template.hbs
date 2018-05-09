@@ -25,7 +25,7 @@
 {{else}}
     <div class="threads">
         {{#if showAds}}
-            {{ad-banner}}
+            {{ad-banner upgradedSyncLimits=upgradedSyncLimits}}
         {{/if}}
         {{#each sortedThreads as |thread|}}
             {{thread-view thread=thread onClick=(action 'onThreadClick') delete="delete"}}

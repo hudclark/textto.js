@@ -21,18 +21,31 @@ export default Ember.Component.extend({
 
     startAdRotation () {
         let counter = 0
-        setInterval(() => {
+        let interval = setInterval(() => {
+
+            if (this.isDestroyed || this.isDestroying) {
+                clearInterval(interval)
+                return
+            }
+
             const numberOfAds = this.get('ads.length')
 
             let currentAd = null
 
             if (counter === 0) currentAd = 'remove_ads'
-            else if (counter === 1) currentAd = 'advertise_on_textto'
+            else if (counter === 1) {
+                if (this.get('upgradedSyncLimits')) {
+                    currentAd = 'remove_ads'
+                } else {
+                    currentAd = 'increase_limits'
+                }
+            }
+            else if (counter === 2) currentAd = 'advertise_on_textto'
             else {
-                currentAd = this.get('ads')[counter - 2]
+                currentAd = this.get('ads')[counter - 3]
             }
 
-            counter = (counter + 1) % (numberOfAds + 2)
+            counter = (counter + 1) % (numberOfAds + 3)
 
             this.set('currentAd', currentAd)
         }, 8000)
@@ -43,6 +56,13 @@ export default Ember.Component.extend({
         removeAds () {
             this.get('bus').post('openModal', {
                 componentName: 'remove-ads-modal',
+                data: null
+            })
+        },
+
+        increaseLimits () {
+            this.get('bus').post('openModal', {
+                componentName: 'upgrade-sync-limits-modal',
                 data: null
             })
         }

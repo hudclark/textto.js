@@ -185,6 +185,20 @@ export default Ember.Service.extend({
 
     getAppData () {
         return this._authenticatedRequest('/user/app-data')
+    },
+
+    upgradeSyncLimits (token) {
+        const options = {
+            method: 'post',
+            contentType: 'application/json',
+            data: JSON.stringify({token})
+        }
+        return this._authenticatedRequest('/sync/upgrade', options)
+    },
+
+    syncOldThreads () {
+        return this._authenticatedRequest('/sync/syncOldThreads', {method: 'post'})
     }
+
 
 })

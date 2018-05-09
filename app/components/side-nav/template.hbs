@@ -20,6 +20,15 @@
     </li>
 {{/if}}
 
+{{#if (not upgradedSyncLimits)}}
+    <li class="important disabled padded-item">
+        <a class="" href="#" {{action 'upgradeSyncLimits'}}>
+            <i class="material-icons">sync</i>
+            Increase Sync Limits
+        </a>
+    </li>
+{{/if}}
+
 <li class="important disabled padded-item">
     <a class="" href="https://textto.io/donate" target="_blank">
         <i class="material-icons">favorite</i>
