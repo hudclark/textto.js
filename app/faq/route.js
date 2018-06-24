@@ -26,7 +26,7 @@ export default BaseRoute.extend({
                         answer: 'The Mac application is almost ready! Hang on and we\'ll email you when it is available.'
                     }, {
                         title: 'I wish you would add this feature!',
-                        answer: 'We want to make Textto the best texting app out there. <a href="mailto:help@textto.io">Let us know</a> and we\'ll look into adding it!'
+                        answer: 'We want to make Textto the best texting app out there. <a href="mailto:help@moduloapps.com">Let us know</a> and we\'ll look into adding it!'
                     }, {
                         title: 'How do I send pictures?',
                         answer: 'Click on the <i class="material-icons">attach_file</i> icon on the send-box. Now, select an image from your computer and hit send.'
@@ -41,7 +41,7 @@ export default BaseRoute.extend({
                         answer: 'Make sure you\'ve enabled \'Notification Access\' in the Textto Android application. Once you\'ve done that, Textto will clear your texting app\'s notifications whenever you send a message from your computer.'
                     }, {
                         title: 'I\'ve found a bug!',
-                        answer: 'Uh oh, please <a href="mailto:help@textto.io">let us know</a> so we can fix it!'
+                        answer: 'Uh oh, please <a href="mailto:help@moduloapps.com">let us know</a> so we can fix it!'
                     }]
             }, {
                 section: 'Ads',
@@ -50,7 +50,7 @@ export default BaseRoute.extend({
                     answer: '<strong>No</strong> personal information is given to advertisors.'
                 }, {
                     title: 'How can I advertise with Textto?',
-                    answer: 'Email <a href="mailto:ads@textto.io">ads@textto.io</a>'
+                    answer: 'Email <a href="mailto:ads@moduloapps.com">ads@moduloapps.com</a>'
                 }, {
                     title: 'How can I remove ads?',
                     answer: 'You can remove ads for $3.99. This support helps us keep Textto\'s servers running!'
@@ -81,7 +81,7 @@ export default BaseRoute.extend({
                             <li>Is your computer and Android device connected to the internet?</li>
                             <li>Are you signed into the same Google account on both the computer and your Android device?</li>
                             <li>Is your phone in service?</li>
-                            <li>If you still can't send messages, <a href="mailto:help@textto.io">contact us</a> and we'll help you figure it out!</li>
+                            <li>If you still can't send messages, <a href="mailto:help@moduloapps.com">contact us</a> and we'll help you figure it out!</li>
                         </ol>
                         `
                     }, {

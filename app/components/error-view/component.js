@@ -9,7 +9,7 @@ export default Ember.Component.extend({
         if (error == null) return null
         if (error.responseJSON) error = error.responseJSON
 
-        let errorText = 'Please try again or contact help@textto.io'
+        let errorText = 'Please try again or contact help@moduloapps.com'
         if (error.error) errorText = error.error
         else if (error.message) errorText = error.message
         return 'An error occured: ' + errorText
