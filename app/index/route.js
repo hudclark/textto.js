@@ -8,8 +8,23 @@ export default BaseRoute.extend({
         }
     },
 
+    register: Ember.on('activate', function () {
+        this.navInterval = setInterval(() => {
+            const scrolledToTop = $(window).scrollTop() < 5
+            if (this.isNavTransparent && !scrolledToTop) {
+                $('.nav-bar').toggleClass('transparent')
+                this.isNavTransparent = false
+            } else if (!this.isNavTransparent && scrolledToTop) {
+                $('.nav-bar').toggleClass('transparent')
+                this.isNavTransparent = true
+            }
+        }, 500)
+        this.isNavTransparent = true
+    }),
+
     unregister: Ember.on('deactivate', function () {
         $().stopScrollIn()
+        clearInterval(this.navInterval)
     }),
 
     actions: {

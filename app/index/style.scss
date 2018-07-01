@@ -1,6 +1,20 @@
 .landing {
-    padding-top: 90px;
     position: relative;
+
+    .nav-bar {
+        transition: background-color 0.4s;
+
+        &.transparent {
+            background: transparent;
+            a {
+                transition: color 0.4s;
+                color: white;
+            }
+            .pro-text {
+                color: white;
+            }
+        }
+    }
 
     @media (max-width: 1000px) {
         text-align: center;
@@ -73,10 +87,13 @@
     }
 
     .first-section {
-        min-height: calc(100vh - 80px);
-        max-width: 1600px;
-        margin-right: 5%;
-        margin-left: 5%;
+        background-image: linear-gradient(to top right, #6dddfb, 10%, #005bea 100%);
+        padding-top: 90px;
+        padding-left: 5%;
+        padding-right: 5%;
+        min-height: 100vh;
+        max-width: 100%;
+        color: white;
         @media (max-width: 1000px) {
             min-height: 0;
         }
@@ -95,10 +112,62 @@
             @media (max-width: 1000px) {
                 margin-left: 16px;
             }
+            h2 {
+                color: white;
+            }
+            h1 {
+                color: white;
+            }
         }
         .image-side {
-            margin-left: 0;
-            margin-right: 0;
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+        .feature-image {
+            width: 100%;
+            padding-top: 100%;
+            position: relative;
+            background: url('/images/isometric.png') center center no-repeat;
+            background-size: contain;
+
+            .connection-animation {
+
+                position: absolute;
+                right: 20%;
+                bottom: 20%;
+                transform: rotate(35deg);
+                width: 15%;
+
+                .connection-dot {
+                    width: 8px;
+                    height: 8px;
+                    margin-bottom: 8px;
+                    background-color: white;
+                    border-radius: 100%;
+                    animation: connection-loop 2.0s infinite;
+
+                    @media (max-width: 1000px) {
+                        width: 4px;
+                        height: 4px;
+                        margin-bottom: 4px;
+                    }
+
+                    &.two {
+                        animation-delay: 1s;
+                    }
+                }
+            }
+        }
+
+        .cta {
+            background-color: white;
+            color: $colorAccent;
+            font-weight: 800;
+        }
+
+        @keyframes connection-loop {
+            0% { margin-left: 0; }
+            50% { margin-left: 100%; }
         }
     }
 
@@ -141,6 +210,7 @@
 
 
     #login-screen {
+        z-index: -1;
         img {
             margin: 0 auto;
             display: block;

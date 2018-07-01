@@ -131,6 +131,8 @@ $navbarHeight: 80px;
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+ */
 
+    @include elevation(1);
+
     i {
         vertical-align: middle;
     }
