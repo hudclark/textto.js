@@ -24,8 +24,8 @@ module.exports = function(environment) {
     }
   };
 
-  ENV.wsHost = 'wss://api.textto.io';
-  ENV.host = 'https://api.textto.io';
+  ENV.wsHost = 'wss://api.sendleap.com';
+  ENV.host = 'https://api.sendleap.com';
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
@@ -53,8 +53,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.wsHost = 'wss://api.textto.io';
-    ENV.host = 'https://api.textto.io';
+    ENV.wsHost = 'wss://api.sendleap.com';
+    ENV.host = 'https://api.sendleap.com';
     ENV.STRIPE_KEY = 'pk_live_pY7sZp5rogmET3hiixAZ1VEe'
   }
 

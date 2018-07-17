@@ -5,8 +5,8 @@ export default Ember.Route.extend({
     auth: Ember.inject.service(),
 
     setMeta () {
-        const title = this.title || 'Textto | Text From Your Computer'
-        const description = this.description || 'Sync your Android device with Textto and text from your computer for free!'
+        const title = this.title || 'SendLeap | Text From Your Computer'
+        const description = this.description || 'Sync your Android device with SendLeap and text from your computer for free!'
         document.title = title
         $('meta[name=description]').attr('content', description)
     },
@@ -24,7 +24,7 @@ export default Ember.Route.extend({
     actions: {
 
         setPageTitle (text) {
-            document.title = text + ' | Textto'
+            document.title = text + ' | SendLeap'
         }
 
     }

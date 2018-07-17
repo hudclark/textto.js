@@ -2,7 +2,7 @@ import BaseRoute from 'textto/application/base-route'
 
 export default BaseRoute.extend({
 
-    title: 'Change Log | Textto',
+    title: 'Change Log | SendLeap',
 
     model () {
         // TODO put this on server eventually

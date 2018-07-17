@@ -9,15 +9,15 @@ export default Ember.Service.extend({
         return new Ember.RSVP.Promise((resolve, reject) => {
             const handler = StripeCheckout.configure({
                 key: config.STRIPE_KEY,
-                image: 'https://textto.io/images/logo.png',
+                image: 'https://sendleap.com/images/logo.png',
                 locale: 'US',
                 token: (token) => resolve(this.get('api').donate(token, amount)),
                 closed: () => reject()
             })
 
             handler.open({
-                name: 'Textto',
-                description: 'Donate and help keep Textto Alive!',
+                name: 'SendLeap',
+                description: 'Donate and help keep SendLeap Alive!',
                 amount: Math.round(amount * 100)
             })
         })
@@ -27,14 +27,14 @@ export default Ember.Service.extend({
         return new Ember.RSVP.Promise((resolve, reject) => {
             const handler = StripeCheckout.configure({
                 key: config.STRIPE_KEY,
-                image: 'https://textto.io/images/logo.png',
+                image: 'https://sendleap.com/images/logo.png',
                 locale: 'US',
                 token: (token) => resolve(this.get('api').removeAds(token)),
                 closed: () => reject()
             })
 
             handler.open({
-                name: 'Textto',
+                name: 'SendLeap',
                 description: 'Remove Ads',
                 amount: 399
             })
@@ -45,14 +45,14 @@ export default Ember.Service.extend({
         return new Ember.RSVP.Promise((resolve, reject) => {
             const handler = StripeCheckout.configure({
                 key: config.STRIPE_KEY,
-                image: 'https://textto.io/images/logo.png',
+                image: 'https://sendleap.com/images/logo.png',
                 locale: 'US',
                 token: (token) => resolve(this.get('api').upgradeSyncLimits(token)),
                 closed: () => reject()
             })
 
             handler.open({
-                name: 'Textto',
+                name: 'SendLeap',
                 description: 'Upgrade Sync Limits',
                 amount: 499
             })

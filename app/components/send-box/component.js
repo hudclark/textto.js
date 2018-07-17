@@ -12,7 +12,7 @@ export default Ember.Component.extend({
     placeholder: Ember.computed('to', 'enabled', function () {
 
         if (!this.get('enabled')) {
-            return 'Sign into the Textto Android app to send messages.'
+            return 'Sign into the SendLeap Android app to send messages.'
         }
 
         let to = this.get('to');

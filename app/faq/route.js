@@ -1,7 +1,7 @@
 import BaseRoute from 'textto/application/base-route'
 
 export default BaseRoute.extend({
-    title: 'FAQ | Textto',
+    title: 'FAQ | SendLeap',
 
     model () {
         return [
@@ -9,24 +9,24 @@ export default BaseRoute.extend({
                 section: 'General',
                 questions: [
                     {
-                        title: 'How do I get started with Textto?',
+                        title: 'How do I get started with SendLeap?',
                         answer: `
                         <ol>
                             <li>Download the <a href="https://play.google.com/store/apps/details?id=com.moduloapps.textto">Android app</a></li>
                             <li>Sign into the Android app with your Google account.</li>
-                            <li>Visit <a href="https://textto.io/login">https://textto.io/login</a> and sign in with the same Google account.</li>
+                            <li>Visit <a href="https://sendleap.com/login">https://sendleap.com/login</a> and sign in with the same Google account.</li>
                             <li>You're all done! Enjoy texting!</li>
                         </ol>
                         `
                     }, {
-                        title: 'How much does Textto cost?',
-                        answer: 'Textto is free to use! Standard messaging rates from your carrier will still apply!'
+                        title: 'How much does SendLeap cost?',
+                        answer: 'SendLeap is free to use! Standard messaging rates from your carrier will still apply!'
                     }, {
                         title: 'How do I download the Mac desktop application?',
                         answer: 'The Mac application is almost ready! Hang on and we\'ll email you when it is available.'
                     }, {
                         title: 'I wish you would add this feature!',
-                        answer: 'We want to make Textto the best texting app out there. <a href="mailto:help@moduloapps.com">Let us know</a> and we\'ll look into adding it!'
+                        answer: 'We want to make SendLeap the best texting app out there. <a href="mailto:help@moduloapps.com">Let us know</a> and we\'ll look into adding it!'
                     }, {
                         title: 'How do I send pictures?',
                         answer: 'Click on the <i class="material-icons">attach_file</i> icon on the send-box. Now, select an image from your computer and hit send.'
@@ -34,11 +34,11 @@ export default BaseRoute.extend({
                         title: 'How do I send emojis?',
                         answer: 'Click on the <i class="material-icons">tag_faces</i> icon on the send-box. From there, you can search for emojis!'
                     }, {
-                        title: 'How can I remove the \'Connected to Textto\' notification on my phone?',
+                        title: 'How can I remove the \'Connected to SendLeap\' notification on my phone?',
                         answer: 'Try long pressing the notification, and then hiding the \'Sync\' notifications.'
                     }, {
                         title: 'How can I clear my Android phone\'s texting app\'s notifications.',
-                        answer: 'Make sure you\'ve enabled \'Notification Access\' in the Textto Android application. Once you\'ve done that, Textto will clear your texting app\'s notifications whenever you send a message from your computer.'
+                        answer: 'Make sure you\'ve enabled \'Notification Access\' in the SendLeap Android application. Once you\'ve done that, SendLeap will clear your texting app\'s notifications whenever you send a message from your computer.'
                     }, {
                         title: 'I\'ve found a bug!',
                         answer: 'Uh oh, please <a href="mailto:help@moduloapps.com">let us know</a> so we can fix it!'
@@ -49,28 +49,28 @@ export default BaseRoute.extend({
                     title: 'What information is given to advertisors',
                     answer: '<strong>No</strong> personal information is given to advertisors.'
                 }, {
-                    title: 'How can I advertise with Textto?',
+                    title: 'How can I advertise with SendLeap?',
                     answer: 'Email <a href="mailto:ads@moduloapps.com">ads@moduloapps.com</a>'
                 }, {
                     title: 'How can I remove ads?',
-                    answer: 'You can remove ads for $3.99. This support helps us keep Textto\'s servers running!'
+                    answer: 'You can remove ads for $3.99. This support helps us keep SendLeap\'s servers running!'
                 }]
             }, {
                 section: 'Security',
                 questions: [{
-                    title: 'Can Textto see my messages?',
-                    answer: 'If you have set a master password, then Textto uses end-to-end encryption. This means that your messages are encrypted before they ever get to Textto\'s servers. <strong>Since your master password is never sent over the internet, even those with access to our servers can never decrypt your messages.</strong><br>Read more about it <a href="/e2e">here</a>.'
+                    title: 'Can SendLeap see my messages?',
+                    answer: 'If you have set a master password, then SendLeap uses end-to-end encryption. This means that your messages are encrypted before they ever get to SendLeap\'s servers. <strong>Since your master password is never sent over the internet, even those with access to our servers can never decrypt your messages.</strong><br>Read more about it <a href="/e2e">here</a>.'
                 }, {
                     title: 'Are my messages encrypted?',
-                    answer: "Textto uses only secure connections to/from its servers. This means that all data is encrypted when it is sent over the internet to/from Textto's servers.<br>If you set a master password, messages will additionally be encrypted with your master password. Since this password is never sent to Textto's servers, it makes sure that your messages are safe from Textto. You can read more about end-to-end encryption <a href='/e2e/'>here</a>."
+                    answer: "SendLeap uses only secure connections to/from its servers. This means that all data is encrypted when it is sent over the internet to/from SendLeap's servers.<br>If you set a master password, messages will additionally be encrypted with your master password. Since this password is never sent to SendLeap's servers, it makes sure that your messages are safe from SendLeap. You can read more about end-to-end encryption <a href='/e2e/'>here</a>."
                 }]
             },
 
             {
                 section: 'Messaging',
                 questions: [{
-                        title: 'Texts I sent via Textto do not show up in my phone\'s messaging app.',
-                        answer: 'To fix this issue, try going to Settings -> Applications -> Your texting app. Then clear your apps storage and cache. Note that this will <i>not</i> delete your text messages, it will just cause the app to rescan for sent texts.<br><br>If this still does not fix the issue, this seems to be an issue with Android messages. Textto uses the regular android api to send messages, and your phone\'s default sms app is supposed to update the phone\'s database with them. Since Textto is not the default app, it is unable to modify the database the default sms app uses to display messages. Your best bet is to try a 3rd party texting app.'
+                        title: 'Texts I sent via SendLeap do not show up in my phone\'s messaging app.',
+                        answer: 'To fix this issue, try going to Settings -> Applications -> Your texting app. Then clear your apps storage and cache. Note that this will <i>not</i> delete your text messages, it will just cause the app to rescan for sent texts.<br><br>If this still does not fix the issue, this seems to be an issue with Android messages. SendLeap uses the regular android api to send messages, and your phone\'s default sms app is supposed to update the phone\'s database with them. Since SendLeap is not the default app, it is unable to modify the database the default sms app uses to display messages. Your best bet is to try a 3rd party texting app.'
                     }, {
                         title: 'Why can\'t I see my old messages?',
                         answer: 'To save of storage fees and pass those savings onto you, we only sync your recent messages.'
@@ -85,7 +85,7 @@ export default BaseRoute.extend({
                         </ol>
                         `
                     }, {
-                        title: 'I deleted a thread on my phone, but it still appears in Textto.',
+                        title: 'I deleted a thread on my phone, but it still appears in SendLeap.',
                         answer: 'On the website, hover over thread you wish to delete and click the \'x\' icon. Confirm you want to delete the thread and you\'re done!'
                     }
                 ]
@@ -94,10 +94,10 @@ export default BaseRoute.extend({
                 section: 'Contacts',
                 questions: [{
                     title: 'Some of my contacts aren\'t appearing.',
-                    answer: 'Ensure that the contacts on your phone have an area and country code attached to them. After changing your phone\'s contacts, hit \'Sync Contacts\' in Textto.'
+                    answer: 'Ensure that the contacts on your phone have an area and country code attached to them. After changing your phone\'s contacts, hit \'Sync Contacts\' in SendLeap.'
                 }, {
                     title: 'I\'ve changed a contact but still see the old one online.',
-                    answer: 'Open the side navigation bar on the Textto website and click on \'Sync Contacts\'.'
+                    answer: 'Open the side navigation bar on the SendLeap website and click on \'Sync Contacts\'.'
                 }]
             },
 

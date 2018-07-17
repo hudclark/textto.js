@@ -1,6 +1,6 @@
 <div class="nav-bar">
     {{#link-to 'index'}}<img src="/images/logo.png" class="logo">{{/link-to}}
-    {{#link-to 'index'}}<span>Textto</span>{{/link-to}}
+    {{#link-to 'index'}}<span>SendLeap</span>{{/link-to}}
     <div class="grow"></div>
     {{#link-to 'faq'}}FAQ{{/link-to}}
     {{#link-to 'downloads'}}Downloads{{/link-to}}
@@ -12,10 +12,10 @@
     <div class="content">
         <h2>What's different?</h2>
         <p>
-            Textto has always used encrypted connections to and from its servers. This means that all of your data is encrypted while it travels over the internet. However, this means that once on Textto servers, the data is left unencrypted.
+            SendLeap has always used encrypted connections to and from its servers. This means that all of your data is encrypted while it travels over the internet. However, this means that once on SendLeap servers, the data is left unencrypted.
         </p>
         <p>
-            With a master password set, sensitive data is first encrypted on your device. Then, it is encrypted again and sent over the internet. This means that your once your data is on Textto servers, it remains encrypted. <strong>Even with full access to the servers, without your master password, the content of your messages cannot be decrypted</strong>.
+            With a master password set, sensitive data is first encrypted on your device. Then, it is encrypted again and sent over the internet. This means that your once your data is on SendLeap servers, it remains encrypted. <strong>Even with full access to the servers, without your master password, the content of your messages cannot be decrypted</strong>.
         </p>
 
         <h2>How do I get started?</h2>
@@ -25,7 +25,7 @@
                     Download the latest version of the <a href="https://play.google.com/store/apps/details?id=com.moduloapps.textto">Android app</a> and set a master password.
                 </li>
                 <li>
-                    Open the settings screen of Textto on your computer (Side Nav -> Settings). Set the <strong>same</strong> master password here.
+                    Open the settings screen of SendLeap on your computer (Side Nav -> Settings). Set the <strong>same</strong> master password here.
                 </li>
                 <li>
                     You're all set!
@@ -57,18 +57,18 @@
         <h2>Technical Specifications.</h2>
         <p>
             <ul class='inline-list'>
-                <li>When you set a master password, Textto uses <strong>PBKDF2</strong> to derive an encryption key from the password.</li>
-                <li>There is no networking needed to derive your password. Neither your password nor encrpytion key are seen by Textto's servers.</li>
+                <li>When you set a master password, SendLeap uses <strong>PBKDF2</strong> to derive an encryption key from the password.</li>
+                <li>There is no networking needed to derive your password. Neither your password nor encrpytion key are seen by SendLeap's servers.</li>
                 <li>
-                    If an encryption key is present on the device, Textto will encrypt:
+                    If an encryption key is present on the device, SendLeap will encrypt:
                     <ol>
                         <li>Text content of your messages</li>
                         <li>Image content of your messages</li>
-                        <li>Text content of outgoing messages (sent via Textto)</li>
-                        <li>Image content of outgoing messages (sent via Textto)</li>
+                        <li>Text content of outgoing messages (sent via SendLeap)</li>
+                        <li>Image content of outgoing messages (sent via SendLeap)</li>
                     </ol>
                 </li>
-                <li>When you change your password, enable encryption, or disable encryption, Textto removes all of your messages from its servers, then resyncs. When it resyncs, it uses your new encryption key (if there is one) to encrypt message content.</li>
+                <li>When you change your password, enable encryption, or disable encryption, SendLeap removes all of your messages from its servers, then resyncs. When it resyncs, it uses your new encryption key (if there is one) to encrypt message content.</li>
             </ul>
         </p>
 

@@ -2,7 +2,7 @@ import BaseRoute from 'textto/application/base-route'
 
 export default BaseRoute.extend({
 
-    title: 'No Messages | Textto',
+    title: 'No Messages | SendLeap',
     bus: Ember.inject.service(),
     websocket: Ember.inject.service(),
     auth: Ember.inject.service(),

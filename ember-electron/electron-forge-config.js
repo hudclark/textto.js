@@ -13,8 +13,8 @@ module.exports = {
     ]
   },
   "electronPackagerConfig": {
-    "appCopyright": "Copyright (c) 2018 Textto",
-    "name": "Textto",
+    "appCopyright": "Copyright (c) 2018 SendLeap",
+    "name": "SendLeap",
     "overwrite": true,
     "icon": 'icons/win/icon.ico'
   },
@@ -22,19 +22,19 @@ module.exports = {
         icon: 'icons/win/icon.ico',
         noMsi: true,
         authors: 'Modulo Apps LLC',
-        iconUrl: `https://textto.io/images/icon.ico`,
+        iconUrl: `https://sendleap.com/images/icon.ico`,
         setupIcon: path.join(__dirname, '../icons/win/icon.ico'),
         noMsi: true,
-        exe: 'Textto.exe',
+        exe: 'SendLeap.exe',
         loadingGif: path.join(__dirname, '../icons/installing.gif'),
         certificateFile: path.join(__dirname, '../moduloappscert.p12'),
         certificatePassword: process.env.CERT_PASSWORD
   },
   "electronInstallerDebian": {
-    "name": 'Textto',
-    "homepage": "https://textto.io",
+    "name": 'SendLeap',
+    "homepage": "https://sendleap.com",
     "genericName": "Text from your computer",
-    "bin": "Textto",
+    "bin": "SendLeap",
     "icon": path.join(__dirname, '../icons/png/icon.png')
   },
   "electronInstallerRedhat": {},
