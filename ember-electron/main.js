@@ -54,7 +54,6 @@ function handleSquirrelEvent() {
       //   explorer context menus
 
       // Install desktop and start menu shortcuts
-      spawnUpdate(['--removeShortcut', 'Textto.exe']);
       spawnUpdate(['--createShortcut', exeName]);
 
       setTimeout(app.quit, 1000);
