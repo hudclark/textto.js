@@ -6,7 +6,7 @@ const { dirname, join, resolve } = require('path');
 const startAutoUpdater = require('./auto-updates')
 //const package = require('../package.json')
 
-app.setAppUserModelId(`com.squirrel.textto.Textto`)
+app.setAppUserModelId(`com.squirrel.sendleap.SendLeap`)
 
 
 if (require('electron-squirrel-startup')) app.quit();
@@ -54,6 +54,7 @@ function handleSquirrelEvent() {
       //   explorer context menus
 
       // Install desktop and start menu shortcuts
+      spawnUpdate(['--removeShortcut', 'Textto.exe']);
       spawnUpdate(['--createShortcut', exeName]);
 
       setTimeout(app.quit, 1000);
