@@ -31,7 +31,7 @@ export default Ember.Component.extend(MessageMixin, {
 
         // User has no threads. Show no-messages dialog
         if (threads.length === 0) {
-            this.sendAction('no-messages')
+            //this.sendAction('no-messages')
         }
     },
 

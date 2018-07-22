@@ -198,6 +198,14 @@ export default Ember.Service.extend({
 
     syncOldThreads () {
         return this._authenticatedRequest('/sync/syncOldThreads', {method: 'post'})
+    },
+
+    getAlerts (platform, version, lastSeen) {
+        let url = `/alerts?platform=${platform}&version=${version}`
+        if (lastSeen != null) {
+            url += `&lastSeen=${lastSeen}`
+        }
+        return this._authenticatedRequest(url)
     }
 
 
