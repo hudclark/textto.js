@@ -5,7 +5,8 @@
     background-color: white;
     z-index: 9999;
     display: flex;
-    top: 0;
+    top: 48px;
+    //top: 0;
     align-items: center;
     width: 100%;
     padding-left: 10%;
@@ -60,5 +61,19 @@
     .dropdown-content > li > a{
         font-size: 14px;
         color: $colorAccent;
+    }
+
+
+    // TODO remove
+    .alert-bar {
+
+        .alert {
+            height: 48px;
+            padding: 0;
+            .title {
+                padding: 0;
+                line-height: 48px;
+            }
+        }
     }
 }
