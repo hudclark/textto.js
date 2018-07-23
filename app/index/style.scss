@@ -3,6 +3,7 @@
 
     .nav-bar {
         transition: background-color 0.4s;
+        top: 48px;
 
         &.transparent {
             background: transparent;
@@ -12,6 +13,17 @@
             }
             .pro-text {
                 color: white;
+            }
+        }
+    }
+    // TODO remove
+    .alert-bar {
+        .alert {
+            height: 48px;
+            padding: 0;
+            .title {
+                padding: 0;
+                line-height: 48px;
             }
         }
     }
