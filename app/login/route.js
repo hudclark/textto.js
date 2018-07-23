@@ -2,8 +2,8 @@ import BaseRoute from 'textto/application/base-route'
 
 export default BaseRoute.extend({
 
-    title: 'Log In | Textto',
-    description: 'Log in and sync your Android device with Textto.',
+    title: 'Log In | SendLeap',
+    description: 'Log in and sync your Android device with SendLeap.',
 
     auth: Ember.inject.service(),
 

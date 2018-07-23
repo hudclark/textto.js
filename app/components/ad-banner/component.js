@@ -40,12 +40,11 @@ export default Ember.Component.extend({
                     currentAd = 'increase_limits'
                 }
             }
-            else if (counter === 2) currentAd = 'advertise_on_textto'
             else {
-                currentAd = this.get('ads')[counter - 3]
+                currentAd = this.get('ads')[counter - 2]
             }
 
-            counter = (counter + 1) % (numberOfAds + 3)
+            counter = (counter + 1) % (numberOfAds + 2)
 
             this.set('currentAd', currentAd)
         }, 8000)

@@ -6,7 +6,7 @@ const { dirname, join, resolve } = require('path');
 const startAutoUpdater = require('./auto-updates')
 //const package = require('../package.json')
 
-app.setAppUserModelId(`com.squirrel.textto.Textto`)
+app.setAppUserModelId(`com.squirrel.sendleap.SendLeap`)
 
 
 if (require('electron-squirrel-startup')) app.quit();

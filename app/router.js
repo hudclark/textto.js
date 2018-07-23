@@ -30,6 +30,7 @@ Router.map(function() {
   this.route('login')
   //this.route('pro')
   this.route('donate')
+  this.route('sendleap')
 
 })
 

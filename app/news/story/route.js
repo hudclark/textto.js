@@ -9,7 +9,7 @@ export default BaseRoute.extend({
     },
 
     afterModel (model) {
-        this.set('title', model.title + ' | Textto')
+        this.set('title', model.title + ' | SendLeap')
         this._super(...arguments)
     }
 

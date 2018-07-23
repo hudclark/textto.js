@@ -1,10 +1,10 @@
 const electronInstaller = require('electron-winstaller')
 
 const result = electronInstaller.createWindowsInstaller({
-    appDirectory: './electron-out/Textto-win32-x64',
+    appDirectory: './electron-out/SendLeap-win32-x64',
     outputDirectory: './electron-out/win-release',
     authors: 'Modulo Apps LLC',
-    exe: 'Textto.exe'
+    exe: 'SendLeap.exe'
 })
 
 result.then(() => {

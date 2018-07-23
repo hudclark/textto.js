@@ -27,8 +27,8 @@ export default Ember.Component.extend({
             solution: 'The master password on your computer and the Android app must match. You can change it by going into the setting screen.'
         },
         'not-sent': {
-            error: 'Textto timed out attempting to connect to your phone.',
-            solution: 'Ensure your phone is connected to the internet and you are signed into the Textto Android application.'
+            error: 'SendLeap timed out attempting to connect to your phone.',
+            solution: 'Ensure your phone is connected to the internet and you are signed into the SendLeap Android application.'
         },
         'unknown': {
             error: 'We were unable to send your message',

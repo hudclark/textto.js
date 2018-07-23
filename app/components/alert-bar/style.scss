@@ -1,0 +1,36 @@
+.alert-bar {
+    .alert {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background-color: #7C4DFF;
+        z-index: 999;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        padding: 4px 32px;
+
+        .title {
+            color: white;
+            display: inline-block;
+            font-weight: 500;
+            line-height: 32px;
+            padding-right: 32px;
+            padding-left: 32px;
+        }
+
+        .close {
+            position: absolute;
+            right: 16px;
+            top: 8px;
+            color: white;
+            cursor: pointer;
+        }
+
+        a {
+            color: white;
+            text-decoration: underline;
+        }
+    }
+}

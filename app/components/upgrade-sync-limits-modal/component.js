@@ -28,7 +28,7 @@ export default Ember.Component.extend({
         async upgrade () {
 
             const msg =
-                "Please make sure you upgraded to Textto for Android v1.3.3. If you are on an earlier version, old conversations will NOT be retroactively synced."
+                "Please make sure you upgraded to SendLeap for Android v1.3.3. If you are on an earlier version, old conversations will NOT be retroactively synced."
 
             if (!confirm(msg)) {
                 return
