@@ -31,7 +31,7 @@ module.exports = {
         certificatePassword: process.env.CERT_PASSWORD
   },
   "electronInstallerDebian": {
-    "name": 'SendLeap',
+    "name": 'sendleap',
     "homepage": "https://sendleap.com",
     "genericName": "Text from your computer",
     "bin": "SendLeap",

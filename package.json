@@ -15,7 +15,8 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "ember test"
+    "test": "ember test",
+    "build:electron": "ember electron:make --environment=production"
   },
   "devDependencies": {
     "babel-plugin-transform-async-to-generator": "^6.24.1",
